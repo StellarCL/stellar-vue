@@ -2,3 +2,4 @@ packages:
   - "packages/*"
   - "apps/*"
   - "tooling/*"
+  - "tests/e2e/fixtures"
