@@ -13,7 +13,17 @@
   "bugs": {
     "url": "https://github.com/StellarCL/stellar-vue/issues"
   },
-  "keywords": ["vue", "vue3", "components", "ui", "tailwind", "radix-vue", "accessible", "typescript", "nuxt"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "tailwind",
+    "radix-vue",
+    "accessible",
+    "typescript",
+    "nuxt"
+  ],
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=9.0.0"
@@ -31,10 +41,14 @@
     "format": "prettier --write .",
     "typecheck": "turbo typecheck",
     "clean": "turbo clean && rm -rf node_modules",
-    "prepare": "husky install",
+    "prepare": "husky",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "turbo build && changeset publish"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": ["eslint --fix"],
+    "*.{ts,tsx,vue,css,md,json}": ["prettier --write"]
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
