@@ -4,4 +4,5 @@ export default defineWorkspace([
   'packages/core',
   'packages/theme',
   'packages/animations',
+  'packages/cli',
 ])
