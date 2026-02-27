@@ -1,0 +1,11 @@
+{
+  "name": "@stellar-vue-ui/eslint-config",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "@antfu/eslint-config": "^3.0.0",
+    "eslint": "^9.0.0"
+  }
+}

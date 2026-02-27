@@ -1,0 +1,50 @@
+{
+  "name": "stellar-vue-ui-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for Stellar Vue UI component library",
+  "author": "Terry McCann <terry@stellarcl.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StellarCL/stellar-vue.git"
+  },
+  "homepage": "https://stellar-vue-ui.dev",
+  "bugs": {
+    "url": "https://github.com/StellarCL/stellar-vue/issues"
+  },
+  "keywords": ["vue", "vue3", "components", "ui", "tailwind", "radix-vue", "accessible", "typescript", "nuxt"],
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "test:unit": "vitest",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "typecheck": "turbo typecheck",
+    "clean": "turbo clean && rm -rf node_modules",
+    "prepare": "husky install",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "turbo build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@antfu/eslint-config": "^3.0.0",
+    "eslint": "^9.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.3.0",
+    "turbo": "^2.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0",
+    "@playwright/test": "^1.50.0"
+  }
+}

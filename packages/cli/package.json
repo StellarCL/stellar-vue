@@ -1,0 +1,39 @@
+{
+  "name": "@stellar-vue-ui/cli",
+  "version": "0.1.0",
+  "description": "CLI tool for Stellar Vue UI",
+  "author": "Terry McCann <terry@stellarcl.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StellarCL/stellar-vue.git",
+    "directory": "packages/cli"
+  },
+  "bin": {
+    "stellar-ui": "./dist/index.cjs"
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "templates"],
+  "dependencies": {
+    "commander": "^12.0.0",
+    "prompts": "^2.4.2",
+    "picocolors": "^1.1.0",
+    "ora": "^8.0.0",
+    "execa": "^9.0.0",
+    "fast-glob": "^3.3.0",
+    "diff": "^5.2.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.0",
+    "@types/prompts": "^2.4.9",
+    "@types/diff": "^5.2.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --dts",
+    "dev": "tsup src/index.ts --format cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  }
+}

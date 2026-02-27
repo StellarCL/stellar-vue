@@ -1,0 +1,42 @@
+{
+  "name": "@stellar-vue-ui/test-utils",
+  "version": "0.1.0",
+  "description": "Testing utilities for Stellar Vue UI",
+  "author": "Terry McCann <terry@stellarcl.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StellarCL/stellar-vue.git",
+    "directory": "packages/test-utils"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "peerDependencies": {
+    "vitest": ">=3.0.0",
+    "@vue/test-utils": ">=2.4.0",
+    "vue": ">=3.6.0"
+  },
+  "devDependencies": {
+    "vue": "^3.6.0",
+    "vitest": "^3.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.0"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  }
+}

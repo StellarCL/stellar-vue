@@ -1,0 +1,22 @@
+{
+  "name": "@stellar-vue-ui/playground",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.6.0",
+    "@stellar-vue-ui/core": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "tailwindcss": "^4.2.0",
+    "@tailwindcss/vite": "^4.2.0",
+    "typescript": "^5.8.0"
+  }
+}
