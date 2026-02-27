@@ -6,4 +6,5 @@ export default defineWorkspace([
   'packages/animations',
   'packages/cli',
   'packages/nuxt',
+  'packages/test-utils',
 ])
