@@ -150,3 +150,33 @@ export {
   type TabsTriggerProps,
   type TabsContentProps,
 } from './components/tabs'
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  type PopoverProps,
+  type PopoverTriggerProps,
+  type PopoverContentProps,
+} from './components/popover'
+export {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  type TooltipProviderProps,
+  type TooltipProps,
+  type TooltipTriggerProps,
+  type TooltipContentProps,
+} from './components/tooltip'
+export {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  avatarVariants,
+  type AvatarVariants,
+  type AvatarProps,
+  type AvatarImageProps,
+  type AvatarFallbackProps,
+} from './components/avatar'
+export { Progress, progressVariants, type ProgressVariants, type ProgressProps } from './components/progress'
+export { Slider, type SliderProps } from './components/slider'
