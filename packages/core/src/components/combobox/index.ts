@@ -1,0 +1,18 @@
+export { default as Combobox } from './Combobox.vue'
+export { default as ComboboxInput } from './ComboboxInput.vue'
+export { default as ComboboxTrigger } from './ComboboxTrigger.vue'
+export { default as ComboboxContent } from './ComboboxContent.vue'
+export { default as ComboboxItem } from './ComboboxItem.vue'
+export { default as ComboboxEmpty } from './ComboboxEmpty.vue'
+export { default as ComboboxGroup } from './ComboboxGroup.vue'
+export { default as ComboboxLabel } from './ComboboxLabel.vue'
+export type {
+  ComboboxProps,
+  ComboboxInputProps,
+  ComboboxTriggerProps,
+  ComboboxContentProps,
+  ComboboxItemProps,
+  ComboboxEmptyProps,
+  ComboboxGroupProps,
+  ComboboxLabelProps,
+} from './combobox.types'
