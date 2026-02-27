@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Stellar Vue UI - Design Token System
+   Tailwind CSS v4 Theme Configuration
+   Color Space: OKLCH
+   ========================================================================== */
+
+@theme {
+  /* --------------------------------------------------------------------------
+     Semantic Color System (Light Mode)
+     -------------------------------------------------------------------------- */
+
+  /* Background & Foreground */
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(9% 0.03 285.82);
+
+  /* Primary */
+  --color-primary: oklch(58.42% 0.187 285.82);
+  --color-primary-foreground: oklch(98% 0 0);
+
+  /* Secondary */
+  --color-secondary: oklch(96.1% 0 0);
+  --color-secondary-foreground: oklch(26.47% 0.043 285.82);
+
+  /* Accent */
+  --color-accent: oklch(96.1% 0 0);
+  --color-accent-foreground: oklch(26.47% 0.043 285.82);
+
+  /* Destructive */
+  --color-destructive: oklch(61.42% 0.204 27.32);
+  --color-destructive-foreground: oklch(98% 0 0);
+
+  /* Muted */
+  --color-muted: oklch(96.1% 0 0);
+  --color-muted-foreground: oklch(54.12% 0.015 285.82);
+
+  /* Card */
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(9% 0.03 285.82);
+
+  /* Popover */
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(9% 0.03 285.82);
+
+  /* Border, Input & Ring */
+  --color-border: oklch(91.15% 0.006 286.07);
+  --color-input: oklch(91.15% 0.006 286.07);
+  --color-ring: oklch(9% 0.03 285.82);
+
+  /* Success (Green) */
+  --color-success: oklch(63.7% 0.178 145.1);
+  --color-success-foreground: oklch(98% 0 0);
+
+  /* Warning (Amber) */
+  --color-warning: oklch(74.5% 0.168 66.28);
+  --color-warning-foreground: oklch(20% 0.04 66.28);
+
+  /* Info (Blue) */
+  --color-info: oklch(62.3% 0.167 252.35);
+  --color-info-foreground: oklch(98% 0 0);
+
+  /* --------------------------------------------------------------------------
+     Border Radius Tokens
+     -------------------------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* --------------------------------------------------------------------------
+     Animation Tokens
+     -------------------------------------------------------------------------- */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* ==========================================================================
+   Dark Mode - System Preference
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    /* Background & Foreground */
+    --color-background: oklch(9% 0.03 285.82);
+    --color-foreground: oklch(98% 0 0);
+
+    /* Primary */
+    --color-primary: oklch(58.42% 0.187 285.82);
+    --color-primary-foreground: oklch(98% 0 0);
+
+    /* Secondary */
+    --color-secondary: oklch(20.37% 0.027 285.88);
+    --color-secondary-foreground: oklch(98% 0 0);
+
+    /* Accent */
+    --color-accent: oklch(20.37% 0.027 285.88);
+    --color-accent-foreground: oklch(98% 0 0);
+
+    /* Destructive */
+    --color-destructive: oklch(42.09% 0.177 27.32);
+    --color-destructive-foreground: oklch(98% 0 0);
+
+    /* Muted */
+    --color-muted: oklch(20.37% 0.027 285.88);
+    --color-muted-foreground: oklch(70.89% 0.013 286.75);
+
+    /* Card */
+    --color-card: oklch(9% 0.03 285.82);
+    --color-card-foreground: oklch(98% 0 0);
+
+    /* Popover */
+    --color-popover: oklch(9% 0.03 285.82);
+    --color-popover-foreground: oklch(98% 0 0);
+
+    /* Border, Input & Ring */
+    --color-border: oklch(20.37% 0.027 285.88);
+    --color-input: oklch(20.37% 0.027 285.88);
+    --color-ring: oklch(83.33% 0.017 286.71);
+
+    /* Success (Green) */
+    --color-success: oklch(50.3% 0.145 145.1);
+    --color-success-foreground: oklch(98% 0 0);
+
+    /* Warning (Amber) */
+    --color-warning: oklch(62.5% 0.145 66.28);
+    --color-warning-foreground: oklch(20% 0.04 66.28);
+
+    /* Info (Blue) */
+    --color-info: oklch(50.1% 0.14 252.35);
+    --color-info-foreground: oklch(98% 0 0);
+  }
+}
+
+/* ==========================================================================
+   Dark Mode - Class-Based (.dark)
+   ========================================================================== */
+
+.dark {
+  @theme {
+    /* Background & Foreground */
+    --color-background: oklch(9% 0.03 285.82);
+    --color-foreground: oklch(98% 0 0);
+
+    /* Primary */
+    --color-primary: oklch(58.42% 0.187 285.82);
+    --color-primary-foreground: oklch(98% 0 0);
+
+    /* Secondary */
+    --color-secondary: oklch(20.37% 0.027 285.88);
+    --color-secondary-foreground: oklch(98% 0 0);
+
+    /* Accent */
+    --color-accent: oklch(20.37% 0.027 285.88);
+    --color-accent-foreground: oklch(98% 0 0);
+
+    /* Destructive */
+    --color-destructive: oklch(42.09% 0.177 27.32);
+    --color-destructive-foreground: oklch(98% 0 0);
+
+    /* Muted */
+    --color-muted: oklch(20.37% 0.027 285.88);
+    --color-muted-foreground: oklch(70.89% 0.013 286.75);
+
+    /* Card */
+    --color-card: oklch(9% 0.03 285.82);
+    --color-card-foreground: oklch(98% 0 0);
+
+    /* Popover */
+    --color-popover: oklch(9% 0.03 285.82);
+    --color-popover-foreground: oklch(98% 0 0);
+
+    /* Border, Input & Ring */
+    --color-border: oklch(20.37% 0.027 285.88);
+    --color-input: oklch(20.37% 0.027 285.88);
+    --color-ring: oklch(83.33% 0.017 286.71);
+
+    /* Success (Green) */
+    --color-success: oklch(50.3% 0.145 145.1);
+    --color-success-foreground: oklch(98% 0 0);
+
+    /* Warning (Amber) */
+    --color-warning: oklch(62.5% 0.145 66.28);
+    --color-warning-foreground: oklch(20% 0.04 66.28);
+
+    /* Info (Blue) */
+    --color-info: oklch(50.1% 0.14 252.35);
+    --color-info-foreground: oklch(98% 0 0);
+  }
+}
+
+/* ==========================================================================
+   Custom Keyframes
+   ========================================================================== */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
