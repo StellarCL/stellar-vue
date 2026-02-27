@@ -8,6 +8,9 @@ export type { BaseComponentProps, Size, Orientation } from './types'
 // Composables
 export { useTheme, type UseThemeOptions } from './composables'
 export { useThemeTokens } from './composables'
+export { useFormField, provideFormFieldContext, useForm } from './composables'
+export { useDisclosure, useToggle, useSteps, usePagination } from './composables'
+export { useFocusTrap, useKeyboardNav, useDebounce, useMediaQuery, useClipboard } from './composables'
 
 // Components
 export { Button, buttonVariants, type ButtonVariants, type ButtonProps } from './components/button'
@@ -111,3 +114,39 @@ export {
   type DropdownMenuSubTriggerProps,
   type DropdownMenuSubContentProps,
 } from './components/dropdown-menu'
+export {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  type FormProps,
+  type FormFieldProps,
+  type FormItemProps,
+  type FormLabelProps,
+  type FormControlProps,
+  type FormDescriptionProps,
+  type FormMessageProps,
+} from './components/form'
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  type AccordionProps,
+  type AccordionItemProps,
+  type AccordionTriggerProps,
+  type AccordionContentProps,
+} from './components/accordion'
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  type TabsProps,
+  type TabsListProps,
+  type TabsTriggerProps,
+  type TabsContentProps,
+} from './components/tabs'
