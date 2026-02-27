@@ -8,3 +8,6 @@ export type { BaseComponentProps, Size, Orientation } from './types'
 // Composables
 export { useTheme, type UseThemeOptions } from './composables'
 export { useThemeTokens } from './composables'
+
+// Components
+export { Button, buttonVariants, type ButtonVariants, type ButtonProps } from './components/button'
