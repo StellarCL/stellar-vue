@@ -20,3 +20,6 @@ export { useKeyboardNav } from './useKeyboardNav'
 export { useDebounce } from './useDebounce'
 export { useMediaQuery } from './useMediaQuery'
 export { useClipboard } from './useClipboard'
+
+// Toast composable
+export { useToast } from './useToast'
