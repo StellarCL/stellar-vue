@@ -4,28 +4,43 @@
   "description": "Nuxt module for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/nuxt"
   },
-  "main": "./dist/module.mjs",
-  "types": "./dist/module.d.ts",
-  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
-    "nuxt": ">=4.0.0"
+    "nuxt": ">=3.0.0"
   },
   "dependencies": {
     "@stellar-vue-ui/core": "workspace:*"
   },
   "devDependencies": {
+    "@nuxt/kit": "^3.15.0",
     "@nuxt/module-builder": "^0.8.0",
+    "@nuxt/schema": "^3.15.0",
     "nuxt": "^4.0.0",
-    "typescript": "^5.8.0"
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0"
   },
   "scripts": {
     "build": "nuxt-module-build build",
     "dev": "nuxt-module-build build --watch",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   }

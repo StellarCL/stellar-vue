@@ -5,4 +5,5 @@ export default defineWorkspace([
   'packages/theme',
   'packages/animations',
   'packages/cli',
+  'packages/nuxt',
 ])
