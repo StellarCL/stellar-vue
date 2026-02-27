@@ -11,6 +11,9 @@ export { useToggle } from './useToggle'
 export { useSteps } from './useSteps'
 export { usePagination } from './usePagination'
 
+// Data composables
+export { useDataTable } from './useDataTable'
+
 // Accessibility & Utility composables
 export { useFocusTrap } from './useFocusTrap'
 export { useKeyboardNav } from './useKeyboardNav'
