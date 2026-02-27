@@ -1,0 +1,16 @@
+{
+  "extends": "./tooling/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {}
+  },
+  "references": [
+    { "path": "packages/core" },
+    { "path": "packages/cli" },
+    { "path": "packages/theme" },
+    { "path": "packages/animations" },
+    { "path": "packages/test-utils" }
+  ],
+  "include": [],
+  "exclude": ["node_modules", "dist", "apps", "packages", "tooling"]
+}
