@@ -1,6 +1,6 @@
 # Stellar Vue UI
 
-> A modern, accessible component library for Vue 3 that you own
+> A modern, accessible component library for Vue 3.
 
 ![Status](https://img.shields.io/badge/status-under%20development-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
