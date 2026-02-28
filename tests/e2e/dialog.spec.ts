@@ -20,8 +20,8 @@ test.describe('Dialog Component', () => {
   test('closes on overlay click', async ({ page }) => {
     await page.getByRole('button', { name: 'Open Dialog' }).click()
     await expect(page.getByRole('dialog')).toBeVisible()
-    // Click the overlay (outside the dialog content)
-    await page.locator('[data-radix-dialog-overlay]').click({ position: { x: 10, y: 10 } })
+    // Click the overlay (outside the dialog content) at the viewport edge
+    await page.mouse.click(10, 10)
     await expect(page.getByRole('dialog')).not.toBeVisible()
   })
 
@@ -37,7 +37,7 @@ test.describe('Dialog Component', () => {
     for (let i = 0; i < count + 1; i++) {
       await page.keyboard.press('Tab')
       const activeElement = page.locator(':focus')
-      await expect(dialog).toContainText(await activeElement.textContent() ?? '')
+      await expect(dialog).toContainText((await activeElement.textContent()) ?? '')
     }
   })
 
