@@ -2,6 +2,7 @@
 
 > A celestial-themed Vue 3 component library
 
+[![CI](https://github.com/StellarCL/stellar-vue/actions/workflows/ci.yml/badge.svg)](https://github.com/StellarCL/stellar-vue/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-0.1.0-brightgreen.svg)](./CHANGELOG.md)
 [![Vue 3](https://img.shields.io/badge/vue-3.5+-42b883.svg)](https://vuejs.org/)
@@ -46,9 +47,7 @@ import { Button } from '@stellar-vue-ui/core'
 </script>
 
 <template>
-  <Button variant="default" size="md">
-    Get Started
-  </Button>
+  <Button variant="default" size="md"> Get Started </Button>
 </template>
 ```
 
@@ -68,14 +67,14 @@ setTheme(stellar)
 
 ## Packages
 
-| Package | Description | Version |
-|---------|-------------|---------|
-| [`@stellar-vue-ui/core`](./packages/core) | Components and composables | 0.1.0 |
-| [`@stellar-vue-ui/theme`](./packages/theme) | Theme presets and system | 0.1.0 |
-| [`@stellar-vue-ui/animations`](./packages/animations) | Transition presets and components | 0.1.0 |
-| [`@stellar-vue-ui/cli`](./packages/cli) | CLI tool for managing components | 0.1.0 |
-| [`@stellar-vue-ui/nuxt`](./packages/nuxt) | Nuxt 4 module | 0.1.0 |
-| [`@stellar-vue-ui/test-utils`](./packages/test-utils) | Testing utilities | 0.1.0 |
+| Package                                               | Description                       | Version |
+| ----------------------------------------------------- | --------------------------------- | ------- |
+| [`@stellar-vue-ui/core`](./packages/core)             | Components and composables        | 0.1.0   |
+| [`@stellar-vue-ui/theme`](./packages/theme)           | Theme presets and system          | 0.1.0   |
+| [`@stellar-vue-ui/animations`](./packages/animations) | Transition presets and components | 0.1.0   |
+| [`@stellar-vue-ui/cli`](./packages/cli)               | CLI tool for managing components  | 0.1.0   |
+| [`@stellar-vue-ui/nuxt`](./packages/nuxt)             | Nuxt 4 module                     | 0.1.0   |
+| [`@stellar-vue-ui/test-utils`](./packages/test-utils) | Testing utilities                 | 0.1.0   |
 
 ## Components
 
@@ -99,26 +98,26 @@ Stellar Vue UI includes 56 component families:
 
 18 composables for common UI patterns:
 
-| Composable | Description |
-|------------|-------------|
-| `useTheme` | Theme switching and dark mode |
-| `useThemeTokens` | Access resolved theme tokens |
-| `useForm` | Form state and validation |
-| `useFormField` | Individual field state |
-| `useDisclosure` | Open/close toggle pattern |
-| `useToggle` | Boolean toggle state |
-| `useSteps` | Multi-step wizard logic |
-| `usePagination` | Pagination state and controls |
-| `useFocusTrap` | Focus trap management |
-| `useKeyboardNav` | Keyboard navigation helpers |
-| `useDebounce` | Debounced values |
-| `useMediaQuery` | Reactive media query matching |
-| `useClipboard` | Copy to clipboard |
-| `useDataTable` | Table sorting, filtering, pagination |
-| `useToast` | Toast notification management |
-| `useChart` | Chart data and configuration |
-| `useFileUpload` | File upload state management |
-| `useNotifications` | Notification center management |
+| Composable         | Description                          |
+| ------------------ | ------------------------------------ |
+| `useTheme`         | Theme switching and dark mode        |
+| `useThemeTokens`   | Access resolved theme tokens         |
+| `useForm`          | Form state and validation            |
+| `useFormField`     | Individual field state               |
+| `useDisclosure`    | Open/close toggle pattern            |
+| `useToggle`        | Boolean toggle state                 |
+| `useSteps`         | Multi-step wizard logic              |
+| `usePagination`    | Pagination state and controls        |
+| `useFocusTrap`     | Focus trap management                |
+| `useKeyboardNav`   | Keyboard navigation helpers          |
+| `useDebounce`      | Debounced values                     |
+| `useMediaQuery`    | Reactive media query matching        |
+| `useClipboard`     | Copy to clipboard                    |
+| `useDataTable`     | Table sorting, filtering, pagination |
+| `useToast`         | Toast notification management        |
+| `useChart`         | Chart data and configuration         |
+| `useFileUpload`    | File upload state management         |
+| `useNotifications` | Notification center management       |
 
 ## Themes
 
@@ -146,9 +145,7 @@ import { StellarTransition } from '@stellar-vue-ui/animations'
 
 <template>
   <StellarTransition preset="fadeUp">
-    <div v-if="show">
-      Animated content
-    </div>
+    <div v-if="show">Animated content</div>
   </StellarTransition>
 </template>
 ```
