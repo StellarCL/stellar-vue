@@ -13,6 +13,9 @@ export { useDisclosure, useToggle, useSteps, usePagination } from './composables
 export { useDataTable } from './composables'
 export { useFocusTrap, useKeyboardNav, useDebounce, useMediaQuery, useClipboard } from './composables'
 export { useToast } from './composables'
+export { useFileUpload } from './composables'
+export { useChart } from './composables'
+export { useNotifications } from './composables'
 
 // Components
 export { Button, buttonVariants, type ButtonVariants, type ButtonProps } from './components/button'
@@ -623,3 +626,103 @@ export {
   type ShellMainProps,
   type ShellFooterProps,
 } from './components/shell'
+
+// Phase 14: Advanced Features
+export {
+  RichTextEditor,
+  EditorToolbar,
+  EditorContent,
+  ToolbarButton,
+  ToolbarSeparator,
+  ToolbarGroup,
+  DEFAULT_TOOLBAR,
+  type RichTextEditorProps,
+  type EditorToolbarProps,
+  type EditorContentProps,
+  type ToolbarButtonProps,
+  type ToolbarGroupProps,
+  type ToolbarSeparatorProps,
+  type ToolbarItem,
+  type ToolbarItemCommand,
+} from './components/rich-text-editor'
+export {
+  FileUpload,
+  FileUploadDropzone,
+  FileUploadTrigger,
+  FileUploadPreview,
+  FileUploadProgress,
+  FileUploadList,
+  type FileWithPreview,
+  type FileUploadProps,
+  type FileUploadDropzoneProps,
+  type FileUploadTriggerProps,
+  type FileUploadPreviewProps,
+  type FileUploadProgressProps,
+  type FileUploadListProps,
+} from './components/file-upload'
+export {
+  Loading,
+  LoadingSpinner,
+  LoadingDots,
+  LoadingBar,
+  LoadingOverlay,
+  type LoadingProps,
+  type LoadingSpinnerProps,
+  type LoadingDotsProps,
+  type LoadingBarProps,
+  type LoadingOverlayProps,
+} from './components/loading'
+export {
+  ChartContainer,
+  ChartTooltip,
+  ChartLegend,
+  type ChartType,
+  type ChartData,
+  type ChartDataset,
+  type ChartOptions,
+  type ChartContainerProps,
+  type ChartTooltipProps,
+  type ChartLegendProps,
+  type UseChartOptions,
+  type UseChartReturn,
+} from './components/chart'
+export {
+  FilterBuilder,
+  FilterRow,
+  FilterGroup,
+  FilterField,
+  FilterOperator,
+  FilterValue,
+  isFilterGroup,
+  isFilterCondition,
+  defaultOperators,
+  operatorLabels,
+  type FieldType,
+  type FieldOption,
+  type FieldConfig,
+  type FilterCondition,
+  type FilterGroupType,
+  type FilterRule,
+  type OperatorMap,
+  type FilterBuilderProps,
+  type FilterRowProps,
+  type FilterGroupProps,
+  type FilterFieldProps,
+  type FilterOperatorProps,
+  type FilterValueProps,
+} from './components/filter-builder'
+export {
+  NotificationCenter,
+  NotificationList,
+  NotificationItem,
+  NotificationGroup,
+  NotificationEmpty,
+  type NotificationType,
+  type NotificationAction,
+  type Notification,
+  type NotificationCenterProps,
+  type NotificationListProps,
+  type NotificationItemProps,
+  type NotificationGroupProps,
+  type NotificationEmptyProps,
+} from './components/notification-center'

@@ -23,3 +23,8 @@ export { useClipboard } from './useClipboard'
 
 // Toast composable
 export { useToast } from './useToast'
+
+// Phase 14 composables
+export { useFileUpload } from './useFileUpload'
+export { useChart } from './useChart'
+export { useNotifications } from './useNotifications'
