@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/*
+  Stellar theme — CSS custom properties generated from @stellar-vue-ui/theme.
+  These map to the Tailwind v4 @theme block and match the output of generateCSS(stellar).
+*/
+@theme {
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(12% 0.03 285);
+
+  --color-primary: oklch(55% 0.187 285);
+  --color-primary-foreground: oklch(98% 0.01 285);
+
+  --color-secondary: oklch(94% 0.02 285);
+  --color-secondary-foreground: oklch(18% 0.03 285);
+
+  --color-accent: oklch(93% 0.04 285);
+  --color-accent-foreground: oklch(18% 0.03 285);
+
+  --color-destructive: oklch(50% 0.2 27);
+  --color-destructive-foreground: oklch(98% 0 0);
+
+  --color-muted: oklch(95% 0.01 285);
+  --color-muted-foreground: oklch(42% 0.02 285);
+
+  --color-card: oklch(99% 0.005 285);
+  --color-card-foreground: oklch(12% 0.03 285);
+
+  --color-popover: oklch(99% 0.005 285);
+  --color-popover-foreground: oklch(12% 0.03 285);
+
+  --color-success: oklch(42% 0.15 155);
+  --color-success-foreground: oklch(98% 0 0);
+
+  --color-warning: oklch(82% 0.15 80);
+  --color-warning-foreground: oklch(18% 0.05 80);
+
+  --color-info: oklch(50% 0.15 245);
+  --color-info-foreground: oklch(98% 0 0);
+
+  --color-border: oklch(91% 0.01 285);
+  --color-input: oklch(91% 0.01 285);
+  --color-ring: oklch(55% 0.187 285);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+}

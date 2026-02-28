@@ -1,0 +1,26 @@
+{
+  "name": "@stellar-vue-ui/example-vite-ts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Vite + Vue 3 + TypeScript strict mode example using Stellar Vue UI",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:vite": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@stellar-vue-ui/core": "workspace:*",
+    "@stellar-vue-ui/theme": "workspace:*",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.0.0",
+    "vue-tsc": "^2.0.0"
+  }
+}
