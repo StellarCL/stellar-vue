@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { MenubarSub as MenubarSubPrimitive } from 'radix-vue'
 import type { MenubarSubProps } from './menubar.types'
+import { MenubarSub as MenubarSubPrimitive } from 'radix-vue'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<MenubarSubProps>(), {
   defaultOpen: false,
 })

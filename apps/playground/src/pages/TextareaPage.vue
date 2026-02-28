@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { Label, Textarea } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Textarea, Label, Button } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const message = ref('')
 const MAX_CHARS = 160
@@ -54,7 +54,9 @@ const MAX_CHARS = 160
           <div class="space-y-1.5">
             <Label>Error</Label>
             <Textarea :error="true" placeholder="Error state textarea..." />
-            <p class="text-xs text-destructive">This field has an error.</p>
+            <p class="text-xs text-destructive">
+              This field has an error.
+            </p>
           </div>
           <div class="space-y-1.5">
             <Label class="opacity-50">Disabled</Label>

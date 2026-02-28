@@ -1,19 +1,22 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface DropdownMenuProps {
-  /** The controlled open state of the dropdown menu.
+  /**
+   * The controlled open state of the dropdown menu.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the dropdown menu when it is initially rendered.
+  /**
+   * The open state of the dropdown menu when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 }
 
 export interface DropdownMenuTriggerProps {
-  /** Whether to render as child element (Radix Vue primitive).
+  /**
+   * Whether to render as child element (Radix Vue primitive).
    * @default false
    */
   asChild?: boolean
@@ -23,7 +26,8 @@ export interface DropdownMenuTriggerProps {
 }
 
 export interface DropdownMenuContentProps {
-  /** The distance in pixels from the trigger.
+  /**
+   * The distance in pixels from the trigger.
    * @default 4
    */
   sideOffset?: number
@@ -33,12 +37,14 @@ export interface DropdownMenuContentProps {
 }
 
 export interface DropdownMenuItemProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -48,12 +54,14 @@ export interface DropdownMenuItemProps {
 }
 
 export interface DropdownMenuCheckboxItemProps {
-  /** The controlled checked state of the checkbox item.
+  /**
+   * The controlled checked state of the checkbox item.
    * @default false
    */
   checked?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -63,7 +71,8 @@ export interface DropdownMenuCheckboxItemProps {
 }
 
 export interface DropdownMenuRadioGroupProps {
-  /** The controlled value of the radio group. Can be bound as `v-model`.
+  /**
+   * The controlled value of the radio group. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
@@ -76,7 +85,8 @@ export interface DropdownMenuRadioItemProps {
   /** The value of the radio item. Required. */
   value: string
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -86,7 +96,8 @@ export interface DropdownMenuRadioItemProps {
 }
 
 export interface DropdownMenuLabelProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
@@ -111,24 +122,28 @@ export interface DropdownMenuGroupProps {
 }
 
 export interface DropdownMenuSubProps {
-  /** The controlled open state of the submenu.
+  /**
+   * The controlled open state of the submenu.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the submenu when it is initially rendered.
+  /**
+   * The open state of the submenu when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 }
 
 export interface DropdownMenuSubTriggerProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the sub trigger.
+  /**
+   * When true, prevents the user from interacting with the sub trigger.
    * @default false
    */
   disabled?: boolean

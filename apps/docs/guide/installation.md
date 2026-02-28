@@ -87,8 +87,8 @@ Add it to your `nuxt.config.ts`:
 export default defineNuxtConfig({
   modules: ['@stellar-vue-ui/nuxt'],
   stellar: {
-    prefix: 'S',  // optional: prefix all components (e.g., SButton)
-    theme: 'stellar',  // default theme preset
+    prefix: 'S', // optional: prefix all components (e.g., SButton)
+    theme: 'stellar', // default theme preset
   },
 })
 ```
@@ -161,7 +161,9 @@ import { Button } from '@stellar-vue-ui/core'
 </script>
 
 <template>
-  <Button variant="default">It works!</Button>
+  <Button variant="default">
+    It works!
+  </Button>
 </template>
 ```
 

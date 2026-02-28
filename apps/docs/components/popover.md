@@ -19,7 +19,7 @@ pnpm add @stellar-vue-ui/core
 ## Import
 
 ```typescript
-import { Popover, PopoverTrigger, PopoverContent } from '@stellar-vue-ui/core'
+import { Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
 ```
 
 ## Usage
@@ -28,14 +28,15 @@ import { Popover, PopoverTrigger, PopoverContent } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Popover, PopoverTrigger, PopoverContent } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <Popover>
     <PopoverTrigger as-child>
-      <Button variant="outline">Open popover</Button>
+      <Button variant="outline">
+        Open popover
+      </Button>
     </PopoverTrigger>
     <PopoverContent>
       <p>This is the popover content.</p>
@@ -50,20 +51,25 @@ import { Button } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Popover, PopoverTrigger, PopoverContent } from '@stellar-vue-ui/core'
-import { Button, Input, Label } from '@stellar-vue-ui/core'
+import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <Popover>
     <PopoverTrigger as-child>
-      <Button variant="outline">Dimensions</Button>
+      <Button variant="outline">
+        Dimensions
+      </Button>
     </PopoverTrigger>
     <PopoverContent class="w-80">
       <div class="grid gap-4">
         <div class="space-y-2">
-          <h4 class="font-medium leading-none">Dimensions</h4>
-          <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+          <h4 class="font-medium leading-none">
+            Dimensions
+          </h4>
+          <p class="text-sm text-muted-foreground">
+            Set the dimensions for the layer.
+          </p>
         </div>
         <div class="grid gap-2">
           <div class="grid grid-cols-3 items-center gap-4">
@@ -90,7 +96,9 @@ Control the popover position with `side` and `align` props:
   <div class="flex gap-4">
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">Top</Button>
+        <Button variant="outline">
+          Top
+        </Button>
       </PopoverTrigger>
       <PopoverContent side="top">
         <p>Popover on top</p>
@@ -99,7 +107,9 @@ Control the popover position with `side` and `align` props:
 
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">Right</Button>
+        <Button variant="outline">
+          Right
+        </Button>
       </PopoverTrigger>
       <PopoverContent side="right">
         <p>Popover on right</p>
@@ -108,7 +118,9 @@ Control the popover position with `side` and `align` props:
 
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">Left</Button>
+        <Button variant="outline">
+          Left
+        </Button>
       </PopoverTrigger>
       <PopoverContent side="left">
         <p>Popover on left</p>
@@ -122,9 +134,8 @@ Control the popover position with `side` and `align` props:
 
 ```vue
 <script setup lang="ts">
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Popover, PopoverTrigger, PopoverContent } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 
 const isOpen = ref(false)
 </script>
@@ -132,11 +143,15 @@ const isOpen = ref(false)
 <template>
   <Popover v-model:open="isOpen">
     <PopoverTrigger as-child>
-      <Button variant="outline">{{ isOpen ? 'Close' : 'Open' }}</Button>
+      <Button variant="outline">
+        {{ isOpen ? 'Close' : 'Open' }}
+      </Button>
     </PopoverTrigger>
     <PopoverContent>
       <p>Controlled popover content.</p>
-      <Button size="sm" @click="isOpen = false">Done</Button>
+      <Button size="sm" @click="isOpen = false">
+        Done
+      </Button>
     </PopoverContent>
   </Popover>
 </template>

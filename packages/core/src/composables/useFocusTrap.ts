@@ -1,4 +1,4 @@
-import { ref, readonly, watch, onUnmounted, type Ref } from 'vue'
+import { onUnmounted, readonly, ref, type Ref } from 'vue'
 
 interface UseFocusTrapOptions {
   enabled?: Ref<boolean> | boolean
@@ -13,14 +13,17 @@ export function useFocusTrap(containerRef: Ref<HTMLElement | null>, options: Use
   let previousFocus: HTMLElement | null = null
 
   function getFocusableElements(): HTMLElement[] {
-    if (!containerRef.value) return []
+    if (!containerRef.value)
+      return []
     return Array.from(containerRef.value.querySelectorAll(FOCUSABLE_SELECTOR))
   }
 
   function handleKeyDown(e: KeyboardEvent) {
-    if (e.key !== 'Tab' || !isActive.value) return
+    if (e.key !== 'Tab' || !isActive.value)
+      return
     const elements = getFocusableElements()
-    if (elements.length === 0) return
+    if (elements.length === 0)
+      return
 
     const first = elements[0]
     const last = elements[elements.length - 1]
@@ -28,14 +31,16 @@ export function useFocusTrap(containerRef: Ref<HTMLElement | null>, options: Use
     if (e.shiftKey && document.activeElement === first) {
       e.preventDefault()
       last.focus()
-    } else if (!e.shiftKey && document.activeElement === last) {
+    }
+    else if (!e.shiftKey && document.activeElement === last) {
       e.preventDefault()
       first.focus()
     }
   }
 
   function activate() {
-    if (isActive.value) return
+    if (isActive.value)
+      return
     previousFocus = document.activeElement as HTMLElement
     isActive.value = true
     document.addEventListener('keydown', handleKeyDown)
@@ -44,14 +49,17 @@ export function useFocusTrap(containerRef: Ref<HTMLElement | null>, options: Use
     const initialEl = options.initialFocus && 'value' in options.initialFocus ? options.initialFocus.value : null
     if (initialEl) {
       initialEl.focus()
-    } else {
+    }
+    else {
       const elements = getFocusableElements()
-      if (elements.length > 0) elements[0].focus()
+      if (elements.length > 0)
+        elements[0].focus()
     }
   }
 
   function deactivate() {
-    if (!isActive.value) return
+    if (!isActive.value)
+      return
     isActive.value = false
     document.removeEventListener('keydown', handleKeyDown)
 

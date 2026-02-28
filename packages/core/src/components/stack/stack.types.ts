@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface StackProps {
-  /** Direction of the stack layout
+  /**
+   * Direction of the stack layout
    * @default 'vertical'
    */
   direction?: 'vertical' | 'horizontal'
 
-  /** Gap between children (Tailwind spacing scale value)
+  /**
+   * Gap between children (Tailwind spacing scale value)
    * @default '4'
    */
   gap?: string | number
@@ -17,12 +19,14 @@ export interface StackProps {
   /** Justify items along the main axis */
   justify?: 'start' | 'center' | 'end' | 'between' | 'around'
 
-  /** Whether children should wrap
+  /**
+   * Whether children should wrap
    * @default false
    */
   wrap?: boolean
 
-  /** HTML element to render as
+  /**
+   * HTML element to render as
    * @default 'div'
    */
   as?: string

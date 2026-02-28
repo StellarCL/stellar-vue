@@ -1,11 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import {
-  Button, Badge, Input, Label, Card, CardHeader,
-  CardTitle, CardDescription, CardContent, CardFooter,
-  Alert, AlertTitle, AlertDescription,
-} from '@stellar-vue-ui/core'
 import { CheckCircle } from 'lucide-vue-next'
+import { ref } from 'vue'
 import PageHeader from '../components/PageHeader.vue'
 
 const themes = [
@@ -91,8 +86,12 @@ function togglePreviewDark(themeName: string) {
                 :style="{ background: theme.swatch }"
               />
               <div>
-                <p class="text-sm font-semibold">{{ theme.label }}</p>
-                <p class="text-xs text-muted-foreground">{{ theme.description }}</p>
+                <p class="text-sm font-semibold">
+                  {{ theme.label }}
+                </p>
+                <p class="text-xs text-muted-foreground">
+                  {{ theme.description }}
+                </p>
               </div>
             </div>
             <button
@@ -106,8 +105,7 @@ function togglePreviewDark(themeName: string) {
           <!-- Theme preview sandbox -->
           <div
             :data-theme="theme.name"
-            :class="[
-              'p-5 space-y-4',
+            class="p-5 space-y-4" :class="[
               previewDark[theme.name] ? 'dark bg-[oklch(9%_0.03_285.82)]' : 'bg-background',
             ]"
           >
@@ -150,7 +148,7 @@ function togglePreviewDark(themeName: string) {
                 :class="previewDark[theme.name]
                   ? 'border-white/20 bg-white/10 text-white placeholder:text-white/40'
                   : 'border-gray-200 bg-white text-gray-900 placeholder:text-gray-400'"
-              />
+              >
             </div>
 
             <!-- Status badges -->
@@ -208,7 +206,9 @@ function togglePreviewDark(themeName: string) {
 
       <!-- Theme color swatches table -->
       <div class="mt-12">
-        <h2 class="text-lg font-semibold mb-4">Theme Color Swatches</h2>
+        <h2 class="text-lg font-semibold mb-4">
+          Theme Color Swatches
+        </h2>
         <div class="grid grid-cols-6 gap-3">
           <div
             v-for="theme in themes"
@@ -219,8 +219,12 @@ function togglePreviewDark(themeName: string) {
               class="w-full aspect-square rounded-xl shadow-md border border-white/20 mb-2"
               :style="{ background: theme.swatch }"
             />
-            <p class="text-xs font-medium">{{ theme.label }}</p>
-            <p class="text-xs text-muted-foreground">hue {{ theme.primaryHue }}</p>
+            <p class="text-xs font-medium">
+              {{ theme.label }}
+            </p>
+            <p class="text-xs text-muted-foreground">
+              hue {{ theme.primaryHue }}
+            </p>
           </div>
         </div>
       </div>

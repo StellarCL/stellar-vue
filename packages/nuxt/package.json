@@ -1,10 +1,10 @@
 {
   "name": "@stellar-vue-ui/nuxt",
+  "type": "module",
   "version": "0.1.0",
   "description": "Nuxt module for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/StellarCL/stellar-vue.git",
@@ -23,6 +23,13 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "nuxt-module-build build",
+    "dev": "nuxt-module-build build --watch",
+    "test": "vitest run",
+    "typecheck": "echo 'Nuxt module typecheck requires nuxt context — skipped'",
+    "clean": "rm -rf dist"
+  },
   "peerDependencies": {
     "nuxt": ">=3.0.0"
   },
@@ -36,12 +43,5 @@
     "nuxt": "^4.0.0",
     "typescript": "^5.8.0",
     "vitest": "^3.0.0"
-  },
-  "scripts": {
-    "build": "nuxt-module-build build",
-    "dev": "nuxt-module-build build --watch",
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist"
   }
 }

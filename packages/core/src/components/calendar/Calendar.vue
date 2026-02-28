@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { CalendarRoot } from 'radix-vue'
 import type { CalendarProps } from './calendar.types'
+import { CalendarRoot } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CalendarProps>(), {

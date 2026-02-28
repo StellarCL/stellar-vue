@@ -1,15 +1,18 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import Popover from './Popover.vue'
-import PopoverTrigger from './PopoverTrigger.vue'
 import PopoverContent from './PopoverContent.vue'
+import PopoverTrigger from './PopoverTrigger.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -26,7 +29,7 @@ async function mountOpenToBody(template: string, components: Record<string, obje
   return document.body.innerHTML
 }
 
-describe('PopoverTrigger', () => {
+describe('popoverTrigger', () => {
   it('renders slot content', () => {
     const wrapper = mount({
       components: { Popover, PopoverTrigger },
@@ -44,7 +47,7 @@ describe('PopoverTrigger', () => {
   })
 })
 
-describe('PopoverContent', () => {
+describe('popoverContent', () => {
   it('has correct base classes', async () => {
     const bodyHtml = await mountOpenToBody(
       `<Popover :open="true"><PopoverTrigger><button>T</button></PopoverTrigger><PopoverContent>Content</PopoverContent></Popover>`,
@@ -92,7 +95,7 @@ describe('PopoverContent', () => {
   })
 })
 
-describe('Popover composition', () => {
+describe('popover composition', () => {
   it('mounts Popover with trigger and content without error', () => {
     const wrapper = mount({
       components: { Popover, PopoverTrigger, PopoverContent },

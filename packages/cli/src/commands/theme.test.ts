@@ -1,19 +1,18 @@
 import fs from 'node:fs'
-import path from 'node:path'
 import os from 'node:os'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-
-// We need to mock prompts before importing the module under test
-vi.mock('prompts', () => ({
-  default: vi.fn(),
-}))
+import path from 'node:path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import {
   generateThemeCss,
   generateThemeJson,
   generateThemeTailwind,
-  registerThemeCommand,
 } from './theme'
+
+// We need to mock prompts before importing the module under test
+vi.mock('prompts', () => ({
+  default: vi.fn(),
+}))
 
 // Helper to create a temp directory
 function makeTempDir(): string {

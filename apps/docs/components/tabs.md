@@ -19,7 +19,7 @@ pnpm add @stellar-vue-ui/core
 ## Import
 
 ```typescript
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stellar-vue-ui/core'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 ```
 
 ## Usage
@@ -28,14 +28,18 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stellar-vue-ui/core'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <Tabs default-value="account">
     <TabsList>
-      <TabsTrigger value="account">Account</TabsTrigger>
-      <TabsTrigger value="password">Password</TabsTrigger>
+      <TabsTrigger value="account">
+        Account
+      </TabsTrigger>
+      <TabsTrigger value="password">
+        Password
+      </TabsTrigger>
     </TabsList>
     <TabsContent value="account">
       <p>Make changes to your account here.</p>
@@ -55,25 +59,38 @@ Use `v-model` to control the active tab programmatically:
 
 ```vue
 <script setup lang="ts">
+import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 
 const activeTab = ref('overview')
 </script>
 
 <template>
-  <Button @click="activeTab = 'settings'">Go to Settings</Button>
+  <Button @click="activeTab = 'settings'">
+    Go to Settings
+  </Button>
 
   <Tabs v-model="activeTab">
     <TabsList>
-      <TabsTrigger value="overview">Overview</TabsTrigger>
-      <TabsTrigger value="analytics">Analytics</TabsTrigger>
-      <TabsTrigger value="settings">Settings</TabsTrigger>
+      <TabsTrigger value="overview">
+        Overview
+      </TabsTrigger>
+      <TabsTrigger value="analytics">
+        Analytics
+      </TabsTrigger>
+      <TabsTrigger value="settings">
+        Settings
+      </TabsTrigger>
     </TabsList>
-    <TabsContent value="overview">Overview content.</TabsContent>
-    <TabsContent value="analytics">Analytics content.</TabsContent>
-    <TabsContent value="settings">Settings content.</TabsContent>
+    <TabsContent value="overview">
+      Overview content.
+    </TabsContent>
+    <TabsContent value="analytics">
+      Analytics content.
+    </TabsContent>
+    <TabsContent value="settings">
+      Settings content.
+    </TabsContent>
   </Tabs>
 </template>
 ```
@@ -84,13 +101,25 @@ const activeTab = ref('overview')
 <template>
   <Tabs default-value="active">
     <TabsList>
-      <TabsTrigger value="active">Active</TabsTrigger>
-      <TabsTrigger value="disabled" disabled>Disabled</TabsTrigger>
-      <TabsTrigger value="other">Other</TabsTrigger>
+      <TabsTrigger value="active">
+        Active
+      </TabsTrigger>
+      <TabsTrigger value="disabled" disabled>
+        Disabled
+      </TabsTrigger>
+      <TabsTrigger value="other">
+        Other
+      </TabsTrigger>
     </TabsList>
-    <TabsContent value="active">Active tab content.</TabsContent>
-    <TabsContent value="disabled">This panel cannot be reached.</TabsContent>
-    <TabsContent value="other">Other tab content.</TabsContent>
+    <TabsContent value="active">
+      Active tab content.
+    </TabsContent>
+    <TabsContent value="disabled">
+      This panel cannot be reached.
+    </TabsContent>
+    <TabsContent value="other">
+      Other tab content.
+    </TabsContent>
   </Tabs>
 </template>
 ```
@@ -101,16 +130,18 @@ Combine tabs with card components for a structured layout:
 
 ```vue
 <script setup lang="ts">
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@stellar-vue-ui/core'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@stellar-vue-ui/core'
-import { Button, Input, Label } from '@stellar-vue-ui/core'
+import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <Tabs default-value="account" class="w-[400px]">
     <TabsList class="grid w-full grid-cols-2">
-      <TabsTrigger value="account">Account</TabsTrigger>
-      <TabsTrigger value="password">Password</TabsTrigger>
+      <TabsTrigger value="account">
+        Account
+      </TabsTrigger>
+      <TabsTrigger value="password">
+        Password
+      </TabsTrigger>
     </TabsList>
     <TabsContent value="account">
       <Card>

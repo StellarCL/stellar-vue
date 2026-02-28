@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeAll } from 'vitest'
-import { defineComponent, h } from 'vue'
 import { mount } from '@vue/test-utils'
+import { beforeAll, describe, expect, it } from 'vitest'
+import { defineComponent, h } from 'vue'
 import { setupMatchers } from '../matchers/accessibility'
 
 // Install matchers before all tests
@@ -12,7 +12,7 @@ beforeAll(() => {
 
 const AccessibleButton = defineComponent({
   render() {
-    return h('button', { 'aria-label': 'Close dialog', type: 'button' }, 'X')
+    return h('button', { 'aria-label': 'Close dialog', 'type': 'button' }, 'X')
   },
 })
 
@@ -57,7 +57,7 @@ const UnlabelledInput = defineComponent({
 
 const AriaLabelInput = defineComponent({
   render() {
-    return h('input', { type: 'search', 'aria-label': 'Search the site' })
+    return h('input', { 'type': 'search', 'aria-label': 'Search the site' })
   },
 })
 
@@ -69,7 +69,7 @@ const DisabledButton = defineComponent({
 
 const AriaDisabledButton = defineComponent({
   render() {
-    return h('button', { 'aria-disabled': 'true', type: 'button' }, 'Aria Disabled')
+    return h('button', { 'aria-disabled': 'true', 'type': 'button' }, 'Aria Disabled')
   },
 })
 
@@ -85,7 +85,7 @@ const AriaLabelledComponent = defineComponent({
   },
 })
 
-const AriaLabelledByComponent = defineComponent({
+const _AriaLabelledByComponent = defineComponent({
   setup() {
     return {}
   },

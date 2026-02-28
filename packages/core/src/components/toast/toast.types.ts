@@ -3,17 +3,20 @@ import type { HTMLAttributes } from 'vue'
 export type ToastVariant = 'default' | 'success' | 'destructive' | 'warning' | 'info'
 
 export interface ToastProps {
-  /** Visual variant of the toast
+  /**
+   * Visual variant of the toast
    * @default 'default'
    */
   variant?: ToastVariant
 
-  /** The controlled open state of the toast.
+  /**
+   * The controlled open state of the toast.
    * @default true
    */
   open?: boolean
 
-  /** Time in milliseconds that toast should remain visible.
+  /**
+   * Time in milliseconds that toast should remain visible.
    * Overrides the provider duration.
    */
   duration?: number
@@ -33,7 +36,8 @@ export interface ToastDescriptionProps {
 }
 
 export interface ToastActionProps {
-  /** A short description for an alternate way to carry out the action.
+  /**
+   * A short description for an alternate way to carry out the action.
    * For screen reader users who will not be able to navigate to the button easily/quickly.
    */
   altText: string
@@ -51,12 +55,14 @@ export interface ToastViewportProps {
   /** Additional CSS classes */
   class?: HTMLAttributes['class']
 
-  /** The keys to use as the keyboard shortcut that will move focus to the toast viewport.
+  /**
+   * The keys to use as the keyboard shortcut that will move focus to the toast viewport.
    * @default ['F8']
    */
   hotkey?: string[]
 
-  /** An author-localized label for the toast viewport.
+  /**
+   * An author-localized label for the toast viewport.
    * @default 'Notifications ({hotkey})'
    */
   label?: string
@@ -71,7 +77,8 @@ export type ToastPosition =
   | 'bottom-center'
 
 export interface ToasterProps {
-  /** Position of the toaster on screen
+  /**
+   * Position of the toaster on screen
    * @default 'top-right'
    */
   position?: ToastPosition
@@ -87,7 +94,8 @@ export interface ToastOptions {
   /** Description/body text for the toast */
   description?: string
 
-  /** Visual variant of the toast
+  /**
+   * Visual variant of the toast
    * @default 'default'
    */
   variant?: ToastVariant
@@ -98,7 +106,8 @@ export interface ToastOptions {
     onClick: () => void
   }
 
-  /** Duration in milliseconds before auto-dismiss. Set to 0 to disable.
+  /**
+   * Duration in milliseconds before auto-dismiss. Set to 0 to disable.
    * @default 5000
    */
   duration?: number

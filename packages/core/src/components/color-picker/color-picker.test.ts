@@ -1,15 +1,15 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import { hexToHsb, hexToRgb, hsbToHex, isValidHex, rgbToHex } from './color-picker.utils'
 import ColorPicker from './ColorPicker.vue'
+import ColorPickerAlphaSlider from './ColorPickerAlphaSlider.vue'
 import ColorPickerArea from './ColorPickerArea.vue'
 import ColorPickerHueSlider from './ColorPickerHueSlider.vue'
-import ColorPickerAlphaSlider from './ColorPickerAlphaSlider.vue'
 import ColorPickerInput from './ColorPickerInput.vue'
-import ColorPickerSwatches from './ColorPickerSwatches.vue'
 import ColorPickerPreview from './ColorPickerPreview.vue'
-import { hsbToHex, hexToHsb, isValidHex, hexToRgb, rgbToHex } from './color-picker.utils'
+import ColorPickerSwatches from './ColorPickerSwatches.vue'
 
-describe('Color Picker utils', () => {
+describe('color Picker utils', () => {
   it('converts HSB to Hex', () => {
     expect(hsbToHex(0, 100, 100)).toBe('#ff0000')
     expect(hsbToHex(0, 0, 100)).toBe('#ffffff')
@@ -44,7 +44,7 @@ describe('Color Picker utils', () => {
   })
 })
 
-describe('ColorPicker', () => {
+describe('colorPicker', () => {
   it('renders with group role', () => {
     const wrapper = mount(ColorPicker, {
       slots: { default: 'picker content' },
@@ -61,7 +61,7 @@ describe('ColorPicker', () => {
   })
 })
 
-describe('ColorPicker with sub-components', () => {
+describe('colorPicker with sub-components', () => {
   function createPicker(props = {}) {
     return mount({
       components: {
@@ -147,7 +147,7 @@ describe('ColorPicker with sub-components', () => {
   })
 })
 
-describe('ColorPickerAlphaSlider', () => {
+describe('colorPickerAlphaSlider', () => {
   it('renders alpha slider', () => {
     const wrapper = mount({
       components: { ColorPicker, ColorPickerAlphaSlider },

@@ -1,11 +1,11 @@
 # BIBLE.md - stellar-vue-ui
 
-> **Single Source of Truth**  
-> This document contains all definitive decisions, configurations, and standards for the stellar-vue-ui project.  
+> **Single Source of Truth**
+> This document contains all definitive decisions, configurations, and standards for the stellar-vue-ui project.
 > When in doubt, refer to this document. If something is not documented here, it should be added.
 
-**Last Updated:** February 27, 2026  
-**Version:** 0.1.0  
+**Last Updated:** February 27, 2026
+**Version:** 0.1.0
 **Status:** Pre-release Development
 
 ---
@@ -37,14 +37,14 @@
 
 ### 1.1 Core Information
 
-**Project Name:** stellar-vue-ui  
-**Display Name:** Stellar Vue UI  
-**Tagline:** A modern, accessible component library for Vue 3 that you own  
+**Project Name:** stellar-vue-ui
+**Display Name:** Stellar Vue UI
+**Tagline:** A modern, accessible component library for Vue 3 that you own
 **Description:** Production-ready Vue 3 components built on Radix Vue with Tailwind CSS. Copy-paste components you own and control, with version management that actually works.
 
 **Package Names:**
 - Core: `@stellar-vue-ui/core`
-- CLI: `@stellar-vue-ui/cli` 
+- CLI: `@stellar-vue-ui/cli`
 - Nuxt Module: `@stellar-vue-ui/nuxt`
 - Test Utils: `@stellar-vue-ui/test-utils`
 - Theme: `@stellar-vue-ui/theme`
@@ -52,38 +52,38 @@
 
 ### 1.2 Ownership
 
-**Organization:** StellarCL  
-**Author:** Terry McCann  
-**GitHub:** https://github.com/StellarCL/stellar-vue  
-**NPM Scope:** All packages under `@stellar-vue-ui/*` scope  
-**License:** MIT  
+**Organization:** StellarCL
+**Author:** Terry McCann
+**GitHub:** https://github.com/StellarCL/stellar-vue
+**NPM Scope:** All packages under `@stellar-vue-ui/*` scope
+**License:** MIT
 **Copyright:** Copyright (c) 2026 Terry McCann
 
 ### 1.3 Repository URLs
 
-**Main Repository:** https://github.com/StellarCL/stellar-vue.git  
-**Documentation:** https://stellar-vue-ui.dev (CloudFlare Pages)  
-**NPM Package:** https://www.npmjs.com/package/@stellar-vue-ui/core  
-**Issue Tracker:** https://github.com/StellarCL/stellar-vue/issues  
+**Main Repository:** https://github.com/StellarCL/stellar-vue.git
+**Documentation:** https://stellar-vue-ui.dev (CloudFlare Pages)
+**NPM Package:** https://www.npmjs.com/package/@stellar-vue-ui/core
+**Issue Tracker:** https://github.com/StellarCL/stellar-vue/issues
 **Discussions:** https://github.com/StellarCL/stellar-vue/discussions
 
 ### 1.4 Version Information
 
-**Initial Version:** 0.1.0  
-**Versioning:** Semantic Versioning 2.0.0  
-**Release Cadence:** Minor releases every 3-4 months, patch releases as needed  
+**Initial Version:** 0.1.0
+**Versioning:** Semantic Versioning 2.0.0
+**Release Cadence:** Minor releases every 3-4 months, patch releases as needed
 **LTS Policy:** Major version supported for 18 months after next major release
 
 ### 1.5 Brand Colors
 
-**Primary Brand:** `#667eea` (Stellar Purple)  
-**Secondary Brand:** `#764ba2` (Cosmic Purple)  
+**Primary Brand:** `#667eea` (Stellar Purple)
+**Secondary Brand:** `#764ba2` (Cosmic Purple)
 **Accent:** `#f093fb` (Nova Pink)
 
 ### 1.6 Supported Frameworks
 
-**Current:** Vue 3.6+ only  
-**Future:** Stellar Svelte UI (separate repo), Stellar React UI (separate repo)  
+**Current:** Vue 3.6+ only
+**Future:** Stellar Svelte UI (separate repo), Stellar React UI (separate repo)
 **No Support:** Vue 2.x (end of life)
 
 ---
@@ -266,8 +266,8 @@ stellar-vue/
 
 ### 2.2 Monorepo Tool
 
-**Tool:** Turborepo  
-**Why:** Superior caching, great DX, works perfectly with pnpm workspaces  
+**Tool:** Turborepo
+**Why:** Superior caching, great DX, works perfectly with pnpm workspaces
 **Alternatives Considered:** Nx (too complex), pnpm workspaces only (no caching)
 
 **Configuration File:** `turbo.json`
@@ -332,9 +332,9 @@ Components will have these as peer dependencies:
 
 ### 3.4 Icon Library
 
-**Default:** Lucide Vue  
-**Package:** `lucide-vue-next`  
-**Why:** 
+**Default:** Lucide Vue
+**Package:** `lucide-vue-next`
+**Why:**
 - Most comprehensive icon set
 - Perfect Tailwind integration
 - Tree-shakeable
@@ -604,7 +604,7 @@ feat(data-table): add server-side pagination
 
 ### 5.4 Code Review Requirements
 
-**Required Approvals:** 1 maintainer  
+**Required Approvals:** 1 maintainer
 **Required Checks:**
 - ✅ Lint passes
 - ✅ Type check passes
@@ -673,10 +673,10 @@ component-name/
 **ComponentName.vue:**
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ComponentNameProps } from './component-name.types'
-import { componentNameVariants } from './component-name.variants'
+import { computed } from 'vue'
 import { cn } from '@/utils'
+import { componentNameVariants } from './component-name.variants'
 
 // Props with defaults
 const props = withDefaults(defineProps<ComponentNameProps>(), {
@@ -719,18 +719,18 @@ export interface ComponentNameProps {
    * @default 'default'
    */
   variant?: 'default' | 'primary' | 'secondary' | 'destructive'
-  
+
   /**
    * Size of the component
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg'
-  
+
   /**
    * Additional CSS classes
    */
   class?: HTMLAttributes['class']
-  
+
   /**
    * Whether the component is disabled
    * @default false
@@ -779,9 +779,9 @@ export type ComponentNameVariants = VariantProps<typeof componentNameVariants>
 
 **index.ts:**
 ```typescript
-export { default as ComponentName } from './ComponentName.vue'
 export * from './component-name.types'
 export * from './component-name.variants'
+export { default as ComponentName } from './ComponentName.vue'
 export { default as useComponentName } from './useComponentName'
 ```
 
@@ -809,7 +809,7 @@ Every component MUST have:
 
 **Structure:**
 ```typescript
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 
 export interface UseDisclosureOptions {
   defaultOpen?: boolean
@@ -819,21 +819,21 @@ export interface UseDisclosureOptions {
 
 export function useDisclosure(options: UseDisclosureOptions = {}) {
   const isOpen = ref(options.defaultOpen ?? false)
-  
+
   function open() {
     isOpen.value = true
     options.onOpen?.()
   }
-  
+
   function close() {
     isOpen.value = false
     options.onClose?.()
   }
-  
+
   function toggle() {
     isOpen.value ? close() : open()
   }
-  
+
   return {
     isOpen: readonly(isOpen),
     open,
@@ -860,26 +860,26 @@ export function useDisclosure(options: UseDisclosureOptions = {}) {
   /* Color system using CSS variables */
   --color-background: oklch(100% 0 0);
   --color-foreground: oklch(9% 0.03 285.82);
-  
+
   --color-primary: oklch(58.42% 0.187 285.82);
   --color-primary-foreground: oklch(98% 0 0);
-  
+
   --color-secondary: oklch(96.1% 0 0);
   --color-secondary-foreground: oklch(26.47% 0.043 285.82);
-  
+
   --color-accent: oklch(96.1% 0 0);
   --color-accent-foreground: oklch(26.47% 0.043 285.82);
-  
+
   --color-destructive: oklch(61.42% 0.204 27.32);
   --color-destructive-foreground: oklch(98% 0 0);
-  
+
   --color-muted: oklch(96.1% 0 0);
   --color-muted-foreground: oklch(54.12% 0.015 285.82);
-  
+
   --color-border: oklch(91.15% 0.006 286.07);
   --color-input: oklch(91.15% 0.006 286.07);
   --color-ring: oklch(9% 0.03 285.82);
-  
+
   /* Border radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
@@ -1032,8 +1032,8 @@ console.log(themes.value) // ['stellar', 'sirius', ...]
 ### 9.2 Unit Test Template
 
 ```typescript
-import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Button from './Button.vue'
 
 describe('Button', () => {
@@ -1076,7 +1076,7 @@ Every component must pass:
 
 **Example:**
 ```typescript
-import { injectAxe, checkA11y } from 'axe-playwright'
+import { checkA11y, injectAxe } from 'axe-playwright'
 
 test('Button is accessible', async ({ page }) => {
   await page.goto('/components/button')
@@ -1249,10 +1249,10 @@ import { Button } from 'stellar-vue-ui'
 ```typescript
 /**
  * Merges CSS classes using clsx and tailwind-merge
- * 
+ *
  * @param inputs - Class values to merge
  * @returns Merged class string with Tailwind conflicts resolved
- * 
+ *
  * @example
  * ```ts
  * cn('px-4 py-2', 'px-6') // 'px-6 py-2'
@@ -1359,8 +1359,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 11.4 Release Cadence
 
-**Minor Releases:** Every 3-4 months  
-**Patch Releases:** As needed (typically weekly)  
+**Minor Releases:** Every 3-4 months
+**Patch Releases:** As needed (typically weekly)
 **Major Releases:** Once per year
 
 **Release Schedule:**
@@ -1437,31 +1437,31 @@ import { defineConfig } from 'stellar-vue-ui-cli'
 export default defineConfig({
   // Where to add components
   componentsDir: './components/ui',
-  
+
   // Where to add composables
   composablesDir: './composables',
-  
+
   // Where to add utils
   utilsDir: './lib',
-  
+
   // CSS variables location
   cssVariables: './assets/css/variables.css',
-  
+
   // Tailwind config path
   tailwindConfig: './tailwind.config.ts',
-  
+
   // TypeScript
   typescript: true,
-  
+
   // Aliases
   aliases: {
     '@': './src',
     '~': './',
   },
-  
+
   // Framework
   framework: 'nuxt', // or 'vue'
-  
+
   // Features
   features: {
     animations: true,
@@ -1641,7 +1641,7 @@ const doubled = computed(() => props.count * 2)
       'focus-visible:outline-none focus-visible:ring-2',
       'disabled:pointer-events-none disabled:opacity-50',
       'bg-primary text-primary-foreground hover:bg-primary/90',
-      props.class
+      props.class,
     )"
   >
     <slot />
@@ -1659,20 +1659,20 @@ const doubled = computed(() => props.count * 2)
 5. CSS
 
 ```typescript
-// 1. Vue
-import { ref, computed, onMounted } from 'vue'
+// 4. Types
+import type { ButtonProps } from './button.types'
 
+// 1. Vue
+import { computed, onMounted, ref } from 'vue'
 // 2. Third-party
 import { useRouter } from 'vue-router'
-import { z } from 'zod'
 
+import { z } from 'zod'
 // 3. Internal
 import Button from '@/components/ui/button/Button.vue'
 import { useDisclosure } from '@/composables'
-import { cn } from '@/utils'
 
-// 4. Types
-import type { ButtonProps } from './button.types'
+import { cn } from '@/utils'
 
 // 5. CSS (rarely needed)
 import './styles.css'
@@ -1684,7 +1684,7 @@ import './styles.css'
 
 ### 15.1 WCAG Compliance
 
-**Level:** WCAG 2.1 Level AA (minimum)  
+**Level:** WCAG 2.1 Level AA (minimum)
 **Target:** WCAG 2.1 Level AAA where possible
 
 ### 15.2 Keyboard Navigation
@@ -1773,14 +1773,14 @@ import Button from 'stellar-vue-ui/components/button'
 
 ### 17.1 Vulnerability Reporting
 
-**Contact:** security@stellarcl.dev  
-**Response Time:** 48 hours  
+**Contact:** security@stellarcl.dev
+**Response Time:** 48 hours
 **Disclosure:** Coordinated disclosure policy
 
 ### 17.2 Dependencies
 
-**Audit Frequency:** Weekly  
-**Tool:** `pnpm audit`  
+**Audit Frequency:** Weekly
+**Tool:** `pnpm audit`
 **Action:** Critical/High vulnerabilities must be patched within 7 days
 
 ### 17.3 Code Security
@@ -1829,9 +1829,9 @@ import Button from 'stellar-vue-ui/components/button'
 
 ### 18.3 Support Channels
 
-**GitHub Issues:** Bug reports and feature requests  
-**GitHub Discussions:** Questions, ideas, showcases  
-**Discord:** Real-time chat (to be created)  
+**GitHub Issues:** Bug reports and feature requests
+**GitHub Discussions:** Questions, ideas, showcases
+**Discord:** Real-time chat (to be created)
 **Twitter/X:** @StellarVueUI (announcements)
 
 ---

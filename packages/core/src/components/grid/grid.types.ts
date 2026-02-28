@@ -8,12 +8,14 @@ export interface ResponsiveCols {
 }
 
 export interface GridProps {
-  /** Number of grid columns, or responsive object
+  /**
+   * Number of grid columns, or responsive object
    * @default 1
    */
   cols?: number | ResponsiveCols
 
-  /** Gap between grid cells (Tailwind spacing scale value)
+  /**
+   * Gap between grid cells (Tailwind spacing scale value)
    * @default '4'
    */
   gap?: string | number

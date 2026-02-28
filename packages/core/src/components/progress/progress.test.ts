@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Progress from './Progress.vue'
 
-describe('Progress', () => {
+describe('progress', () => {
   it('renders with role="progressbar"', () => {
     const wrapper = mount(Progress)
     expect(wrapper.find('[role="progressbar"]').exists()).toBe(true)

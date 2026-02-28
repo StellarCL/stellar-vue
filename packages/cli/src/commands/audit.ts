@@ -1,21 +1,21 @@
 import fs from 'node:fs'
 import path from 'node:path'
-import { readConfig } from '../utils/config'
-import { readLockFile } from '../utils/config'
-import { styles, header, newLine, divider } from '../utils/prompts'
+import { readConfig, readLockFile } from '../utils/config'
+import { divider, header, newLine, styles } from '../utils/prompts'
 
 /**
  * Parse an oklch color string into lightness, chroma, hue.
  * Returns null if not parseable.
  */
-function parseOklch(color: string): { l: number; c: number; h: number } | null {
+function parseOklch(color: string): { l: number, c: number, h: number } | null {
   // Match: oklch(L% C H) or oklch(L C H)
   const match = color.match(/oklch\(\s*([\d.]+)%?\s+([\d.]+)\s+([\d.]+)\s*\)/)
-  if (!match) return null
+  if (!match)
+    return null
 
-  const l = parseFloat(match[1]) / (match[0].includes('%') ? 100 : 1)
-  const c = parseFloat(match[2])
-  const h = parseFloat(match[3])
+  const l = Number.parseFloat(match[1]!) / (match[0]!.includes('%') ? 100 : 1)
+  const c = Number.parseFloat(match[2]!)
+  const h = Number.parseFloat(match[3]!)
 
   return { l, c, h }
 }
@@ -23,20 +23,22 @@ function parseOklch(color: string): { l: number; c: number; h: number } | null {
 /**
  * Parse a hex color string into RGB values (0-1 range).
  */
-function parseHex(color: string): { r: number; g: number; b: number } | null {
+function parseHex(color: string): { r: number, g: number, b: number } | null {
   const clean = color.replace('#', '')
-  if (clean.length !== 6 && clean.length !== 3) return null
+  if (clean.length !== 6 && clean.length !== 3)
+    return null
 
   let r: number, g: number, b: number
 
   if (clean.length === 3) {
-    r = parseInt(clean[0] + clean[0], 16) / 255
-    g = parseInt(clean[1] + clean[1], 16) / 255
-    b = parseInt(clean[2] + clean[2], 16) / 255
-  } else {
-    r = parseInt(clean.slice(0, 2), 16) / 255
-    g = parseInt(clean.slice(2, 4), 16) / 255
-    b = parseInt(clean.slice(4, 6), 16) / 255
+    r = Number.parseInt(clean[0]! + clean[0]!, 16) / 255
+    g = Number.parseInt(clean[1]! + clean[1]!, 16) / 255
+    b = Number.parseInt(clean[2]! + clean[2]!, 16) / 255
+  }
+  else {
+    r = Number.parseInt(clean.slice(0, 2), 16) / 255
+    g = Number.parseInt(clean.slice(2, 4), 16) / 255
+    b = Number.parseInt(clean.slice(4, 6), 16) / 255
   }
 
   return { r, g, b }
@@ -46,7 +48,7 @@ function parseHex(color: string): { r: number; g: number; b: number } | null {
  * Convert a linear RGB channel to sRGB for luminance calculation.
  */
 function linearize(c: number): number {
-  return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+  return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
 }
 
 /**
@@ -54,7 +56,8 @@ function linearize(c: number): number {
  */
 function luminanceFromHex(hex: string): number | null {
   const rgb = parseHex(hex)
-  if (!rgb) return null
+  if (!rgb)
+    return null
 
   const r = linearize(rgb.r)
   const g = linearize(rgb.g)
@@ -70,7 +73,8 @@ function luminanceFromHex(hex: string): number | null {
  */
 function luminanceFromOklch(color: string): number | null {
   const oklch = parseOklch(color)
-  if (!oklch) return null
+  if (!oklch)
+    return null
 
   // oklch L is in [0, 1] (after dividing by 100 if %)
   // Approximate relative luminance: L^2 is a reasonable approximation
@@ -107,12 +111,19 @@ export function contrastRatio(l1: number, l2: number): number {
 export function parseCssVariables(cssContent: string): Record<string, string> {
   const vars: Record<string, string> = {}
   // Match CSS custom property declarations
-  const regex = /--([\w-]+)\s*:\s*([^;]+);/g
-  let match: RegExpExecArray | null
-
-  while ((match = regex.exec(cssContent)) !== null) {
-    const name = match[1].trim()
-    const value = match[2].trim()
+  // Split by lines and parse each line individually to avoid regex backtracking
+  for (const line of cssContent.split('\n')) {
+    const trimmed = line.trim()
+    const colonIdx = trimmed.indexOf(':')
+    if (colonIdx === -1)
+      continue
+    const propPart = trimmed.slice(0, colonIdx).trim()
+    if (!propPart.startsWith('--'))
+      continue
+    const name = propPart.slice(2)
+    const valuePart = trimmed.slice(colonIdx + 1).trim()
+    const semiIdx = valuePart.indexOf(';')
+    const value = semiIdx >= 0 ? valuePart.slice(0, semiIdx).trim() : valuePart.trim()
     // Only include stellar variables
     if (name.startsWith('stellar-')) {
       vars[name] = value
@@ -149,12 +160,14 @@ export function checkContrastPairs(cssVariables: Record<string, string>): Array<
     const fgColor = cssVariables[fg]
     const bgColor = cssVariables[bg]
 
-    if (!fgColor || !bgColor) continue
+    if (!fgColor || !bgColor)
+      continue
 
     const fgLum = computeLuminance(fgColor)
     const bgLum = computeLuminance(bgColor)
 
-    if (fgLum === null || bgLum === null) continue
+    if (fgLum === null || bgLum === null)
+      continue
 
     const ratio = contrastRatio(fgLum, bgLum)
     const passes = ratio >= 4.5
@@ -232,7 +245,8 @@ export async function auditCommand(options: {
       if (result.passes) {
         passing++
         console.log(`  ${styles.success(`PASS`)} ${styles.dim(label)} — ${ratio}:1`)
-      } else {
+      }
+      else {
         failing++
         console.log(`  ${styles.error(`FAIL`)} ${styles.dim(label)} — ${ratio}:1 (needs >= 4.5:1)`)
       }
@@ -255,13 +269,14 @@ export async function auditCommand(options: {
   header('Stellar UI - Project Audit')
 
   const issues: string[] = []
-  const checks: Array<{ label: string; ok: boolean; detail?: string }> = []
+  const checks: Array<{ label: string, ok: boolean, detail?: string }> = []
 
   // Check 1: Config exists
   const config = await readConfig(cwd)
   if (config) {
     checks.push({ label: 'Config file', ok: true, detail: '.stellar-ui.json found' })
-  } else {
+  }
+  else {
     checks.push({ label: 'Config file', ok: false, detail: 'Not found — run `stellar-ui init`' })
     issues.push('Missing config file')
   }
@@ -271,7 +286,8 @@ export async function auditCommand(options: {
     const themeValue = (config as typeof config & { theme?: string }).theme
     if (themeValue) {
       checks.push({ label: 'Theme', ok: true, detail: `Theme: ${themeValue}` })
-    } else {
+    }
+    else {
       checks.push({ label: 'Theme', ok: false, detail: 'No theme set in config' })
       issues.push('No theme set')
     }
@@ -286,7 +302,8 @@ export async function auditCommand(options: {
       ok: true,
       detail: `${count} component${count !== 1 ? 's' : ''} in lock file`,
     })
-  } else {
+  }
+  else {
     checks.push({
       label: 'Components tracked',
       ok: false,
@@ -300,7 +317,8 @@ export async function auditCommand(options: {
     const cssPath = path.join(cwd, config.cssVariables)
     if (fs.existsSync(cssPath)) {
       checks.push({ label: 'CSS variables file', ok: true, detail: config.cssVariables })
-    } else {
+    }
+    else {
       checks.push({
         label: 'CSS variables file',
         ok: false,
@@ -314,7 +332,8 @@ export async function auditCommand(options: {
   for (const check of checks) {
     if (check.ok) {
       console.log(`  ${styles.success(check.label)}${check.detail ? styles.dim(` — ${check.detail}`) : ''}`)
-    } else {
+    }
+    else {
       console.log(`  ${styles.error(check.label)}${check.detail ? styles.dim(` — ${check.detail}`) : ''}`)
     }
   }
@@ -325,7 +344,8 @@ export async function auditCommand(options: {
 
   if (issues.length === 0) {
     console.log(styles.success('All checks passed!'))
-  } else {
+  }
+  else {
     console.log(styles.warning(`${issues.length} issue${issues.length !== 1 ? 's' : ''} found:`))
     for (const issue of issues) {
       console.log(`  ${styles.dim('•')} ${issue}`)

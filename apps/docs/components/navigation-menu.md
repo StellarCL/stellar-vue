@@ -21,13 +21,13 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
   NavigationMenuContent,
-  NavigationMenuLink,
-  NavigationMenuViewport,
   NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -39,9 +39,9 @@ import {
 <script setup lang="ts">
 import {
   NavigationMenu,
-  NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -49,13 +49,19 @@ import {
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <NavigationMenuLink href="/docs">Documentation</NavigationMenuLink>
+        <NavigationMenuLink href="/docs">
+          Documentation
+        </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuLink href="/components">Components</NavigationMenuLink>
+        <NavigationMenuLink href="/components">
+          Components
+        </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuLink href="/examples">Examples</NavigationMenuLink>
+        <NavigationMenuLink href="/examples">
+          Examples
+        </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
@@ -72,11 +78,11 @@ Use `NavigationMenuTrigger` and `NavigationMenuContent` for dropdown navigation 
 <script setup lang="ts">
 import {
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
   NavigationMenuContent,
+  NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -89,14 +95,22 @@ import {
           <ul class="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
             <li>
               <NavigationMenuLink href="/docs/introduction">
-                <div class="text-sm font-medium">Introduction</div>
-                <p class="text-sm text-muted-foreground">Learn about the library.</p>
+                <div class="text-sm font-medium">
+                  Introduction
+                </div>
+                <p class="text-sm text-muted-foreground">
+                  Learn about the library.
+                </p>
               </NavigationMenuLink>
             </li>
             <li>
               <NavigationMenuLink href="/docs/installation">
-                <div class="text-sm font-medium">Installation</div>
-                <p class="text-sm text-muted-foreground">How to install and set up.</p>
+                <div class="text-sm font-medium">
+                  Installation
+                </div>
+                <p class="text-sm text-muted-foreground">
+                  How to install and set up.
+                </p>
               </NavigationMenuLink>
             </li>
           </ul>
@@ -108,20 +122,28 @@ import {
         <NavigationMenuContent>
           <ul class="grid w-[400px] gap-3 p-4 md:grid-cols-2">
             <li>
-              <NavigationMenuLink href="/components/button">Button</NavigationMenuLink>
+              <NavigationMenuLink href="/components/button">
+                Button
+              </NavigationMenuLink>
             </li>
             <li>
-              <NavigationMenuLink href="/components/card">Card</NavigationMenuLink>
+              <NavigationMenuLink href="/components/card">
+                Card
+              </NavigationMenuLink>
             </li>
             <li>
-              <NavigationMenuLink href="/components/dialog">Dialog</NavigationMenuLink>
+              <NavigationMenuLink href="/components/dialog">
+                Dialog
+              </NavigationMenuLink>
             </li>
           </ul>
         </NavigationMenuContent>
       </NavigationMenuItem>
 
       <NavigationMenuItem>
-        <NavigationMenuLink href="/docs">Documentation</NavigationMenuLink>
+        <NavigationMenuLink href="/docs">
+          Documentation
+        </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>
@@ -137,10 +159,14 @@ Mark the currently active link with the `active` prop:
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <NavigationMenuLink href="/" active>Home</NavigationMenuLink>
+        <NavigationMenuLink href="/" active>
+          Home
+        </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <NavigationMenuLink href="/about">About</NavigationMenuLink>
+        <NavigationMenuLink href="/about">
+          About
+        </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>
   </NavigationMenu>

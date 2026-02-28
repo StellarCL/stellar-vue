@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Separator from './Separator.vue'
 
-describe('Separator', () => {
+describe('separator', () => {
   it('renders horizontal by default', () => {
     const wrapper = mount(Separator)
     const classes = wrapper.classes().join(' ')

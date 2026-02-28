@@ -21,13 +21,13 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
-  SelectItem,
   SelectGroup,
+  SelectItem,
   SelectLabel,
   SelectSeparator,
+  SelectTrigger,
+  SelectValue,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -37,7 +37,7 @@ import {
 
 ```vue
 <script setup lang="ts">
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@stellar-vue-ui/core'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const fruit = ref('')
@@ -49,9 +49,15 @@ const fruit = ref('')
       <SelectValue placeholder="Select a fruit" />
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="apple">Apple</SelectItem>
-      <SelectItem value="banana">Banana</SelectItem>
-      <SelectItem value="cherry">Cherry</SelectItem>
+      <SelectItem value="apple">
+        Apple
+      </SelectItem>
+      <SelectItem value="banana">
+        Banana
+      </SelectItem>
+      <SelectItem value="cherry">
+        Cherry
+      </SelectItem>
     </SelectContent>
   </Select>
 </template>
@@ -72,15 +78,25 @@ Organize options into labeled groups:
     <SelectContent>
       <SelectGroup>
         <SelectLabel>North America</SelectLabel>
-        <SelectItem value="est">Eastern (EST)</SelectItem>
-        <SelectItem value="cst">Central (CST)</SelectItem>
-        <SelectItem value="pst">Pacific (PST)</SelectItem>
+        <SelectItem value="est">
+          Eastern (EST)
+        </SelectItem>
+        <SelectItem value="cst">
+          Central (CST)
+        </SelectItem>
+        <SelectItem value="pst">
+          Pacific (PST)
+        </SelectItem>
       </SelectGroup>
       <SelectSeparator />
       <SelectGroup>
         <SelectLabel>Europe</SelectLabel>
-        <SelectItem value="gmt">GMT</SelectItem>
-        <SelectItem value="cet">Central European (CET)</SelectItem>
+        <SelectItem value="gmt">
+          GMT
+        </SelectItem>
+        <SelectItem value="cet">
+          Central European (CET)
+        </SelectItem>
       </SelectGroup>
     </SelectContent>
   </Select>
@@ -96,9 +112,15 @@ Organize options into labeled groups:
       <SelectValue placeholder="Select a plan" />
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="free">Free</SelectItem>
-      <SelectItem value="pro">Pro</SelectItem>
-      <SelectItem value="enterprise" disabled>Enterprise (contact us)</SelectItem>
+      <SelectItem value="free">
+        Free
+      </SelectItem>
+      <SelectItem value="pro">
+        Pro
+      </SelectItem>
+      <SelectItem value="enterprise" disabled>
+        Enterprise (contact us)
+      </SelectItem>
     </SelectContent>
   </Select>
 </template>
@@ -113,7 +135,9 @@ Organize options into labeled groups:
       <SelectValue placeholder="Disabled" />
     </SelectTrigger>
     <SelectContent>
-      <SelectItem value="a">Option A</SelectItem>
+      <SelectItem value="a">
+        Option A
+      </SelectItem>
     </SelectContent>
   </Select>
 </template>
@@ -123,8 +147,7 @@ Organize options into labeled groups:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@stellar-vue-ui/core'
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@stellar-vue-ui/core'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -139,9 +162,15 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@
             </SelectTrigger>
           </FormControl>
           <SelectContent>
-            <SelectItem value="admin">Admin</SelectItem>
-            <SelectItem value="editor">Editor</SelectItem>
-            <SelectItem value="viewer">Viewer</SelectItem>
+            <SelectItem value="admin">
+              Admin
+            </SelectItem>
+            <SelectItem value="editor">
+              Editor
+            </SelectItem>
+            <SelectItem value="viewer">
+              Viewer
+            </SelectItem>
           </SelectContent>
         </Select>
         <FormMessage />

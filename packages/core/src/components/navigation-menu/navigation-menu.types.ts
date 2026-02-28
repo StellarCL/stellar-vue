@@ -16,7 +16,8 @@ export interface NavigationMenuItemProps {
 }
 
 export interface NavigationMenuTriggerProps {
-  /** When true, prevents the user from interacting with the trigger.
+  /**
+   * When true, prevents the user from interacting with the trigger.
    * @default false
    */
   disabled?: boolean
@@ -31,7 +32,8 @@ export interface NavigationMenuContentProps {
 }
 
 export interface NavigationMenuLinkProps {
-  /** Whether this link is the currently active page link.
+  /**
+   * Whether this link is the currently active page link.
    * @default false
    */
   active?: boolean

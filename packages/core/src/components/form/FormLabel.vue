@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { Label } from '../label'
 import { useFormField } from '../../composables/useFormField'
 import { cn } from '../../utils'
+import { Label } from '../label'
 
 const props = defineProps<{ class?: HTMLAttributes['class'] }>()
 
 let fieldContext: ReturnType<typeof useFormField> | null = null
 try {
   fieldContext = useFormField()
-} catch {
+}
+catch {
   // FormLabel can be used outside form context
 }
 </script>

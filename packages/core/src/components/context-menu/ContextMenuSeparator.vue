@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ContextMenuSeparator as ContextMenuSeparatorPrimitive } from 'radix-vue'
 import type { ContextMenuSeparatorProps } from './context-menu.types'
+import { ContextMenuSeparator as ContextMenuSeparatorPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ContextMenuSeparatorProps>()

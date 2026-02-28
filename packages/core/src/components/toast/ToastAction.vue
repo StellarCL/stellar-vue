@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastAction } from 'radix-vue'
 import type { ToastActionProps } from './toast.types'
+import { ToastAction } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ToastActionProps>()

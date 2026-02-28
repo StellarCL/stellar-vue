@@ -45,7 +45,7 @@ const message = ref('')
 
 ```vue
 <script setup lang="ts">
-import { Textarea, Label } from '@stellar-vue-ui/core'
+import { Label, Textarea } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -78,7 +78,9 @@ Set the `error` prop to apply destructive styling:
   <div class="grid gap-2">
     <Label for="comment">Comment</Label>
     <Textarea id="comment" error placeholder="Required field" />
-    <p class="text-sm text-destructive">Please enter a comment.</p>
+    <p class="text-sm text-destructive">
+      Please enter a comment.
+    </p>
   </div>
 </template>
 ```
@@ -103,8 +105,7 @@ Set the `error` prop to apply destructive styling:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@stellar-vue-ui/core'
-import { Textarea } from '@stellar-vue-ui/core'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Textarea } from '@stellar-vue-ui/core'
 </script>
 
 <template>

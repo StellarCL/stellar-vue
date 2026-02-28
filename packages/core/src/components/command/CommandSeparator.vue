@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { CommandSeparatorProps } from './command.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CommandSeparatorProps>(), {})

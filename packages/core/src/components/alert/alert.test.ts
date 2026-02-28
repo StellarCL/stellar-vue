@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Alert from './Alert.vue'
-import AlertTitle from './AlertTitle.vue'
 import AlertDescription from './AlertDescription.vue'
+import AlertTitle from './AlertTitle.vue'
 
-describe('Alert', () => {
+describe('alert', () => {
   it('renders as a div element', () => {
     const wrapper = mount(Alert)
     expect(wrapper.element.tagName).toBe('DIV')
@@ -69,7 +69,7 @@ describe('Alert', () => {
   })
 })
 
-describe('AlertTitle', () => {
+describe('alertTitle', () => {
   it('renders as an h5 element', () => {
     const wrapper = mount(AlertTitle)
     expect(wrapper.element.tagName).toBe('H5')
@@ -97,7 +97,7 @@ describe('AlertTitle', () => {
   })
 })
 
-describe('AlertDescription', () => {
+describe('alertDescription', () => {
   it('renders as a div element', () => {
     const wrapper = mount(AlertDescription)
     expect(wrapper.element.tagName).toBe('DIV')

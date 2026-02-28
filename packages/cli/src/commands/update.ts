@@ -1,11 +1,11 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
 import prompts from 'prompts'
-import type { ComponentLock } from '../types'
 import { findConfig, readConfig, readLockFile, writeLockFile } from '../utils/config'
-import { getComponent } from '../utils/registry'
 import { computeHash, displayDiff } from '../utils/diff'
-import { styles, header, newLine } from '../utils/prompts'
+import { newLine, styles } from '../utils/prompts'
+import { getComponent } from '../utils/registry'
 
 interface UpdateOptions {
   cwd?: string
@@ -49,7 +49,8 @@ export async function updateCommand(components: string[], options: UpdateOptions
       console.log(styles.info('No components installed.'))
       return
     }
-  } else {
+  }
+  else {
     componentNames = [...components]
     if (componentNames.length === 0) {
       console.log(styles.info('No components specified. Use --all to update all installed components.'))

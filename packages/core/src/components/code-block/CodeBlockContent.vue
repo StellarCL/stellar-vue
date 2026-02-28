@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, ref, type Ref } from 'vue'
 import type { CodeBlockContentProps } from './code-block.types'
+import { computed, inject, ref, type Ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CodeBlockContentProps>(), {
@@ -27,9 +27,9 @@ const classes = computed(() =>
       v-for="(line, index) in lines"
       :key="index"
     ><td
-        v-if="showLines"
-        class="select-none pr-4 text-right text-zinc-500"
-        :style="{ minWidth: `${String(lines.length).length + 1}ch` }"
-      >{{ index + 1 }}</td><td class="whitespace-pre">{{ line }}</td></tr></tbody></table></code></pre>
+      v-if="showLines"
+      class="select-none pr-4 text-right text-zinc-500"
+      :style="{ minWidth: `${String(lines.length).length + 1}ch` }"
+    >{{ index + 1 }}</td><td class="whitespace-pre">{{ line }}</td></tr></tbody></table></code></pre>
   </div>
 </template>

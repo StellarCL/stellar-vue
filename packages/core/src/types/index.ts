@@ -1,1 +1,1 @@
-export type { BaseComponentProps, Size, Orientation } from './components'
+export type { BaseComponentProps, Orientation, Size } from './components'

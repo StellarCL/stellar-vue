@@ -72,18 +72,18 @@ Replace the contents of `src/App.vue` with the following:
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
   Button,
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
   Input,
   Label,
 } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const email = ref('')
 const submitted = ref(false)
@@ -117,7 +117,9 @@ function handleSubmit() {
           </div>
         </div>
         <div v-else class="text-center py-4">
-          <p class="text-lg font-medium">Thanks for subscribing!</p>
+          <p class="text-lg font-medium">
+            Thanks for subscribing!
+          </p>
           <p class="text-muted-foreground">
             We sent a confirmation to {{ email }}
           </p>
@@ -164,9 +166,9 @@ pnpm add @stellar-vue-ui/theme
 Then apply it in your `main.ts`:
 
 ```typescript
-import { createApp } from 'vue'
 import { applyTheme } from '@stellar-vue-ui/theme'
 import { sirius } from '@stellar-vue-ui/theme/themes'
+import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/main.css'
 
@@ -184,8 +186,7 @@ Use the `useTheme` composable to toggle dark mode:
 
 ```vue
 <script setup lang="ts">
-import { useTheme } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
+import { Button, useTheme } from '@stellar-vue-ui/core'
 
 const { isDark, toggleDark } = useTheme()
 </script>

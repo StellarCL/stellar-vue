@@ -1,8 +1,8 @@
 import fs from 'node:fs'
-import path from 'node:path'
 import os from 'node:os'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { auditCommand, computeLuminance, contrastRatio, parseCssVariables, checkContrastPairs } from './audit'
+import path from 'node:path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { auditCommand, checkContrastPairs, computeLuminance, contrastRatio, parseCssVariables } from './audit'
 
 function makeTempDir(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'stellar-audit-test-'))
@@ -296,7 +296,7 @@ describe('contrastRatio', () => {
     expect(ratio).toBe(1.0)
   })
 
-  it('WCAG AA requires >= 4.5:1', () => {
+  it('wCAG AA requires >= 4.5:1', () => {
     // High contrast pair
     const highRatio = contrastRatio(1.0, 0.0)
     expect(highRatio).toBeGreaterThanOrEqual(4.5)
@@ -327,8 +327,8 @@ describe('checkContrastPairs', () => {
   it('identifies high contrast pairs as passing', () => {
     // Very light bg, very dark fg = high contrast
     const vars: Record<string, string> = {
-      'stellar-background': 'oklch(100% 0 0)',     // white
-      'stellar-foreground': 'oklch(0% 0 0)',        // black
+      'stellar-background': 'oklch(100% 0 0)', // white
+      'stellar-foreground': 'oklch(0% 0 0)', // black
     }
     const results = checkContrastPairs(vars)
 

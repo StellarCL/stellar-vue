@@ -1,4 +1,4 @@
-import type { GenerateThemeOptions, ThemeConfig, ColorPair } from '../types'
+import type { ColorPair, GenerateThemeOptions, ThemeConfig } from '../types'
 import { defineTheme } from './define-theme'
 
 // Simple OKLCH color manipulation without requiring culori at runtime

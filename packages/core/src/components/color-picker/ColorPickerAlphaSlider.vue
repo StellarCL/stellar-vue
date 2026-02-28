@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue'
 import type { ColorPickerAlphaSliderProps, ColorPickerContext } from './color-picker.types'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ColorPickerAlphaSliderProps>()
@@ -30,5 +30,5 @@ const classes = computed(() =>
     :style="{ background: alphaBackground }"
     aria-label="Alpha"
     @input="handleInput"
-  />
+  >
 </template>

@@ -1,16 +1,19 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
-import TooltipProvider from './TooltipProvider.vue'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import Tooltip from './Tooltip.vue'
-import TooltipTrigger from './TooltipTrigger.vue'
 import TooltipContent from './TooltipContent.vue'
+import TooltipProvider from './TooltipProvider.vue'
+import TooltipTrigger from './TooltipTrigger.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -27,7 +30,7 @@ async function mountOpenToBody(template: string, components: Record<string, obje
   return document.body.innerHTML
 }
 
-describe('TooltipProvider', () => {
+describe('tooltipProvider', () => {
   it('renders children', () => {
     const wrapper = mount({
       components: { TooltipProvider },
@@ -60,7 +63,7 @@ describe('TooltipProvider', () => {
   })
 })
 
-describe('TooltipTrigger', () => {
+describe('tooltipTrigger', () => {
   it('renders slot content', () => {
     const wrapper = mount({
       components: { TooltipProvider, Tooltip, TooltipTrigger },
@@ -90,7 +93,7 @@ describe('TooltipTrigger', () => {
   })
 })
 
-describe('TooltipContent', () => {
+describe('tooltipContent', () => {
   it('has correct base classes', async () => {
     const bodyHtml = await mountOpenToBody(
       `<TooltipProvider><Tooltip :open="true"><TooltipTrigger><button>T</button></TooltipTrigger><TooltipContent>Tooltip text</TooltipContent></Tooltip></TooltipProvider>`,
@@ -160,7 +163,7 @@ describe('TooltipContent', () => {
   })
 })
 
-describe('Tooltip composition', () => {
+describe('tooltip composition', () => {
   it('mounts TooltipProvider > Tooltip > Trigger + Content without error', () => {
     const wrapper = mount({
       components: { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent },

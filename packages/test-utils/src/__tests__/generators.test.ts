@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import {
-  mockTableData,
+  mockBreadcrumbs,
   mockFormData,
   mockSelectOptions,
-  mockBreadcrumbs,
+  mockTableData,
 } from '../mocks/generators'
 
 describe('mockTableData', () => {
@@ -20,9 +20,9 @@ describe('mockTableData', () => {
 
   it('includes an id field on every row', () => {
     const data = mockTableData(3)
-    expect(data[0].id).toBe(1)
-    expect(data[1].id).toBe(2)
-    expect(data[2].id).toBe(3)
+    expect(data[0]!.id).toBe(1)
+    expect(data[1]!.id).toBe(2)
+    expect(data[2]!.id).toBe(3)
   })
 
   it('includes default columns: name, email, status, role', () => {
@@ -51,9 +51,9 @@ describe('mockTableData', () => {
 
   it('generates email-like strings for email column', () => {
     const [row] = mockTableData(1, ['email'])
-    expect(typeof row.email).toBe('string')
-    expect(row.email as string).toContain('@')
-    expect(row.email as string).toContain('.')
+    expect(typeof row!.email).toBe('string')
+    expect(row!.email as string).toContain('@')
+    expect(row!.email as string).toContain('.')
   })
 
   it('generates valid status values', () => {
@@ -74,13 +74,13 @@ describe('mockTableData', () => {
 
   it('generates boolean for active column', () => {
     const [row] = mockTableData(1, ['active'])
-    expect(typeof row.active).toBe('boolean')
+    expect(typeof row!.active).toBe('boolean')
   })
 
   it('generates numeric age values', () => {
     const [row] = mockTableData(1, ['age'])
-    expect(typeof row.age).toBe('number')
-    expect(row.age as number).toBeGreaterThanOrEqual(20)
+    expect(typeof row!.age).toBe('number')
+    expect(row!.age as number).toBeGreaterThanOrEqual(20)
   })
 
   it('generates fallback string for unknown columns', () => {
@@ -175,7 +175,7 @@ describe('mockSelectOptions', () => {
 
   it('generates unique values for the first 20 options', () => {
     const options = mockSelectOptions(20)
-    const values = options.map((o) => o.value)
+    const values = options.map(o => o.value)
     const unique = new Set(values)
     expect(unique.size).toBe(20)
   })

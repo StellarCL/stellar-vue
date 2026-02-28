@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, onUnmounted, provide, ref } from 'vue'
-import type { CommandGroupProps, CommandContext } from './command.types'
+import type { CommandContext, CommandGroupProps } from './command.types'
+import { computed, inject, provide, ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CommandGroupProps>(), {})
@@ -24,10 +24,13 @@ provide('command:group:unregisterItem', unregisterGroupItem)
 // ── Visibility ────────────────────────────────────────────────────────────────
 // The group is hidden when all its child items are filtered out.
 const isVisible = computed(() => {
-  if (!context) return true
-  if (childIndices.value.size === 0) return true
+  if (!context)
+    return true
+  if (childIndices.value.size === 0)
+    return true
   for (const idx of childIndices.value) {
-    if (context.isItemVisible(idx)) return true
+    if (context.isItemVisible(idx))
+      return true
   }
   return false
 })

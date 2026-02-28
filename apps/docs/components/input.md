@@ -85,7 +85,9 @@ Set the `error` prop to `true` to apply destructive styling, indicating a valida
   <div class="grid gap-2">
     <Label for="username">Username</Label>
     <Input id="username" error placeholder="Required field" />
-    <p class="text-sm text-destructive">This field is required.</p>
+    <p class="text-sm text-destructive">
+      This field is required.
+    </p>
   </div>
 </template>
 ```
@@ -112,7 +114,7 @@ Use Input inside the Form component for validation integration:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, Input } from '@stellar-vue-ui/core'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@stellar-vue-ui/core'
 </script>
 
 <template>

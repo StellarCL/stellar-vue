@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { TreeViewContext, TreeViewProps } from './tree-view.types'
 import { computed, provide, ref, watch } from 'vue'
-import type { TreeViewProps, TreeViewContext } from './tree-view.types'
-import TreeViewItem from './TreeViewItem.vue'
 import { cn } from '../../utils'
+import TreeViewItem from './TreeViewItem.vue'
 
 const props = withDefaults(defineProps<TreeViewProps>(), {
   expandedKeys: () => [],
@@ -30,26 +30,31 @@ function toggleExpand(key: string) {
   const index = internalExpanded.value.indexOf(key)
   if (index >= 0) {
     internalExpanded.value.splice(index, 1)
-  } else {
+  }
+  else {
     internalExpanded.value.push(key)
   }
   emit('update:expandedKeys', [...internalExpanded.value])
 }
 
 function toggleSelect(key: string) {
-  if (props.selectionMode === 'none') return
+  if (props.selectionMode === 'none')
+    return
 
   if (props.selectionMode === 'single') {
     if (internalSelected.value.includes(key)) {
       internalSelected.value = []
-    } else {
+    }
+    else {
       internalSelected.value = [key]
     }
-  } else {
+  }
+  else {
     const index = internalSelected.value.indexOf(key)
     if (index >= 0) {
       internalSelected.value.splice(index, 1)
-    } else {
+    }
+    else {
       internalSelected.value.push(key)
     }
   }

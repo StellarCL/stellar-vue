@@ -19,7 +19,7 @@ pnpm add @stellar-vue-ui/core
 ## Import
 
 ```typescript
-import { Avatar, AvatarImage, AvatarFallback } from '@stellar-vue-ui/core'
+import { Avatar, AvatarFallback, AvatarImage } from '@stellar-vue-ui/core'
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Avatar, AvatarImage, AvatarFallback } from '@stellar-vue-ui/core'
+import { Avatar, AvatarFallback, AvatarImage } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -100,7 +100,9 @@ Use `delayMs` on `AvatarFallback` to only show the fallback after a delay, preve
 <template>
   <Avatar>
     <AvatarImage src="https://example.com/slow-image.png" alt="User" />
-    <AvatarFallback :delay-ms="600">JD</AvatarFallback>
+    <AvatarFallback :delay-ms="600">
+      JD
+    </AvatarFallback>
   </Avatar>
 </template>
 ```

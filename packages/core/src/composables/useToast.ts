@@ -1,12 +1,12 @@
-import { ref, readonly } from 'vue'
-import type { ToastItem, ToastOptions, ToastVariant } from '../components/toast/toast.types'
+import type { ToastItem, ToastOptions } from '../components/toast/toast.types'
+import { readonly, ref } from 'vue'
 
 // Singleton toast state shared across all useToast() calls
 const toasts = ref<ToastItem[]>([])
 let toastId = 0
 
 export function useToast() {
-  function toast(options: ToastOptions): { id: number; dismiss: () => void } {
+  function toast(options: ToastOptions): { id: number, dismiss: () => void } {
     const id = toastId++
     const t: ToastItem = {
       id,
@@ -28,12 +28,12 @@ export function useToast() {
   }
 
   function dismiss(id: number) {
-    const index = toasts.value.findIndex((t) => t.id === id)
+    const index = toasts.value.findIndex(t => t.id === id)
     if (index !== -1) {
       toasts.value[index].open = false
       // Remove after animation completes
       setTimeout(() => {
-        toasts.value = toasts.value.filter((t) => t.id !== id)
+        toasts.value = toasts.value.filter(t => t.id !== id)
       }, 300)
     }
   }

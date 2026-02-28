@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectItem as SelectItemPrimitive, SelectItemText, SelectItemIndicator } from 'radix-vue'
 import type { SelectItemProps } from './select.types'
+import { SelectItemIndicator, SelectItem as SelectItemPrimitive, SelectItemText } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<SelectItemProps>(), {

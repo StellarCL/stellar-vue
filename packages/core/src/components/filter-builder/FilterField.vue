@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { FilterFieldProps } from './filter-builder.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<FilterFieldProps>()
@@ -24,7 +24,9 @@ const classes = computed(() =>
     aria-label="Select field"
     @change="emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
   >
-    <option value="" disabled>Select field...</option>
+    <option value="" disabled>
+      Select field...
+    </option>
     <option
       v-for="field in fields"
       :key="field.key"

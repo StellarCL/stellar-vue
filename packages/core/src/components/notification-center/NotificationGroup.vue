@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { NotificationGroupProps } from './notification-center.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 import NotificationItem from './NotificationItem.vue'
 
 const props = defineProps<NotificationGroupProps>()
 
 const emit = defineEmits<{
-  'mark-read': [id: string]
-  'dismiss': [id: string]
-  'action': [id: string]
+  markRead: [id: string]
+  dismiss: [id: string]
+  action: [id: string]
 }>()
 
 const classes = computed(() =>
@@ -26,7 +26,7 @@ const classes = computed(() =>
       v-for="notification in notifications"
       :key="notification.id"
       :notification="notification"
-      @mark-read="emit('mark-read', $event)"
+      @mark-read="emit('markRead', $event)"
       @dismiss="emit('dismiss', $event)"
       @action="emit('action', $event)"
     />

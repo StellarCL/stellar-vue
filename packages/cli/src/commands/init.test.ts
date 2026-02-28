@@ -1,8 +1,11 @@
+import type { StellarConfig } from '../types'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import type { StellarConfig } from '../types'
+import prompts from 'prompts'
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { initCommand } from './init'
 
 // Mock prompts module
 vi.mock('prompts', () => ({
@@ -18,9 +21,6 @@ vi.mock('ora', () => ({
     stop: vi.fn().mockReturnThis(),
   })),
 }))
-
-import prompts from 'prompts'
-import { initCommand } from './init'
 
 describe('init command', () => {
   let tmpDir: string

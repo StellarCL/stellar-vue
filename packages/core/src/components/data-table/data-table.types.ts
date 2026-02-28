@@ -24,7 +24,7 @@ export interface ColumnDef<T = any> {
   /**
    * Custom cell renderer returning a string or VNode.
    */
-  cell?: (info: { row: T; getValue: () => any }) => string | VNode
+  cell?: (info: { row: T, getValue: () => any }) => string | VNode
 
   /**
    * Whether this column supports sorting.

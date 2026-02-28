@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import type { WizardProps } from './wizard.types'
 import { provide, ref } from 'vue'
 import { useSteps } from '../../composables/useSteps'
-import type { WizardProps } from './wizard.types'
-import { WIZARD_INJECTION_KEY } from './wizard-context'
 import { cn } from '../../utils'
+import { WIZARD_INJECTION_KEY } from './wizard-context'
 
 const props = withDefaults(defineProps<WizardProps>(), {
   modelValue: 1,
@@ -29,13 +29,15 @@ function registerStep(step: number, validate: (() => Promise<boolean>) | undefin
 }
 
 async function next() {
-  if (isLast.value) return
+  if (isLast.value)
+    return
 
   if (props.validateOnNext) {
     const validator = stepValidators.value.get(current.value)
     if (validator) {
       const valid = await validator()
-      if (!valid) return
+      if (!valid)
+        return
     }
   }
 

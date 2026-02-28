@@ -1,13 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
-import NotificationCenter from './NotificationCenter.vue'
-import NotificationList from './NotificationList.vue'
-import NotificationItem from './NotificationItem.vue'
-import NotificationGroup from './NotificationGroup.vue'
-import NotificationEmpty from './NotificationEmpty.vue'
-import { useNotifications } from '../../composables/useNotifications'
 import type { Notification } from './notification-center.types'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
+import { useNotifications } from '../../composables/useNotifications'
+import NotificationCenter from './NotificationCenter.vue'
+import NotificationEmpty from './NotificationEmpty.vue'
+import NotificationGroup from './NotificationGroup.vue'
+import NotificationItem from './NotificationItem.vue'
+import NotificationList from './NotificationList.vue'
 
 // ---------------------------------------------------------------------------
 // Test fixtures
@@ -54,7 +53,7 @@ function makeOlderNotification(overrides: Partial<Notification> = {}): Notificat
 // NotificationEmpty
 // ---------------------------------------------------------------------------
 
-describe('NotificationEmpty', () => {
+describe('notificationEmpty', () => {
   it('renders default empty message', () => {
     const wrapper = mount(NotificationEmpty)
     expect(wrapper.text()).toContain('No notifications')
@@ -91,7 +90,7 @@ describe('NotificationEmpty', () => {
 // NotificationItem
 // ---------------------------------------------------------------------------
 
-describe('NotificationItem', () => {
+describe('notificationItem', () => {
   it('renders notification title', () => {
     const notification = makeNotification({ title: 'New message' })
     const wrapper = mount(NotificationItem, {
@@ -138,7 +137,7 @@ describe('NotificationItem', () => {
       props: { notification },
     })
     await wrapper.find('[data-testid="notification-item"]').trigger('click')
-    expect(wrapper.emitted('mark-read')?.[0]).toEqual(['test-1'])
+    expect(wrapper.emitted('markRead')?.[0]).toEqual(['test-1'])
   })
 
   it('does not emit mark-read when read item is clicked', async () => {
@@ -147,7 +146,7 @@ describe('NotificationItem', () => {
       props: { notification },
     })
     await wrapper.find('[data-testid="notification-item"]').trigger('click')
-    expect(wrapper.emitted('mark-read')).toBeFalsy()
+    expect(wrapper.emitted('markRead')).toBeFalsy()
   })
 
   it('emits dismiss when dismiss button is clicked', async () => {
@@ -178,7 +177,7 @@ describe('NotificationItem', () => {
     const wrapper = mount(NotificationItem, {
       props: { notification },
     })
-    const actionBtn = wrapper.findAll('button').find((b) => b.text() === 'View')
+    const actionBtn = wrapper.findAll('button').find(b => b.text() === 'View')
     expect(actionBtn).toBeTruthy()
     await actionBtn!.trigger('click')
     expect(onClick).toHaveBeenCalled()
@@ -234,7 +233,7 @@ describe('NotificationItem', () => {
 // NotificationGroup
 // ---------------------------------------------------------------------------
 
-describe('NotificationGroup', () => {
+describe('notificationGroup', () => {
   it('renders group label', () => {
     const wrapper = mount(NotificationGroup, {
       props: {
@@ -263,7 +262,7 @@ describe('NotificationGroup', () => {
       props: { label: 'Today', notifications: [notification] },
     })
     await wrapper.find('[data-testid="notification-item"]').trigger('click')
-    expect(wrapper.emitted('mark-read')?.[0]).toEqual(['test-1'])
+    expect(wrapper.emitted('markRead')?.[0]).toEqual(['test-1'])
   })
 
   it('forwards dismiss events', async () => {
@@ -280,7 +279,7 @@ describe('NotificationGroup', () => {
 // NotificationList
 // ---------------------------------------------------------------------------
 
-describe('NotificationList', () => {
+describe('notificationList', () => {
   it('displays notifications list', () => {
     const notifications = [
       makeTodayNotification({ title: 'Notification 1' }),
@@ -339,7 +338,7 @@ describe('NotificationList', () => {
       props: { notifications },
     })
     await wrapper.find('[data-testid="mark-all-read-button"]').trigger('click')
-    expect(wrapper.emitted('mark-all-read')).toBeTruthy()
+    expect(wrapper.emitted('markAllRead')).toBeTruthy()
   })
 
   it('emits mark-read event', async () => {
@@ -348,7 +347,7 @@ describe('NotificationList', () => {
       props: { notifications: [notification] },
     })
     await wrapper.find('[data-testid="notification-item"]').trigger('click')
-    expect(wrapper.emitted('mark-read')?.[0]).toEqual(['test-1'])
+    expect(wrapper.emitted('markRead')?.[0]).toEqual(['test-1'])
   })
 
   it('emits dismiss event', async () => {
@@ -379,7 +378,7 @@ describe('NotificationList', () => {
 // NotificationCenter (root with popover/dropdown)
 // ---------------------------------------------------------------------------
 
-describe('NotificationCenter', () => {
+describe('notificationCenter', () => {
   it('renders trigger button', () => {
     const wrapper = mount(NotificationCenter, {
       props: { notifications: [] },
@@ -460,7 +459,7 @@ describe('NotificationCenter', () => {
     })
     await wrapper.find('[data-testid="notification-trigger"]').trigger('click')
     await wrapper.find('[data-testid="notification-item"]').trigger('click')
-    expect(wrapper.emitted('mark-read')?.[0]).toEqual(['test-1'])
+    expect(wrapper.emitted('markRead')?.[0]).toEqual(['test-1'])
   })
 
   it('emits mark-all-read event', async () => {
@@ -470,7 +469,7 @@ describe('NotificationCenter', () => {
     })
     await wrapper.find('[data-testid="notification-trigger"]').trigger('click')
     await wrapper.find('[data-testid="mark-all-read-button"]').trigger('click')
-    expect(wrapper.emitted('mark-all-read')).toBeTruthy()
+    expect(wrapper.emitted('markAllRead')).toBeTruthy()
   })
 
   it('emits dismiss event', async () => {

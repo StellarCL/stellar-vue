@@ -1,5 +1,5 @@
+export type { AccordionContentProps, AccordionItemProps, AccordionProps, AccordionTriggerProps } from './accordion.types'
 export { default as Accordion } from './Accordion.vue'
+export { default as AccordionContent } from './AccordionContent.vue'
 export { default as AccordionItem } from './AccordionItem.vue'
 export { default as AccordionTrigger } from './AccordionTrigger.vue'
-export { default as AccordionContent } from './AccordionContent.vue'
-export type { AccordionProps, AccordionItemProps, AccordionTriggerProps, AccordionContentProps } from './accordion.types'

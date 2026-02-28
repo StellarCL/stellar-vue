@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { AccordionHeader, AccordionTrigger } from 'radix-vue'
 import type { AccordionTriggerProps } from './accordion.types'
+import { AccordionHeader, AccordionTrigger } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = defineProps<AccordionTriggerProps>()
@@ -11,7 +11,7 @@ const props = defineProps<AccordionTriggerProps>()
     <AccordionTrigger
       :class="cn(
         'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-        props.class
+        props.class,
       )"
     >
       <slot />

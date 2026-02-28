@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ToolbarButtonProps, ToolbarItemCommand } from './rich-text-editor.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ToolbarButtonProps>(), {
   disabled: false,
 })
 
-const commandConfig: Record<ToolbarItemCommand, { label: string; icon: string }> = {
+const commandConfig: Record<ToolbarItemCommand, { label: string, icon: string }> = {
   bold: { label: 'Bold', icon: 'B' },
   italic: { label: 'Italic', icon: 'I' },
   underline: { label: 'Underline', icon: 'U' },
@@ -28,7 +28,8 @@ const commandConfig: Record<ToolbarItemCommand, { label: string; icon: string }>
 const config = computed(() => commandConfig[props.command])
 
 const isActive = computed(() => {
-  if (!props.editor) return false
+  if (!props.editor)
+    return false
   switch (props.command) {
     case 'bold':
       return props.editor.isActive('bold')
@@ -60,7 +61,8 @@ const isActive = computed(() => {
 })
 
 function executeCommand() {
-  if (!props.editor || props.disabled) return
+  if (!props.editor || props.disabled)
+    return
 
   switch (props.command) {
     case 'bold':
@@ -99,8 +101,9 @@ function executeCommand() {
     case 'link': {
       if (props.editor.isActive('link')) {
         props.editor.chain().focus().unsetLink().run()
-      } else {
-        const url = window.prompt('Enter URL:')
+      }
+      else {
+        const url = window.prompt('Enter URL:') // eslint-disable-line no-alert
         if (url) {
           props.editor.chain().focus().setLink({ href: url }).run()
         }
@@ -108,7 +111,7 @@ function executeCommand() {
       break
     }
     case 'image': {
-      const src = window.prompt('Enter image URL:')
+      const src = window.prompt('Enter image URL:') // eslint-disable-line no-alert
       if (src) {
         props.editor.chain().focus().setImage({ src }).run()
       }

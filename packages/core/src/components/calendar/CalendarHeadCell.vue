@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { CalendarHeadCell as CalendarHeadCellPrimitive } from 'radix-vue'
 import type { CalendarHeadCellProps } from './calendar.types'
+import { CalendarHeadCell as CalendarHeadCellPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<CalendarHeadCellProps>()

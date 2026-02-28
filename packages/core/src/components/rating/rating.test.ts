@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Rating from './Rating.vue'
 
-describe('Rating', () => {
+describe('rating', () => {
   it('renders 5 stars by default', () => {
     const wrapper = mount(Rating)
     const stars = wrapper.findAll('span[role="radio"]')

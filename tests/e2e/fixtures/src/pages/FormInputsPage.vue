@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
-  Label,
-  Input,
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
   Checkbox,
+  Input,
+  Label,
   RadioGroup,
   RadioGroupItem,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
   Switch,
 } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const inputValue = ref('')
 const selectValue = ref('')
@@ -44,9 +44,15 @@ const switchChecked = ref(false)
           <SelectValue placeholder="Select a fruit" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="cherry">Cherry</SelectItem>
+          <SelectItem value="apple">
+            Apple
+          </SelectItem>
+          <SelectItem value="banana">
+            Banana
+          </SelectItem>
+          <SelectItem value="cherry">
+            Cherry
+          </SelectItem>
         </SelectContent>
       </Select>
     </div>
@@ -59,7 +65,9 @@ const switchChecked = ref(false)
 
     <!-- Radio Group -->
     <fieldset style="border: none; padding: 0; margin: 0;">
-      <legend style="font-weight: 500; margin-bottom: 0.5rem;">Preferred contact method</legend>
+      <legend style="font-weight: 500; margin-bottom: 0.5rem;">
+        Preferred contact method
+      </legend>
       <RadioGroup v-model="radioValue" style="display: flex; flex-direction: column; gap: 0.5rem;">
         <div style="display: flex; align-items: center; gap: 0.5rem;">
           <RadioGroupItem id="radio-email" value="email" />

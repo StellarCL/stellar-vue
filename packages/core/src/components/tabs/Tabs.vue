@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { TabsRoot } from 'radix-vue'
 import type { TabsProps } from './tabs.types'
+import { TabsRoot } from 'radix-vue'
 
 const props = withDefaults(defineProps<TabsProps>(), {
   orientation: 'horizontal',

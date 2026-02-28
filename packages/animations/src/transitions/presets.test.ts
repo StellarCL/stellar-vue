@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { transitionPresets, type TransitionPreset, type TransitionPresetName } from './presets'
+import { type TransitionPreset, type TransitionPresetName, transitionPresets } from './presets'
 
 const REQUIRED_KEYS: (keyof TransitionPreset)[] = [
   'enterActiveClass',
@@ -144,12 +144,12 @@ describe('transitionPresets', () => {
     })
   })
 
-  describe('TransitionPresetName type', () => {
+  describe('transitionPresetName type', () => {
     it('covers all expected preset keys', () => {
       // Type-level test: if this compiles, the type covers all keys
       const allKeys: TransitionPresetName[] = EXPECTED_PRESETS
       const recordKeys = Object.keys(transitionPresets) as TransitionPresetName[]
-      expect(allKeys.every((k) => recordKeys.includes(k))).toBe(true)
+      expect(allKeys.every(k => recordKeys.includes(k))).toBe(true)
     })
   })
 })

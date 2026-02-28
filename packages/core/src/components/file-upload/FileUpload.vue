@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { provide, ref } from 'vue'
-import type { FileWithPreview, FileUploadProps } from './file-upload.types'
+import type { FileUploadProps, FileWithPreview } from './file-upload.types'
+import { provide } from 'vue'
 import { useFileUpload } from '../../composables/useFileUpload'
 import { cn } from '../../utils'
 
@@ -20,7 +20,7 @@ const { files, addFiles, removeFile, clearFiles, isDragging, errors } = useFileU
     model.value = [...model.value, ...added]
   },
   onFileRemoved: (removed) => {
-    model.value = model.value.filter((f) => f.id !== removed.id)
+    model.value = model.value.filter(f => f.id !== removed.id)
   },
 })
 

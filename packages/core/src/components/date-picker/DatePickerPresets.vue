@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { DatePickerPresetsProps, PresetItem, PresetRangeItem } from './date-picker.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<DatePickerPresetsProps & {
@@ -11,8 +11,8 @@ const props = defineProps<DatePickerPresetsProps & {
 }>()
 
 const emit = defineEmits<{
-  'select': [value: PresetItem]
-  'select-range': [value: PresetRangeItem]
+  select: [value: PresetItem]
+  selectRange: [value: PresetRangeItem]
 }>()
 
 const classes = computed(() =>
@@ -48,7 +48,7 @@ const classes = computed(() =>
             'hover:bg-accent hover:text-accent-foreground',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
           )"
-          @click="emit('select-range', preset)"
+          @click="emit('selectRange', preset)"
         >
           {{ preset.label }}
         </button>

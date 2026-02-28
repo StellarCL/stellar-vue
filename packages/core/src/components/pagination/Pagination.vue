@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, provide, watch, toRef } from 'vue'
 import type { PaginationProps } from './pagination.types'
+import { computed, provide, toRef, watch } from 'vue'
 import { usePagination } from '../../composables/usePagination'
 import { cn } from '../../utils'
 

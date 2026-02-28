@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Alert, AlertTitle, AlertDescription } from '@stellar-vue-ui/core'
-import { AlertCircle, CheckCircle, Info, AlertTriangle, Terminal } from 'lucide-vue-next'
-import PageHeader from '../components/PageHeader.vue'
+import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
+import { AlertCircle, AlertTriangle, CheckCircle, Info, Terminal } from 'lucide-vue-next'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>

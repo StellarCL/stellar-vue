@@ -1,11 +1,10 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
-import { nextTick, defineComponent, h, ref } from 'vue'
-import RichTextEditor from './RichTextEditor.vue'
+import { mount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import EditorToolbar from './EditorToolbar.vue'
+import RichTextEditor from './RichTextEditor.vue'
 import ToolbarButton from './ToolbarButton.vue'
-import ToolbarSeparator from './ToolbarSeparator.vue'
 import ToolbarGroup from './ToolbarGroup.vue'
+import ToolbarSeparator from './ToolbarSeparator.vue'
 
 // Mock tiptap modules to avoid ProseMirror DOM issues in jsdom
 const mockChain = {
@@ -60,6 +59,7 @@ function createMockEditor(content = '') {
 
 // Mock @tiptap/vue-3
 vi.mock('@tiptap/vue-3', () => {
+  // eslint-disable-next-line ts/no-require-imports
   const { ref, defineComponent, h } = require('vue')
   return {
     useEditor: vi.fn((options: any) => {
@@ -70,8 +70,7 @@ vi.mock('@tiptap/vue-3', () => {
       name: 'EditorContent',
       props: ['editor'],
       setup(props: any) {
-        return () => h('div', { class: 'ProseMirror', 'data-testid': 'editor-content' },
-          props.editor ? props.editor.getHTML() : '')
+        return () => h('div', { 'class': 'ProseMirror', 'data-testid': 'editor-content' }, props.editor ? props.editor.getHTML() : '')
       },
     }),
   }
@@ -102,12 +101,12 @@ vi.mock('@tiptap/extension-character-count', () => {
   return { default: ext }
 })
 
-describe('RichTextEditor', () => {
+describe('richTextEditor', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    Object.keys(mockActiveStates).forEach((k) => delete mockActiveStates[k])
+    Object.keys(mockActiveStates).forEach(k => delete mockActiveStates[k])
     // Reset chain mocks
-    Object.values(mockChain).forEach((fn) => fn.mockClear?.())
+    Object.values(mockChain).forEach(fn => fn.mockClear?.())
     mockChain.focus.mockReturnThis()
     mockChain.toggleBold.mockReturnThis()
     mockChain.toggleItalic.mockReturnThis()
@@ -144,7 +143,7 @@ describe('RichTextEditor', () => {
   })
 
   it('v-model outputs HTML', async () => {
-    const wrapper = mount(RichTextEditor, {
+    const _wrapper = mount(RichTextEditor, {
       props: {
         modelValue: '<p>Hello World</p>',
       },
@@ -254,11 +253,11 @@ describe('RichTextEditor', () => {
   })
 })
 
-describe('ToolbarButton', () => {
+describe('toolbarButton', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    Object.keys(mockActiveStates).forEach((k) => delete mockActiveStates[k])
-    Object.values(mockChain).forEach((fn) => fn.mockClear?.())
+    Object.keys(mockActiveStates).forEach(k => delete mockActiveStates[k])
+    Object.values(mockChain).forEach(fn => fn.mockClear?.())
     mockChain.focus.mockReturnThis()
     mockChain.toggleBold.mockReturnThis()
     mockChain.toggleItalic.mockReturnThis()
@@ -337,7 +336,7 @@ describe('ToolbarButton', () => {
   })
 })
 
-describe('EditorToolbar', () => {
+describe('editorToolbar', () => {
   it('renders toolbar with correct role', () => {
     const editor = createMockEditor()
     const wrapper = mount(EditorToolbar, {
@@ -378,7 +377,7 @@ describe('EditorToolbar', () => {
   })
 })
 
-describe('ToolbarSeparator', () => {
+describe('toolbarSeparator', () => {
   it('renders with separator role', () => {
     const wrapper = mount(ToolbarSeparator)
     expect(wrapper.find('[role="separator"]').exists()).toBe(true)
@@ -397,7 +396,7 @@ describe('ToolbarSeparator', () => {
   })
 })
 
-describe('ToolbarGroup', () => {
+describe('toolbarGroup', () => {
   it('renders with group role', () => {
     const wrapper = mount(ToolbarGroup, {
       slots: { default: 'content' },

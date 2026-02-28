@@ -1,17 +1,9 @@
-import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Pagination } from '.'
-import { PaginationContent } from '.'
-import { PaginationItem } from '.'
-import { PaginationLink } from '.'
-import { PaginationPrevious } from '.'
-import { PaginationNext } from '.'
-import { PaginationEllipsis } from '.'
-import { PaginationFirst } from '.'
-import { PaginationLast } from '.'
+import { describe, expect, it } from 'vitest'
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationFirst, PaginationItem, PaginationLast, PaginationLink, PaginationNext, PaginationPrevious } from '.'
 
 // Helper to build a full pagination component for testing
-function buildPagination(props: Record<string, unknown>, pageRange: Array<number | 'ellipsis'>) {
+function _buildPagination(props: Record<string, unknown>, pageRange: Array<number | 'ellipsis'>) {
   return {
     components: {
       Pagination,
@@ -61,7 +53,7 @@ function buildPagination(props: Record<string, unknown>, pageRange: Array<number
   }
 }
 
-describe('Pagination', () => {
+describe('pagination', () => {
   it('renders a nav element with aria-label="pagination"', () => {
     const wrapper = mount(Pagination, {
       props: { total: 100 },
@@ -87,7 +79,7 @@ describe('Pagination', () => {
   })
 })
 
-describe('PaginationContent', () => {
+describe('paginationContent', () => {
   it('renders a ul element', () => {
     const wrapper = mount(PaginationContent)
     expect(wrapper.element.tagName).toBe('UL')
@@ -109,7 +101,7 @@ describe('PaginationContent', () => {
   })
 })
 
-describe('PaginationItem', () => {
+describe('paginationItem', () => {
   it('renders a li element', () => {
     const wrapper = mount(PaginationItem)
     expect(wrapper.element.tagName).toBe('LI')
@@ -123,7 +115,7 @@ describe('PaginationItem', () => {
   })
 })
 
-describe('PaginationLink', () => {
+describe('paginationLink', () => {
   it('renders a button element', () => {
     const wrapper = mount(PaginationLink, {
       props: { page: 1 },
@@ -192,7 +184,7 @@ describe('PaginationLink', () => {
   })
 })
 
-describe('PaginationPrevious', () => {
+describe('paginationPrevious', () => {
   it('renders a button', () => {
     const wrapper = mount(PaginationPrevious)
     expect(wrapper.element.tagName).toBe('BUTTON')
@@ -245,7 +237,7 @@ describe('PaginationPrevious', () => {
   })
 })
 
-describe('PaginationNext', () => {
+describe('paginationNext', () => {
   it('renders a button', () => {
     const wrapper = mount(PaginationNext)
     expect(wrapper.element.tagName).toBe('BUTTON')
@@ -287,7 +279,7 @@ describe('PaginationNext', () => {
   })
 })
 
-describe('PaginationEllipsis', () => {
+describe('paginationEllipsis', () => {
   it('renders a span', () => {
     const wrapper = mount(PaginationEllipsis)
     expect(wrapper.element.tagName).toBe('SPAN')
@@ -323,7 +315,7 @@ describe('PaginationEllipsis', () => {
   })
 })
 
-describe('PaginationFirst', () => {
+describe('paginationFirst', () => {
   it('renders a button', () => {
     const wrapper = mount(PaginationFirst)
     expect(wrapper.element.tagName).toBe('BUTTON')
@@ -355,7 +347,7 @@ describe('PaginationFirst', () => {
   })
 })
 
-describe('PaginationLast', () => {
+describe('paginationLast', () => {
   it('renders a button', () => {
     const wrapper = mount(PaginationLast)
     expect(wrapper.element.tagName).toBe('BUTTON')
@@ -387,9 +379,9 @@ describe('PaginationLast', () => {
   })
 })
 
-describe('Pagination pageRange logic', () => {
+describe('pagination pageRange logic', () => {
   // Helper to get pageRange from a mounted Pagination instance
-  function getPageRange(total: number, pageSize: number, page: number, siblingCount: number) {
+  function _getPageRange(total: number, pageSize: number, page: number, siblingCount: number) {
     const wrapper = mount({
       components: { Pagination },
       template: `<Pagination :total="total" :page-size="pageSize" :page="page" :sibling-count="siblingCount"><template #default></template></Pagination>`,
@@ -437,7 +429,7 @@ describe('Pagination pageRange logic', () => {
     expect(buttons[4].text()).toBe('5')
   })
 
-  it('Previous button is disabled on first page', () => {
+  it('previous button is disabled on first page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationPrevious },
       template: `
@@ -454,7 +446,7 @@ describe('Pagination pageRange logic', () => {
     expect(prev.attributes('disabled')).toBeDefined()
   })
 
-  it('Next button is disabled on last page', () => {
+  it('next button is disabled on last page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationNext },
       template: `
@@ -471,7 +463,7 @@ describe('Pagination pageRange logic', () => {
     expect(next.attributes('disabled')).toBeDefined()
   })
 
-  it('Previous button is enabled when not on first page', () => {
+  it('previous button is enabled when not on first page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationPrevious },
       template: `
@@ -488,7 +480,7 @@ describe('Pagination pageRange logic', () => {
     expect(prev.attributes('disabled')).toBeUndefined()
   })
 
-  it('Next button is enabled when not on last page', () => {
+  it('next button is enabled when not on last page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationNext },
       template: `
@@ -560,7 +552,7 @@ describe('Pagination pageRange logic', () => {
     expect(ellipsisSpans.length).toBeGreaterThanOrEqual(2)
   })
 
-  it('First button navigates to page 1', async () => {
+  it('first button navigates to page 1', async () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationFirst },
       emits: ['first'],
@@ -579,7 +571,7 @@ describe('Pagination pageRange logic', () => {
     expect(wrapper.emitted('first')).toBeTruthy()
   })
 
-  it('Last button navigates to last page', async () => {
+  it('last button navigates to last page', async () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationLast },
       emits: ['last'],
@@ -598,7 +590,7 @@ describe('Pagination pageRange logic', () => {
     expect(wrapper.emitted('last')).toBeTruthy()
   })
 
-  it('First button is disabled when on first page', () => {
+  it('first button is disabled when on first page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationFirst },
       template: `
@@ -615,7 +607,7 @@ describe('Pagination pageRange logic', () => {
     expect(first.attributes('disabled')).toBeDefined()
   })
 
-  it('Last button is disabled when on last page', () => {
+  it('last button is disabled when on last page', () => {
     const wrapper = mount({
       components: { Pagination, PaginationContent, PaginationItem, PaginationLast },
       template: `
@@ -633,7 +625,7 @@ describe('Pagination pageRange logic', () => {
   })
 })
 
-describe('Pagination internal pageRange computation', () => {
+describe('pagination internal pageRange computation', () => {
   // Test the pageRange algorithm by mounting Pagination with a slot
   // that exposes the provided context
   it('shows all pages when total pages <= siblingCount*2 + 5', () => {
@@ -705,7 +697,7 @@ describe('Pagination internal pageRange computation', () => {
   })
 })
 
-describe('Pagination composition', () => {
+describe('pagination composition', () => {
   it('renders full pagination with all sub-components', () => {
     const wrapper = mount({
       components: {

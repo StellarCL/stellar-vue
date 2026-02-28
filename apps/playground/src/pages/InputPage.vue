@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Input, Label } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const value = ref('')
 const errorValue = ref('')
@@ -26,7 +26,9 @@ const errorValue = ref('')
             type="email"
             placeholder="you@example.com"
           />
-          <p v-if="value" class="text-xs text-muted-foreground">Value: {{ value }}</p>
+          <p v-if="value" class="text-xs text-muted-foreground">
+            Value: {{ value }}
+          </p>
         </div>
       </DemoSection>
 
@@ -82,7 +84,9 @@ const errorValue = ref('')
               :error="true"
               placeholder="Invalid value"
             />
-            <p class="text-xs text-destructive">This field is required.</p>
+            <p class="text-xs text-destructive">
+              This field is required.
+            </p>
           </div>
           <div class="space-y-1.5">
             <Label>Read only</Label>

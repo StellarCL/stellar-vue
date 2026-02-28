@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { ColorPickerContext, ColorPickerProps } from './color-picker.types'
 import { computed, provide, reactive, ref, watch } from 'vue'
-import type { ColorPickerProps, ColorPickerContext } from './color-picker.types'
-import { hexToHsb, hsbToHex, isValidHex } from './color-picker.utils'
 import { cn } from '../../utils'
+import { hexToHsb, hsbToHex, isValidHex } from './color-picker.utils'
 
 const props = withDefaults(defineProps<ColorPickerProps>(), {
   modelValue: '#000000',
@@ -42,10 +42,18 @@ watch([hue, saturation, brightness, alpha], () => {
   }
 })
 
-function setHue(h: number) { hue.value = Math.max(0, Math.min(360, h)) }
-function setSaturation(s: number) { saturation.value = Math.max(0, Math.min(100, s)) }
-function setBrightness(b: number) { brightness.value = Math.max(0, Math.min(100, b)) }
-function setAlpha(a: number) { alpha.value = Math.max(0, Math.min(1, a)) }
+function setHue(h: number) {
+  hue.value = Math.max(0, Math.min(360, h))
+}
+function setSaturation(s: number) {
+  saturation.value = Math.max(0, Math.min(100, s))
+}
+function setBrightness(b: number) {
+  brightness.value = Math.max(0, Math.min(100, b))
+}
+function setAlpha(a: number) {
+  alpha.value = Math.max(0, Math.min(1, a))
+}
 function setFromHex(hex: string) {
   if (isValidHex(hex)) {
     const hsb = hexToHsb(hex)

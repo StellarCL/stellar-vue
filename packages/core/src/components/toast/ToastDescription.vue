@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastDescription } from 'radix-vue'
 import type { ToastDescriptionProps } from './toast.types'
+import { ToastDescription } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ToastDescriptionProps>()

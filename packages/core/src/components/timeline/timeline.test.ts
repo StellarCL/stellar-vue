@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Timeline from './Timeline.vue'
-import TimelineItem from './TimelineItem.vue'
-import TimelineContent from './TimelineContent.vue'
 import TimelineConnector from './TimelineConnector.vue'
+import TimelineContent from './TimelineContent.vue'
+import TimelineItem from './TimelineItem.vue'
 
-describe('Timeline', () => {
+describe('timeline', () => {
   it('renders as a list', () => {
     const wrapper = mount(Timeline, {
       slots: { default: 'content' },
@@ -23,7 +23,7 @@ describe('Timeline', () => {
   })
 })
 
-describe('TimelineItem', () => {
+describe('timelineItem', () => {
   it('renders with dot and content', () => {
     const wrapper = mount({
       components: { Timeline, TimelineItem },
@@ -161,7 +161,7 @@ describe('TimelineItem', () => {
   })
 })
 
-describe('TimelineContent', () => {
+describe('timelineContent', () => {
   it('renders content text', () => {
     const wrapper = mount(TimelineContent, {
       slots: { default: 'Some content' },
@@ -179,7 +179,7 @@ describe('TimelineContent', () => {
   })
 })
 
-describe('TimelineConnector', () => {
+describe('timelineConnector', () => {
   it('renders a vertical line', () => {
     const wrapper = mount(TimelineConnector)
     expect(wrapper.classes().join(' ')).toContain('bg-border')
@@ -194,7 +194,7 @@ describe('TimelineConnector', () => {
   })
 })
 
-describe('Timeline composition', () => {
+describe('timeline composition', () => {
   it('renders full timeline with multiple items', () => {
     const wrapper = mount({
       components: { Timeline, TimelineItem, TimelineContent },

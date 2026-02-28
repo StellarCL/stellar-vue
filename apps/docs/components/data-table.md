@@ -21,15 +21,15 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   DataTable,
-  DataTableHeader,
   DataTableBody,
-  DataTableRow,
-  DataTableHead,
   DataTableCell,
   DataTableColumnHeader,
-  DataTableToolbar,
-  DataTableRowActions,
+  DataTableHead,
+  DataTableHeader,
   DataTablePagination,
+  DataTableRow,
+  DataTableRowActions,
+  DataTableToolbar,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -41,8 +41,8 @@ The simplest usage is to pass `columns` and `data` to the `DataTable` component:
 
 ```vue
 <script setup lang="ts">
-import { DataTable } from '@stellar-vue-ui/core'
 import type { ColumnDef } from '@stellar-vue-ui/core'
+import { DataTable } from '@stellar-vue-ui/core'
 
 interface User {
   name: string
@@ -76,8 +76,8 @@ Enable sorting on columns by setting `enableSorting: true`:
 
 ```vue
 <script setup lang="ts">
-import { DataTable } from '@stellar-vue-ui/core'
 import type { ColumnDef } from '@stellar-vue-ui/core'
+import { DataTable } from '@stellar-vue-ui/core'
 
 interface Payment {
   id: string
@@ -110,10 +110,9 @@ Use the `cell` option in column definitions to customize cell rendering:
 
 ```vue
 <script setup lang="ts">
-import { h } from 'vue'
-import { DataTable } from '@stellar-vue-ui/core'
-import { Badge } from '@stellar-vue-ui/core'
 import type { ColumnDef } from '@stellar-vue-ui/core'
+import { Badge, DataTable } from '@stellar-vue-ui/core'
+import { h } from 'vue'
 
 interface Task {
   title: string

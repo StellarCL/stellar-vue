@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue'
-import { STEPPER_INJECTION_KEY } from './stepper-context'
 import type { StepperItemProps } from './stepper.types'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
+import { STEPPER_INJECTION_KEY } from './stepper-context'
 
 const props = defineProps<StepperItemProps>()
 

@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface BadgeProps {
-  /** Visual variant of the badge
+  /**
+   * Visual variant of the badge
    * @default 'default'
    */
   variant?: 'default' | 'secondary' | 'destructive' | 'outline'

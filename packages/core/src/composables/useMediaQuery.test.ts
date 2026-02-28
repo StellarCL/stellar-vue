@@ -1,6 +1,6 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { defineComponent, ref } from 'vue'
 import { mount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { defineComponent } from 'vue'
 import { useMediaQuery } from './useMediaQuery'
 
 function createMatchMediaMock(initialMatches: boolean) {
@@ -13,11 +13,13 @@ function createMatchMediaMock(initialMatches: boolean) {
     addListener: vi.fn(),
     removeListener: vi.fn(),
     addEventListener: vi.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
-      if (event === 'change') listeners.push(listener)
+      if (event === 'change')
+        listeners.push(listener)
     }),
     removeEventListener: vi.fn((event: string, listener: (e: MediaQueryListEvent) => void) => {
       const idx = listeners.indexOf(listener)
-      if (idx !== -1) listeners.splice(idx, 1)
+      if (idx !== -1)
+        listeners.splice(idx, 1)
     }),
     dispatchEvent: vi.fn(),
     triggerChange(matches: boolean) {

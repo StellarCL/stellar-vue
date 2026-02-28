@@ -11,13 +11,13 @@ const showCode = ref(false)
 
 <template>
   <div class="component-preview">
-    <div class="preview-header" v-if="title">
+    <div v-if="title" class="preview-header">
       <span>{{ title }}</span>
       <div class="preview-actions">
-        <button @click="isDark = !isDark" class="preview-toggle">
+        <button class="preview-toggle" @click="isDark = !isDark">
           {{ isDark ? 'Light' : 'Dark' }}
         </button>
-        <button @click="showCode = !showCode" class="preview-toggle">
+        <button class="preview-toggle" @click="showCode = !showCode">
           {{ showCode ? 'Hide' : 'Show' }} Code
         </button>
       </div>

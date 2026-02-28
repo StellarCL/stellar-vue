@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarSeparator as MenubarSeparatorPrimitive } from 'radix-vue'
 import type { MenubarSeparatorProps } from './menubar.types'
+import { MenubarSeparator as MenubarSeparatorPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<MenubarSeparatorProps>()

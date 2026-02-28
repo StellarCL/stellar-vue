@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ChevronDown, Moon, Sun } from 'lucide-vue-next'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Moon, Sun, ChevronDown } from 'lucide-vue-next'
 
 const router = useRouter()
 
@@ -31,14 +31,16 @@ onMounted(() => {
   if (savedTheme && themes.includes(savedTheme)) {
     currentTheme.value = savedTheme
     document.documentElement.setAttribute('data-theme', savedTheme)
-  } else {
+  }
+  else {
     document.documentElement.setAttribute('data-theme', 'stellar')
   }
 
   const savedDark = localStorage.getItem('stellar-playground-dark')
   if (savedDark !== null) {
     isDark.value = savedDark === 'true'
-  } else {
+  }
+  else {
     isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
   }
   document.documentElement.classList.toggle('dark', isDark.value)

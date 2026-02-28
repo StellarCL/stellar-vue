@@ -21,13 +21,13 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
-  DialogDescription,
   DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -38,15 +38,15 @@ import {
 ```vue
 <script setup lang="ts">
 import {
+  Button,
   Dialog,
-  DialogTrigger,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -62,8 +62,12 @@ import { Button } from '@stellar-vue-ui/core'
         </DialogDescription>
       </DialogHeader>
       <DialogFooter>
-        <Button variant="outline">Cancel</Button>
-        <Button variant="destructive">Delete</Button>
+        <Button variant="outline">
+          Cancel
+        </Button>
+        <Button variant="destructive">
+          Delete
+        </Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>
@@ -78,15 +82,16 @@ Use `v-model:open` to control the dialog state programmatically:
 
 ```vue
 <script setup lang="ts">
+import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 
 const isOpen = ref(false)
 </script>
 
 <template>
-  <Button @click="isOpen = true">Open Dialog</Button>
+  <Button @click="isOpen = true">
+    Open Dialog
+  </Button>
 
   <Dialog v-model:open="isOpen">
     <DialogContent>
@@ -94,7 +99,9 @@ const isOpen = ref(false)
         <DialogTitle>Controlled Dialog</DialogTitle>
         <DialogDescription>This dialog is controlled with v-model:open.</DialogDescription>
       </DialogHeader>
-      <Button @click="isOpen = false">Close</Button>
+      <Button @click="isOpen = false">
+        Close
+      </Button>
     </DialogContent>
   </Dialog>
 </template>
@@ -104,8 +111,7 @@ const isOpen = ref(false)
 
 ```vue
 <script setup lang="ts">
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@stellar-vue-ui/core'
-import { Button, Input, Label } from '@stellar-vue-ui/core'
+import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -131,7 +137,9 @@ import { Button, Input, Label } from '@stellar-vue-ui/core'
         </div>
       </div>
       <DialogFooter>
-        <Button type="submit">Save changes</Button>
+        <Button type="submit">
+          Save changes
+        </Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>

@@ -235,7 +235,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 export const buttonVariants = cva({
   base: 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50',
-  
+
   variants: {
     variant: {
       default: 'bg-primary text-primary-foreground hover:bg-primary/90',
@@ -252,7 +252,7 @@ export const buttonVariants = cva({
       icon: 'h-10 w-10',
     },
   },
-  
+
   compoundVariants: [
     {
       variant: 'outline',
@@ -260,7 +260,7 @@ export const buttonVariants = cva({
       class: 'border-2',
     },
   ],
-  
+
   defaultVariants: {
     variant: 'default',
     size: 'md',
@@ -288,7 +288,7 @@ export const tokens = {
     // Semantic color system
     background: 'hsl(var(--background))',
     foreground: 'hsl(var(--foreground))',
-    
+
     primary: {
       DEFAULT: 'hsl(var(--primary))',
       foreground: 'hsl(var(--primary-foreground))',
@@ -320,7 +320,7 @@ export const tokens = {
     border: 'hsl(var(--border))',
     input: 'hsl(var(--input))',
     ring: 'hsl(var(--ring))',
-    
+
     // ... full color system with success, warning, info states
   },
   spacing: {
@@ -430,31 +430,31 @@ npx stellar-ui deps
 export default {
   // Where to add components
   componentsDir: './components/ui',
-  
+
   // Where to add composables
   composablesDir: './composables',
-  
+
   // Where to add utils
   utilsDir: './lib',
-  
+
   // CSS variables location
   cssVariables: './assets/css/variables.css',
-  
+
   // Tailwind config path
   tailwindConfig: './tailwind.config.ts',
-  
+
   // TypeScript config
   typescript: true,
-  
+
   // Aliases
   aliases: {
     '@': './src',
     '~': './',
   },
-  
+
   // Framework
   framework: 'nuxt', // or 'vue'
-  
+
   // Additional features
   features: {
     animations: true,
@@ -485,23 +485,23 @@ export default {
 // nuxt.config.ts
 export default defineNuxtConfig({
   modules: ['stellar-ui/nuxt'],
-  
+
   <libraryName>: {
     // Auto-import components
     autoImport: true,
-    
+
     // Prefix for auto-imported components
     prefix: 'UI',
-    
+
     // Default theme
     theme: 'default',
-    
+
     // Dark mode strategy
     darkMode: 'class', // or 'media'
-    
+
     // Include only specific components
     components: ['Button', 'Input', 'Card'],
-    
+
     // Global component configuration
     global: {
       button: {
@@ -531,36 +531,36 @@ export default defineNuxtConfig({
 
 ```typescript
 // Form composables
-useForm()           // Form state management
-useFieldArray()     // Dynamic form arrays
-useFormContext()    // Access parent form context
+useForm() // Form state management
+useFieldArray() // Dynamic form arrays
+useFormContext() // Access parent form context
 
 // UI state composables
-useDisclosure()     // Open/close state
-useToggle()         // Boolean toggle
-useSteps()          // Multi-step flows
-usePagination()     // Pagination logic
+useDisclosure() // Open/close state
+useToggle() // Boolean toggle
+useSteps() // Multi-step flows
+usePagination() // Pagination logic
 useInfiniteScroll() // Infinite scrolling
 
 // Accessibility composables
-useFocusTrap()      // Trap focus within element
-useAriaDescribe()   // ARIA descriptions
-useKeyboardNav()    // Keyboard navigation
+useFocusTrap() // Trap focus within element
+useAriaDescribe() // ARIA descriptions
+useKeyboardNav() // Keyboard navigation
 
 // Animation composables
-useTransition()     // Vue transitions
-usePresence()       // Enter/exit animations
-useMotion()         // Motion animations
+useTransition() // Vue transitions
+usePresence() // Enter/exit animations
+useMotion() // Motion animations
 
 // Utility composables
-useDebounce()       // Debounced values
-useThrottle()       // Throttled functions
-useClipboard()      // Clipboard operations
-useMediaQuery()     // Responsive breakpoints
-useLocalStorage()   // Persistent state
+useDebounce() // Debounced values
+useThrottle() // Throttled functions
+useClipboard() // Clipboard operations
+useMediaQuery() // Responsive breakpoints
+useLocalStorage() // Persistent state
 
 // Validation composables
-useValidation()     // Field validation
+useValidation() // Field validation
 useAsyncValidation() // Async validators
 useFormValidation() // Form-level validation
 ```
@@ -575,21 +575,21 @@ export function useDisclosure(options?: {
   onClose?: () => void
 }) {
   const isOpen = ref(options?.defaultOpen ?? false)
-  
+
   const open = () => {
     isOpen.value = true
     options?.onOpen?.()
   }
-  
+
   const close = () => {
     isOpen.value = false
     options?.onClose?.()
   }
-  
+
   const toggle = () => {
     isOpen.value ? close() : open()
   }
-  
+
   return {
     isOpen: readonly(isOpen),
     open,
@@ -639,8 +639,10 @@ const onSubmit = handleSubmit(async (values) => {
       </FormControl>
       <FormMessage />
     </FormField>
-    
-    <Button type="submit">Submit</Button>
+
+    <Button type="submit">
+      Submit
+    </Button>
   </Form>
 </template>
 ```
@@ -678,21 +680,21 @@ export const transitions = {
     enterFromClass: 'opacity-0',
     leaveToClass: 'opacity-0',
   },
-  
+
   slideDown: {
     enterActiveClass: 'transition-all duration-200',
     leaveActiveClass: 'transition-all duration-150',
     enterFromClass: 'opacity-0 -translate-y-2',
     leaveToClass: 'opacity-0 -translate-y-2',
   },
-  
+
   scale: {
     enterActiveClass: 'transition-all duration-200',
     leaveActiveClass: 'transition-all duration-150',
     enterFromClass: 'opacity-0 scale-95',
     leaveToClass: 'opacity-0 scale-95',
   },
-  
+
   // More transitions...
 }
 ```
@@ -730,36 +732,36 @@ Tailwind v4 uses CSS-based configuration instead of JavaScript:
   --color-card-foreground: oklch(9% 0.03 285.82);
   --color-popover: oklch(100% 0 0);
   --color-popover-foreground: oklch(9% 0.03 285.82);
-  
+
   --color-primary: oklch(26.47% 0.043 285.82);
   --color-primary-foreground: oklch(98% 0 0);
-  
+
   --color-secondary: oklch(96.1% 0 0);
   --color-secondary-foreground: oklch(26.47% 0.043 285.82);
-  
+
   --color-muted: oklch(96.1% 0 0);
   --color-muted-foreground: oklch(54.12% 0.015 285.82);
-  
+
   --color-accent: oklch(96.1% 0 0);
   --color-accent-foreground: oklch(26.47% 0.043 285.82);
-  
+
   --color-destructive: oklch(61.42% 0.204 27.32);
   --color-destructive-foreground: oklch(98% 0 0);
-  
+
   --color-border: oklch(91.15% 0.006 286.07);
   --color-input: oklch(91.15% 0.006 286.07);
   --color-ring: oklch(9% 0.03 285.82);
-  
+
   /* Border radius tokens */
   --radius-lg: 0.5rem;
   --radius-md: calc(var(--radius-lg) - 2px);
   --radius-sm: calc(var(--radius-lg) - 4px);
-  
+
   /* Container configuration */
   --container-center: true;
   --container-padding: 2rem;
   --breakpoint-2xl: 1400px;
-  
+
   /* Custom animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -774,22 +776,22 @@ Tailwind v4 uses CSS-based configuration instead of JavaScript:
     --color-card-foreground: oklch(98% 0 0);
     --color-popover: oklch(9% 0.03 285.82);
     --color-popover-foreground: oklch(98% 0 0);
-    
+
     --color-primary: oklch(98% 0 0);
     --color-primary-foreground: oklch(26.47% 0.043 285.82);
-    
+
     --color-secondary: oklch(20.37% 0.027 285.88);
     --color-secondary-foreground: oklch(98% 0 0);
-    
+
     --color-muted: oklch(20.37% 0.027 285.88);
     --color-muted-foreground: oklch(70.89% 0.013 286.75);
-    
+
     --color-accent: oklch(20.37% 0.027 285.88);
     --color-accent-foreground: oklch(98% 0 0);
-    
+
     --color-destructive: oklch(42.09% 0.177 27.32);
     --color-destructive-foreground: oklch(98% 0 0);
-    
+
     --color-border: oklch(20.37% 0.027 285.88);
     --color-input: oklch(20.37% 0.027 285.88);
     --color-ring: oklch(83.33% 0.017 286.71);
@@ -920,9 +922,9 @@ Implement WAI-ARIA authoring practices:
 ### 12.1 Unit Tests (Vitest)
 
 ```typescript
-// Example: Button component test
-import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
+// Example: Button component test
+import { describe, expect, it } from 'vitest'
 import Button from './Button.vue'
 
 describe('Button', () => {
@@ -960,8 +962,8 @@ describe('Button', () => {
 
 ```typescript
 // Example: Accessibility test
-import { test, expect } from '@playwright/test'
-import { injectAxe, checkA11y } from 'axe-playwright'
+import { expect, test } from '@playwright/test'
+import { checkA11y, injectAxe } from 'axe-playwright'
 
 test('Button is accessible', async ({ page }) => {
   await page.goto('/components/button')
@@ -971,16 +973,16 @@ test('Button is accessible', async ({ page }) => {
 
 test('Dialog keyboard navigation', async ({ page }) => {
   await page.goto('/components/dialog')
-  
+
   // Open dialog
   await page.keyboard.press('Tab')
   await page.keyboard.press('Enter')
-  
+
   // Verify focus trap
   await page.keyboard.press('Tab')
   const focused = await page.evaluate(() => document.activeElement?.tagName)
   expect(focused).toBe('BUTTON')
-  
+
   // Close with Escape
   await page.keyboard.press('Escape')
   const dialogVisible = await page.isVisible('[role="dialog"]')
@@ -1073,7 +1075,7 @@ Each component page should include:
 
 ### 14.1 Icon Integration
 
-**Default Icon Library:** Lucide Vue Next  
+**Default Icon Library:** Lucide Vue Next
 **Package:** `lucide-vue-next`
 
 **Why Lucide:**
@@ -1450,10 +1452,10 @@ npm install tailwindcss@next @tailwindcss/vite@next
 ### Vite Configuration
 
 ```typescript
+import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
 // vite.config.ts
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
@@ -1494,14 +1496,14 @@ import { hslToOklch } from 'culori'
 
 export function convertThemeColors(hslColors: Record<string, string>) {
   const oklchColors: Record<string, string> = {}
-  
+
   for (const [key, value] of Object.entries(hslColors)) {
     // Parse HSL format: "222.2 84% 4.9%"
-    const [h, s, l] = value.split(' ').map(v => parseFloat(v))
-    const oklch = hslToOklch({ mode: 'hsl', h, s: s/100, l: l/100 })
+    const [h, s, l] = value.split(' ').map(v => Number.parseFloat(v))
+    const oklch = hslToOklch({ mode: 'hsl', h, s: s / 100, l: l / 100 })
     oklchColors[key] = `oklch(${oklch.l * 100}% ${oklch.c} ${oklch.h})`
   }
-  
+
   return oklchColors
 }
 ```
@@ -1619,7 +1621,6 @@ By using these latest versions, you get:
 - **Vite unified toolchain**: "Vite Plus" for enterprise use
 - **More native tooling**: Continued shift from JavaScript to Rust-based tools
 
-
 ---
 
 ## APPENDIX C: ADVANCED THEMING GUIDE
@@ -1630,17 +1631,17 @@ The library supports multiple themes that can be switched at runtime:
 
 ```typescript
 // Available built-in themes
-const themes = [
-  'stellar',     // Default purple/cosmic theme
-  'sirius',      // Bright blue theme
-  'polaris',     // Cool neutral theme
-  'antares',     // Warm red/orange theme
-  'vega',        // Green/teal theme
-  'aldebaran',   // Amber/gold theme
-]
-
 // Theme switching composable
 import { useTheme } from 'stellar-ui'
+
+const themes = [
+  'stellar', // Default purple/cosmic theme
+  'sirius', // Bright blue theme
+  'polaris', // Cool neutral theme
+  'antares', // Warm red/orange theme
+  'vega', // Green/teal theme
+  'aldebaran', // Amber/gold theme
+]
 
 const { theme, setTheme, themes } = useTheme()
 
@@ -1853,8 +1854,8 @@ import { validateTheme } from 'stellar-ui/theme'
 
 const issues = validateTheme(myTheme)
 
-issues.forEach(issue => {
-  console.warn(`${issue.token}: Contrast ratio ${issue.ratio} 
+issues.forEach((issue) => {
+  console.warn(`${issue.token}: Contrast ratio ${issue.ratio}
                is below WCAG AA standard (${issue.required})`)
 })
 ```
@@ -1913,10 +1914,10 @@ import { useTheme } from 'stellar-ui'
 const { theme, setTheme } = useTheme({
   // Where to persist
   storage: 'localStorage', // or 'sessionStorage', 'cookie'
-  
+
   // Storage key
   key: 'app-theme',
-  
+
   // Auto-sync across tabs
   sync: true,
 })
@@ -1942,7 +1943,6 @@ watch(() => tokens.colors.primary, (newPrimary) => {
 ```
 
 This comprehensive theming system provides maximum flexibility while maintaining accessibility and great developer experience.
-
 
 ---
 
@@ -2224,4 +2224,3 @@ npx stellar-ui export tailwind
 8. **Migration Path**: Easy to switch from shadcn-vue
 9. **Better DX**: Superior tooling and documentation
 10. **Future-Proof**: Active development with clear roadmap
-

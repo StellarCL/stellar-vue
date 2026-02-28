@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
 import type { ColorPickerAreaProps, ColorPickerContext } from './color-picker.types'
+import { computed, inject, ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ColorPickerAreaProps>()
@@ -16,7 +16,8 @@ const pointerStyle = computed(() => ({
 }))
 
 function handlePointerEvent(event: MouseEvent | PointerEvent) {
-  if (!areaRef.value) return
+  if (!areaRef.value)
+    return
   const rect = areaRef.value.getBoundingClientRect()
   const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width))
   const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height))
@@ -31,7 +32,8 @@ function handlePointerDown(event: PointerEvent) {
 }
 
 function handlePointerMove(event: PointerEvent) {
-  if (isDragging.value) handlePointerEvent(event)
+  if (isDragging.value)
+    handlePointerEvent(event)
 }
 
 function handlePointerUp() {

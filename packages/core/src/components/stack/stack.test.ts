@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Stack from './Stack.vue'
 
-describe('Stack', () => {
+describe('stack', () => {
   it('renders with vertical direction (flex-col class)', () => {
     const wrapper = mount(Stack, {
       props: { direction: 'vertical' },

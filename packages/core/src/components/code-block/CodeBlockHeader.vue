@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject, ref, type Ref } from 'vue'
 import type { CodeBlockHeaderProps } from './code-block.types'
+import { computed, inject, ref, type Ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<CodeBlockHeaderProps>()
@@ -17,8 +17,11 @@ async function handleCopy() {
   try {
     await navigator.clipboard.writeText(codeToCopy.value)
     copied.value = true
-    setTimeout(() => { copied.value = false }, 2000)
-  } catch {
+    setTimeout(() => {
+      copied.value = false
+    }, 2000)
+  }
+  catch {
     // Clipboard API not available
   }
 }

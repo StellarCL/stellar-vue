@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectSeparator as SelectSeparatorPrimitive } from 'radix-vue'
 import type { SelectSeparatorProps } from './select.types'
+import { SelectSeparator as SelectSeparatorPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SelectSeparatorProps>()

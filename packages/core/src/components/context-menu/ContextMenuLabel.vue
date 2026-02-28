@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ContextMenuLabel as ContextMenuLabelPrimitive } from 'radix-vue'
 import type { ContextMenuLabelProps } from './context-menu.types'
+import { ContextMenuLabel as ContextMenuLabelPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ContextMenuLabelProps>(), {

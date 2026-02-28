@@ -28,7 +28,7 @@ import { Switch } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Switch, Label } from '@stellar-vue-ui/core'
+import { Label, Switch } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const enabled = ref(false)
@@ -88,8 +88,7 @@ Three sizes are available via the `size` prop:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription } from '@stellar-vue-ui/core'
-import { Switch } from '@stellar-vue-ui/core'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Switch } from '@stellar-vue-ui/core'
 </script>
 
 <template>

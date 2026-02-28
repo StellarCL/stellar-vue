@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { FilterOperatorProps } from './filter-builder.types'
-import { operatorLabels } from './filter-builder.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { operatorLabels } from './filter-builder.types'
 
 const props = defineProps<FilterOperatorProps>()
 
@@ -25,7 +25,9 @@ const classes = computed(() =>
     aria-label="Select operator"
     @change="emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
   >
-    <option value="" disabled>Select operator...</option>
+    <option value="" disabled>
+      Select operator...
+    </option>
     <option
       v-for="op in operators"
       :key="op"

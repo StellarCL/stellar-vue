@@ -8,7 +8,8 @@ export interface MultiSelectOption {
 }
 
 export interface MultiSelectProps {
-  /** The controlled value of the MultiSelect. Can be bound as `v-model`.
+  /**
+   * The controlled value of the MultiSelect. Can be bound as `v-model`.
    * @default []
    */
   modelValue?: string[]
@@ -19,12 +20,14 @@ export interface MultiSelectProps {
   /** Placeholder text when no items are selected */
   placeholder?: string
 
-  /** Whether the MultiSelect is disabled.
+  /**
+   * Whether the MultiSelect is disabled.
    * @default false
    */
   disabled?: boolean
 
-  /** Maximum number of selections allowed.
+  /**
+   * Maximum number of selections allowed.
    * @default undefined (unlimited)
    */
   max?: number
@@ -50,12 +53,14 @@ export interface MultiSelectItemProps {
   /** Display label for the item */
   label: string
 
-  /** Whether the item is selected
+  /**
+   * Whether the item is selected
    * @default false
    */
   selected?: boolean
 
-  /** Whether the item is disabled
+  /**
+   * Whether the item is disabled
    * @default false
    */
   disabled?: boolean
@@ -71,7 +76,8 @@ export interface MultiSelectTagProps {
   /** Display label for the tag */
   label: string
 
-  /** Whether the tag can be removed
+  /**
+   * Whether the tag can be removed
    * @default true
    */
   removable?: boolean

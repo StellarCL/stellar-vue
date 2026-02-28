@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Loading from './Loading.vue'
-import LoadingSpinner from './LoadingSpinner.vue'
-import LoadingDots from './LoadingDots.vue'
 import LoadingBar from './LoadingBar.vue'
+import LoadingDots from './LoadingDots.vue'
 import LoadingOverlay from './LoadingOverlay.vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 
-describe('Loading', () => {
+describe('loading', () => {
   it('renders spinner variant by default', () => {
     const wrapper = mount(Loading)
     // Should render an SVG (the spinner)
@@ -92,7 +92,7 @@ describe('Loading', () => {
   })
 })
 
-describe('LoadingSpinner', () => {
+describe('loadingSpinner', () => {
   it('renders an SVG element', () => {
     const wrapper = mount(LoadingSpinner)
     expect(wrapper.find('svg').exists()).toBe(true)
@@ -137,7 +137,7 @@ describe('LoadingSpinner', () => {
   })
 })
 
-describe('LoadingDots', () => {
+describe('loadingDots', () => {
   it('renders three dot spans', () => {
     const wrapper = mount(LoadingDots)
     expect(wrapper.findAll('span').length).toBe(3)
@@ -186,7 +186,7 @@ describe('LoadingDots', () => {
   })
 })
 
-describe('LoadingBar', () => {
+describe('loadingBar', () => {
   it('renders a progressbar', () => {
     const wrapper = mount(LoadingBar)
     expect(wrapper.find('[role="progressbar"]').exists()).toBe(true)
@@ -231,7 +231,7 @@ describe('LoadingBar', () => {
   })
 })
 
-describe('LoadingOverlay', () => {
+describe('loadingOverlay', () => {
   it('renders slot content', () => {
     const wrapper = mount(LoadingOverlay, {
       slots: { default: '<span class="content">Loading...</span>' },

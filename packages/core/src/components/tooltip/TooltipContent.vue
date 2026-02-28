@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  TooltipPortal,
-  TooltipContent as TooltipContentPrimitive,
-} from 'radix-vue'
 import type { TooltipContentProps } from './tooltip.types'
+import {
+  TooltipContent as TooltipContentPrimitive,
+  TooltipPortal,
+} from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<TooltipContentProps>(), {

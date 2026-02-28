@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject, computed, onMounted } from 'vue'
-import { WIZARD_INJECTION_KEY } from './wizard-context'
 import type { WizardStepProps } from './wizard.types'
+import { computed, inject, onMounted } from 'vue'
 import { cn } from '../../utils'
+import { WIZARD_INJECTION_KEY } from './wizard-context'
 
 const props = defineProps<WizardStepProps>()
 

@@ -1,17 +1,17 @@
-import {
-  defineNuxtModule,
-  addPlugin,
-  addImports,
-  createResolver,
-  addComponent,
-} from '@nuxt/kit'
 import type { ModuleOptions } from './types/module'
+import {
+  addComponent,
+  addImports,
+  addPlugin,
+  createResolver,
+  defineNuxtModule,
+} from '@nuxt/kit'
 
 /**
  * Complete list of all component exports from @stellar-vue-ui/core.
  * Each entry is [exportName, filePath] where filePath is relative to the core package.
  */
-const CORE_COMPONENTS: Array<{ name: string; filePath: string }> = [
+const CORE_COMPONENTS: Array<{ name: string, filePath: string }> = [
   // Button
   { name: 'Button', filePath: 'components/button' },
   // Label
@@ -246,18 +246,44 @@ const COMPONENT_FAMILIES: Record<string, string[]> = {
   RadioGroup: ['RadioGroup', 'RadioGroupItem'],
   Switch: ['Switch'],
   Select: [
-    'Select', 'SelectTrigger', 'SelectValue', 'SelectContent', 'SelectItem',
-    'SelectGroup', 'SelectLabel', 'SelectSeparator', 'SelectScrollUpButton', 'SelectScrollDownButton',
+    'Select',
+    'SelectTrigger',
+    'SelectValue',
+    'SelectContent',
+    'SelectItem',
+    'SelectGroup',
+    'SelectLabel',
+    'SelectSeparator',
+    'SelectScrollUpButton',
+    'SelectScrollDownButton',
   ],
   Dialog: [
-    'Dialog', 'DialogTrigger', 'DialogPortal', 'DialogOverlay', 'DialogContent',
-    'DialogHeader', 'DialogFooter', 'DialogTitle', 'DialogDescription', 'DialogClose',
+    'Dialog',
+    'DialogTrigger',
+    'DialogPortal',
+    'DialogOverlay',
+    'DialogContent',
+    'DialogHeader',
+    'DialogFooter',
+    'DialogTitle',
+    'DialogDescription',
+    'DialogClose',
   ],
   DropdownMenu: [
-    'DropdownMenu', 'DropdownMenuTrigger', 'DropdownMenuContent', 'DropdownMenuItem',
-    'DropdownMenuCheckboxItem', 'DropdownMenuRadioGroup', 'DropdownMenuRadioItem',
-    'DropdownMenuLabel', 'DropdownMenuSeparator', 'DropdownMenuShortcut',
-    'DropdownMenuGroup', 'DropdownMenuSub', 'DropdownMenuSubTrigger', 'DropdownMenuSubContent',
+    'DropdownMenu',
+    'DropdownMenuTrigger',
+    'DropdownMenuContent',
+    'DropdownMenuItem',
+    'DropdownMenuCheckboxItem',
+    'DropdownMenuRadioGroup',
+    'DropdownMenuRadioItem',
+    'DropdownMenuLabel',
+    'DropdownMenuSeparator',
+    'DropdownMenuShortcut',
+    'DropdownMenuGroup',
+    'DropdownMenuSub',
+    'DropdownMenuSubTrigger',
+    'DropdownMenuSubContent',
   ],
   Form: ['Form', 'FormField', 'FormItem', 'FormLabel', 'FormControl', 'FormDescription', 'FormMessage'],
   Accordion: ['Accordion', 'AccordionItem', 'AccordionTrigger', 'AccordionContent'],
@@ -268,39 +294,92 @@ const COMPONENT_FAMILIES: Record<string, string[]> = {
   Progress: ['Progress'],
   Slider: ['Slider'],
   Breadcrumb: [
-    'Breadcrumb', 'BreadcrumbList', 'BreadcrumbItem', 'BreadcrumbLink',
-    'BreadcrumbPage', 'BreadcrumbSeparator', 'BreadcrumbEllipsis',
+    'Breadcrumb',
+    'BreadcrumbList',
+    'BreadcrumbItem',
+    'BreadcrumbLink',
+    'BreadcrumbPage',
+    'BreadcrumbSeparator',
+    'BreadcrumbEllipsis',
   ],
   Pagination: [
-    'Pagination', 'PaginationContent', 'PaginationItem', 'PaginationLink',
-    'PaginationPrevious', 'PaginationNext', 'PaginationEllipsis', 'PaginationFirst', 'PaginationLast',
+    'Pagination',
+    'PaginationContent',
+    'PaginationItem',
+    'PaginationLink',
+    'PaginationPrevious',
+    'PaginationNext',
+    'PaginationEllipsis',
+    'PaginationFirst',
+    'PaginationLast',
   ],
   Command: [
-    'Command', 'CommandDialog', 'CommandInput', 'CommandList',
-    'CommandEmpty', 'CommandGroup', 'CommandItem', 'CommandSeparator', 'CommandShortcut',
+    'Command',
+    'CommandDialog',
+    'CommandInput',
+    'CommandList',
+    'CommandEmpty',
+    'CommandGroup',
+    'CommandItem',
+    'CommandSeparator',
+    'CommandShortcut',
   ],
   ContextMenu: [
-    'ContextMenu', 'ContextMenuTrigger', 'ContextMenuContent', 'ContextMenuItem',
-    'ContextMenuCheckboxItem', 'ContextMenuRadioGroup', 'ContextMenuRadioItem',
-    'ContextMenuLabel', 'ContextMenuSeparator', 'ContextMenuShortcut',
-    'ContextMenuGroup', 'ContextMenuSub', 'ContextMenuSubTrigger', 'ContextMenuSubContent',
+    'ContextMenu',
+    'ContextMenuTrigger',
+    'ContextMenuContent',
+    'ContextMenuItem',
+    'ContextMenuCheckboxItem',
+    'ContextMenuRadioGroup',
+    'ContextMenuRadioItem',
+    'ContextMenuLabel',
+    'ContextMenuSeparator',
+    'ContextMenuShortcut',
+    'ContextMenuGroup',
+    'ContextMenuSub',
+    'ContextMenuSubTrigger',
+    'ContextMenuSubContent',
   ],
   Menubar: [
-    'Menubar', 'MenubarMenu', 'MenubarTrigger', 'MenubarContent', 'MenubarItem',
-    'MenubarCheckboxItem', 'MenubarRadioGroup', 'MenubarRadioItem',
-    'MenubarLabel', 'MenubarSeparator', 'MenubarShortcut',
-    'MenubarGroup', 'MenubarSub', 'MenubarSubTrigger', 'MenubarSubContent',
+    'Menubar',
+    'MenubarMenu',
+    'MenubarTrigger',
+    'MenubarContent',
+    'MenubarItem',
+    'MenubarCheckboxItem',
+    'MenubarRadioGroup',
+    'MenubarRadioItem',
+    'MenubarLabel',
+    'MenubarSeparator',
+    'MenubarShortcut',
+    'MenubarGroup',
+    'MenubarSub',
+    'MenubarSubTrigger',
+    'MenubarSubContent',
   ],
   NavigationMenu: [
-    'NavigationMenu', 'NavigationMenuList', 'NavigationMenuItem', 'NavigationMenuTrigger',
-    'NavigationMenuContent', 'NavigationMenuLink', 'NavigationMenuViewport', 'NavigationMenuIndicator',
+    'NavigationMenu',
+    'NavigationMenuList',
+    'NavigationMenuItem',
+    'NavigationMenuTrigger',
+    'NavigationMenuContent',
+    'NavigationMenuLink',
+    'NavigationMenuViewport',
+    'NavigationMenuIndicator',
   ],
   Stepper: ['Stepper', 'StepperItem', 'StepperTrigger', 'StepperSeparator', 'StepperContent'],
   Wizard: ['Wizard', 'WizardStep', 'WizardActions'],
   DataTable: [
-    'DataTable', 'DataTableHeader', 'DataTableBody', 'DataTableRow',
-    'DataTableHead', 'DataTableCell', 'DataTablePagination',
-    'DataTableColumnHeader', 'DataTableToolbar', 'DataTableRowActions',
+    'DataTable',
+    'DataTableHeader',
+    'DataTableBody',
+    'DataTableRow',
+    'DataTableHead',
+    'DataTableCell',
+    'DataTablePagination',
+    'DataTableColumnHeader',
+    'DataTableToolbar',
+    'DataTableRowActions',
   ],
 }
 
@@ -362,7 +441,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Register composable auto-imports
     addImports(
-      CORE_COMPOSABLES.map((name) => ({
+      CORE_COMPOSABLES.map(name => ({
         name,
         from: '@stellar-vue-ui/core',
       })),
@@ -398,7 +477,8 @@ function resolveAllowedComponents(
       for (const comp of COMPONENT_FAMILIES[name]) {
         allowed.add(comp)
       }
-    } else {
+    }
+    else {
       // Direct component name
       allowed.add(name)
     }
@@ -408,4 +488,4 @@ function resolveAllowedComponents(
 }
 
 // Export for testing
-export { CORE_COMPONENTS, CORE_COMPOSABLES, COMPONENT_FAMILIES, resolveAllowedComponents }
+export { COMPONENT_FAMILIES, CORE_COMPONENTS, CORE_COMPOSABLES, resolveAllowedComponents }

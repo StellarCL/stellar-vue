@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  MenubarRadioItem as MenubarRadioItemPrimitive,
-  MenubarItemIndicator,
-} from 'radix-vue'
 import type { MenubarRadioItemProps } from './menubar.types'
+import {
+  MenubarItemIndicator,
+  MenubarRadioItem as MenubarRadioItemPrimitive,
+} from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MenubarRadioItemProps>(), {

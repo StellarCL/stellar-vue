@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarTrigger as MenubarTriggerPrimitive } from 'radix-vue'
 import type { MenubarTriggerProps } from './menubar.types'
+import { MenubarTrigger as MenubarTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MenubarTriggerProps>(), {

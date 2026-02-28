@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CheckboxRoot, CheckboxIndicator } from 'radix-vue'
 import type { CheckboxProps } from './checkbox.types'
+import { CheckboxIndicator, CheckboxRoot } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CheckboxProps>(), {

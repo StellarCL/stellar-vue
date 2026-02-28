@@ -1,17 +1,17 @@
-import { describe, expect, it } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
 import { CalendarDate } from '@internationalized/date'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import { nextTick } from 'vue'
 import Calendar from './Calendar.vue'
-import CalendarHeader from './CalendarHeader.vue'
-import CalendarHeading from './CalendarHeading.vue'
-import CalendarGrid from './CalendarGrid.vue'
-import CalendarGridHead from './CalendarGridHead.vue'
-import CalendarGridBody from './CalendarGridBody.vue'
-import CalendarGridRow from './CalendarGridRow.vue'
 import CalendarCell from './CalendarCell.vue'
 import CalendarDay from './CalendarDay.vue'
+import CalendarGrid from './CalendarGrid.vue'
+import CalendarGridBody from './CalendarGridBody.vue'
+import CalendarGridHead from './CalendarGridHead.vue'
+import CalendarGridRow from './CalendarGridRow.vue'
 import CalendarHeadCell from './CalendarHeadCell.vue'
+import CalendarHeader from './CalendarHeader.vue'
+import CalendarHeading from './CalendarHeading.vue'
 import CalendarNextButton from './CalendarNextButton.vue'
 import CalendarPrevButton from './CalendarPrevButton.vue'
 
@@ -75,7 +75,7 @@ function mountCalendar(props: Record<string, unknown> = {}) {
   })
 }
 
-describe('Calendar', () => {
+describe('calendar', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Calendar, {
       props: {
@@ -221,7 +221,7 @@ describe('Calendar', () => {
 
     const wrapper = mountCalendar({
       placeholder,
-      isDateDisabled: (date: { year: number; month: number; day: number }) =>
+      isDateDisabled: (date: { year: number, month: number, day: number }) =>
         date.day === 15 && date.month === 6 && date.year === 2024,
     })
     await nextTick()
@@ -312,7 +312,7 @@ describe('Calendar', () => {
   })
 })
 
-describe('CalendarHeader', () => {
+describe('calendarHeader', () => {
   it('renders with correct base classes inside Calendar context', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -332,7 +332,7 @@ describe('CalendarHeader', () => {
   })
 })
 
-describe('CalendarHeading', () => {
+describe('calendarHeading', () => {
   it('displays month and year text', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -344,7 +344,7 @@ describe('CalendarHeading', () => {
   })
 })
 
-describe('CalendarGrid', () => {
+describe('calendarGrid', () => {
   it('renders as a table element', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -355,7 +355,7 @@ describe('CalendarGrid', () => {
   })
 })
 
-describe('CalendarNextButton', () => {
+describe('calendarNextButton', () => {
   it('renders next button with chevron icon', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -366,7 +366,7 @@ describe('CalendarNextButton', () => {
   })
 })
 
-describe('CalendarPrevButton', () => {
+describe('calendarPrevButton', () => {
   it('renders prev button with chevron icon', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -377,7 +377,7 @@ describe('CalendarPrevButton', () => {
   })
 })
 
-describe('CalendarDay', () => {
+describe('calendarDay', () => {
   it('renders day number inside cell', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),
@@ -389,7 +389,7 @@ describe('CalendarDay', () => {
   })
 })
 
-describe('CalendarCell', () => {
+describe('calendarCell', () => {
   it('renders cell wrapper for day', () => {
     const wrapper = mountCalendar({
       placeholder: new CalendarDate(2024, 6, 1),

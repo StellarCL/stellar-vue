@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ContextMenuRadioGroup as ContextMenuRadioGroupPrimitive } from 'radix-vue'
 import type { ContextMenuRadioGroupProps } from './context-menu.types'
+import { ContextMenuRadioGroup as ContextMenuRadioGroupPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ContextMenuRadioGroupProps>()

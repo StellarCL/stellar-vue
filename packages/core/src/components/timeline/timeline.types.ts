@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface TimelineProps {
-  /** Layout direction for timeline items
+  /**
+   * Layout direction for timeline items
    * @default 'left'
    */
   layout?: 'left' | 'right' | 'alternating'
@@ -14,7 +15,8 @@ export interface TimelineItemProps {
   /** Date string to display */
   date?: string
 
-  /** Visual variant of the timeline dot
+  /**
+   * Visual variant of the timeline dot
    * @default 'default'
    */
   variant?: 'default' | 'success' | 'warning' | 'destructive'

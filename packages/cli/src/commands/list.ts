@@ -1,9 +1,9 @@
+import type { ComponentLock } from '../types'
 import path from 'node:path'
 import pc from 'picocolors'
-import type { ComponentLock } from '../types'
 import { findConfig, readLockFile } from '../utils/config'
+import { header, newLine, styles } from '../utils/prompts'
 import { getRegistry } from '../utils/registry'
-import { styles, header, newLine } from '../utils/prompts'
 
 interface ListOptions {
   cwd?: string
@@ -79,13 +79,15 @@ export async function listCommand(options: ListOptions): Promise<void> {
       let status: string
 
       if (lock && lock.components[comp.name]) {
-        const installed = lock.components[comp.name]
+        const installed = lock.components[comp.name]!
         if (installed.version === comp.version) {
           status = pc.green('installed')
-        } else {
+        }
+        else {
           status = pc.yellow('outdated')
         }
-      } else {
+      }
+      else {
         status = pc.dim('not installed')
       }
 

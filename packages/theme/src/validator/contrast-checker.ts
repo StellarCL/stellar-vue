@@ -6,7 +6,8 @@ import type { ThemeConfig, ValidationIssue } from '../types'
  */
 function parseOklchLightness(color: string): number | null {
   const match = color.match(/oklch\(\s*([\d.]+)%/)
-  if (!match) return null
+  if (!match?.[1])
+    return null
   return Number.parseFloat(match[1]) / 100
 }
 
@@ -21,7 +22,8 @@ function approximateContrastRatio(bg: string, fg: string): number {
   const bgL = parseOklchLightness(bg)
   const fgL = parseOklchLightness(fg)
 
-  if (bgL === null || fgL === null) return 0
+  if (bgL === null || fgL === null)
+    return 0
 
   // Convert OKLCH perceptual lightness to approximate relative luminance
   // L_oklch ≈ Y^(1/3), so Y ≈ L^3
@@ -43,7 +45,7 @@ export function validateTheme(theme: ThemeConfig): ValidationIssue[] {
   const AA_NORMAL = 4.5
 
   // Check all color pairs (foreground on its background)
-  const pairs: Array<{ name: string; bg: string; fg: string }> = [
+  const pairs: Array<{ name: string, bg: string, fg: string }> = [
     { name: 'primary', bg: theme.colors.primary.DEFAULT, fg: theme.colors.primary.foreground },
     { name: 'secondary', bg: theme.colors.secondary.DEFAULT, fg: theme.colors.secondary.foreground },
     { name: 'accent', bg: theme.colors.accent.DEFAULT, fg: theme.colors.accent.foreground },

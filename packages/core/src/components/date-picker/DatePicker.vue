@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { PopoverRoot, PopoverTrigger, PopoverPortal, PopoverContent } from 'radix-vue'
 import type { DateValue } from '@internationalized/date'
 import type { DatePickerProps } from './date-picker.types'
-import { formatDate } from './date-format'
+import { PopoverContent, PopoverPortal, PopoverRoot, PopoverTrigger } from 'radix-vue'
+import { computed, ref } from 'vue'
 import { cn } from '../../utils'
-
 import Calendar from '../calendar/Calendar.vue'
-import CalendarHeader from '../calendar/CalendarHeader.vue'
-import CalendarHeading from '../calendar/CalendarHeading.vue'
-import CalendarGrid from '../calendar/CalendarGrid.vue'
-import CalendarGridHead from '../calendar/CalendarGridHead.vue'
-import CalendarGridBody from '../calendar/CalendarGridBody.vue'
-import CalendarGridRow from '../calendar/CalendarGridRow.vue'
+
 import CalendarCell from '../calendar/CalendarCell.vue'
 import CalendarDay from '../calendar/CalendarDay.vue'
+import CalendarGrid from '../calendar/CalendarGrid.vue'
+import CalendarGridBody from '../calendar/CalendarGridBody.vue'
+import CalendarGridHead from '../calendar/CalendarGridHead.vue'
+import CalendarGridRow from '../calendar/CalendarGridRow.vue'
 import CalendarHeadCell from '../calendar/CalendarHeadCell.vue'
+import CalendarHeader from '../calendar/CalendarHeader.vue'
+import CalendarHeading from '../calendar/CalendarHeading.vue'
 import CalendarNextButton from '../calendar/CalendarNextButton.vue'
 import CalendarPrevButton from '../calendar/CalendarPrevButton.vue'
+import { formatDate } from './date-format'
 
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: 'Pick a date',
@@ -34,7 +34,8 @@ const emit = defineEmits<{
 const open = ref(false)
 
 const displayValue = computed(() => {
-  if (!props.modelValue) return ''
+  if (!props.modelValue)
+    return ''
   return formatDate(props.modelValue, props.format)
 })
 

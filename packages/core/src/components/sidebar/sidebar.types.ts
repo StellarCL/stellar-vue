@@ -4,17 +4,20 @@ export interface SidebarProps {
   /** Whether the sidebar is collapsed (v-model) */
   collapsed?: boolean
 
-  /** Width when collapsed
+  /**
+   * Width when collapsed
    * @default '4rem'
    */
   collapsedWidth?: string
 
-  /** Width when expanded
+  /**
+   * Width when expanded
    * @default '16rem'
    */
   width?: string
 
-  /** Whether the sidebar can be collapsed
+  /**
+   * Whether the sidebar can be collapsed
    * @default true
    */
   collapsible?: boolean

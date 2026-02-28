@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { LoadingSpinnerProps } from './loading.types'
-import { loadingSpinnerVariants } from './loading.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { loadingSpinnerVariants } from './loading.variants'
 
 const props = withDefaults(defineProps<LoadingSpinnerProps>(), {
   size: 'md',

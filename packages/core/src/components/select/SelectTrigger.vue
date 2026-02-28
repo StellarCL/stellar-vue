@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectTrigger as SelectTriggerPrimitive } from 'radix-vue'
 import type { SelectTriggerProps } from './select.types'
+import { SelectTrigger as SelectTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SelectTriggerProps>()

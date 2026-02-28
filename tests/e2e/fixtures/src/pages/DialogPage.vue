@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
+  Button,
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
-  DialogClose,
-  Button,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
   Input,
 } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const open = ref(false)
 </script>
@@ -32,7 +32,9 @@ const open = ref(false)
         </div>
         <DialogFooter>
           <DialogClose as-child>
-            <Button variant="outline">Close</Button>
+            <Button variant="outline">
+              Close
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

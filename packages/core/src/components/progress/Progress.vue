@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ProgressRoot, ProgressIndicator } from 'radix-vue'
 import type { ProgressProps } from './progress.types'
-import { progressVariants } from './progress.variants'
+import { ProgressIndicator, ProgressRoot } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { progressVariants } from './progress.variants'
 
 const props = withDefaults(defineProps<ProgressProps>(), {
   modelValue: 0,

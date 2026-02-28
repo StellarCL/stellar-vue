@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Button } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const selectedVariant = ref<'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'>('default')
 const selectedSize = ref<'sm' | 'md' | 'lg' | 'icon'>('md')
@@ -36,7 +36,9 @@ const sizes = ['sm', 'md', 'lg', 'icon'] as const
           </div>
           <div class="grid grid-cols-2 gap-4 border-t border-border pt-4 text-sm">
             <div>
-              <p class="font-medium mb-2 text-muted-foreground">Variant</p>
+              <p class="font-medium mb-2 text-muted-foreground">
+                Variant
+              </p>
               <div class="flex flex-wrap gap-1.5">
                 <button
                   v-for="v in variants"
@@ -52,7 +54,9 @@ const sizes = ['sm', 'md', 'lg', 'icon'] as const
               </div>
             </div>
             <div>
-              <p class="font-medium mb-2 text-muted-foreground">Size</p>
+              <p class="font-medium mb-2 text-muted-foreground">
+                Size
+              </p>
               <div class="flex flex-wrap gap-1.5">
                 <button
                   v-for="s in sizes"
@@ -69,11 +73,11 @@ const sizes = ['sm', 'md', 'lg', 'icon'] as const
             </div>
             <div class="flex items-center gap-3">
               <label class="flex items-center gap-2 cursor-pointer">
-                <input v-model="isLoading" type="checkbox" class="rounded" />
+                <input v-model="isLoading" type="checkbox" class="rounded">
                 <span>Loading</span>
               </label>
               <label class="flex items-center gap-2 cursor-pointer">
-                <input v-model="isDisabled" type="checkbox" class="rounded" />
+                <input v-model="isDisabled" type="checkbox" class="rounded">
                 <span>Disabled</span>
               </label>
             </div>
@@ -84,22 +88,42 @@ const sizes = ['sm', 'md', 'lg', 'icon'] as const
       <!-- All Variants -->
       <DemoSection title="Variants" description="All available button style variants.">
         <div class="flex flex-wrap gap-3">
-          <Button variant="default">Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="destructive">Destructive</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="link">Link</Button>
+          <Button variant="default">
+            Default
+          </Button>
+          <Button variant="secondary">
+            Secondary
+          </Button>
+          <Button variant="destructive">
+            Destructive
+          </Button>
+          <Button variant="outline">
+            Outline
+          </Button>
+          <Button variant="ghost">
+            Ghost
+          </Button>
+          <Button variant="link">
+            Link
+          </Button>
         </div>
       </DemoSection>
 
       <!-- Sizes -->
       <DemoSection title="Sizes" description="Available size options.">
         <div class="flex flex-wrap items-center gap-3">
-          <Button size="sm">Small</Button>
-          <Button size="md">Medium</Button>
-          <Button size="lg">Large</Button>
-          <Button size="icon">★</Button>
+          <Button size="sm">
+            Small
+          </Button>
+          <Button size="md">
+            Medium
+          </Button>
+          <Button size="lg">
+            Large
+          </Button>
+          <Button size="icon">
+            ★
+          </Button>
         </div>
       </DemoSection>
 
@@ -107,11 +131,21 @@ const sizes = ['sm', 'md', 'lg', 'icon'] as const
       <DemoSection title="States" description="Disabled and loading states.">
         <div class="flex flex-wrap items-center gap-3">
           <Button>Normal</Button>
-          <Button :disabled="true">Disabled</Button>
-          <Button :loading="true">Loading</Button>
-          <Button variant="outline" :disabled="true">Outline Disabled</Button>
-          <Button variant="outline" :loading="true">Outline Loading</Button>
-          <Button variant="destructive" :loading="true">Destructive Loading</Button>
+          <Button :disabled="true">
+            Disabled
+          </Button>
+          <Button :loading="true">
+            Loading
+          </Button>
+          <Button variant="outline" :disabled="true">
+            Outline Disabled
+          </Button>
+          <Button variant="outline" :loading="true">
+            Outline Loading
+          </Button>
+          <Button variant="destructive" :loading="true">
+            Destructive Loading
+          </Button>
         </div>
       </DemoSection>
 

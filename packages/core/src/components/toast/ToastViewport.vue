@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastViewport } from 'radix-vue'
 import type { ToastViewportProps } from './toast.types'
+import { ToastViewport } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ToastViewportProps>(), {

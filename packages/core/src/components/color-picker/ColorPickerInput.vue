@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { ColorPickerContext, ColorPickerInputProps } from './color-picker.types'
 import { computed, inject, ref, watch } from 'vue'
-import type { ColorPickerInputProps, ColorPickerContext } from './color-picker.types'
-import { hexToRgbString, hexToHslString } from './color-picker.utils'
 import { cn } from '../../utils'
+import { hexToHslString, hexToRgbString } from './color-picker.utils'
 
 const props = defineProps<ColorPickerInputProps>()
 const context = inject<ColorPickerContext>('color-picker-context')!
@@ -12,9 +12,11 @@ const inputValue = ref(context.hexValue)
 watch(() => context.hexValue, (val) => {
   if (context.format === 'hex') {
     inputValue.value = val
-  } else if (context.format === 'rgb') {
+  }
+  else if (context.format === 'rgb') {
     inputValue.value = hexToRgbString(val)
-  } else if (context.format === 'hsl') {
+  }
+  else if (context.format === 'hsl') {
     inputValue.value = hexToHslString(val)
   }
 })
@@ -22,9 +24,11 @@ watch(() => context.hexValue, (val) => {
 // Initialize
 if (context.format === 'rgb') {
   inputValue.value = hexToRgbString(context.hexValue)
-} else if (context.format === 'hsl') {
+}
+else if (context.format === 'hsl') {
   inputValue.value = hexToHslString(context.hexValue)
-} else {
+}
+else {
   inputValue.value = context.hexValue
 }
 
@@ -52,7 +56,7 @@ const classes = computed(() =>
       :class="classes"
       :aria-label="`Color value in ${context.format} format`"
       @change="handleChange"
-    />
+    >
     <span class="text-xs uppercase text-muted-foreground">{{ context.format }}</span>
   </div>
 </template>

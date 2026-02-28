@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from 'vue'
 import type { DateValue } from '@internationalized/date'
+import type { HTMLAttributes } from 'vue'
 
 export interface CalendarProps {
   /** The controlled selected date value. Can be bound as `v-model`. */
@@ -17,7 +17,8 @@ export interface CalendarProps {
   /** The maximum date that can be selected */
   maxValue?: DateValue
 
-  /** Whether the calendar is disabled
+  /**
+   * Whether the calendar is disabled
    * @default false
    */
   disabled?: boolean
@@ -28,27 +29,32 @@ export interface CalendarProps {
   /** A function that returns whether a date is unavailable */
   isDateUnavailable?: (date: DateValue) => boolean
 
-  /** The locale to use for formatting dates
+  /**
+   * The locale to use for formatting dates
    * @default 'en-US'
    */
   locale?: string
 
-  /** The day of the week to start the calendar on (0 = Sunday)
+  /**
+   * The day of the week to start the calendar on (0 = Sunday)
    * @default 0
    */
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6
 
-  /** Whether to always display 6 weeks in the calendar
+  /**
+   * Whether to always display 6 weeks in the calendar
    * @default false
    */
   fixedWeeks?: boolean
 
-  /** The number of months to display at once
+  /**
+   * The number of months to display at once
    * @default 1
    */
   numberOfMonths?: number
 
-  /** Whether or not to prevent the user from deselecting a date
+  /**
+   * Whether or not to prevent the user from deselecting a date
    * @default false
    */
   preventDeselect?: boolean

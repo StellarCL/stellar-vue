@@ -42,7 +42,7 @@ import { Label } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Label, Input } from '@stellar-vue-ui/core'
+import { Input, Label } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -70,7 +70,7 @@ When the `required` prop is set, an asterisk is displayed after the label text:
 
 ```vue
 <script setup lang="ts">
-import { Label, Checkbox } from '@stellar-vue-ui/core'
+import { Checkbox, Label } from '@stellar-vue-ui/core'
 </script>
 
 <template>

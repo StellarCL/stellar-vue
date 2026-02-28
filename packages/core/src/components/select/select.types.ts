@@ -1,17 +1,20 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface SelectProps {
-  /** The controlled value of the Select. Can be bound as `v-model`.
+  /**
+   * The controlled value of the Select. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
 
-  /** Whether the Select is disabled.
+  /**
+   * Whether the Select is disabled.
    * @default false
    */
   disabled?: boolean
 
-  /** The open state of the select when it is initially rendered.
+  /**
+   * The open state of the select when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
@@ -31,7 +34,8 @@ export interface SelectValueProps {
 }
 
 export interface SelectContentProps {
-  /** The positioning mode of the select content.
+  /**
+   * The positioning mode of the select content.
    * @default 'popper'
    */
   position?: 'popper' | 'item-aligned'
@@ -44,7 +48,8 @@ export interface SelectItemProps {
   /** The value of the item. Required. */
   value: string
 
-  /** Whether the item is disabled.
+  /**
+   * Whether the item is disabled.
    * @default false
    */
   disabled?: boolean

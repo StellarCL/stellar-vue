@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ComboboxItem as ComboboxItemPrimitive, ComboboxItemIndicator } from 'radix-vue'
 import type { ComboboxItemProps } from './combobox.types'
+import { ComboboxItemIndicator, ComboboxItem as ComboboxItemPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ComboboxItemProps>(), {

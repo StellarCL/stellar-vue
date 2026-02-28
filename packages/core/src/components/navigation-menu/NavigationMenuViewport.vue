@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { NavigationMenuViewport as NavigationMenuViewportPrimitive } from 'radix-vue'
-import { cn } from '../../utils'
 import type { NavigationMenuViewportProps } from './navigation-menu.types'
+import { NavigationMenuViewport as NavigationMenuViewportPrimitive } from 'radix-vue'
+import { computed } from 'vue'
+import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<NavigationMenuViewportProps>(), {})
 

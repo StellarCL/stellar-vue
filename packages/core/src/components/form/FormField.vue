@@ -8,7 +8,7 @@ const props = defineProps<{ name: string }>()
 const { errorMessage, value, handleChange, handleBlur, meta } = useField(
   toRef(props, 'name'),
   undefined,
-  { syncVModel: false }
+  { syncVModel: false },
 )
 
 let idCounter = 0
@@ -26,7 +26,7 @@ provideFormFieldContext({
 
 <template>
   <slot
-    :field="{ name: props.name, modelValue: value, 'onUpdate:modelValue': handleChange, onBlur: handleBlur }"
+    :field="{ 'name': props.name, 'modelValue': value, 'onUpdate:modelValue': handleChange, 'onBlur': handleBlur }"
     :error="errorMessage"
     :meta="meta"
   />

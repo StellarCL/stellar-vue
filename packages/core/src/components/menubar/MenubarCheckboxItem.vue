@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { MenubarCheckboxItemProps } from './menubar.types'
 import {
   MenubarCheckboxItem as MenubarCheckboxItemPrimitive,
   MenubarItemIndicator,
 } from 'radix-vue'
-import type { MenubarCheckboxItemProps } from './menubar.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MenubarCheckboxItemProps>(), {

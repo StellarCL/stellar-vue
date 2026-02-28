@@ -1,9 +1,9 @@
+import type { Command } from 'commander'
 import fs from 'node:fs'
 import path from 'node:path'
-import type { Command } from 'commander'
 import prompts from 'prompts'
-import { readConfig, writeConfig, findConfig } from '../utils/config'
-import { styles, header, newLine, divider } from '../utils/prompts'
+import { findConfig, readConfig, writeConfig } from '../utils/config'
+import { header, newLine, styles } from '../utils/prompts'
 
 const BUILT_IN_THEMES = [
   { name: 'stellar', description: 'Default cosmic theme' },
@@ -126,25 +126,25 @@ export function generateThemeJson(
     name: themeName,
     base: baseTheme,
     colors: {
-      primary: primaryColor,
+      'primary': primaryColor,
       'primary-foreground': 'oklch(98% 0.01 285)',
-      secondary: 'oklch(94% 0.02 285)',
+      'secondary': 'oklch(94% 0.02 285)',
       'secondary-foreground': 'oklch(18% 0.03 285)',
-      muted: 'oklch(95% 0.01 285)',
+      'muted': 'oklch(95% 0.01 285)',
       'muted-foreground': 'oklch(42% 0.02 285)',
-      accent: 'oklch(93% 0.04 285)',
+      'accent': 'oklch(93% 0.04 285)',
       'accent-foreground': 'oklch(18% 0.03 285)',
-      destructive: 'oklch(50% 0.2 27)',
+      'destructive': 'oklch(50% 0.2 27)',
       'destructive-foreground': 'oklch(98% 0 0)',
-      background: 'oklch(100% 0 0)',
-      foreground: 'oklch(12% 0.03 285)',
-      card: 'oklch(99% 0.005 285)',
+      'background': 'oklch(100% 0 0)',
+      'foreground': 'oklch(12% 0.03 285)',
+      'card': 'oklch(99% 0.005 285)',
       'card-foreground': 'oklch(12% 0.03 285)',
-      popover: 'oklch(99% 0.005 285)',
+      'popover': 'oklch(99% 0.005 285)',
       'popover-foreground': 'oklch(12% 0.03 285)',
-      border: 'oklch(91% 0.01 285)',
-      input: 'oklch(91% 0.01 285)',
-      ring: primaryColor,
+      'border': 'oklch(91% 0.01 285)',
+      'input': 'oklch(91% 0.01 285)',
+      'ring': primaryColor,
     },
     borderRadius,
   }
@@ -197,7 +197,7 @@ export default ${themeName}Theme
 `
 }
 
-async function themeCreateAction(options: { yes?: boolean; cwd?: string }): Promise<void> {
+async function themeCreateAction(options: { yes?: boolean, cwd?: string }): Promise<void> {
   const cwd = path.resolve(options.cwd ?? process.cwd())
 
   header('Stellar UI - Create Custom Theme')
@@ -210,9 +210,10 @@ async function themeCreateAction(options: { yes?: boolean; cwd?: string }): Prom
   if (options.yes) {
     themeName = 'my-theme'
     baseTheme = 'stellar'
-    primaryColor = THEME_PRIMARY_COLORS['stellar']
+    primaryColor = THEME_PRIMARY_COLORS.stellar
     borderRadius = '0.5rem'
-  } else {
+  }
+  else {
     const response = await prompts([
       {
         type: 'text',
@@ -235,7 +236,7 @@ async function themeCreateAction(options: { yes?: boolean; cwd?: string }): Prom
         type: 'text',
         name: 'primaryColor',
         message: 'Primary color',
-        initial: (prev: BuiltInThemeName) => THEME_PRIMARY_COLORS[prev] ?? THEME_PRIMARY_COLORS['stellar'],
+        initial: (prev: BuiltInThemeName) => THEME_PRIMARY_COLORS[prev] ?? THEME_PRIMARY_COLORS.stellar,
       },
       {
         type: 'select',
@@ -377,7 +378,7 @@ async function themeExportAction(name: string, options: { format?: string }): Pr
   }
 
   // Use default values for the built-in theme export
-  const primaryColor = THEME_PRIMARY_COLORS[name as BuiltInThemeName] ?? THEME_PRIMARY_COLORS['stellar']
+  const primaryColor = THEME_PRIMARY_COLORS[name as BuiltInThemeName] ?? THEME_PRIMARY_COLORS.stellar
   const borderRadius = '0.5rem'
 
   let output: string

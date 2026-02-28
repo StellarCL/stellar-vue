@@ -53,7 +53,8 @@ export interface UseChartOptions {
   data: ChartData
   /** Optional Chart.js option overrides */
   options?: ChartOptions
-  /** Whether the chart should be responsive
+  /**
+   * Whether the chart should be responsive
    * @default true
    */
   responsive?: boolean
@@ -70,7 +71,8 @@ export interface UseChartReturn {
 }
 
 export interface ChartContainerProps {
-  /** Whether the chart fills its container responsively
+  /**
+   * Whether the chart fills its container responsively
    * @default true
    */
   responsive?: boolean
@@ -94,13 +96,14 @@ export interface ChartTooltipProps {
 }
 
 export interface ChartLegendProps {
-  /** Position of the legend
+  /**
+   * Position of the legend
    * @default 'bottom'
    */
   position?: 'top' | 'bottom' | 'left' | 'right'
 
   /** Legend items to display */
-  items?: Array<{ label: string; color: string }>
+  items?: Array<{ label: string, color: string }>
 
   /** Additional CSS classes */
   class?: HTMLAttributes['class']

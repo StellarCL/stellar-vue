@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { SelectRoot } from 'radix-vue'
 import type { SelectProps } from './select.types'
+import { SelectRoot } from 'radix-vue'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<SelectProps>(), {
   disabled: false,
   defaultOpen: false,

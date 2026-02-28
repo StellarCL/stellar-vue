@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { TabsTrigger as TabsTriggerPrimitive } from 'radix-vue'
 import type { TabsTriggerProps } from './tabs.types'
+import { TabsTrigger as TabsTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<TabsTriggerProps>(), {

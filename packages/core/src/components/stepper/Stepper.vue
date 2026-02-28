@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { provide, computed } from 'vue'
-import { useSteps } from '../../composables/useSteps'
 import type { StepperProps } from './stepper.types'
-import { STEPPER_INJECTION_KEY } from './stepper-context'
+import { computed, provide } from 'vue'
+import { useSteps } from '../../composables/useSteps'
 import { cn } from '../../utils'
+import { STEPPER_INJECTION_KEY } from './stepper-context'
 
 const props = withDefaults(defineProps<StepperProps>(), {
   modelValue: 1,

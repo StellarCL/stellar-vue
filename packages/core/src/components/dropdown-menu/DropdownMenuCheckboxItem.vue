@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { DropdownMenuCheckboxItemProps } from './dropdown-menu.types'
 import {
   DropdownMenuCheckboxItem as DropdownMenuCheckboxItemPrimitive,
   DropdownMenuItemIndicator,
 } from 'radix-vue'
-import type { DropdownMenuCheckboxItemProps } from './dropdown-menu.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<DropdownMenuCheckboxItemProps>(), {

@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Accordion from './Accordion.vue'
+import AccordionContent from './AccordionContent.vue'
 import AccordionItem from './AccordionItem.vue'
 import AccordionTrigger from './AccordionTrigger.vue'
-import AccordionContent from './AccordionContent.vue'
 
-describe('Accordion', () => {
+describe('accordion', () => {
   it('renders with AccordionItem children', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem },
@@ -31,7 +31,7 @@ describe('Accordion', () => {
   })
 })
 
-describe('AccordionItem', () => {
+describe('accordionItem', () => {
   it('has border-b class', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem },
@@ -59,7 +59,7 @@ describe('AccordionItem', () => {
   })
 })
 
-describe('AccordionTrigger', () => {
+describe('accordionTrigger', () => {
   it('renders text content', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem, AccordionTrigger },
@@ -119,7 +119,7 @@ describe('AccordionTrigger', () => {
   })
 })
 
-describe('AccordionContent', () => {
+describe('accordionContent', () => {
   it('has animation classes', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem, AccordionTrigger, AccordionContent },
@@ -156,7 +156,7 @@ describe('AccordionContent', () => {
   })
 })
 
-describe('Accordion composition', () => {
+describe('accordion composition', () => {
   it('renders full Accordion composition with items, triggers, and content', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem, AccordionTrigger, AccordionContent },

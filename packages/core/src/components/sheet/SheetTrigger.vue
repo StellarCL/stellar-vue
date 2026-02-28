@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogTrigger } from 'radix-vue'
 import type { SheetTriggerProps } from './sheet.types'
+import { DialogTrigger } from 'radix-vue'
 
 const props = withDefaults(defineProps<SheetTriggerProps>(), {
   asChild: false,

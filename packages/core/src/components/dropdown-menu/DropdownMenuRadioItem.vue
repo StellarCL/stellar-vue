@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  DropdownMenuRadioItem as DropdownMenuRadioItemPrimitive,
-  DropdownMenuItemIndicator,
-} from 'radix-vue'
 import type { DropdownMenuRadioItemProps } from './dropdown-menu.types'
+import {
+  DropdownMenuItemIndicator,
+  DropdownMenuRadioItem as DropdownMenuRadioItemPrimitive,
+} from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<DropdownMenuRadioItemProps>(), {

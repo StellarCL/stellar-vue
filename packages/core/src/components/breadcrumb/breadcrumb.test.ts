@@ -1,14 +1,8 @@
-import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Breadcrumb } from '.'
-import { BreadcrumbList } from '.'
-import { BreadcrumbItem } from '.'
-import { BreadcrumbLink } from '.'
-import { BreadcrumbPage } from '.'
-import { BreadcrumbSeparator } from '.'
-import { BreadcrumbEllipsis } from '.'
+import { describe, expect, it } from 'vitest'
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '.'
 
-describe('Breadcrumb', () => {
+describe('breadcrumb', () => {
   it('renders a nav element', () => {
     const wrapper = mount(Breadcrumb)
     expect(wrapper.element.tagName).toBe('NAV')
@@ -41,7 +35,7 @@ describe('Breadcrumb', () => {
   })
 })
 
-describe('BreadcrumbList', () => {
+describe('breadcrumbList', () => {
   it('renders an ol element', () => {
     const wrapper = mount(BreadcrumbList)
     expect(wrapper.element.tagName).toBe('OL')
@@ -66,7 +60,7 @@ describe('BreadcrumbList', () => {
   })
 })
 
-describe('BreadcrumbItem', () => {
+describe('breadcrumbItem', () => {
   it('renders a li element', () => {
     const wrapper = mount(BreadcrumbItem)
     expect(wrapper.element.tagName).toBe('LI')
@@ -88,7 +82,7 @@ describe('BreadcrumbItem', () => {
   })
 })
 
-describe('BreadcrumbLink', () => {
+describe('breadcrumbLink', () => {
   it('renders as an anchor element by default', () => {
     const wrapper = mount(BreadcrumbLink)
     expect(wrapper.element.tagName).toBe('A')
@@ -140,7 +134,7 @@ describe('BreadcrumbLink', () => {
   })
 })
 
-describe('BreadcrumbPage', () => {
+describe('breadcrumbPage', () => {
   it('renders as a span element', () => {
     const wrapper = mount(BreadcrumbPage)
     expect(wrapper.element.tagName).toBe('SPAN')
@@ -183,7 +177,7 @@ describe('BreadcrumbPage', () => {
   })
 })
 
-describe('BreadcrumbSeparator', () => {
+describe('breadcrumbSeparator', () => {
   it('renders a li element', () => {
     const wrapper = mount(BreadcrumbSeparator)
     expect(wrapper.element.tagName).toBe('LI')
@@ -219,7 +213,7 @@ describe('BreadcrumbSeparator', () => {
   })
 })
 
-describe('BreadcrumbEllipsis', () => {
+describe('breadcrumbEllipsis', () => {
   it('renders a span element', () => {
     const wrapper = mount(BreadcrumbEllipsis)
     expect(wrapper.element.tagName).toBe('SPAN')
@@ -260,7 +254,7 @@ describe('BreadcrumbEllipsis', () => {
   })
 })
 
-describe('Breadcrumb composition', () => {
+describe('breadcrumb composition', () => {
   it('renders full breadcrumb with items and separators', () => {
     const wrapper = mount({
       components: {

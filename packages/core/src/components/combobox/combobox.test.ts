@@ -1,16 +1,16 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { defineComponent, h, nextTick } from 'vue'
 import Combobox from './Combobox.vue'
-import ComboboxInput from './ComboboxInput.vue'
-import ComboboxTrigger from './ComboboxTrigger.vue'
 import ComboboxContent from './ComboboxContent.vue'
-import ComboboxItem from './ComboboxItem.vue'
 import ComboboxEmpty from './ComboboxEmpty.vue'
 import ComboboxGroup from './ComboboxGroup.vue'
+import ComboboxInput from './ComboboxInput.vue'
+import ComboboxItem from './ComboboxItem.vue'
 import ComboboxLabel from './ComboboxLabel.vue'
+import ComboboxTrigger from './ComboboxTrigger.vue'
 
-describe('Combobox', () => {
+describe('combobox', () => {
   it('renders with placeholder', () => {
     const wrapper = mount(
       defineComponent({
@@ -97,7 +97,7 @@ describe('Combobox', () => {
           return h(
             Combobox,
             {
-              defaultOpen: true,
+              'defaultOpen': true,
               'onUpdate:modelValue': (val: string) => {
                 selectedValue = val
               },
@@ -255,7 +255,7 @@ describe('Combobox', () => {
   })
 })
 
-describe('ComboboxInput', () => {
+describe('comboboxInput', () => {
   it('renders with correct styling classes', () => {
     const wrapper = mount(
       defineComponent({
@@ -293,7 +293,7 @@ describe('ComboboxInput', () => {
   })
 })
 
-describe('ComboboxTrigger', () => {
+describe('comboboxTrigger', () => {
   it('renders with chevron SVG icon', () => {
     const wrapper = mount(
       defineComponent({
@@ -327,14 +327,15 @@ describe('ComboboxTrigger', () => {
     const trigger = wrapper.find('[role="button"]')
     if (trigger.exists()) {
       expect(trigger.classes()).toContain('custom-trigger')
-    } else {
+    }
+    else {
       // Trigger may render differently
       expect(wrapper.html()).toContain('custom-trigger')
     }
   })
 })
 
-describe('ComboboxEmpty', () => {
+describe('comboboxEmpty', () => {
   it('renders default empty message', async () => {
     const wrapper = mount(
       defineComponent({
@@ -412,7 +413,7 @@ describe('ComboboxEmpty', () => {
   })
 })
 
-describe('ComboboxGroup', () => {
+describe('comboboxGroup', () => {
   it('renders with p-1 class', () => {
     const wrapper = mount(
       defineComponent({
@@ -450,7 +451,7 @@ describe('ComboboxGroup', () => {
   })
 })
 
-describe('ComboboxLabel', () => {
+describe('comboboxLabel', () => {
   it('renders with correct styling classes', () => {
     const wrapper = mount(
       defineComponent({
@@ -490,18 +491,18 @@ describe('ComboboxLabel', () => {
   })
 })
 
-describe('Combobox keyboard navigation', () => {
+describe('combobox keyboard navigation', () => {
   it('arrow keys and enter navigate and select items', async () => {
-    let selectedValue = ''
+    let _selectedValue = ''
     const wrapper = mount(
       defineComponent({
         render() {
           return h(
             Combobox,
             {
-              defaultOpen: true,
+              'defaultOpen': true,
               'onUpdate:modelValue': (val: string) => {
-                selectedValue = val
+                _selectedValue = val
               },
             },
             {

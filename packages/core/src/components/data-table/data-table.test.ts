@@ -1,17 +1,17 @@
-import { describe, it, expect, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { ref } from 'vue'
-import DataTable from './DataTable.vue'
-import DataTableHeader from './DataTableHeader.vue'
-import DataTableBody from './DataTableBody.vue'
-import DataTableRow from './DataTableRow.vue'
-import DataTableHead from './DataTableHead.vue'
-import DataTableCell from './DataTableCell.vue'
-import DataTablePagination from './DataTablePagination.vue'
-import DataTableColumnHeader from './DataTableColumnHeader.vue'
-import DataTableToolbar from './DataTableToolbar.vue'
-import { useDataTable } from '../../composables/useDataTable'
 import type { ColumnDef } from './data-table.types'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import { ref } from 'vue'
+import { useDataTable } from '../../composables/useDataTable'
+import DataTable from './DataTable.vue'
+import DataTableBody from './DataTableBody.vue'
+import DataTableCell from './DataTableCell.vue'
+import DataTableColumnHeader from './DataTableColumnHeader.vue'
+import DataTableHead from './DataTableHead.vue'
+import DataTableHeader from './DataTableHeader.vue'
+import DataTablePagination from './DataTablePagination.vue'
+import DataTableRow from './DataTableRow.vue'
+import DataTableToolbar from './DataTableToolbar.vue'
 
 // ---------------------------------------------------------------------------
 // Sample data helpers
@@ -61,7 +61,7 @@ const defaultColumns: ColumnDef<Person>[] = [
 // DataTable (root smart component)
 // ---------------------------------------------------------------------------
 
-describe('DataTable', () => {
+describe('dataTable', () => {
   it('renders a table element', () => {
     const wrapper = mount(DataTable, {
       props: {
@@ -161,7 +161,7 @@ describe('DataTable', () => {
 // Sorting
 // ---------------------------------------------------------------------------
 
-describe('DataTable sorting', () => {
+describe('dataTable sorting', () => {
   it('renders sort icons for sortable columns', () => {
     const wrapper = mount(DataTable, {
       props: {
@@ -257,7 +257,7 @@ describe('DataTable sorting', () => {
 // Pagination
 // ---------------------------------------------------------------------------
 
-describe('DataTable pagination', () => {
+describe('dataTable pagination', () => {
   it('shows only pageSize rows per page', () => {
     const wrapper = mount(DataTable, {
       props: {
@@ -354,7 +354,7 @@ describe('DataTable pagination', () => {
 // Row selection
 // ---------------------------------------------------------------------------
 
-describe('DataTable row selection', () => {
+describe('dataTable row selection', () => {
   it('clicking a row checkbox selects that row', async () => {
     const wrapper = mount(DataTable, {
       props: {
@@ -419,7 +419,7 @@ describe('DataTable row selection', () => {
     await headerCheckbox.trigger('change')
 
     const rowCheckboxes = wrapper.findAll('tbody input[type="checkbox"]')
-    rowCheckboxes.forEach(cb => {
+    rowCheckboxes.forEach((cb) => {
       expect(cb.element.checked).toBe(true)
     })
   })
@@ -440,7 +440,7 @@ describe('DataTable row selection', () => {
     await headerCheckbox.trigger('change')
 
     const rowCheckboxes = wrapper.findAll('tbody input[type="checkbox"]')
-    rowCheckboxes.forEach(cb => {
+    rowCheckboxes.forEach((cb) => {
       expect(cb.element.checked).toBe(false)
     })
   })
@@ -466,14 +466,14 @@ describe('DataTable row selection', () => {
 // Column visibility
 // ---------------------------------------------------------------------------
 
-describe('DataTable column visibility', () => {
+describe('dataTable column visibility', () => {
   it('hidden columns are not rendered', () => {
     const columnsWithHidden: ColumnDef<Person>[] = [
       { id: 'name', header: 'Name', accessorKey: 'name', enableHiding: true },
       { id: 'age', header: 'Age', accessorKey: 'age', enableHiding: true },
     ]
 
-    const wrapper = mount({
+    const _wrapper = mount({
       components: { DataTable },
       setup() {
         const table = useDataTable<Person>({
@@ -531,7 +531,7 @@ describe('DataTable column visibility', () => {
 // DataTableHeader
 // ---------------------------------------------------------------------------
 
-describe('DataTableHeader', () => {
+describe('dataTableHeader', () => {
   it('renders a thead element', () => {
     const wrapper = mount(DataTableHeader)
     expect(wrapper.element.tagName).toBe('THEAD')
@@ -561,7 +561,7 @@ describe('DataTableHeader', () => {
 // DataTableBody
 // ---------------------------------------------------------------------------
 
-describe('DataTableBody', () => {
+describe('dataTableBody', () => {
   it('renders a tbody element', () => {
     const wrapper = mount(DataTableBody)
     expect(wrapper.element.tagName).toBe('TBODY')
@@ -591,7 +591,7 @@ describe('DataTableBody', () => {
 // DataTableRow
 // ---------------------------------------------------------------------------
 
-describe('DataTableRow', () => {
+describe('dataTableRow', () => {
   it('renders a tr element', () => {
     const wrapper = mount(DataTableRow)
     expect(wrapper.element.tagName).toBe('TR')
@@ -630,7 +630,7 @@ describe('DataTableRow', () => {
 // DataTableHead
 // ---------------------------------------------------------------------------
 
-describe('DataTableHead', () => {
+describe('dataTableHead', () => {
   it('renders a th element', () => {
     const wrapper = mount(DataTableHead)
     expect(wrapper.element.tagName).toBe('TH')
@@ -665,7 +665,7 @@ describe('DataTableHead', () => {
 // DataTableCell
 // ---------------------------------------------------------------------------
 
-describe('DataTableCell', () => {
+describe('dataTableCell', () => {
   it('renders a td element', () => {
     const wrapper = mount(DataTableCell)
     expect(wrapper.element.tagName).toBe('TD')
@@ -697,7 +697,7 @@ describe('DataTableCell', () => {
 // DataTableColumnHeader
 // ---------------------------------------------------------------------------
 
-describe('DataTableColumnHeader', () => {
+describe('dataTableColumnHeader', () => {
   it('renders the column title', () => {
     const wrapper = mount(DataTableColumnHeader, {
       props: { title: 'Full Name', canSort: false },
@@ -775,7 +775,7 @@ describe('DataTableColumnHeader', () => {
 // DataTablePagination
 // ---------------------------------------------------------------------------
 
-describe('DataTablePagination', () => {
+describe('dataTablePagination', () => {
   it('renders without error', () => {
     const wrapper = mount(DataTablePagination, {
       props: {
@@ -886,7 +886,7 @@ describe('DataTablePagination', () => {
 // DataTableToolbar
 // ---------------------------------------------------------------------------
 
-describe('DataTableToolbar', () => {
+describe('dataTableToolbar', () => {
   it('renders a div', () => {
     const wrapper = mount(DataTableToolbar)
     expect(wrapper.element.tagName).toBe('DIV')

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { TabsContent as TabsContentPrimitive } from 'radix-vue'
 import type { TabsContentProps } from './tabs.types'
+import { TabsContent as TabsContentPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<TabsContentProps>()

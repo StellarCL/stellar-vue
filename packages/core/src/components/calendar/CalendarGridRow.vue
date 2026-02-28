@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { CalendarGridRow as CalendarGridRowPrimitive } from 'radix-vue'
 import type { CalendarGridRowProps } from './calendar.types'
+import { CalendarGridRow as CalendarGridRowPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<CalendarGridRowProps>()

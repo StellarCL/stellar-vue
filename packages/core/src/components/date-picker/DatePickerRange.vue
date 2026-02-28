@@ -1,23 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { PopoverRoot, PopoverTrigger, PopoverPortal, PopoverContent } from 'radix-vue'
-import {
-  RangeCalendarRoot,
-  RangeCalendarHeader,
-  RangeCalendarHeading,
-  RangeCalendarGrid,
-  RangeCalendarGridHead,
-  RangeCalendarGridBody,
-  RangeCalendarGridRow,
-  RangeCalendarCell,
-  RangeCalendarCellTrigger,
-  RangeCalendarHeadCell,
-  RangeCalendarNext,
-  RangeCalendarPrev,
-} from 'radix-vue'
 import type { DatePickerRangeProps, DateRange } from './date-picker.types'
-import { formatDate } from './date-format'
+import { PopoverContent, PopoverPortal, PopoverRoot, PopoverTrigger, RangeCalendarCell, RangeCalendarCellTrigger, RangeCalendarGrid, RangeCalendarGridBody, RangeCalendarGridHead, RangeCalendarGridRow, RangeCalendarHeadCell, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarNext, RangeCalendarPrev, RangeCalendarRoot } from 'radix-vue'
+import { computed, ref } from 'vue'
 import { cn } from '../../utils'
+import { formatDate } from './date-format'
 
 const props = withDefaults(defineProps<DatePickerRangeProps>(), {
   placeholder: 'Pick a date range',
@@ -34,7 +20,8 @@ const emit = defineEmits<{
 const open = ref(false)
 
 const displayValue = computed(() => {
-  if (!props.modelValue?.start || !props.modelValue?.end) return ''
+  if (!props.modelValue?.start || !props.modelValue?.end)
+    return ''
   return `${formatDate(props.modelValue.start, props.format)} - ${formatDate(props.modelValue.end, props.format)}`
 })
 

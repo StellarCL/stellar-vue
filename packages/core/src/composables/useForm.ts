@@ -1,5 +1,5 @@
-import { useForm as useVeeForm, type FormOptions } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
+import { type FormOptions, useForm as useVeeForm } from 'vee-validate'
 
 export function useForm<T extends Record<string, any>>(options: FormOptions<T> & { validationSchema?: any }) {
   // If schema has a _def property, it's a Zod schema - convert it

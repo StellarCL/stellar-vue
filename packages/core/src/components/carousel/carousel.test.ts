@@ -1,13 +1,13 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import Carousel from './Carousel.vue'
 import CarouselContent from './CarouselContent.vue'
 import CarouselItem from './CarouselItem.vue'
-import CarouselPrevious from './CarouselPrevious.vue'
 import CarouselNext from './CarouselNext.vue'
+import CarouselPrevious from './CarouselPrevious.vue'
 
-describe('Carousel', () => {
+describe('carousel', () => {
   it('renders with region role', () => {
     const wrapper = mount(Carousel, {
       slots: { default: 'slides' },
@@ -25,7 +25,7 @@ describe('Carousel', () => {
   })
 })
 
-describe('Carousel with slides', () => {
+describe('carousel with slides', () => {
   async function createCarousel(props = {}) {
     const wrapper = mount({
       components: { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext },
@@ -136,7 +136,7 @@ describe('Carousel with slides', () => {
   })
 })
 
-describe('Carousel auto-play', () => {
+describe('carousel auto-play', () => {
   beforeEach(() => {
     vi.useFakeTimers()
   })

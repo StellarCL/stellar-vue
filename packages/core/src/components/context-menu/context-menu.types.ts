@@ -1,19 +1,22 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface ContextMenuProps {
-  /** The controlled open state of the context menu.
+  /**
+   * The controlled open state of the context menu.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the context menu when it is initially rendered.
+  /**
+   * The open state of the context menu when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 }
 
 export interface ContextMenuTriggerProps {
-  /** Whether to render as child element (Radix Vue primitive).
+  /**
+   * Whether to render as child element (Radix Vue primitive).
    * @default false
    */
   asChild?: boolean
@@ -23,12 +26,14 @@ export interface ContextMenuTriggerProps {
 }
 
 export interface ContextMenuContentProps {
-  /** The distance in pixels from the trigger.
+  /**
+   * The distance in pixels from the trigger.
    * @default 0
    */
   sideOffset?: number
 
-  /** Alignment offset in pixels.
+  /**
+   * Alignment offset in pixels.
    * @default 2
    */
   alignOffset?: number
@@ -38,12 +43,14 @@ export interface ContextMenuContentProps {
 }
 
 export interface ContextMenuItemProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -53,12 +60,14 @@ export interface ContextMenuItemProps {
 }
 
 export interface ContextMenuCheckboxItemProps {
-  /** The controlled checked state of the checkbox item.
+  /**
+   * The controlled checked state of the checkbox item.
    * @default false
    */
   checked?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -68,7 +77,8 @@ export interface ContextMenuCheckboxItemProps {
 }
 
 export interface ContextMenuRadioGroupProps {
-  /** The controlled value of the radio group. Can be bound as `v-model`.
+  /**
+   * The controlled value of the radio group. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
@@ -81,7 +91,8 @@ export interface ContextMenuRadioItemProps {
   /** The value of the radio item. Required. */
   value: string
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -91,7 +102,8 @@ export interface ContextMenuRadioItemProps {
 }
 
 export interface ContextMenuLabelProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
@@ -116,24 +128,28 @@ export interface ContextMenuGroupProps {
 }
 
 export interface ContextMenuSubProps {
-  /** The controlled open state of the submenu.
+  /**
+   * The controlled open state of the submenu.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the submenu when it is initially rendered.
+  /**
+   * The open state of the submenu when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 }
 
 export interface ContextMenuSubTriggerProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the sub trigger.
+  /**
+   * When true, prevents the user from interacting with the sub trigger.
    * @default false
    */
   disabled?: boolean

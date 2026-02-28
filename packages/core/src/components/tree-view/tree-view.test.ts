@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
-import { mount } from '@vue/test-utils'
-import TreeView from './TreeView.vue'
 import type { TreeNode } from './tree-view.types'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import TreeView from './TreeView.vue'
 
 const sampleData: TreeNode[] = [
   {
@@ -30,7 +30,7 @@ const sampleData: TreeNode[] = [
   { key: 'root-3', label: 'readme.txt' },
 ]
 
-describe('TreeView', () => {
+describe('treeView', () => {
   it('renders tree role', () => {
     const wrapper = mount(TreeView, {
       props: { data: sampleData },

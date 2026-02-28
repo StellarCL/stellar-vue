@@ -1,4 +1,4 @@
-import { ref, readonly, type Ref } from 'vue'
+import { readonly, ref } from 'vue'
 
 interface UseDisclosureOptions {
   defaultOpen?: boolean
@@ -24,7 +24,8 @@ export function useDisclosure(options: UseDisclosureOptions = {}) {
   }
 
   function toggle() {
-    if (isOpen.value) close()
+    if (isOpen.value)
+      close()
     else open()
   }
 

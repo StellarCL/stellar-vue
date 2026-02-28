@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { ColorPickerContext, ColorPickerPreviewProps } from './color-picker.types'
 import { computed, inject } from 'vue'
-import type { ColorPickerPreviewProps, ColorPickerContext } from './color-picker.types'
 import { cn } from '../../utils'
 
 const props = defineProps<ColorPickerPreviewProps>()

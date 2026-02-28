@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import EmptyState from './EmptyState.vue'
+import EmptyStateAction from './EmptyStateAction.vue'
+import EmptyStateDescription from './EmptyStateDescription.vue'
 import EmptyStateIcon from './EmptyStateIcon.vue'
 import EmptyStateTitle from './EmptyStateTitle.vue'
-import EmptyStateDescription from './EmptyStateDescription.vue'
-import EmptyStateAction from './EmptyStateAction.vue'
 
-describe('EmptyState', () => {
+describe('emptyState', () => {
   it('renders centered container', () => {
     const wrapper = mount(EmptyState, {
       slots: { default: 'content' },
@@ -35,7 +35,7 @@ describe('EmptyState', () => {
   })
 })
 
-describe('EmptyStateIcon', () => {
+describe('emptyStateIcon', () => {
   it('renders icon container', () => {
     const wrapper = mount(EmptyStateIcon, {
       slots: { default: '<svg></svg>' },
@@ -55,7 +55,7 @@ describe('EmptyStateIcon', () => {
   })
 })
 
-describe('EmptyStateTitle', () => {
+describe('emptyStateTitle', () => {
   it('renders as h3 heading', () => {
     const wrapper = mount(EmptyStateTitle, {
       slots: { default: 'No results' },
@@ -80,7 +80,7 @@ describe('EmptyStateTitle', () => {
   })
 })
 
-describe('EmptyStateDescription', () => {
+describe('emptyStateDescription', () => {
   it('renders as paragraph', () => {
     const wrapper = mount(EmptyStateDescription, {
       slots: { default: 'Try adjusting your search' },
@@ -105,7 +105,7 @@ describe('EmptyStateDescription', () => {
   })
 })
 
-describe('EmptyStateAction', () => {
+describe('emptyStateAction', () => {
   it('renders action area', () => {
     const wrapper = mount(EmptyStateAction, {
       slots: { default: '<button>Action</button>' },
@@ -123,7 +123,7 @@ describe('EmptyStateAction', () => {
   })
 })
 
-describe('EmptyState composition', () => {
+describe('emptyState composition', () => {
   it('renders full composition', () => {
     const wrapper = mount({
       components: { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription, EmptyStateAction },

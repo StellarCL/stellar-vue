@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface ColorPickerProps {
-  /** The current color value (hex string, v-model)
+  /**
+   * The current color value (hex string, v-model)
    * @default '#000000'
    */
   modelValue?: string
 
-  /** Show alpha slider
+  /**
+   * Show alpha slider
    * @default false
    */
   showAlpha?: boolean
@@ -14,7 +16,8 @@ export interface ColorPickerProps {
   /** Preset color swatches */
   presets?: string[]
 
-  /** Color format for the input
+  /**
+   * Color format for the input
    * @default 'hex'
    */
   format?: 'hex' | 'rgb' | 'hsl'

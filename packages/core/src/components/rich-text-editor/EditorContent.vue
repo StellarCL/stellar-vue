@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { EditorContent as TiptapEditorContent } from '@tiptap/vue-3'
 import type { EditorContentProps } from './rich-text-editor.types'
+import { EditorContent as TiptapEditorContent } from '@tiptap/vue-3'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<EditorContentProps>(), {

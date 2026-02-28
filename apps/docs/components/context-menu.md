@@ -21,19 +21,19 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
   ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
+  ContextMenuLabel,
   ContextMenuRadioGroup,
   ContextMenuRadioItem,
-  ContextMenuLabel,
   ContextMenuSeparator,
   ContextMenuShortcut,
-  ContextMenuGroup,
   ContextMenuSub,
-  ContextMenuSubTrigger,
   ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -45,10 +45,10 @@ import {
 <script setup lang="ts">
 import {
   ContextMenu,
-  ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuSeparator,
+  ContextMenuTrigger,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -124,9 +124,15 @@ const theme = ref('system')
       <ContextMenuLabel>Theme</ContextMenuLabel>
       <ContextMenuSeparator />
       <ContextMenuRadioGroup v-model="theme">
-        <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
-        <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
-        <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
+        <ContextMenuRadioItem value="light">
+          Light
+        </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="dark">
+          Dark
+        </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="system">
+          System
+        </ContextMenuRadioItem>
       </ContextMenuRadioGroup>
     </ContextMenuContent>
   </ContextMenu>

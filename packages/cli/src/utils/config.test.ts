@@ -1,14 +1,14 @@
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { defineConfig } from '../types'
 import {
   DEFAULT_CONFIG,
   findConfig,
   readConfig,
-  writeConfig,
   readLockFile,
+  writeConfig,
   writeLockFile,
 } from './config'
 
@@ -64,7 +64,7 @@ describe('config utils', () => {
     })
   })
 
-  describe('DEFAULT_CONFIG', () => {
+  describe('dEFAULT_CONFIG', () => {
     it('has all required fields', () => {
       expect(DEFAULT_CONFIG).toHaveProperty('componentsDir')
       expect(DEFAULT_CONFIG).toHaveProperty('composablesDir')
@@ -99,7 +99,7 @@ describe('config utils', () => {
       // Verify TS file contains import and defineConfig
       const tsContent = fs.readFileSync(tsPath, 'utf-8')
       expect(tsContent).toContain('import { defineConfig }')
-      expect(tsContent).toContain("framework: 'nuxt'")
+      expect(tsContent).toContain('framework: \'nuxt\'')
     })
   })
 
@@ -193,7 +193,7 @@ describe('config utils', () => {
       expect(readBack).not.toBeNull()
       expect(readBack!.version).toBe('1.0.0')
       expect(readBack!.components.button).toBeDefined()
-      expect(readBack!.components.button.version).toBe('0.1.0')
+      expect(readBack!.components.button!.version).toBe('0.1.0')
     })
 
     it('returns null when no lock file exists', async () => {

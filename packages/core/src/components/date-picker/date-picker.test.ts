@@ -1,15 +1,15 @@
-import { describe, expect, it } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
 import { CalendarDate } from '@internationalized/date'
-import DatePicker from './DatePicker.vue'
-import DatePickerInput from './DatePickerInput.vue'
-import DatePickerContent from './DatePickerContent.vue'
-import DatePickerRange from './DatePickerRange.vue'
-import DatePickerPresets from './DatePickerPresets.vue'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import { nextTick } from 'vue'
 import { formatDate } from './date-format'
+import DatePicker from './DatePicker.vue'
+import DatePickerContent from './DatePickerContent.vue'
+import DatePickerInput from './DatePickerInput.vue'
+import DatePickerPresets from './DatePickerPresets.vue'
+import DatePickerRange from './DatePickerRange.vue'
 
-describe('DatePicker', () => {
+describe('datePicker', () => {
   it('renders input with placeholder', () => {
     const wrapper = mount(DatePicker, {
       props: {
@@ -88,7 +88,7 @@ describe('DatePicker', () => {
     await nextTick()
 
     // The popover content should exist in body (calendar with role="application")
-    let calendarEl = document.body.querySelector('[role="application"]')
+    const calendarEl = document.body.querySelector('[role="application"]')
     expect(calendarEl).not.toBeNull()
 
     // Find and click a day cell in the popover
@@ -170,7 +170,7 @@ describe('DatePicker', () => {
   })
 })
 
-describe('DatePickerInput', () => {
+describe('datePickerInput', () => {
   it('renders with placeholder when no value', () => {
     const wrapper = mount(DatePickerInput, {
       props: {
@@ -214,7 +214,7 @@ describe('DatePickerInput', () => {
   })
 })
 
-describe('DatePickerContent', () => {
+describe('datePickerContent', () => {
   it('renders without crashing', () => {
     // DatePickerContent needs to be inside a Popover context
     // Just verify the component can be imported
@@ -222,7 +222,7 @@ describe('DatePickerContent', () => {
   })
 })
 
-describe('DatePickerRange', () => {
+describe('datePickerRange', () => {
   it('renders with placeholder', () => {
     const wrapper = mount(DatePickerRange, {
       props: {
@@ -261,7 +261,7 @@ describe('DatePickerRange', () => {
   })
 })
 
-describe('DatePickerPresets', () => {
+describe('datePickerPresets', () => {
   it('renders preset buttons', () => {
     const presets = [
       { label: 'Today', value: new CalendarDate(2024, 6, 15) },
@@ -333,8 +333,8 @@ describe('DatePickerPresets', () => {
     const btn = wrapper.find('button')
     await btn.trigger('click')
 
-    expect(wrapper.emitted('select-range')).toBeTruthy()
-    expect(wrapper.emitted('select-range')![0]).toEqual([preset])
+    expect(wrapper.emitted('selectRange')).toBeTruthy()
+    expect(wrapper.emitted('selectRange')![0]).toEqual([preset])
   })
 
   it('merges custom classes', () => {

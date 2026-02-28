@@ -1,26 +1,29 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import DropdownMenu from './DropdownMenu.vue'
-import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
-import DropdownMenuContent from './DropdownMenuContent.vue'
-import DropdownMenuItem from './DropdownMenuItem.vue'
 import DropdownMenuCheckboxItem from './DropdownMenuCheckboxItem.vue'
+import DropdownMenuContent from './DropdownMenuContent.vue'
+import DropdownMenuGroup from './DropdownMenuGroup.vue'
+import DropdownMenuItem from './DropdownMenuItem.vue'
+import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuRadioGroup from './DropdownMenuRadioGroup.vue'
 import DropdownMenuRadioItem from './DropdownMenuRadioItem.vue'
-import DropdownMenuLabel from './DropdownMenuLabel.vue'
 import DropdownMenuSeparator from './DropdownMenuSeparator.vue'
 import DropdownMenuShortcut from './DropdownMenuShortcut.vue'
-import DropdownMenuGroup from './DropdownMenuGroup.vue'
 import DropdownMenuSub from './DropdownMenuSub.vue'
-import DropdownMenuSubTrigger from './DropdownMenuSubTrigger.vue'
 import DropdownMenuSubContent from './DropdownMenuSubContent.vue'
+import DropdownMenuSubTrigger from './DropdownMenuSubTrigger.vue'
+import DropdownMenuTrigger from './DropdownMenuTrigger.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -38,7 +41,7 @@ async function mountOpenToBody(template: string, components: Record<string, obje
   return document.body.innerHTML
 }
 
-describe('DropdownMenu', () => {
+describe('dropdownMenu', () => {
   it('renders without crashing', () => {
     const wrapper = mount(DropdownMenu, {
       slots: { default: '<div>content</div>' },
@@ -63,7 +66,7 @@ describe('DropdownMenu', () => {
   })
 })
 
-describe('DropdownMenuTrigger', () => {
+describe('dropdownMenuTrigger', () => {
   it('renders slot content inside DropdownMenu context', () => {
     const wrapper = mount({
       components: { DropdownMenu, DropdownMenuTrigger },
@@ -81,7 +84,7 @@ describe('DropdownMenuTrigger', () => {
   })
 })
 
-describe('DropdownMenuContent', () => {
+describe('dropdownMenuContent', () => {
   it('has correct styling classes when open', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><p>Item</p></DropdownMenuContent></DropdownMenu>`,
@@ -109,7 +112,7 @@ describe('DropdownMenuContent', () => {
   })
 })
 
-describe('DropdownMenuItem', () => {
+describe('dropdownMenuItem', () => {
   it('renders with correct classes', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuItem>Item Text</DropdownMenuItem></DropdownMenuContent></DropdownMenu>`,
@@ -136,7 +139,7 @@ describe('DropdownMenuItem', () => {
   })
 })
 
-describe('DropdownMenuCheckboxItem', () => {
+describe('dropdownMenuCheckboxItem', () => {
   it('renders with indicator area inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuCheckboxItem :checked="true">Check Item</DropdownMenuCheckboxItem></DropdownMenuContent></DropdownMenu>`,
@@ -163,7 +166,7 @@ describe('DropdownMenuCheckboxItem', () => {
   })
 })
 
-describe('DropdownMenuRadioGroup', () => {
+describe('dropdownMenuRadioGroup', () => {
   it('renders without crashing inside DropdownMenu context', () => {
     const wrapper = mount({
       components: { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup },
@@ -179,7 +182,7 @@ describe('DropdownMenuRadioGroup', () => {
   })
 })
 
-describe('DropdownMenuRadioItem', () => {
+describe('dropdownMenuRadioItem', () => {
   it('renders with indicator area inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuRadioGroup model-value="a"><DropdownMenuRadioItem value="a">Option A</DropdownMenuRadioItem></DropdownMenuRadioGroup></DropdownMenuContent></DropdownMenu>`,
@@ -206,7 +209,7 @@ describe('DropdownMenuRadioItem', () => {
   })
 })
 
-describe('DropdownMenuLabel', () => {
+describe('dropdownMenuLabel', () => {
   it('renders with font-semibold class inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuLabel>My Account</DropdownMenuLabel></DropdownMenuContent></DropdownMenu>`,
@@ -232,7 +235,7 @@ describe('DropdownMenuLabel', () => {
   })
 })
 
-describe('DropdownMenuSeparator', () => {
+describe('dropdownMenuSeparator', () => {
   it('renders with bg-muted class inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSeparator /></DropdownMenuContent></DropdownMenu>`,
@@ -250,7 +253,7 @@ describe('DropdownMenuSeparator', () => {
   })
 })
 
-describe('DropdownMenuShortcut', () => {
+describe('dropdownMenuShortcut', () => {
   it('renders with opacity-60 class', () => {
     const wrapper = mount(DropdownMenuShortcut, {
       slots: { default: '⌘K' },
@@ -288,7 +291,7 @@ describe('DropdownMenuShortcut', () => {
   })
 })
 
-describe('DropdownMenuGroup', () => {
+describe('dropdownMenuGroup', () => {
   it('renders without crashing inside DropdownMenu context', () => {
     const wrapper = mount({
       components: { DropdownMenu, DropdownMenuContent, DropdownMenuGroup },
@@ -312,7 +315,7 @@ describe('DropdownMenuGroup', () => {
   })
 })
 
-describe('DropdownMenuSub', () => {
+describe('dropdownMenuSub', () => {
   it('renders without crashing inside DropdownMenu context', () => {
     const wrapper = mount({
       components: { DropdownMenu, DropdownMenuContent, DropdownMenuSub },
@@ -328,7 +331,7 @@ describe('DropdownMenuSub', () => {
   })
 })
 
-describe('DropdownMenuSubTrigger', () => {
+describe('dropdownMenuSubTrigger', () => {
   it('shows chevron icon inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSub><DropdownMenuSubTrigger>More</DropdownMenuSubTrigger></DropdownMenuSub></DropdownMenuContent></DropdownMenu>`,
@@ -363,7 +366,7 @@ describe('DropdownMenuSubTrigger', () => {
   })
 })
 
-describe('DropdownMenuSubContent', () => {
+describe('dropdownMenuSubContent', () => {
   it('renders without crashing inside DropdownMenu context', () => {
     const wrapper = mount({
       components: { DropdownMenu, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubContent },
@@ -381,7 +384,7 @@ describe('DropdownMenuSubContent', () => {
   })
 })
 
-describe('DropdownMenu composition', () => {
+describe('dropdownMenu composition', () => {
   it('mounts full dropdown composition without errors', () => {
     const wrapper = mount({
       components: {
@@ -415,7 +418,7 @@ describe('DropdownMenu composition', () => {
     expect(wrapper.text()).toContain('Open')
   })
 
-  it('DropdownMenuShortcut renders correctly standalone', () => {
+  it('dropdownMenuShortcut renders correctly standalone', () => {
     const wrapper = mount(DropdownMenuShortcut, {
       slots: { default: '⌘S' },
     })

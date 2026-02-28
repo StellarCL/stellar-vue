@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Badge } from '@stellar-vue-ui/core'
 import type { BadgeVariants } from '@stellar-vue-ui/core'
 import type { StatusBadgeProps } from '@/types'
+import { Badge } from '@stellar-vue-ui/core'
+import { computed } from 'vue'
 
 // Typed props via defineProps with an imported interface
 const props = defineProps<StatusBadgeProps>()
@@ -28,5 +28,7 @@ const label = computed<string>(() => labelMap[props.status])
 </script>
 
 <template>
-  <Badge :variant="variant">{{ label }}</Badge>
+  <Badge :variant="variant">
+    {{ label }}
+  </Badge>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { CarouselContext, CarouselProps } from './carousel.types'
 import { computed, onMounted, onUnmounted, provide, reactive, ref, watch } from 'vue'
-import type { CarouselProps, CarouselContext } from './carousel.types'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CarouselProps>(), {
@@ -24,19 +24,23 @@ const canScrollNext = computed(() =>
 )
 
 function scrollPrev() {
-  if (totalSlides.value === 0) return
+  if (totalSlides.value === 0)
+    return
   if (currentIndex.value > 0) {
     currentIndex.value--
-  } else if (props.loop) {
+  }
+  else if (props.loop) {
     currentIndex.value = totalSlides.value - 1
   }
 }
 
 function scrollNext() {
-  if (totalSlides.value === 0) return
+  if (totalSlides.value === 0)
+    return
   if (currentIndex.value < totalSlides.value - 1) {
     currentIndex.value++
-  } else if (props.loop) {
+  }
+  else if (props.loop) {
     currentIndex.value = 0
   }
 }
@@ -69,12 +73,14 @@ function stopAutoPlay() {
 }
 
 watch(() => props.autoPlay, (val) => {
-  if (val) startAutoPlay()
+  if (val)
+    startAutoPlay()
   else stopAutoPlay()
 })
 
 onMounted(() => {
-  if (props.autoPlay) startAutoPlay()
+  if (props.autoPlay)
+    startAutoPlay()
 })
 
 onUnmounted(() => {

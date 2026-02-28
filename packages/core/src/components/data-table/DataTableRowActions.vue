@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { DataTableRowActionsProps } from './data-table.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
+  DropdownMenuTrigger,
 } from '../dropdown-menu'
 
 const props = defineProps<DataTableRowActionsProps>()

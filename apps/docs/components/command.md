@@ -22,11 +22,11 @@ pnpm add @stellar-vue-ui/core
 import {
   Command,
   CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandGroup,
-  CommandItem,
   CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
   CommandSeparator,
   CommandShortcut,
 } from '@stellar-vue-ui/core'
@@ -40,11 +40,11 @@ import {
 <script setup lang="ts">
 import {
   Command,
-  CommandInput,
-  CommandList,
-  CommandGroup,
-  CommandItem,
   CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -71,17 +71,17 @@ Use `CommandDialog` to render the command palette in a modal overlay, typically 
 
 ```vue
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import {
   CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandGroup,
-  CommandItem,
   CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
   CommandSeparator,
   CommandShortcut,
 } from '@stellar-vue-ui/core'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const open = ref(false)
 
@@ -158,7 +158,9 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeydown))
       <CommandGroup heading="Actions">
         <CommandItem>Copy</CommandItem>
         <CommandItem>Paste</CommandItem>
-        <CommandItem disabled>Delete (no permission)</CommandItem>
+        <CommandItem disabled>
+          Delete (no permission)
+        </CommandItem>
       </CommandGroup>
     </CommandList>
   </Command>

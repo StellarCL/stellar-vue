@@ -21,19 +21,19 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuGroup,
   DropdownMenuSub,
-  DropdownMenuSubTrigger,
   DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -44,19 +44,21 @@ import {
 ```vue
 <script setup lang="ts">
 import {
+  Button,
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuTrigger
 } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">Open Menu</Button>
+      <Button variant="outline">
+        Open Menu
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
       <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -76,7 +78,9 @@ import { Button } from '@stellar-vue-ui/core'
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">My Account</Button>
+      <Button variant="outline">
+        My Account
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -113,7 +117,9 @@ const showActivityBar = ref(false)
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">View</Button>
+      <Button variant="outline">
+        View
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuCheckboxItem v-model:checked="showStatusBar">
@@ -139,15 +145,23 @@ const position = ref('bottom')
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">Panel Position</Button>
+      <Button variant="outline">
+        Panel Position
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuRadioGroup v-model="position">
-        <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-        <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-        <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="top">
+          Top
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="bottom">
+          Bottom
+        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="right">
+          Right
+        </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>
     </DropdownMenuContent>
   </DropdownMenu>
@@ -160,7 +174,9 @@ const position = ref('bottom')
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">Options</Button>
+      <Button variant="outline">
+        Options
+      </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuItem>New Tab</DropdownMenuItem>
@@ -172,7 +188,9 @@ const position = ref('bottom')
         </DropdownMenuSubContent>
       </DropdownMenuSub>
       <DropdownMenuSeparator />
-      <DropdownMenuItem disabled>Print (unavailable)</DropdownMenuItem>
+      <DropdownMenuItem disabled>
+        Print (unavailable)
+      </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>

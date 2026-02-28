@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  ContextMenuRadioItem as ContextMenuRadioItemPrimitive,
-  ContextMenuItemIndicator,
-} from 'radix-vue'
 import type { ContextMenuRadioItemProps } from './context-menu.types'
+import {
+  ContextMenuItemIndicator,
+  ContextMenuRadioItem as ContextMenuRadioItemPrimitive,
+} from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ContextMenuRadioItemProps>(), {

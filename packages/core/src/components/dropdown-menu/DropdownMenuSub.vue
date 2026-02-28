@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { DropdownMenuSub as DropdownMenuSubPrimitive } from 'radix-vue'
 import type { DropdownMenuSubProps } from './dropdown-menu.types'
+import { DropdownMenuSub as DropdownMenuSubPrimitive } from 'radix-vue'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<DropdownMenuSubProps>(), {
   defaultOpen: false,
 })

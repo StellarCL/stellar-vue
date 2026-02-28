@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastProvider, ToastPortal } from 'radix-vue'
 import type { ToasterProps } from './toast.types'
+import { ToastPortal, ToastProvider } from 'radix-vue'
+import { computed } from 'vue'
 import { useToast } from '../../composables/useToast'
 import Toast from './Toast.vue'
-import ToastTitle from './ToastTitle.vue'
-import ToastDescription from './ToastDescription.vue'
 import ToastAction from './ToastAction.vue'
 import ToastClose from './ToastClose.vue'
+import ToastDescription from './ToastDescription.vue'
+import ToastTitle from './ToastTitle.vue'
 import ToastViewport from './ToastViewport.vue'
 
 const props = withDefaults(defineProps<ToasterProps>(), {
@@ -29,7 +29,8 @@ const positionClasses = computed(() => {
 })
 
 const swipeDirection = computed(() => {
-  if (props.position.includes('left')) return 'left' as const
+  if (props.position.includes('left'))
+    return 'left' as const
   return 'right' as const
 })
 </script>
@@ -63,8 +64,7 @@ const swipeDirection = computed(() => {
     </Toast>
     <ToastPortal>
       <ToastViewport
-        :class="[
-          'fixed z-[100] flex max-h-screen w-full flex-col p-4 md:max-w-[420px]',
+        class="fixed z-[100] flex max-h-screen w-full flex-col p-4 md:max-w-[420px]" :class="[
           positionClasses,
         ]"
       />

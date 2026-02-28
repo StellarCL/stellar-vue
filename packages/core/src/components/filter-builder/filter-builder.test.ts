@@ -1,23 +1,22 @@
-import { describe, it, expect } from 'vitest'
-import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
-import FilterBuilder from './FilterBuilder.vue'
-import FilterRow from './FilterRow.vue'
-import FilterGroup from './FilterGroup.vue'
-import FilterField from './FilterField.vue'
-import FilterOperator from './FilterOperator.vue'
-import FilterValue from './FilterValue.vue'
-import {
-  isFilterGroup,
-  isFilterCondition,
-  defaultOperators,
-} from './filter-builder.types'
 import type {
   FieldConfig,
   FilterCondition,
   FilterGroup as FilterGroupType,
   FilterRule,
 } from './filter-builder.types'
+import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
+import {
+  defaultOperators,
+  isFilterCondition,
+  isFilterGroup,
+} from './filter-builder.types'
+import FilterBuilder from './FilterBuilder.vue'
+import FilterField from './FilterField.vue'
+import FilterGroup from './FilterGroup.vue'
+import FilterOperator from './FilterOperator.vue'
+import FilterRow from './FilterRow.vue'
+import FilterValue from './FilterValue.vue'
 
 // ---------------------------------------------------------------------------
 // Test fixtures
@@ -86,7 +85,7 @@ describe('filter-builder type guards', () => {
 // FilterField
 // ---------------------------------------------------------------------------
 
-describe('FilterField', () => {
+describe('filterField', () => {
   it('renders a select with field options', () => {
     const wrapper = mount(FilterField, {
       props: {
@@ -124,7 +123,7 @@ describe('FilterField', () => {
 // FilterOperator
 // ---------------------------------------------------------------------------
 
-describe('FilterOperator', () => {
+describe('filterOperator', () => {
   it('renders operators for string field type', () => {
     const wrapper = mount(FilterOperator, {
       props: {
@@ -162,7 +161,7 @@ describe('FilterOperator', () => {
 // FilterValue
 // ---------------------------------------------------------------------------
 
-describe('FilterValue', () => {
+describe('filterValue', () => {
   it('renders text input for string field type', () => {
     const wrapper = mount(FilterValue, {
       props: { modelValue: '', fieldType: 'string' },
@@ -244,7 +243,7 @@ describe('FilterValue', () => {
 // FilterRow
 // ---------------------------------------------------------------------------
 
-describe('FilterRow', () => {
+describe('filterRow', () => {
   it('renders field, operator, and value controls', () => {
     const wrapper = mount(FilterRow, {
       props: {
@@ -377,7 +376,7 @@ describe('FilterRow', () => {
 // FilterGroup
 // ---------------------------------------------------------------------------
 
-describe('FilterGroup', () => {
+describe('filterGroup', () => {
   it('renders with AND/OR toggle', () => {
     const wrapper = mount(FilterGroup, {
       props: {
@@ -552,7 +551,7 @@ describe('FilterGroup', () => {
 // FilterBuilder (root component)
 // ---------------------------------------------------------------------------
 
-describe('FilterBuilder', () => {
+describe('filterBuilder', () => {
   it('renders with initial rules', () => {
     const initialGroup: FilterGroupType = {
       logic: 'and',

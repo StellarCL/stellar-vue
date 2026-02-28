@@ -75,12 +75,24 @@ const { setTheme, currentTheme } = useTheme()
 
 <template>
   <select @change="setTheme($event.target.value)">
-    <option value="stellar">Stellar</option>
-    <option value="sirius">Sirius</option>
-    <option value="polaris">Polaris</option>
-    <option value="antares">Antares</option>
-    <option value="vega">Vega</option>
-    <option value="aldebaran">Aldebaran</option>
+    <option value="stellar">
+      Stellar
+    </option>
+    <option value="sirius">
+      Sirius
+    </option>
+    <option value="polaris">
+      Polaris
+    </option>
+    <option value="antares">
+      Antares
+    </option>
+    <option value="vega">
+      Vega
+    </option>
+    <option value="aldebaran">
+      Aldebaran
+    </option>
   </select>
 </template>
 ```
@@ -109,12 +121,12 @@ const customTheme = createTheme({
   ...stellar,
   colors: {
     ...stellar.colors,
-    primary: 'oklch(60% 0.2 270)',
+    'primary': 'oklch(60% 0.2 270)',
     'primary-foreground': 'oklch(98% 0 0)',
   },
   radius: {
     ...stellar.radius,
-    md: '0.75rem',  // rounder corners
+    md: '0.75rem', // rounder corners
   },
 })
 
@@ -126,31 +138,31 @@ applyTheme(customTheme)
 A theme is a plain object that maps token names to CSS values. You can define light and dark mode palettes separately:
 
 ```typescript
-import { createTheme, applyTheme } from '@stellar-vue-ui/theme'
+import { applyTheme, createTheme } from '@stellar-vue-ui/theme'
 
 const myTheme = createTheme({
   name: 'midnight',
   colors: {
-    background: 'oklch(100% 0 0)',
-    foreground: 'oklch(15% 0.02 260)',
-    primary: 'oklch(55% 0.22 260)',
+    'background': 'oklch(100% 0 0)',
+    'foreground': 'oklch(15% 0.02 260)',
+    'primary': 'oklch(55% 0.22 260)',
     'primary-foreground': 'oklch(98% 0 0)',
-    secondary: 'oklch(95% 0 0)',
+    'secondary': 'oklch(95% 0 0)',
     'secondary-foreground': 'oklch(25% 0.04 260)',
-    accent: 'oklch(95% 0 0)',
+    'accent': 'oklch(95% 0 0)',
     'accent-foreground': 'oklch(25% 0.04 260)',
-    destructive: 'oklch(60% 0.2 27)',
+    'destructive': 'oklch(60% 0.2 27)',
     'destructive-foreground': 'oklch(98% 0 0)',
-    muted: 'oklch(95% 0 0)',
+    'muted': 'oklch(95% 0 0)',
     'muted-foreground': 'oklch(55% 0.02 260)',
-    border: 'oklch(90% 0.01 260)',
-    input: 'oklch(90% 0.01 260)',
-    ring: 'oklch(55% 0.22 260)',
+    'border': 'oklch(90% 0.01 260)',
+    'input': 'oklch(90% 0.01 260)',
+    'ring': 'oklch(55% 0.22 260)',
   },
   dark: {
-    background: 'oklch(10% 0.02 260)',
-    foreground: 'oklch(98% 0 0)',
-    primary: 'oklch(65% 0.2 260)',
+    'background': 'oklch(10% 0.02 260)',
+    'foreground': 'oklch(98% 0 0)',
+    'primary': 'oklch(65% 0.2 260)',
     'primary-foreground': 'oklch(10% 0.02 260)',
     // ... remaining dark tokens
   },

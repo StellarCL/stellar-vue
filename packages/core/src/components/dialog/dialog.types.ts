@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface DialogProps {
-  /** The controlled open state of the dialog. Can be bound as `v-model:open`.
+  /**
+   * The controlled open state of the dialog. Can be bound as `v-model:open`.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the dialog when it is initially rendered.
+  /**
+   * The open state of the dialog when it is initially rendered.
    * Use when you do not need to control its open state.
    * @default false
    */
@@ -14,7 +16,8 @@ export interface DialogProps {
 }
 
 export interface DialogTriggerProps {
-  /** Render as child element (Radix Vue primitive)
+  /**
+   * Render as child element (Radix Vue primitive)
    * @default false
    */
   asChild?: boolean
@@ -24,7 +27,8 @@ export interface DialogTriggerProps {
 }
 
 export interface DialogPortalProps {
-  /** The container element to teleport to.
+  /**
+   * The container element to teleport to.
    * @default document.body
    */
   to?: string | HTMLElement
@@ -61,7 +65,8 @@ export interface DialogDescriptionProps {
 }
 
 export interface DialogCloseProps {
-  /** Render as child element (Radix Vue primitive)
+  /**
+   * Render as child element (Radix Vue primitive)
    * @default false
    */
   asChild?: boolean

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogTrigger } from 'radix-vue'
 import type { DialogTriggerProps } from './dialog.types'
+import { DialogTrigger } from 'radix-vue'
 
 const props = withDefaults(defineProps<DialogTriggerProps>(), {
   asChild: false,

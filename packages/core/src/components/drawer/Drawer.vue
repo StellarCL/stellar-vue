@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogRoot } from 'radix-vue'
 import type { DrawerProps } from './drawer.types'
+import { DialogRoot } from 'radix-vue'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   defaultOpen: false,

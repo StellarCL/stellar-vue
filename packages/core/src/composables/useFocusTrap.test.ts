@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 import { useFocusTrap } from './useFocusTrap'
 
@@ -79,7 +79,7 @@ describe('useFocusTrap', () => {
     expect(document.activeElement).toBe(buttons[1])
   })
 
-  it('Tab key cycles forward through focusable elements', () => {
+  it('tab key cycles forward through focusable elements', () => {
     const { container, buttons } = createContainer()
     const containerRef = ref<HTMLElement | null>(container)
     const { activate } = useFocusTrap(containerRef)
@@ -96,7 +96,7 @@ describe('useFocusTrap', () => {
     expect(document.activeElement).toBe(buttons[0])
   })
 
-  it('Shift+Tab at first element wraps to last', () => {
+  it('shift+Tab at first element wraps to last', () => {
     const { container, buttons } = createContainer()
     const containerRef = ref<HTMLElement | null>(container)
     const { activate } = useFocusTrap(containerRef)
@@ -159,7 +159,7 @@ describe('useFocusTrap', () => {
     expect(isActive.value).toBe(false)
   })
 
-  it('Tab key does nothing when trap is not active', () => {
+  it('tab key does nothing when trap is not active', () => {
     const { container, buttons } = createContainer()
     const containerRef = ref<HTMLElement | null>(container)
     useFocusTrap(containerRef)

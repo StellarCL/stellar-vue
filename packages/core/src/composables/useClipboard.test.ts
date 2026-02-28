@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useClipboard } from './useClipboard'
 
 function createClipboardMock(shouldFail = false) {
@@ -104,7 +104,7 @@ describe('useClipboard', () => {
     // Re-import won't help since isSupported is evaluated at call time
     // So we test by directly verifying the guard logic via a fresh call
     // when clipboard is undefined, the copy function should be a no-op
-    const clipboardMock = vi.fn().mockResolvedValue(undefined)
+    const _clipboardMock = vi.fn().mockResolvedValue(undefined)
 
     // Restore navigator.clipboard to a mock to test isSupported=false path
     // We need to test the composable when clipboard is not available

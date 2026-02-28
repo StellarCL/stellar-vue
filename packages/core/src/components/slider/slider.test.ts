@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Slider from './Slider.vue'
 
-describe('Slider', () => {
+describe('slider', () => {
   it('renders with role="slider" on thumb', () => {
     const wrapper = mount(Slider, {
       props: { modelValue: [50] },

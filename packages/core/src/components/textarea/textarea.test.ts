@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Textarea from './Textarea.vue'
 
-describe('Textarea', () => {
+describe('textarea', () => {
   it('renders textarea element', () => {
     const wrapper = mount(Textarea)
     expect(wrapper.element.tagName).toBe('TEXTAREA')

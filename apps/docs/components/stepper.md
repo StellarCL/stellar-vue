@@ -21,10 +21,10 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Stepper,
-  StepperItem,
-  StepperTrigger,
-  StepperSeparator,
   StepperContent,
+  StepperItem,
+  StepperSeparator,
+  StepperTrigger,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -34,7 +34,7 @@ import {
 
 ```vue
 <script setup lang="ts">
-import { Stepper, StepperItem, StepperTrigger, StepperSeparator, StepperContent } from '@stellar-vue-ui/core'
+import { Stepper, StepperContent, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const currentStep = ref(1)
@@ -72,9 +72,8 @@ const steps = [
 
 ```vue
 <script setup lang="ts">
+import { Button, Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Stepper, StepperItem, StepperTrigger, StepperSeparator } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
 
 const currentStep = ref(2)
 
@@ -137,9 +136,8 @@ Combine the stepper with content panels that show based on the current step:
 
 ```vue
 <script setup lang="ts">
+import { Button, Input, Label, Stepper, StepperContent, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Stepper, StepperItem, StepperTrigger, StepperSeparator, StepperContent } from '@stellar-vue-ui/core'
-import { Button, Input, Label } from '@stellar-vue-ui/core'
 
 const currentStep = ref(1)
 
@@ -165,7 +163,9 @@ const steps = [
           <Label for="email">Email</Label>
           <Input id="email" type="email" placeholder="you@example.com" />
         </div>
-        <Button @click="currentStep = 2">Continue</Button>
+        <Button @click="currentStep = 2">
+          Continue
+        </Button>
       </div>
     </StepperContent>
 
@@ -176,14 +176,20 @@ const steps = [
           <Input id="name" placeholder="Your name" />
         </div>
         <div class="flex gap-2">
-          <Button variant="outline" @click="currentStep = 1">Back</Button>
-          <Button @click="currentStep = 3">Continue</Button>
+          <Button variant="outline" @click="currentStep = 1">
+            Back
+          </Button>
+          <Button @click="currentStep = 3">
+            Continue
+          </Button>
         </div>
       </div>
     </StepperContent>
 
     <StepperContent :step="3">
-      <p class="text-center text-lg">All done! Your account is ready.</p>
+      <p class="text-center text-lg">
+        All done! Your account is ready.
+      </p>
     </StepperContent>
   </div>
 </template>

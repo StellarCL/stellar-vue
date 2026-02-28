@@ -1,4 +1,4 @@
-import { ref, readonly, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, readonly, ref } from 'vue'
 
 export function useMediaQuery(query: string) {
   const matches = ref(false)
@@ -9,7 +9,8 @@ export function useMediaQuery(query: string) {
   }
 
   onMounted(() => {
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined')
+      return
     mediaQuery = window.matchMedia(query)
     matches.value = mediaQuery.matches
     mediaQuery.addEventListener('change', update)

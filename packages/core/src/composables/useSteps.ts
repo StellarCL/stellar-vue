@@ -1,4 +1,4 @@
-import { ref, readonly, computed } from 'vue'
+import { computed, readonly, ref } from 'vue'
 
 interface UseStepsOptions {
   total: number
@@ -14,15 +14,18 @@ export function useSteps(options: UseStepsOptions) {
   const progress = computed(() => ((current.value - 1) / (total - 1)) * 100)
 
   function next() {
-    if (current.value < total) current.value++
+    if (current.value < total)
+      current.value++
   }
 
   function prev() {
-    if (current.value > 1) current.value--
+    if (current.value > 1)
+      current.value--
   }
 
   function goTo(step: number) {
-    if (step >= 1 && step <= total) current.value = step
+    if (step >= 1 && step <= total)
+      current.value = step
   }
 
   return {

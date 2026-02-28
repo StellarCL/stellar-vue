@@ -27,7 +27,8 @@ export interface TreeViewProps {
   /** Keys of selected nodes */
   selectedKeys?: string[]
 
-  /** Selection mode
+  /**
+   * Selection mode
    * @default 'none'
    */
   selectionMode?: 'single' | 'multiple' | 'none'

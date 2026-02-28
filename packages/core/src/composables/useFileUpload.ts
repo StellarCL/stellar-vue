@@ -1,17 +1,18 @@
-import { ref, readonly } from 'vue'
 import type { FileWithPreview, UseFileUploadOptions, UseFileUploadReturn } from '../components/file-upload/file-upload.types'
+import { ref } from 'vue'
 
 let fileIdCounter = 0
 const generateFileId = () => `stellar-file-${fileIdCounter++}`
 
 /** Returns true if the file's MIME type matches the accept string */
 function isAcceptedType(file: File, accept: string): boolean {
-  const accepted = accept.split(',').map((s) => s.trim())
+  const accepted = accept.split(',').map(s => s.trim())
   return accepted.some((pattern) => {
-    if (pattern === '*' || pattern === '*/*') return true
+    if (pattern === '*' || pattern === '*/*')
+      return true
     if (pattern.endsWith('/*')) {
       const baseType = pattern.slice(0, -2)
-      return file.type.startsWith(baseType + '/')
+      return file.type.startsWith(`${baseType}/`)
     }
     return file.type === pattern || file.name.endsWith(pattern.replace('*', ''))
   })
@@ -78,8 +79,9 @@ export function useFileUpload(options: UseFileUploadOptions = {}): UseFileUpload
   }
 
   function removeFile(id: string): void {
-    const index = files.value.findIndex((f) => f.id === id)
-    if (index === -1) return
+    const index = files.value.findIndex(f => f.id === id)
+    if (index === -1)
+      return
 
     const removed = files.value[index]
 
@@ -88,7 +90,7 @@ export function useFileUpload(options: UseFileUploadOptions = {}): UseFileUpload
       URL.revokeObjectURL(removed.previewUrl)
     }
 
-    files.value = files.value.filter((f) => f.id !== id)
+    files.value = files.value.filter(f => f.id !== id)
     options.onFileRemoved?.(removed)
   }
 

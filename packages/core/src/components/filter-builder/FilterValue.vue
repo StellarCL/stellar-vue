@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { FilterValueProps } from './filter-builder.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<FilterValueProps>(), {
@@ -24,7 +24,8 @@ function handleInput(event: Event) {
   if (props.fieldType === 'number') {
     const num = target.value === '' ? null : Number(target.value)
     emit('update:modelValue', num)
-  } else {
+  }
+  else {
     emit('update:modelValue', target.value)
   }
 }
@@ -44,7 +45,9 @@ function handleSelectChange(event: Event) {
     aria-label="Filter value"
     @change="handleSelectChange"
   >
-    <option value="" disabled>Select value...</option>
+    <option value="" disabled>
+      Select value...
+    </option>
     <option
       v-for="opt in options"
       :key="opt.value"
@@ -62,7 +65,7 @@ function handleSelectChange(event: Event) {
     :class="inputClasses"
     aria-label="Filter value"
     @input="handleInput"
-  />
+  >
 
   <!-- Number field: render number input -->
   <input
@@ -72,7 +75,7 @@ function handleSelectChange(event: Event) {
     :class="inputClasses"
     aria-label="Filter value"
     @input="handleInput"
-  />
+  >
 
   <!-- String field (default): render text input -->
   <input
@@ -83,5 +86,5 @@ function handleSelectChange(event: Event) {
     placeholder="Enter value..."
     aria-label="Filter value"
     @input="handleInput"
-  />
+  >
 </template>

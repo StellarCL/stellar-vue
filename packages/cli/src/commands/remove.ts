@@ -1,10 +1,10 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
 import prompts from 'prompts'
-import type { ComponentLock } from '../types'
 import { findConfig, readConfig, readLockFile, writeLockFile } from '../utils/config'
+import { newLine, styles } from '../utils/prompts'
 import { getComponent } from '../utils/registry'
-import { styles, header, newLine } from '../utils/prompts'
 
 interface RemoveOptions {
   cwd?: string
@@ -54,7 +54,8 @@ export async function removeCommand(components: string[], options: RemoveOptions
     // b. Check for dependents (other installed components that have this as peerDependency)
     const dependents: string[] = []
     for (const [installedName, _entry] of Object.entries(lock.components)) {
-      if (installedName === name) continue
+      if (installedName === name)
+        continue
       const registryEntry = getComponent(installedName)
       if (registryEntry && registryEntry.peerDependencies.includes(name)) {
         dependents.push(installedName)

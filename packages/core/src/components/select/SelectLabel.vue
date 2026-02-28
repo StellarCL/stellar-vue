@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectLabel as SelectLabelPrimitive } from 'radix-vue'
 import type { SelectLabelProps } from './select.types'
+import { SelectLabel as SelectLabelPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SelectLabelProps>()

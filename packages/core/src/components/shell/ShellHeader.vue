@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ShellHeaderProps } from './shell.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ShellHeaderProps>(), {
@@ -16,7 +16,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <header :class="classes" :style="{ height: height }">
+  <header :class="classes" :style="{ height }">
     <slot />
   </header>
 </template>

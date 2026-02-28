@@ -1,25 +1,9 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { defineComponent, h, ref } from 'vue'
+import { describe, expect, it } from 'vitest'
+import { type TransitionPresetName, transitionPresets } from './presets'
 import StellarTransition from './StellarTransition.vue'
-import { transitionPresets, type TransitionPresetName } from './presets'
 
-// Helper component that conditionally renders slot via v-show equivalent
-function makeWrapper(show = true, slotContent = '<p>Content</p>') {
-  return defineComponent({
-    setup() {
-      return { show: ref(show) }
-    },
-    template: `
-      <StellarTransition>
-        <p v-if="show">Content</p>
-      </StellarTransition>
-    `,
-    components: { StellarTransition },
-  })
-}
-
-describe('StellarTransition', () => {
+describe('stellarTransition', () => {
   it('renders default slot content when child is visible', () => {
     const wrapper = mount(StellarTransition, {
       slots: { default: '<p>Hello World</p>' },
@@ -32,7 +16,6 @@ describe('StellarTransition', () => {
       slots: { default: '<p>Content</p>' },
     })
     // The component should use the fade preset by default
-    const vm = wrapper.vm as InstanceType<typeof StellarTransition> & { $props: { preset: TransitionPresetName } }
     expect(wrapper.props('preset')).toBe('fade')
   })
 
@@ -66,7 +49,7 @@ describe('StellarTransition', () => {
     expect(wrapper.props('appear')).toBe(true)
   })
 
-  it('Transition wrapper is present in component structure', () => {
+  it('transition wrapper is present in component structure', () => {
     const wrapper = mount(StellarTransition, {
       slots: { default: '<p>Content</p>' },
     })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarRoot } from 'radix-vue'
 import type { MenubarProps } from './menubar.types'
+import { MenubarRoot } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<MenubarProps>()
@@ -23,7 +23,7 @@ const classes = computed(() =>
     :model-value="modelValue"
     :default-value="defaultValue"
     :class="classes"
-    @update:model-value="emit('update:modelValue', $event)"
+    @update:model-value="emit('update:modelValue', String($event))"
   >
     <slot />
   </MenubarRoot>

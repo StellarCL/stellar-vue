@@ -45,12 +45,24 @@ The Button component supports 6 visual variants through the `variant` prop:
 ```vue
 <template>
   <div class="flex flex-wrap gap-4">
-    <Button variant="default">Default</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="destructive">Destructive</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="link">Link</Button>
+    <Button variant="default">
+      Default
+    </Button>
+    <Button variant="secondary">
+      Secondary
+    </Button>
+    <Button variant="destructive">
+      Destructive
+    </Button>
+    <Button variant="outline">
+      Outline
+    </Button>
+    <Button variant="ghost">
+      Ghost
+    </Button>
+    <Button variant="link">
+      Link
+    </Button>
   </div>
 </template>
 ```
@@ -74,11 +86,17 @@ Four sizes are available via the `size` prop:
 ```vue
 <template>
   <div class="flex items-center gap-4">
-    <Button size="sm">Small</Button>
-    <Button size="md">Medium</Button>
-    <Button size="lg">Large</Button>
+    <Button size="sm">
+      Small
+    </Button>
+    <Button size="md">
+      Medium
+    </Button>
+    <Button size="lg">
+      Large
+    </Button>
     <Button size="icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
     </Button>
   </div>
 </template>
@@ -98,7 +116,7 @@ Combine text with an icon using the default slot. The button includes a `gap-2` 
 ```vue
 <template>
   <Button>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
     Continue
   </Button>
 </template>
@@ -110,8 +128,8 @@ Set the `loading` prop to `true` to show a spinner and disable interaction. The 
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Button } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const isLoading = ref(false)
 
@@ -138,8 +156,12 @@ When `loading` is `true`:
 
 ```vue
 <template>
-  <Button disabled>Disabled</Button>
-  <Button variant="outline" disabled>Disabled Outline</Button>
+  <Button disabled>
+    Disabled
+  </Button>
+  <Button variant="outline" disabled>
+    Disabled Outline
+  </Button>
 </template>
 ```
 
@@ -181,7 +203,9 @@ Apply a `w-full` class to make the button span its container:
 
 ```vue
 <template>
-  <Button class="w-full">Full Width Button</Button>
+  <Button class="w-full">
+    Full Width Button
+  </Button>
 </template>
 ```
 

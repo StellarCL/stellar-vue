@@ -28,8 +28,7 @@ import { RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
-import { Label } from '@stellar-vue-ui/core'
+import { Label, RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const plan = ref('free')
@@ -116,9 +115,7 @@ Use the `orientation` prop to lay out options horizontally:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@stellar-vue-ui/core'
-import { RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
-import { Label } from '@stellar-vue-ui/core'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Label, RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
 </script>
 
 <template>

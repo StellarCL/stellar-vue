@@ -1,15 +1,15 @@
-import { describe, expect, it, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import Drawer from './Drawer.vue'
-import DrawerTrigger from './DrawerTrigger.vue'
-import DrawerContent from './DrawerContent.vue'
-import DrawerHeader from './DrawerHeader.vue'
-import DrawerFooter from './DrawerFooter.vue'
-import DrawerTitle from './DrawerTitle.vue'
-import DrawerDescription from './DrawerDescription.vue'
 import DrawerClose from './DrawerClose.vue'
+import DrawerContent from './DrawerContent.vue'
+import DrawerDescription from './DrawerDescription.vue'
+import DrawerFooter from './DrawerFooter.vue'
+import DrawerHeader from './DrawerHeader.vue'
 import DrawerOverlay from './DrawerOverlay.vue'
+import DrawerTitle from './DrawerTitle.vue'
+import DrawerTrigger from './DrawerTrigger.vue'
 
 // Helper: mount an open drawer and return wrapper + cleanup div
 async function mountOpenDrawer(template: string, components: Record<string, object>) {
@@ -25,7 +25,7 @@ async function mountOpenDrawer(template: string, components: Record<string, obje
   return { wrapper, div }
 }
 
-describe('Drawer', () => {
+describe('drawer', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Drawer, {
       slots: { default: '<div>content</div>' },
@@ -58,7 +58,7 @@ describe('Drawer', () => {
   })
 })
 
-describe('DrawerTrigger', () => {
+describe('drawerTrigger', () => {
   it('renders slot content inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerTrigger },
@@ -77,7 +77,7 @@ describe('DrawerTrigger', () => {
   })
 })
 
-describe('DrawerHeader', () => {
+describe('drawerHeader', () => {
   it('has correct base classes', () => {
     const wrapper = mount(DrawerHeader)
     const div = wrapper.find('div')
@@ -103,7 +103,7 @@ describe('DrawerHeader', () => {
   })
 })
 
-describe('DrawerFooter', () => {
+describe('drawerFooter', () => {
   it('has correct base classes', () => {
     const wrapper = mount(DrawerFooter)
     const div = wrapper.find('div')
@@ -129,7 +129,7 @@ describe('DrawerFooter', () => {
   })
 })
 
-describe('DrawerTitle', () => {
+describe('drawerTitle', () => {
   it('renders with correct classes inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerTitle },
@@ -147,7 +147,8 @@ describe('DrawerTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Title')
     }
   })
@@ -161,7 +162,7 @@ describe('DrawerTitle', () => {
   })
 })
 
-describe('DrawerDescription', () => {
+describe('drawerDescription', () => {
   it('renders with correct classes inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerDescription },
@@ -179,7 +180,8 @@ describe('DrawerDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Description')
     }
   })
@@ -193,7 +195,7 @@ describe('DrawerDescription', () => {
   })
 })
 
-describe('DrawerOverlay', () => {
+describe('drawerOverlay', () => {
   it('renders without crashing inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerOverlay },
@@ -211,7 +213,7 @@ describe('DrawerOverlay', () => {
   })
 })
 
-describe('DrawerClose', () => {
+describe('drawerClose', () => {
   it('renders without crashing inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerClose },
@@ -229,7 +231,7 @@ describe('DrawerClose', () => {
   })
 })
 
-describe('DrawerContent', () => {
+describe('drawerContent', () => {
   it('renders without crashing inside Drawer context', () => {
     const wrapper = mount({
       components: { Drawer, DrawerContent },
@@ -239,7 +241,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies right side class by default', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -250,7 +252,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies left side class when side is left', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent side="left"><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -261,7 +263,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies correct size class for sm', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent size="sm"><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -272,7 +274,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies correct size class for md (default)', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -283,7 +285,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies correct size class for lg', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent size="lg"><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -294,7 +296,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies correct size class for xl', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent size="xl"><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -305,7 +307,7 @@ describe('DrawerContent', () => {
   })
 
   it('applies correct size class for full', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent size="full"><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -316,7 +318,7 @@ describe('DrawerContent', () => {
   })
 
   it('renders overlay when open', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -327,20 +329,20 @@ describe('DrawerContent', () => {
   })
 
   it('includes close button with sr-only text when open', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
     const html = document.body.innerHTML
-    const hasCloseButton =
-      html.includes('sr-only') || wrapper.findComponent(DrawerContent).exists()
+    const hasCloseButton
+      = html.includes('sr-only') || wrapper.findComponent(DrawerContent).exists()
     expect(hasCloseButton).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
   })
 
   it('has correct ARIA attributes when open', async () => {
-    const { wrapper, div } = await mountOpenDrawer(
+    const { wrapper } = await mountOpenDrawer(
       `<Drawer :open="true"><DrawerContent><p>Content</p></DrawerContent></Drawer>`,
       { Drawer, DrawerContent },
     )
@@ -351,7 +353,7 @@ describe('DrawerContent', () => {
   })
 })
 
-describe('Drawer — opens on trigger click', () => {
+describe('drawer — opens on trigger click', () => {
   it('shows content after trigger click', async () => {
     document.body.innerHTML = ''
     const div = document.createElement('div')
@@ -374,15 +376,15 @@ describe('Drawer — opens on trigger click', () => {
     await nextTick()
     const html = document.body.innerHTML
     // The drawer content should be in the DOM after trigger click
-    const hasContent =
-      html.includes('Drawer body') || wrapper.findComponent(DrawerContent).exists()
+    const hasContent
+      = html.includes('Drawer body') || wrapper.findComponent(DrawerContent).exists()
     expect(hasContent).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
   })
 })
 
-describe('Drawer — closes on Escape', () => {
+describe('drawer — closes on Escape', () => {
   it('dialog is dismissed by Escape key', async () => {
     document.body.innerHTML = ''
     const div = document.createElement('div')
@@ -404,7 +406,7 @@ describe('Drawer — closes on Escape', () => {
   })
 })
 
-describe('Drawer composition', () => {
+describe('drawer composition', () => {
   it('mounts with all sub-components without errors', () => {
     const wrapper = mount({
       components: {

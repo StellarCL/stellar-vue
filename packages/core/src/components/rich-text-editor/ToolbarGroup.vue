@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ToolbarGroupProps } from './rich-text-editor.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ToolbarGroupProps>()

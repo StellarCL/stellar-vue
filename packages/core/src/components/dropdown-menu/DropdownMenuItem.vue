@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { DropdownMenuItem as DropdownMenuItemPrimitive } from 'radix-vue'
 import type { DropdownMenuItemProps } from './dropdown-menu.types'
+import { DropdownMenuItem as DropdownMenuItemPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<DropdownMenuItemProps>(), {

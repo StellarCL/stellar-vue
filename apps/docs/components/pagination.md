@@ -22,13 +22,13 @@ pnpm add @stellar-vue-ui/core
 import {
   Pagination,
   PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationFirst,
-  PaginationLast,
   PaginationEllipsis,
+  PaginationFirst,
+  PaginationItem,
+  PaginationLast,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -41,11 +41,11 @@ import {
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationPrevious,
   PaginationNext,
-  PaginationEllipsis,
+  PaginationPrevious,
 } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
@@ -53,7 +53,7 @@ const page = ref(1)
 </script>
 
 <template>
-  <Pagination :total="100" :page-size="10" v-model:page="page">
+  <Pagination v-model:page="page" :total="100" :page-size="10">
     <PaginationContent>
       <PaginationItem>
         <PaginationPrevious />
@@ -83,7 +83,7 @@ Add first/last page navigation buttons:
 
 ```vue
 <template>
-  <Pagination :total="200" :page-size="10" v-model:page="page">
+  <Pagination v-model:page="page" :total="200" :page-size="10">
     <PaginationContent>
       <PaginationItem>
         <PaginationFirst />
@@ -110,7 +110,7 @@ Control how many page numbers are visible on each side of the current page:
 ```vue
 <template>
   <!-- Show 2 siblings on each side -->
-  <Pagination :total="100" :page-size="10" :sibling-count="2" v-model:page="page">
+  <Pagination v-model:page="page" :total="100" :page-size="10" :sibling-count="2">
     <!-- ... -->
   </Pagination>
 </template>

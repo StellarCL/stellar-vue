@@ -1,4 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
+import moduleDefinition, {
+  COMPONENT_FAMILIES,
+  CORE_COMPONENTS,
+  CORE_COMPOSABLES,
+  resolveAllowedComponents,
+} from '../src/module'
 
 /**
  * Since @nuxt/test-utils requires a full Nuxt context and is heavy for unit testing,
@@ -21,13 +28,6 @@ vi.mock('@nuxt/kit', () => ({
   addComponent: (...args: any[]) => mockAddComponent(...args),
   createResolver: (...args: any[]) => mockCreateResolver(...args),
 }))
-
-import moduleDefinition, {
-  CORE_COMPONENTS,
-  CORE_COMPOSABLES,
-  COMPONENT_FAMILIES,
-  resolveAllowedComponents,
-} from '../src/module'
 
 describe('@stellar-vue-ui/nuxt module', () => {
   let nuxtMock: any
@@ -293,13 +293,38 @@ describe('@stellar-vue-ui/nuxt module', () => {
       expect(families).toHaveLength(32)
       expect(families).toEqual(
         expect.arrayContaining([
-          'Button', 'Label', 'Separator', 'Badge', 'Skeleton',
-          'Alert', 'Card', 'Input', 'Textarea', 'Checkbox',
-          'RadioGroup', 'Switch', 'Select', 'Dialog', 'DropdownMenu',
-          'Form', 'Accordion', 'Tabs', 'Popover', 'Tooltip',
-          'Avatar', 'Progress', 'Slider', 'Breadcrumb', 'Pagination',
-          'Command', 'ContextMenu', 'Menubar', 'NavigationMenu',
-          'Stepper', 'Wizard', 'DataTable',
+          'Button',
+          'Label',
+          'Separator',
+          'Badge',
+          'Skeleton',
+          'Alert',
+          'Card',
+          'Input',
+          'Textarea',
+          'Checkbox',
+          'RadioGroup',
+          'Switch',
+          'Select',
+          'Dialog',
+          'DropdownMenu',
+          'Form',
+          'Accordion',
+          'Tabs',
+          'Popover',
+          'Tooltip',
+          'Avatar',
+          'Progress',
+          'Slider',
+          'Breadcrumb',
+          'Pagination',
+          'Command',
+          'ContextMenu',
+          'Menubar',
+          'NavigationMenu',
+          'Stepper',
+          'Wizard',
+          'DataTable',
         ]),
       )
     })
@@ -308,10 +333,20 @@ describe('@stellar-vue-ui/nuxt module', () => {
       expect(CORE_COMPOSABLES).toHaveLength(14)
       expect(CORE_COMPOSABLES).toEqual(
         expect.arrayContaining([
-          'useTheme', 'useThemeTokens', 'useForm', 'useFormField',
-          'useDisclosure', 'useToggle', 'useSteps', 'usePagination',
-          'useFocusTrap', 'useKeyboardNav', 'useDebounce',
-          'useMediaQuery', 'useClipboard', 'useDataTable',
+          'useTheme',
+          'useThemeTokens',
+          'useForm',
+          'useFormField',
+          'useDisclosure',
+          'useToggle',
+          'useSteps',
+          'usePagination',
+          'useFocusTrap',
+          'useKeyboardNav',
+          'useDebounce',
+          'useMediaQuery',
+          'useClipboard',
+          'useDataTable',
         ]),
       )
     })

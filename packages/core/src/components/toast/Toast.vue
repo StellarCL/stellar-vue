@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastRoot } from 'radix-vue'
 import type { ToastProps } from './toast.types'
-import { toastVariants } from './toast.variants'
+import { ToastRoot } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { toastVariants } from './toast.variants'
 
 const props = withDefaults(defineProps<ToastProps>(), {
   variant: 'default',

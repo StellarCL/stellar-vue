@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarItem as MenubarItemPrimitive } from 'radix-vue'
 import type { MenubarItemProps } from './menubar.types'
+import { MenubarItem as MenubarItemPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MenubarItemProps>(), {

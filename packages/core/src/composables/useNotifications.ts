@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue'
 import type { Notification } from '../components/notification-center/notification-center.types'
+import { computed, ref } from 'vue'
 
 export interface UseNotificationsOptions {
   /** Initial notifications */
@@ -10,11 +10,11 @@ export function useNotifications(options: UseNotificationsOptions = {}) {
   const notifications = ref<Notification[]>(options.initial ? [...options.initial] : [])
 
   const unreadCount = computed(() =>
-    notifications.value.filter((n) => !n.read).length,
+    notifications.value.filter(n => !n.read).length,
   )
 
   function markAsRead(id: string) {
-    const notification = notifications.value.find((n) => n.id === id)
+    const notification = notifications.value.find(n => n.id === id)
     if (notification) {
       notification.read = true
     }
@@ -27,7 +27,7 @@ export function useNotifications(options: UseNotificationsOptions = {}) {
   }
 
   function dismiss(id: string) {
-    notifications.value = notifications.value.filter((n) => n.id !== id)
+    notifications.value = notifications.value.filter(n => n.id !== id)
   }
 
   function add(notification: Omit<Notification, 'id'> & { id?: string }) {

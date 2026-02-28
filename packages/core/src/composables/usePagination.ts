@@ -1,4 +1,4 @@
-import { ref, readonly, computed, type Ref, isRef, unref } from 'vue'
+import { computed, isRef, readonly, ref, type Ref, unref } from 'vue'
 
 interface UsePaginationOptions {
   total: Ref<number> | number
@@ -21,15 +21,18 @@ export function usePagination(options: UsePaginationOptions) {
   })
 
   function next() {
-    if (page.value < totalPages.value) page.value++
+    if (page.value < totalPages.value)
+      page.value++
   }
 
   function prev() {
-    if (page.value > 1) page.value--
+    if (page.value > 1)
+      page.value--
   }
 
   function goTo(p: number) {
-    if (p >= 1 && p <= totalPages.value) page.value = p
+    if (p >= 1 && p <= totalPages.value)
+      page.value = p
   }
 
   return {

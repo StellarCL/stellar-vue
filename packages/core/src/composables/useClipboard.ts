@@ -1,4 +1,4 @@
-import { ref, readonly } from 'vue'
+import { readonly, ref } from 'vue'
 
 export function useClipboard() {
   const copied = ref(false)
@@ -6,15 +6,18 @@ export function useClipboard() {
   let timer: ReturnType<typeof setTimeout> | null = null
 
   async function copy(text: string) {
-    if (!isSupported) return
+    if (!isSupported)
+      return
     try {
       await navigator.clipboard.writeText(text)
       copied.value = true
-      if (timer) clearTimeout(timer)
+      if (timer)
+        clearTimeout(timer)
       timer = setTimeout(() => {
         copied.value = false
       }, 2000)
-    } catch {
+    }
+    catch {
       copied.value = false
     }
   }

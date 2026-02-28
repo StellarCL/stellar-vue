@@ -55,9 +55,9 @@ import { Button } from '@stellar-vue-ui/core'
 ### Theme Setup
 
 ```ts
-import { createApp } from 'vue'
 import { useTheme } from '@stellar-vue-ui/core'
 import { stellar } from '@stellar-vue-ui/theme'
+import { createApp } from 'vue'
 
 const app = createApp(App)
 
@@ -146,7 +146,9 @@ import { StellarTransition } from '@stellar-vue-ui/animations'
 
 <template>
   <StellarTransition preset="fadeUp">
-    <div v-if="show">Animated content</div>
+    <div v-if="show">
+      Animated content
+    </div>
   </StellarTransition>
 </template>
 ```

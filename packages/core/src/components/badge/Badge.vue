@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { BadgeProps } from './badge.types'
-import { badgeVariants } from './badge.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { badgeVariants } from './badge.variants'
 
 const props = withDefaults(defineProps<BadgeProps>(), {
   variant: 'default',

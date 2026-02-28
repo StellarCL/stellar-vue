@@ -19,7 +19,7 @@ pnpm add @stellar-vue-ui/core
 ## Import
 
 ```typescript
-import { Alert, AlertTitle, AlertDescription } from '@stellar-vue-ui/core'
+import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ import { Alert, AlertTitle, AlertDescription } from '@stellar-vue-ui/core'
 
 ```vue
 <script setup lang="ts">
-import { Alert, AlertTitle, AlertDescription } from '@stellar-vue-ui/core'
+import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -95,7 +95,7 @@ Place an SVG icon before the title to create an icon + text alert. The alert's C
 ```vue
 <template>
   <Alert variant="destructive">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="15" y1="9" x2="9" y2="15" /><line x1="9" y1="9" x2="15" y2="15" /></svg>
     <AlertTitle>Error</AlertTitle>
     <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
   </Alert>

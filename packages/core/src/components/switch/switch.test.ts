@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Switch from './Switch.vue'
 
-describe('Switch', () => {
+describe('switch', () => {
   it('renders unchecked by default', () => {
     const wrapper = mount(Switch)
     const root = wrapper.find('[role="switch"]')
@@ -87,7 +87,7 @@ describe('Switch', () => {
   it('v-model updates when toggled', async () => {
     const wrapper = mount(Switch, {
       props: {
-        modelValue: false,
+        'modelValue': false,
         'onUpdate:modelValue': (val: boolean) => wrapper.setProps({ modelValue: val }),
       },
     })

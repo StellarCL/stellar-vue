@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue'
 import type { FileUploadTriggerProps } from './file-upload.types'
+import { computed, inject, ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<FileUploadTriggerProps>(), {
@@ -34,11 +34,13 @@ function openFilePicker() {
 function handleChange(event: Event) {
   const input = event.target as HTMLInputElement
   const selected = Array.from(input.files ?? [])
-  if (selected.length === 0) return
+  if (selected.length === 0)
+    return
 
   if (context) {
     context.addFiles(selected)
-  } else {
+  }
+  else {
     emit('filesSelected', selected)
   }
 
@@ -58,7 +60,7 @@ function handleChange(event: Event) {
       :multiple="multipleValue"
       :disabled="isDisabled"
       @change="handleChange"
-    />
+    >
     <slot :open="openFilePicker" :disabled="isDisabled">
       <button
         type="button"

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Checkbox, Label } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const checked = ref<boolean | 'indeterminate'>(false)
 const agreed = ref(false)
@@ -32,7 +32,9 @@ const items = [
           <Checkbox id="basic-checkbox" v-model:checked="checked" />
           <Label for="basic-checkbox">Accept terms and conditions</Label>
         </div>
-        <p class="mt-2 text-xs text-muted-foreground">State: {{ checked }}</p>
+        <p class="mt-2 text-xs text-muted-foreground">
+          State: {{ checked }}
+        </p>
       </DemoSection>
 
       <!-- States -->
@@ -47,7 +49,7 @@ const items = [
             <Label for="cb-checked">Checked (default)</Label>
           </div>
           <div class="flex items-center gap-2">
-            <Checkbox id="cb-indeterminate" :checked="'indeterminate'" />
+            <Checkbox id="cb-indeterminate" checked="indeterminate" />
             <Label for="cb-indeterminate">Indeterminate</Label>
           </div>
           <div class="flex items-center gap-2">

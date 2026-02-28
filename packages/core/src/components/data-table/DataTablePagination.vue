@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { DataTablePaginationProps } from './data-table.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 import {
   Pagination,
   PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationPrevious,
-  PaginationNext,
-  PaginationFirst,
-  PaginationLast,
   PaginationEllipsis,
+  PaginationFirst,
+  PaginationItem,
+  PaginationLast,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from '../pagination'
 
 const props = defineProps<DataTablePaginationProps>()

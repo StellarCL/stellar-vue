@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { CommandDialogProps } from './command.types'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { cn } from '../../utils'
 import {
   Dialog,
   DialogContent,
 } from '../dialog'
 import Command from './Command.vue'
-import type { CommandDialogProps } from './command.types'
-import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CommandDialogProps>(), {
   open: false,
@@ -41,7 +41,8 @@ function handleGlobalKeydown(event: KeyboardEvent): void {
     event.preventDefault()
     if (isOpen.value) {
       close()
-    } else {
+    }
+    else {
       open()
     }
   }

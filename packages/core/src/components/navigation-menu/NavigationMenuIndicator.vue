@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { NavigationMenuIndicator as NavigationMenuIndicatorPrimitive } from 'radix-vue'
-import { cn } from '../../utils'
 import type { NavigationMenuIndicatorProps } from './navigation-menu.types'
+import { NavigationMenuIndicator as NavigationMenuIndicatorPrimitive } from 'radix-vue'
+import { computed } from 'vue'
+import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<NavigationMenuIndicatorProps>(), {})
 

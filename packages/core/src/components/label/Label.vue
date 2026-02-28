@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Label as LabelPrimitive } from 'radix-vue'
 import type { LabelProps } from './label.types'
+import { Label as LabelPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<LabelProps>(), {
@@ -17,7 +17,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <LabelPrimitive :for="for" :class="classes">
+  <LabelPrimitive :for="$props.for" :class="classes">
     <slot />
     <span v-if="required" class="text-destructive"> *</span>
   </LabelPrimitive>

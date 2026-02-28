@@ -1,4 +1,4 @@
-import { ref, readonly, computed, watch, onMounted } from 'vue'
+import { onMounted, readonly, ref, watch } from 'vue'
 
 const THEME_NAMES = ['stellar', 'sirius', 'polaris', 'antares', 'vega', 'aldebaran'] as const
 type ThemeName = typeof THEME_NAMES[number]
@@ -37,31 +37,38 @@ export function useTheme(options: UseThemeOptions = {}) {
     storage = 'localStorage',
     key = 'stellar-theme',
     sync = true,
+    // eslint-disable-next-line unused-imports/no-unused-vars
     defaultTheme = 'stellar',
   } = options
 
   const darkKey = `${key}-dark`
 
   function getStorage(): Storage | null {
-    if (typeof window === 'undefined') return null
-    if (storage === 'localStorage') return window.localStorage
-    if (storage === 'sessionStorage') return window.sessionStorage
+    if (typeof window === 'undefined')
+      return null
+    if (storage === 'localStorage')
+      return window.localStorage
+    if (storage === 'sessionStorage')
+      return window.sessionStorage
     return null
   }
 
   function applyTheme(name: string): void {
-    if (typeof document === 'undefined') return
+    if (typeof document === 'undefined')
+      return
     document.documentElement.setAttribute('data-theme', name)
   }
 
   function applyDarkMode(dark: boolean): void {
-    if (typeof document === 'undefined') return
+    if (typeof document === 'undefined')
+      return
     document.documentElement.classList.toggle('dark', dark)
   }
 
   function loadFromStorage(): void {
     const store = getStorage()
-    if (!store) return
+    if (!store)
+      return
 
     const savedTheme = store.getItem(key)
     if (savedTheme && THEME_NAMES.includes(savedTheme as ThemeName)) {
@@ -71,20 +78,23 @@ export function useTheme(options: UseThemeOptions = {}) {
     const savedDark = store.getItem(darkKey)
     if (savedDark !== null) {
       isDark.value = savedDark === 'true'
-    } else if (typeof window !== 'undefined') {
+    }
+    else if (typeof window !== 'undefined') {
       isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
     }
   }
 
   function saveToStorage(): void {
     const store = getStorage()
-    if (!store) return
+    if (!store)
+      return
     store.setItem(key, currentTheme.value)
     store.setItem(darkKey, String(isDark.value))
   }
 
   function setTheme(name: string): void {
-    if (!THEME_NAMES.includes(name as ThemeName)) return
+    if (!THEME_NAMES.includes(name as ThemeName))
+      return
     currentTheme.value = name
     applyTheme(name)
     saveToStorage()

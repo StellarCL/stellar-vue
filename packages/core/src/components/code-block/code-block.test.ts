@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import CodeBlock from './CodeBlock.vue'
-import CodeBlockHeader from './CodeBlockHeader.vue'
 import CodeBlockContent from './CodeBlockContent.vue'
+import CodeBlockHeader from './CodeBlockHeader.vue'
 
-describe('CodeBlock', () => {
+describe('codeBlock', () => {
   it('renders as a container', () => {
     const wrapper = mount(CodeBlock, {
       props: { code: 'console.log("hello")' },
@@ -24,7 +24,7 @@ describe('CodeBlock', () => {
   })
 })
 
-describe('CodeBlockHeader', () => {
+describe('codeBlockHeader', () => {
   it('renders language indicator', () => {
     const wrapper = mount({
       components: { CodeBlock, CodeBlockHeader },
@@ -78,7 +78,7 @@ describe('CodeBlockHeader', () => {
   })
 })
 
-describe('CodeBlockContent', () => {
+describe('codeBlockContent', () => {
   it('renders code text', () => {
     const wrapper = mount({
       components: { CodeBlock, CodeBlockContent },
@@ -150,7 +150,7 @@ describe('CodeBlockContent', () => {
   })
 })
 
-describe('CodeBlock composition', () => {
+describe('codeBlock composition', () => {
   it('renders full code block with header and content', () => {
     const code = 'const greeting = "Hello, World!";\nconsole.log(greeting);'
     const wrapper = mount({

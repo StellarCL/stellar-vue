@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { DropdownMenuSubTrigger as DropdownMenuSubTriggerPrimitive } from 'radix-vue'
 import type { DropdownMenuSubTriggerProps } from './dropdown-menu.types'
+import { DropdownMenuSubTrigger as DropdownMenuSubTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<DropdownMenuSubTriggerProps>(), {

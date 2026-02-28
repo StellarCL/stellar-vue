@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { readLockFile } from '../utils/config'
+import { divider, header, newLine, styles } from '../utils/prompts'
 import { getComponent } from '../utils/registry'
-import { styles, header, newLine, divider } from '../utils/prompts'
 
 interface PackageJson {
   dependencies?: Record<string, string>
@@ -12,17 +12,19 @@ interface PackageJson {
 
 function readPackageJson(cwd: string): PackageJson | null {
   const pkgPath = path.join(cwd, 'package.json')
-  if (!fs.existsSync(pkgPath)) return null
+  if (!fs.existsSync(pkgPath))
+    return null
 
   try {
     const raw = fs.readFileSync(pkgPath, 'utf-8')
     return JSON.parse(raw) as PackageJson
-  } catch {
+  }
+  catch {
     return null
   }
 }
 
-export async function depsCommand(options: { cwd?: string; update?: boolean }): Promise<void> {
+export async function depsCommand(options: { cwd?: string, update?: boolean }): Promise<void> {
   const cwd = path.resolve(options.cwd ?? process.cwd())
 
   header('Stellar UI - Dependency Check')
@@ -43,7 +45,8 @@ export async function depsCommand(options: { cwd?: string; update?: boolean }): 
 
   for (const componentName of installedComponents) {
     const entry = getComponent(componentName)
-    if (!entry) continue
+    if (!entry)
+      continue
 
     for (const [pkg, version] of Object.entries(entry.dependencies)) {
       if (!requiredDeps.has(pkg)) {
@@ -67,12 +70,13 @@ export async function depsCommand(options: { cwd?: string; update?: boolean }): 
   }
 
   const installedDeps: string[] = []
-  const missingDeps: Array<{ name: string; version: string }> = []
+  const missingDeps: Array<{ name: string, version: string }> = []
 
   for (const [pkg, version] of requiredDeps) {
     if (projectDeps[pkg] !== undefined) {
       installedDeps.push(pkg)
-    } else {
+    }
+    else {
       missingDeps.push({ name: pkg, version })
     }
   }
@@ -93,7 +97,8 @@ export async function depsCommand(options: { cwd?: string; update?: boolean }): 
     for (const dep of installedDeps) {
       console.log(`  ${styles.success(dep)}`)
     }
-  } else {
+  }
+  else {
     console.log(`  ${styles.dim('none')}`)
   }
   newLine()
@@ -111,11 +116,13 @@ export async function depsCommand(options: { cwd?: string; update?: boolean }): 
       console.log(styles.highlight('Install missing dependencies:'))
       console.log(`  ${styles.dim(installCmd)}`)
       newLine()
-    } else {
+    }
+    else {
       console.log(styles.dim('Run with --update to see the install command for missing deps.'))
       newLine()
     }
-  } else {
+  }
+  else {
     console.log(styles.success('All dependencies are installed.'))
     newLine()
   }

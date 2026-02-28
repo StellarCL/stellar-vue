@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { TooltipTrigger } from 'radix-vue'
 import type { TooltipTriggerProps } from './tooltip.types'
+import { TooltipTrigger } from 'radix-vue'
 
 const props = withDefaults(defineProps<TooltipTriggerProps>(), {
   asChild: false,

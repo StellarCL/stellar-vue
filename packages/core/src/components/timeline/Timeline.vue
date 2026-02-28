@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, provide } from 'vue'
 import type { TimelineProps } from './timeline.types'
+import { computed, provide } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<TimelineProps>(), {

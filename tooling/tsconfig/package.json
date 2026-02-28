@@ -3,5 +3,5 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "files": ["base.json", "vue.json", "nuxt.json"]
+  "files": ["base.json", "nuxt.json", "vue.json"]
 }

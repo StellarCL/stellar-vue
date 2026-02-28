@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { AvatarRoot } from 'radix-vue'
 import type { AvatarProps } from './avatar.types'
-import { avatarVariants } from './avatar.variants'
+import { AvatarRoot } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { avatarVariants } from './avatar.variants'
 
 const props = withDefaults(defineProps<AvatarProps>(), {
   size: 'md',

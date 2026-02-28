@@ -1,14 +1,14 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ChartContainer from './ChartContainer.vue'
-import ChartTooltip from './ChartTooltip.vue'
-import ChartLegend from './ChartLegend.vue'
+import { describe, expect, it } from 'vitest'
 import { useChart } from '../../composables/useChart'
+import ChartContainer from './ChartContainer.vue'
+import ChartLegend from './ChartLegend.vue'
+import ChartTooltip from './ChartTooltip.vue'
 
 // ---------------------------------------------------------------------------
 // ChartContainer
 // ---------------------------------------------------------------------------
-describe('ChartContainer', () => {
+describe('chartContainer', () => {
   it('renders with data-chart-container attribute', () => {
     const wrapper = mount(ChartContainer)
     expect(wrapper.find('[data-chart-container]').exists()).toBe(true)
@@ -46,7 +46,7 @@ describe('ChartContainer', () => {
 // ---------------------------------------------------------------------------
 // ChartTooltip
 // ---------------------------------------------------------------------------
-describe('ChartTooltip', () => {
+describe('chartTooltip', () => {
   it('renders with data-chart-tooltip attribute', () => {
     const wrapper = mount(ChartTooltip)
     expect(wrapper.find('[data-chart-tooltip]').exists()).toBe(true)
@@ -82,7 +82,7 @@ describe('ChartTooltip', () => {
 // ---------------------------------------------------------------------------
 // ChartLegend
 // ---------------------------------------------------------------------------
-describe('ChartLegend', () => {
+describe('chartLegend', () => {
   it('renders with data-chart-legend attribute', () => {
     const wrapper = mount(ChartLegend)
     expect(wrapper.find('[data-chart-legend]').exists()).toBe(true)

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectGroup as SelectGroupPrimitive } from 'radix-vue'
 import type { SelectGroupProps } from './select.types'
+import { SelectGroup as SelectGroupPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SelectGroupProps>()

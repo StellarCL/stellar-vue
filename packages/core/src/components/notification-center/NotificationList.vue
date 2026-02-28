@@ -1,17 +1,17 @@
 <script setup lang="ts">
+import type { Notification, NotificationListProps } from './notification-center.types'
 import { computed } from 'vue'
-import type { NotificationListProps, Notification } from './notification-center.types'
 import { cn } from '../../utils'
-import NotificationGroup from './NotificationGroup.vue'
 import NotificationEmpty from './NotificationEmpty.vue'
+import NotificationGroup from './NotificationGroup.vue'
 
 const props = defineProps<NotificationListProps>()
 
 const emit = defineEmits<{
-  'mark-read': [id: string]
-  'mark-all-read': []
-  'dismiss': [id: string]
-  'action': [id: string]
+  markRead: [id: string]
+  markAllRead: []
+  dismiss: [id: string]
+  action: [id: string]
 }>()
 
 const classes = computed(() =>
@@ -26,9 +26,9 @@ interface GroupedNotifications {
 function isToday(date: Date): boolean {
   const today = new Date()
   return (
-    date.getFullYear() === today.getFullYear() &&
-    date.getMonth() === today.getMonth() &&
-    date.getDate() === today.getDate()
+    date.getFullYear() === today.getFullYear()
+    && date.getMonth() === today.getMonth()
+    && date.getDate() === today.getDate()
   )
 }
 
@@ -36,9 +36,9 @@ function isYesterday(date: Date): boolean {
   const yesterday = new Date()
   yesterday.setDate(yesterday.getDate() - 1)
   return (
-    date.getFullYear() === yesterday.getFullYear() &&
-    date.getMonth() === yesterday.getMonth() &&
-    date.getDate() === yesterday.getDate()
+    date.getFullYear() === yesterday.getFullYear()
+    && date.getMonth() === yesterday.getMonth()
+    && date.getDate() === yesterday.getDate()
   )
 }
 
@@ -55,23 +55,28 @@ const groupedNotifications = computed<GroupedNotifications[]>(() => {
   for (const notification of sorted) {
     if (isToday(notification.timestamp)) {
       today.push(notification)
-    } else if (isYesterday(notification.timestamp)) {
+    }
+    else if (isYesterday(notification.timestamp)) {
       yesterday.push(notification)
-    } else {
+    }
+    else {
       older.push(notification)
     }
   }
 
   const groups: GroupedNotifications[] = []
-  if (today.length > 0) groups.push({ label: 'Today', notifications: today })
-  if (yesterday.length > 0) groups.push({ label: 'Yesterday', notifications: yesterday })
-  if (older.length > 0) groups.push({ label: 'Older', notifications: older })
+  if (today.length > 0)
+    groups.push({ label: 'Today', notifications: today })
+  if (yesterday.length > 0)
+    groups.push({ label: 'Yesterday', notifications: yesterday })
+  if (older.length > 0)
+    groups.push({ label: 'Older', notifications: older })
 
   return groups
 })
 
 const unreadCount = computed(() =>
-  props.notifications.filter((n) => !n.read).length,
+  props.notifications.filter(n => !n.read).length,
 )
 </script>
 
@@ -79,13 +84,15 @@ const unreadCount = computed(() =>
   <div :class="classes" data-testid="notification-list">
     <!-- Header -->
     <div class="flex items-center justify-between border-b border-border px-4 py-2">
-      <h3 class="text-sm font-semibold">Notifications</h3>
+      <h3 class="text-sm font-semibold">
+        Notifications
+      </h3>
       <button
         v-if="unreadCount > 0"
         type="button"
         class="text-xs font-medium text-primary hover:underline"
         data-testid="mark-all-read-button"
-        @click="emit('mark-all-read')"
+        @click="emit('markAllRead')"
       >
         Mark all as read
       </button>
@@ -101,7 +108,7 @@ const unreadCount = computed(() =>
         :key="group.label"
         :label="group.label"
         :notifications="group.notifications"
-        @mark-read="emit('mark-read', $event)"
+        @mark-read="emit('markRead', $event)"
         @dismiss="emit('dismiss', $event)"
         @action="emit('action', $event)"
       />

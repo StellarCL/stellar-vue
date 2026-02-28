@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DropdownMenuTrigger as DropdownMenuTriggerPrimitive } from 'radix-vue'
 import type { DropdownMenuTriggerProps } from './dropdown-menu.types'
+import { DropdownMenuTrigger as DropdownMenuTriggerPrimitive } from 'radix-vue'
 
 const props = withDefaults(defineProps<DropdownMenuTriggerProps>(), {
   asChild: false,

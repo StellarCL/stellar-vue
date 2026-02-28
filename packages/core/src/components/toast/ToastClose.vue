@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ToastClose } from 'radix-vue'
 import type { ToastCloseProps } from './toast.types'
+import { ToastClose } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ToastCloseProps>()

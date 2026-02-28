@@ -1,4 +1,4 @@
-import { ref, readonly, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 
 export interface UseMotionOptions {
   duration?: number
@@ -23,7 +23,7 @@ export function useMotion(defaults?: UseMotionOptions): UseMotionReturn {
   async function animate(
     el: HTMLElement,
     keyframes: Keyframe[] | PropertyIndexedKeyframes,
-    options?: UseMotionOptions
+    options?: UseMotionOptions,
   ): Promise<void> {
     // Cancel any running animation before starting a new one
     if (currentAnimation) {
@@ -44,9 +44,11 @@ export function useMotion(defaults?: UseMotionOptions): UseMotionReturn {
 
     try {
       await animation.finished
-    } catch {
+    }
+    catch {
       // Animation was cancelled — do not throw
-    } finally {
+    }
+    finally {
       if (currentAnimation === animation) {
         currentAnimation = null
         isAnimating.value = false

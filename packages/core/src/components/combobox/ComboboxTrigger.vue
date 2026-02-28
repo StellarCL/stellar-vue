@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ComboboxTrigger as ComboboxTriggerPrimitive } from 'radix-vue'
 import type { ComboboxTriggerProps } from './combobox.types'
+import { ComboboxTrigger as ComboboxTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ComboboxTriggerProps>()

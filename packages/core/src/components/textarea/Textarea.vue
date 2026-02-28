@@ -1,13 +1,8 @@
-<script lang="ts">
-let idCounter = 0
-const generateId = () => `stellar-textarea-${idCounter++}`
-</script>
-
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { TextareaProps } from './textarea.types'
-import { textareaVariants } from './textarea.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { textareaVariants } from './textarea.variants'
 
 const props = withDefaults(defineProps<TextareaProps>(), {
   disabled: false,
@@ -19,7 +14,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
 
 const model = defineModel<string>()
 
-const generatedId = generateId()
+const generatedId = `stellar-textarea-${Math.random().toString(36).slice(2, 9)}`
 const textareaId = computed(() => props.id ?? generatedId)
 
 const classes = computed(() =>

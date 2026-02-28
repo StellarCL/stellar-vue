@@ -1,11 +1,11 @@
+import type { StellarConfig } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
-import prompts from 'prompts'
 import ora from 'ora'
-import type { StellarConfig } from '../types'
+import prompts from 'prompts'
 import { defineConfig } from '../types'
 import { DEFAULT_CONFIG, findConfig, writeConfig, writeLockFile } from '../utils/config'
-import { styles, header, newLine } from '../utils/prompts'
+import { header, newLine, styles } from '../utils/prompts'
 
 const THEMES = ['stellar', 'sirius', 'polaris', 'antares', 'vega', 'aldebaran'] as const
 
@@ -114,7 +114,8 @@ export async function initCommand(options: InitOptions): Promise<void> {
   if (existingConfigDir) {
     if (options.yes) {
       console.log(styles.warning('Existing config found. Overwriting with defaults.'))
-    } else {
+    }
+    else {
       const { overwrite } = await prompts({
         type: 'confirm',
         name: 'overwrite',
@@ -140,7 +141,8 @@ export async function initCommand(options: InitOptions): Promise<void> {
     config = defineConfig({
       framework: detectedFramework,
     })
-  } else {
+  }
+  else {
     // 3. Interactive prompts
     const response = await prompts([
       {
@@ -257,7 +259,8 @@ export async function initCommand(options: InitOptions): Promise<void> {
     console.log(styles.dim(`  2. Import in your app and start building`))
     console.log(styles.dim(`  3. Customize theme in ${config.cssVariables}`))
     newLine()
-  } catch (error) {
+  }
+  catch (error) {
     spinner.fail('Failed to initialize Stellar UI')
     const message = error instanceof Error ? error.message : String(error)
     console.error(styles.error(message))

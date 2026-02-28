@@ -2,7 +2,7 @@ name: Ecosystem CI
 
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Every Monday at 6am UTC
+    - cron: '0 6 * * 1' # Every Monday at 6am UTC
   workflow_dispatch:
 
 jobs:
@@ -13,11 +13,11 @@ jobs:
       matrix:
         include:
           - name: Vue Latest
-            override: 'vue@latest'
+            override: vue@latest
           - name: Nuxt Latest
-            override: 'nuxt@latest'
+            override: nuxt@latest
           - name: Radix Vue Latest
-            override: 'radix-vue@latest'
+            override: radix-vue@latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

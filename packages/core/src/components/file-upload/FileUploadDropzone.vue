@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref, computed } from 'vue'
 import type { FileUploadDropzoneProps } from './file-upload.types'
+import { computed, inject, ref } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<FileUploadDropzoneProps>(), {
@@ -25,7 +25,8 @@ const context = inject<{
 const localIsDragging = ref(false)
 
 const isDragging = computed(() => {
-  if (context) return context.isDragging.value
+  if (context)
+    return context.isDragging.value
   return localIsDragging.value
 })
 
@@ -44,45 +45,55 @@ const dropzoneClasses = computed(() =>
 )
 
 function handleDragEnter(event: DragEvent) {
-  if (isDisabled.value) return
+  if (isDisabled.value)
+    return
   event.preventDefault()
   localIsDragging.value = true
-  if (context) context.isDragging.value = true
+  if (context)
+    context.isDragging.value = true
 }
 
 function handleDragOver(event: DragEvent) {
-  if (isDisabled.value) return
+  if (isDisabled.value)
+    return
   event.preventDefault()
 }
 
 function handleDragLeave(event: DragEvent) {
   const target = event.currentTarget as HTMLElement
   const related = event.relatedTarget as Node | null
-  if (related && target.contains(related)) return
+  if (related && target.contains(related))
+    return
   localIsDragging.value = false
-  if (context) context.isDragging.value = false
+  if (context)
+    context.isDragging.value = false
 }
 
 function handleDrop(event: DragEvent) {
-  if (isDisabled.value) return
+  if (isDisabled.value)
+    return
   event.preventDefault()
   localIsDragging.value = false
-  if (context) context.isDragging.value = false
+  if (context)
+    context.isDragging.value = false
 
   const droppedFiles = Array.from(event.dataTransfer?.files ?? [])
-  if (droppedFiles.length === 0) return
+  if (droppedFiles.length === 0)
+    return
 
   const filesToAdd = props.multiple ?? context?.multiple ? droppedFiles : droppedFiles.slice(0, 1)
 
   if (context) {
     context.addFiles(filesToAdd)
-  } else {
+  }
+  else {
     emit('filesDropped', filesToAdd)
   }
 }
 
 function handleClick() {
-  if (isDisabled.value) return
+  if (isDisabled.value)
+    return
   // FileUploadTrigger handles the actual input click; clicking the dropzone
   // triggers the hidden file input if one exists inside via slot
   const input = document.querySelector<HTMLInputElement>('[data-stellar-file-input]')
@@ -125,8 +136,12 @@ function handleClick() {
           <span v-if="isDragging">Drop files here</span>
           <span v-else>Drag &amp; drop files here, or click to browse</span>
         </p>
-        <p v-if="accept" class="text-xs">Accepted: {{ accept }}</p>
-        <p v-if="maxSize" class="text-xs">Max size: {{ (maxSize / 1024 / 1024).toFixed(1) }} MB</p>
+        <p v-if="accept" class="text-xs">
+          Accepted: {{ accept }}
+        </p>
+        <p v-if="maxSize" class="text-xs">
+          Max size: {{ (maxSize / 1024 / 1024).toFixed(1) }} MB
+        </p>
       </div>
     </slot>
   </div>

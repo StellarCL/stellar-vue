@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
+  Badge,
   Button,
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
   Input,
   Label,
-  Badge,
   Separator,
+  useTheme,
 } from '@stellar-vue-ui/core'
-import { useTheme } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const { theme, isDark, setTheme, toggleDark, themes } = useTheme({ defaultTheme: 'stellar' })
 
@@ -39,11 +39,17 @@ function reset() {
     <!-- Header -->
     <header class="mb-10 flex items-center justify-between">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight">Stellar Vue UI</h1>
-        <p class="text-muted-foreground mt-1 text-sm">Basic Vite + Vue 3 example</p>
+        <h1 class="text-3xl font-bold tracking-tight">
+          Stellar Vue UI
+        </h1>
+        <p class="text-muted-foreground mt-1 text-sm">
+          Basic Vite + Vue 3 example
+        </p>
       </div>
       <div class="flex items-center gap-3">
-        <Badge variant="secondary">{{ theme }}</Badge>
+        <Badge variant="secondary">
+          {{ theme }}
+        </Badge>
         <Button size="sm" variant="outline" @click="toggleDark">
           {{ isDark ? 'Light Mode' : 'Dark Mode' }}
         </Button>
@@ -54,7 +60,9 @@ function reset() {
 
     <!-- Theme switcher -->
     <section class="mb-10">
-      <h2 class="mb-4 text-xl font-semibold">Themes</h2>
+      <h2 class="mb-4 text-xl font-semibold">
+        Themes
+      </h2>
       <div class="flex flex-wrap gap-2">
         <Button
           v-for="t in themes"
@@ -77,17 +85,33 @@ function reset() {
           <CardDescription>All button variants and sizes</CardDescription>
         </CardHeader>
         <CardContent class="flex flex-wrap gap-2">
-          <Button variant="default">Default</Button>
-          <Button variant="secondary">Secondary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Destructive</Button>
+          <Button variant="default">
+            Default
+          </Button>
+          <Button variant="secondary">
+            Secondary
+          </Button>
+          <Button variant="outline">
+            Outline
+          </Button>
+          <Button variant="ghost">
+            Ghost
+          </Button>
+          <Button variant="destructive">
+            Destructive
+          </Button>
         </CardContent>
         <CardFooter>
           <div class="flex gap-2">
-            <Button size="sm">Small</Button>
-            <Button size="default">Medium</Button>
-            <Button size="lg">Large</Button>
+            <Button size="sm">
+              Small
+            </Button>
+            <Button size="default">
+              Medium
+            </Button>
+            <Button size="lg">
+              Large
+            </Button>
           </div>
         </CardFooter>
       </Card>
@@ -100,9 +124,15 @@ function reset() {
         </CardHeader>
         <CardContent class="flex flex-wrap gap-2">
           <Badge>Default</Badge>
-          <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="outline">Outline</Badge>
-          <Badge variant="destructive">Destructive</Badge>
+          <Badge variant="secondary">
+            Secondary
+          </Badge>
+          <Badge variant="outline">
+            Outline
+          </Badge>
+          <Badge variant="destructive">
+            Destructive
+          </Badge>
         </CardContent>
       </Card>
 
@@ -114,9 +144,11 @@ function reset() {
         </CardHeader>
         <CardContent>
           <div v-if="submitted" class="space-y-2">
-            <p class="text-green-600 font-medium">Submitted successfully!</p>
+            <p class="text-green-600 font-medium">
+              Submitted successfully!
+            </p>
             <p class="text-muted-foreground text-sm">
-              Name: <strong>{{ name }}</strong><br />
+              Name: <strong>{{ name }}</strong><br>
               Email: <strong>{{ email }}</strong>
             </p>
           </div>
@@ -140,11 +172,15 @@ function reset() {
                 required
               />
             </div>
-            <Button type="submit" class="w-full">Submit</Button>
+            <Button type="submit" class="w-full">
+              Submit
+            </Button>
           </form>
         </CardContent>
         <CardFooter v-if="submitted">
-          <Button variant="outline" class="w-full" @click="reset">Reset</Button>
+          <Button variant="outline" class="w-full" @click="reset">
+            Reset
+          </Button>
         </CardFooter>
       </Card>
     </div>

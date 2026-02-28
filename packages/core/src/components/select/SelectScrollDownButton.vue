@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SelectScrollDownButton as SelectScrollDownButtonPrimitive } from 'radix-vue'
 import type { SelectScrollDownButtonProps } from './select.types'
+import { SelectScrollDownButton as SelectScrollDownButtonPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SelectScrollDownButtonProps>()

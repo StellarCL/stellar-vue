@@ -21,11 +21,11 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -35,8 +35,7 @@ import {
 
 ```vue
 <script setup lang="ts">
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
+import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -105,7 +104,9 @@ The `CardTitle` component renders as `<h3>` by default. Use the `as` prop to cha
 <template>
   <Card>
     <CardHeader>
-      <CardTitle as="h2">Section Title</CardTitle>
+      <CardTitle as="h2">
+        Section Title
+      </CardTitle>
       <CardDescription>Using h2 for a section-level heading.</CardDescription>
     </CardHeader>
     <CardContent>Content here.</CardContent>

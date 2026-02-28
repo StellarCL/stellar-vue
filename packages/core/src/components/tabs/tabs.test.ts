@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Tabs from './Tabs.vue'
+import TabsContent from './TabsContent.vue'
 import TabsList from './TabsList.vue'
 import TabsTrigger from './TabsTrigger.vue'
-import TabsContent from './TabsContent.vue'
 
-describe('TabsList', () => {
+describe('tabsList', () => {
   it('renders TabsList with triggers', () => {
     const wrapper = mount({
       components: { Tabs, TabsList, TabsTrigger },
@@ -57,7 +57,7 @@ describe('TabsList', () => {
   })
 })
 
-describe('TabsTrigger', () => {
+describe('tabsTrigger', () => {
   it('has correct base classes', () => {
     const wrapper = mount({
       components: { Tabs, TabsList, TabsTrigger },
@@ -112,7 +112,7 @@ describe('TabsTrigger', () => {
   })
 })
 
-describe('TabsContent', () => {
+describe('tabsContent', () => {
   it('renders slot content', () => {
     const wrapper = mount({
       components: { Tabs, TabsList, TabsTrigger, TabsContent },
@@ -165,7 +165,7 @@ describe('TabsContent', () => {
   })
 })
 
-describe('Tabs active state', () => {
+describe('tabs active state', () => {
   it('active trigger has data-[state=active] attribute', () => {
     const wrapper = mount({
       components: { Tabs, TabsList, TabsTrigger },
@@ -204,7 +204,7 @@ describe('Tabs active state', () => {
   })
 })
 
-describe('Tabs composition', () => {
+describe('tabs composition', () => {
   it('full Tabs composition renders list, triggers, and content panels', () => {
     const wrapper = mount({
       components: { Tabs, TabsList, TabsTrigger, TabsContent },

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Skeleton, Card, CardHeader, CardContent, CardFooter } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { Card, CardContent, CardFooter, CardHeader, Skeleton } from '@stellar-vue-ui/core'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>

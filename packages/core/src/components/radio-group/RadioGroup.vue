@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RadioGroupRoot } from 'radix-vue'
 import type { RadioGroupProps } from './radio-group.types'
+import { RadioGroupRoot } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<RadioGroupProps>(), {

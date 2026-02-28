@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ContextMenuPortal, ContextMenuSubContent as ContextMenuSubContentPrimitive } from 'radix-vue'
 import type { ContextMenuSubContentProps } from './context-menu.types'
+import { ContextMenuPortal, ContextMenuSubContent as ContextMenuSubContentPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<ContextMenuSubContentProps>()

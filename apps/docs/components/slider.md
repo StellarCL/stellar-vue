@@ -45,8 +45,8 @@ const value = ref([50])
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Slider } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const volume = ref([75])
 </script>
@@ -68,8 +68,8 @@ Pass an array with two values to create a range slider with two thumbs:
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Slider } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const priceRange = ref([20, 80])
 </script>
@@ -89,8 +89,8 @@ const priceRange = ref([20, 80])
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Slider } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const value = ref([25])
 </script>
@@ -112,8 +112,8 @@ const value = ref([25])
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Slider } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const value = ref([50])
 </script>

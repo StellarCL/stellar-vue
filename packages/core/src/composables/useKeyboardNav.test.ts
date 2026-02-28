@@ -28,7 +28,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(0)
   })
 
-  it('ArrowDown increments activeIndex', () => {
+  it('arrowDown increments activeIndex', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items })
@@ -37,7 +37,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(1)
   })
 
-  it('ArrowDown increments to last item', () => {
+  it('arrowDown increments to last item', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items })
@@ -47,7 +47,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(2)
   })
 
-  it('ArrowDown loops from last to first when loop is true', () => {
+  it('arrowDown loops from last to first when loop is true', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items, loop: true })
@@ -58,7 +58,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(0)
   })
 
-  it('ArrowDown does not loop when loop is false', () => {
+  it('arrowDown does not loop when loop is false', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items, loop: false })
@@ -69,7 +69,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(2)
   })
 
-  it('ArrowUp decrements activeIndex', () => {
+  it('arrowUp decrements activeIndex', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items })
@@ -80,7 +80,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(1)
   })
 
-  it('ArrowUp loops from first to last when loop is true', () => {
+  it('arrowUp loops from first to last when loop is true', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items, loop: true })
@@ -89,7 +89,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(2)
   })
 
-  it('ArrowUp does not loop when loop is false', () => {
+  it('arrowUp does not loop when loop is false', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items, loop: false })
@@ -98,7 +98,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(0)
   })
 
-  it('Home key sets activeIndex to 0', () => {
+  it('home key sets activeIndex to 0', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items })
@@ -109,7 +109,7 @@ describe('useKeyboardNav', () => {
     expect(activeIndex.value).toBe(0)
   })
 
-  it('End key sets activeIndex to last', () => {
+  it('end key sets activeIndex to last', () => {
     const elements = createItems(3)
     const items = ref(elements)
     const { activeIndex, onKeyDown } = useKeyboardNav({ items })

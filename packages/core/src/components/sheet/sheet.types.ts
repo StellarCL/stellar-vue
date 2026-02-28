@@ -4,12 +4,14 @@ export type SheetSide = 'top' | 'bottom' | 'left' | 'right'
 export type SheetSize = 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 export interface SheetProps {
-  /** The controlled open state of the sheet. Can be bound as `v-model:open`.
+  /**
+   * The controlled open state of the sheet. Can be bound as `v-model:open`.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the sheet when it is initially rendered.
+  /**
+   * The open state of the sheet when it is initially rendered.
    * Use when you do not need to control its open state.
    * @default false
    */
@@ -17,7 +19,8 @@ export interface SheetProps {
 }
 
 export interface SheetTriggerProps {
-  /** Render as child element (Radix Vue primitive)
+  /**
+   * Render as child element (Radix Vue primitive)
    * @default false
    */
   asChild?: boolean
@@ -27,7 +30,8 @@ export interface SheetTriggerProps {
 }
 
 export interface SheetPortalProps {
-  /** The container element to teleport to.
+  /**
+   * The container element to teleport to.
    * @default document.body
    */
   to?: string | HTMLElement
@@ -39,12 +43,14 @@ export interface SheetOverlayProps {
 }
 
 export interface SheetContentProps {
-  /** The side the sheet slides in from.
+  /**
+   * The side the sheet slides in from.
    * @default 'bottom'
    */
   side?: SheetSide
 
-  /** The size of the sheet panel.
+  /**
+   * The size of the sheet panel.
    * @default 'md'
    */
   size?: SheetSize
@@ -74,7 +80,8 @@ export interface SheetDescriptionProps {
 }
 
 export interface SheetCloseProps {
-  /** Render as child element (Radix Vue primitive)
+  /**
+   * Render as child element (Radix Vue primitive)
    * @default false
    */
   asChild?: boolean

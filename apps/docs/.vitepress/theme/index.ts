@@ -1,5 +1,5 @@
-import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
+import DefaultTheme from 'vitepress/theme'
 import ComponentPreview from '../components/ComponentPreview.vue'
 import './custom.css'
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue'
 import type { MultiSelectTagProps } from './multi-select.types'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MultiSelectTagProps>(), {
@@ -22,7 +22,8 @@ const classes = computed(() =>
 
 function handleRemove(event: MouseEvent) {
   event.stopPropagation()
-  if (context?.disabled?.value) return
+  if (context?.disabled?.value)
+    return
   context?.removeValue(props.value)
   emit('remove', props.value)
 }

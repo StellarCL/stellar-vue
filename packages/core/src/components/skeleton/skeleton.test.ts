@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Skeleton from './Skeleton.vue'
 
-describe('Skeleton', () => {
+describe('skeleton', () => {
   it('renders as a div element', () => {
     const wrapper = mount(Skeleton)
     expect(wrapper.element.tagName).toBe('DIV')

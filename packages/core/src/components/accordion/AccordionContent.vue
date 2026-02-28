@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { AccordionContent } from 'radix-vue'
 import type { AccordionContentProps } from './accordion.types'
+import { AccordionContent } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = defineProps<AccordionContentProps>()
@@ -10,7 +10,7 @@ const props = defineProps<AccordionContentProps>()
   <AccordionContent
     :class="cn(
       'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-      props.class
+      props.class,
     )"
   >
     <div class="pb-4 pt-0">

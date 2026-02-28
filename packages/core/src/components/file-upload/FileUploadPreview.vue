@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { FileUploadPreviewProps } from './file-upload.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<FileUploadPreviewProps>(), {})
@@ -9,8 +9,10 @@ const isImage = computed(() => props.file.file.type.startsWith('image/'))
 
 const fileSizeLabel = computed(() => {
   const bytes = props.file.file.size
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  if (bytes < 1024)
+    return `${bytes} B`
+  if (bytes < 1024 * 1024)
+    return `${(bytes / 1024).toFixed(1)} KB`
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`
 })
 </script>
@@ -24,7 +26,7 @@ const fileSizeLabel = computed(() => {
         :src="file.previewUrl"
         :alt="file.file.name"
         class="h-12 w-12 rounded object-cover"
-      />
+      >
       <div
         v-else
         class="flex h-12 w-12 items-center justify-center rounded bg-muted text-muted-foreground"
@@ -49,9 +51,15 @@ const fileSizeLabel = computed(() => {
 
     <!-- File info -->
     <div class="min-w-0 flex-1">
-      <p class="truncate text-sm font-medium text-foreground">{{ file.file.name }}</p>
-      <p class="text-xs text-muted-foreground">{{ fileSizeLabel }}</p>
-      <p v-if="file.error" class="text-xs text-destructive" role="alert">{{ file.error }}</p>
+      <p class="truncate text-sm font-medium text-foreground">
+        {{ file.file.name }}
+      </p>
+      <p class="text-xs text-muted-foreground">
+        {{ fileSizeLabel }}
+      </p>
+      <p v-if="file.error" class="text-xs text-destructive" role="alert">
+        {{ file.error }}
+      </p>
     </div>
 
     <!-- Slot for additional actions (e.g. remove button) -->

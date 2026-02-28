@@ -21,12 +21,12 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -38,9 +38,9 @@ import {
 <script setup lang="ts">
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@stellar-vue-ui/core'
@@ -50,11 +50,15 @@ import {
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbLink href="/">
+          Home
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
-        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+        <BreadcrumbLink href="/components">
+          Components
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -76,7 +80,9 @@ Use `BreadcrumbEllipsis` to collapse long paths:
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbLink href="/">
+          Home
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -84,7 +90,9 @@ Use `BreadcrumbEllipsis` to collapse long paths:
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
-        <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+        <BreadcrumbLink href="/components">
+          Components
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -104,11 +112,15 @@ Override the default chevron separator using the slot:
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        <BreadcrumbLink href="/">
+          Home
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator>/</BreadcrumbSeparator>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        <BreadcrumbLink href="/docs">
+          Docs
+        </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator>/</BreadcrumbSeparator>
       <BreadcrumbItem>
@@ -129,7 +141,9 @@ Use `asChild` to render custom link components (e.g., Vue Router `RouterLink`):
     <BreadcrumbList>
       <BreadcrumbItem>
         <BreadcrumbLink as-child>
-          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/">
+            Home
+          </RouterLink>
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />

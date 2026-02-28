@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { CardProps } from './card.types'
-import { cardVariants } from './card.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { cardVariants } from './card.variants'
 
 const props = withDefaults(defineProps<CardProps>(), {
   variant: 'default',

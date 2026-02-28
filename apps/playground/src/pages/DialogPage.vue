@@ -1,12 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
-  Dialog, DialogTrigger, DialogContent, DialogHeader,
-  DialogTitle, DialogDescription, DialogFooter, DialogClose,
-  Button, Input, Label,
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
 } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>
@@ -33,9 +41,13 @@ import DemoSection from '../components/DemoSection.vue'
             </DialogHeader>
             <DialogFooter>
               <DialogClose as-child>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline">
+                  Cancel
+                </Button>
               </DialogClose>
-              <Button variant="destructive">Delete Account</Button>
+              <Button variant="destructive">
+                Delete Account
+              </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -45,7 +57,9 @@ import DemoSection from '../components/DemoSection.vue'
       <DemoSection title="Dialog with Form">
         <Dialog>
           <DialogTrigger as-child>
-            <Button variant="outline">Edit Profile</Button>
+            <Button variant="outline">
+              Edit Profile
+            </Button>
           </DialogTrigger>
           <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
@@ -66,7 +80,9 @@ import DemoSection from '../components/DemoSection.vue'
             </div>
             <DialogFooter>
               <DialogClose as-child>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline">
+                  Cancel
+                </Button>
               </DialogClose>
               <Button>Save changes</Button>
             </DialogFooter>
@@ -79,7 +95,9 @@ import DemoSection from '../components/DemoSection.vue'
         <div>
           <Dialog :open="ref(false).value">
             <DialogTrigger as-child>
-              <Button variant="secondary">Controlled Dialog</Button>
+              <Button variant="secondary">
+                Controlled Dialog
+              </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>

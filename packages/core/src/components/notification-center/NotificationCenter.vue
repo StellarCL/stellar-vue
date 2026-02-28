@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import type { NotificationCenterProps } from './notification-center.types'
+import { computed, ref } from 'vue'
 import { cn } from '../../utils'
 import NotificationList from './NotificationList.vue'
 
@@ -10,8 +10,8 @@ const props = withDefaults(defineProps<NotificationCenterProps>(), {
 
 const emit = defineEmits<{
   'update:open': [value: boolean]
-  'mark-read': [id: string]
-  'mark-all-read': []
+  'markRead': [id: string]
+  'markAllRead': []
   'dismiss': [id: string]
   'action': [id: string]
 }>()
@@ -29,7 +29,7 @@ const isOpen = computed({
 })
 
 const unreadCount = computed(() =>
-  props.notifications.filter((n) => !n.read).length,
+  props.notifications.filter(n => !n.read).length,
 )
 
 const classes = computed(() =>
@@ -84,8 +84,8 @@ function toggleOpen() {
     >
       <NotificationList
         :notifications="notifications"
-        @mark-read="emit('mark-read', $event)"
-        @mark-all-read="emit('mark-all-read')"
+        @mark-read="emit('markRead', $event)"
+        @mark-all-read="emit('markAllRead')"
         @dismiss="emit('dismiss', $event)"
         @action="emit('action', $event)"
       />

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { Label, RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { RadioGroup, RadioGroupItem, Label } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const plan = ref('comfortable')
 const notify = ref('all')
@@ -32,7 +32,9 @@ const notify = ref('all')
             <Label for="compact-radio">Compact</Label>
           </div>
         </RadioGroup>
-        <p class="mt-2 text-xs text-muted-foreground">Selected: {{ plan }}</p>
+        <p class="mt-2 text-xs text-muted-foreground">
+          Selected: {{ plan }}
+        </p>
       </DemoSection>
 
       <!-- With descriptions -->

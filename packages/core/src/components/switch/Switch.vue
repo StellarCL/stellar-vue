@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { SwitchRoot, SwitchThumb } from 'radix-vue'
 import type { SwitchProps } from './switch.types'
-import { switchVariants } from './switch.variants'
+import { SwitchRoot, SwitchThumb } from 'radix-vue'
 import { cn } from '../../utils'
+import { switchVariants } from './switch.variants'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   modelValue: false,

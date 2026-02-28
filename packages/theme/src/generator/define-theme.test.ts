@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { defineTheme } from './define-theme'
 import { generateCSS } from './css-generator'
+import { defineTheme } from './define-theme'
 import { generateTheme } from './generate-theme'
 
 describe('defineTheme', () => {

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { LoadingDotsProps } from './loading.types'
-import { loadingDotVariants } from './loading.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { loadingDotVariants } from './loading.variants'
 
 const props = withDefaults(defineProps<LoadingDotsProps>(), {
   size: 'md',

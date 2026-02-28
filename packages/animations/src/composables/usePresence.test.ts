@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { ref, nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 import { usePresence } from './usePresence'
 
 describe('usePresence', () => {
@@ -40,7 +40,7 @@ describe('usePresence', () => {
 
   it('setting show to true resets isAnimating to false', async () => {
     const show = ref(true)
-    const { isAnimating, safeToRemove } = usePresence(show)
+    const { isAnimating } = usePresence(show)
 
     // Trigger exit
     show.value = false
@@ -142,8 +142,10 @@ describe('usePresence', () => {
     const { isPresent } = usePresence(show)
 
     // isPresent should be a readonly ref — attempting to write should fail silently
-    // @ts-expect-error testing readonly at runtime
-    expect(() => { isPresent.value = false }).not.toThrow()
+    expect(() => {
+      // @ts-expect-error testing readonly at runtime
+      isPresent.value = false
+    }).not.toThrow()
     // But value stays unchanged due to Vue readonly
     expect(isPresent.value).toBe(true)
   })
@@ -152,8 +154,10 @@ describe('usePresence', () => {
     const show = ref(true)
     const { isAnimating } = usePresence(show)
 
-    // @ts-expect-error testing readonly at runtime
-    expect(() => { isAnimating.value = true }).not.toThrow()
+    expect(() => {
+      // @ts-expect-error testing readonly at runtime
+      isAnimating.value = true
+    }).not.toThrow()
     expect(isAnimating.value).toBe(false)
   })
 })

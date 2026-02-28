@@ -1,4 +1,4 @@
-import type { VueWrapper, DOMWrapper } from '@vue/test-utils'
+import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 import { expect } from 'vitest'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -16,19 +16,76 @@ function getElement(wrapper: AnyWrapper): Element {
   return wrapper.element
 }
 
-function hasValidAriaRole(element: Element): { valid: boolean; issue?: string } {
+function hasValidAriaRole(element: Element): { valid: boolean, issue?: string } {
   const validRoles = new Set([
-    'alert', 'alertdialog', 'application', 'article', 'banner', 'button',
-    'cell', 'checkbox', 'columnheader', 'combobox', 'complementary',
-    'contentinfo', 'definition', 'dialog', 'directory', 'document',
-    'feed', 'figure', 'form', 'grid', 'gridcell', 'group', 'heading',
-    'img', 'link', 'list', 'listbox', 'listitem', 'log', 'main',
-    'marquee', 'math', 'menu', 'menubar', 'menuitem', 'menuitemcheckbox',
-    'menuitemradio', 'navigation', 'none', 'note', 'option', 'presentation',
-    'progressbar', 'radio', 'radiogroup', 'region', 'row', 'rowgroup',
-    'rowheader', 'scrollbar', 'search', 'searchbox', 'separator', 'slider',
-    'spinbutton', 'status', 'switch', 'tab', 'table', 'tablist', 'tabpanel',
-    'term', 'textbox', 'timer', 'toolbar', 'tooltip', 'tree', 'treegrid',
+    'alert',
+    'alertdialog',
+    'application',
+    'article',
+    'banner',
+    'button',
+    'cell',
+    'checkbox',
+    'columnheader',
+    'combobox',
+    'complementary',
+    'contentinfo',
+    'definition',
+    'dialog',
+    'directory',
+    'document',
+    'feed',
+    'figure',
+    'form',
+    'grid',
+    'gridcell',
+    'group',
+    'heading',
+    'img',
+    'link',
+    'list',
+    'listbox',
+    'listitem',
+    'log',
+    'main',
+    'marquee',
+    'math',
+    'menu',
+    'menubar',
+    'menuitem',
+    'menuitemcheckbox',
+    'menuitemradio',
+    'navigation',
+    'none',
+    'note',
+    'option',
+    'presentation',
+    'progressbar',
+    'radio',
+    'radiogroup',
+    'region',
+    'row',
+    'rowgroup',
+    'rowheader',
+    'scrollbar',
+    'search',
+    'searchbox',
+    'separator',
+    'slider',
+    'spinbutton',
+    'status',
+    'switch',
+    'tab',
+    'table',
+    'tablist',
+    'tabpanel',
+    'term',
+    'textbox',
+    'timer',
+    'toolbar',
+    'tooltip',
+    'tree',
+    'treegrid',
     'treeitem',
   ])
 
@@ -47,7 +104,7 @@ function hasValidAriaRole(element: Element): { valid: boolean; issue?: string } 
   return { valid: true }
 }
 
-function hasImagesWithAlt(element: Element): { valid: boolean; issue?: string } {
+function hasImagesWithAlt(element: Element): { valid: boolean, issue?: string } {
   const images = Array.from(element.querySelectorAll('img'))
   for (const img of images) {
     if (!img.hasAttribute('alt')) {
@@ -60,7 +117,7 @@ function hasImagesWithAlt(element: Element): { valid: boolean; issue?: string } 
   return { valid: true }
 }
 
-function hasLabelsForInputs(element: Element): { valid: boolean; issue?: string } {
+function hasLabelsForInputs(element: Element): { valid: boolean, issue?: string } {
   const inputs = Array.from(
     element.querySelectorAll('input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="image"])'),
   )
@@ -70,8 +127,8 @@ function hasLabelsForInputs(element: Element): { valid: boolean; issue?: string 
     const hasAriaLabel = input.hasAttribute('aria-label')
     const hasAriaLabelledby = input.hasAttribute('aria-labelledby')
     const hasAssociatedLabel = id
-      ? (element.querySelector(`label[for="${id}"]`) !== null ||
-         document.querySelector(`label[for="${id}"]`) !== null)
+      ? (element.querySelector(`label[for="${id}"]`) !== null
+        || document.querySelector(`label[for="${id}"]`) !== null)
       : false
     const isInsideLabel = input.closest('label') !== null
 

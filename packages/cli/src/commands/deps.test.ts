@@ -1,7 +1,7 @@
 import fs from 'node:fs'
-import path from 'node:path'
 import os from 'node:os'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import path from 'node:path'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { depsCommand } from './deps'
 
 function makeTempDir(): string {

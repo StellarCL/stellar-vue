@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, provide, ref, watch } from 'vue'
 import type { SidebarProps } from './sidebar.types'
-import { SIDEBAR_INJECTION_KEY } from './sidebar-context'
+import { computed, provide, ref, watch } from 'vue'
 import { cn } from '../../utils'
+import { SIDEBAR_INJECTION_KEY } from './sidebar-context'
 
 const props = withDefaults(defineProps<SidebarProps>(), {
   collapsed: false,
@@ -25,7 +25,8 @@ watch(
 )
 
 function toggle() {
-  if (!props.collapsible) return
+  if (!props.collapsible)
+    return
   internalCollapsed.value = !internalCollapsed.value
   emit('update:collapsed', internalCollapsed.value)
 }

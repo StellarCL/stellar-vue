@@ -1,6 +1,6 @@
+import type { ComponentLock, StellarConfig } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
-import type { ComponentLock, StellarConfig } from '../types'
 import { defineConfig } from '../types'
 
 export const DEFAULT_CONFIG: StellarConfig = defineConfig({})
@@ -26,7 +26,8 @@ export async function findConfig(cwd?: string): Promise<string | null> {
     }
 
     const parent = path.dirname(dir)
-    if (parent === dir) break
+    if (parent === dir)
+      break
     dir = parent
   }
 
@@ -39,16 +40,19 @@ export async function findConfig(cwd?: string): Promise<string | null> {
  */
 export async function readConfig(cwd?: string): Promise<StellarConfig | null> {
   const configDir = await findConfig(cwd)
-  if (!configDir) return null
+  if (!configDir)
+    return null
 
   const jsonPath = path.join(configDir, CONFIG_JSON_NAME)
-  if (!fs.existsSync(jsonPath)) return null
+  if (!fs.existsSync(jsonPath))
+    return null
 
   try {
     const raw = fs.readFileSync(jsonPath, 'utf-8')
     const parsed = JSON.parse(raw) as Partial<StellarConfig>
     return defineConfig(parsed)
-  } catch {
+  }
+  catch {
     return null
   }
 }
@@ -66,7 +70,7 @@ export async function writeConfig(config: StellarConfig, dir: string): Promise<v
 
   // Write machine-readable JSON
   const jsonPath = path.join(resolvedDir, CONFIG_JSON_NAME)
-  fs.writeFileSync(jsonPath, JSON.stringify(config, null, 2) + '\n', 'utf-8')
+  fs.writeFileSync(jsonPath, `${JSON.stringify(config, null, 2)}\n`, 'utf-8')
 
   // Write human-readable TypeScript config
   const tsPath = path.join(resolvedDir, CONFIG_TS_NAME)
@@ -82,12 +86,14 @@ export async function readLockFile(cwd?: string): Promise<ComponentLock | null> 
   const dir = configDir ?? (cwd ?? process.cwd())
   const lockPath = path.join(dir, LOCK_FILE_NAME)
 
-  if (!fs.existsSync(lockPath)) return null
+  if (!fs.existsSync(lockPath))
+    return null
 
   try {
     const raw = fs.readFileSync(lockPath, 'utf-8')
     return JSON.parse(raw) as ComponentLock
-  } catch {
+  }
+  catch {
     return null
   }
 }
@@ -103,7 +109,7 @@ export async function writeLockFile(lock: ComponentLock, dir: string): Promise<v
   }
 
   const lockPath = path.join(resolvedDir, LOCK_FILE_NAME)
-  fs.writeFileSync(lockPath, JSON.stringify(lock, null, 2) + '\n', 'utf-8')
+  fs.writeFileSync(lockPath, `${JSON.stringify(lock, null, 2)}\n`, 'utf-8')
 }
 
 /**

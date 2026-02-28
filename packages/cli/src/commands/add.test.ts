@@ -1,18 +1,18 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import type { ComponentLock, StellarConfig } from '../types'
+import prompts from 'prompts'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineConfig } from '../types'
+
 import { writeConfig, writeLockFile } from '../utils/config'
+import { addCommand } from './add'
 
 // Mock prompts module
 vi.mock('prompts', () => ({
   default: vi.fn(),
 }))
-
-import prompts from 'prompts'
-import { addCommand } from './add'
 
 describe('add command', () => {
   let tmpDir: string
@@ -62,7 +62,7 @@ describe('add command', () => {
     const lockPath = path.join(tmpDir, 'components.lock.json')
     const lock = JSON.parse(fs.readFileSync(lockPath, 'utf-8')) as ComponentLock
     expect(lock.components.card).toBeDefined()
-    expect(lock.components.card.version).toBe('0.1.0')
+    expect(lock.components.card!.version).toBe('0.1.0')
   })
 
   it('resolves and adds dependencies automatically', async () => {
@@ -149,11 +149,11 @@ describe('add command', () => {
     const lockPath = path.join(tmpDir, 'components.lock.json')
     const lock = JSON.parse(fs.readFileSync(lockPath, 'utf-8')) as ComponentLock
 
-    expect(lock.components.button.version).toBe('0.1.0')
-    expect(lock.components.button.installedAt).toBeDefined()
+    expect(lock.components.button!.version).toBe('0.1.0')
+    expect(lock.components.button!.installedAt).toBeDefined()
 
     // installedAt should be a valid ISO date string between before and after
-    const installedAt = lock.components.button.installedAt
+    const installedAt = lock.components.button!.installedAt
     expect(installedAt >= before).toBe(true)
     expect(installedAt <= after).toBe(true)
   })

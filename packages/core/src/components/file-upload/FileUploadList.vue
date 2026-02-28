@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue'
-import type { FileWithPreview, FileUploadListProps } from './file-upload.types'
+import type { FileUploadListProps } from './file-upload.types'
+import { computed, inject } from 'vue'
+import { cn } from '../../utils'
 import FileUploadPreview from './FileUploadPreview.vue'
 import FileUploadProgress from './FileUploadProgress.vue'
-import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<FileUploadListProps>(), {
   files: () => [],
@@ -24,7 +24,8 @@ const displayFiles = computed(() => {
 function handleRemove(id: string) {
   if (context) {
     context.removeFile(id)
-  } else {
+  }
+  else {
     emit('remove', id)
   }
 }

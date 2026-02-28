@@ -1,5 +1,5 @@
-import { createTwoFilesPatch } from 'diff'
 import crypto from 'node:crypto'
+import { createTwoFilesPatch } from 'diff'
 import pc from 'picocolors'
 
 /**
@@ -37,11 +37,14 @@ export function displayDiff(filename: string, oldContent: string, newContent: st
   for (const line of lines) {
     if (line.startsWith('+') && !line.startsWith('+++')) {
       console.log(pc.green(line))
-    } else if (line.startsWith('-') && !line.startsWith('---')) {
+    }
+    else if (line.startsWith('-') && !line.startsWith('---')) {
       console.log(pc.red(line))
-    } else if (line.startsWith('@@')) {
+    }
+    else if (line.startsWith('@@')) {
       console.log(pc.cyan(line))
-    } else {
+    }
+    else {
       console.log(pc.dim(line))
     }
   }

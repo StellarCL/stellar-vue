@@ -9,9 +9,7 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/core"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -32,12 +30,22 @@
       "import": "./dist/utils/index.mjs"
     }
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist",
+    "LICENSE",
     "README.md",
-    "LICENSE"
+    "dist"
   ],
-  "sideEffects": false,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "vue-tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
   "peerDependencies": {
     "@vueuse/core": ">=11.0.0",
     "vue": ">=3.5.0"
@@ -71,13 +79,5 @@
     "vitest": "^3.0.0",
     "vue": "^3.5.0",
     "vue-tsc": "^2.0.0"
-  },
-  "scripts": {
-    "build": "vite build",
-    "dev": "vite build --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "typecheck": "vue-tsc --noEmit",
-    "clean": "rm -rf dist"
   }
 }

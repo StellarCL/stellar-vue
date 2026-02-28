@@ -1,20 +1,23 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import NavigationMenu from './NavigationMenu.vue'
-import NavigationMenuList from './NavigationMenuList.vue'
-import NavigationMenuItem from './NavigationMenuItem.vue'
-import NavigationMenuTrigger from './NavigationMenuTrigger.vue'
 import NavigationMenuContent from './NavigationMenuContent.vue'
-import NavigationMenuLink from './NavigationMenuLink.vue'
-import NavigationMenuViewport from './NavigationMenuViewport.vue'
 import NavigationMenuIndicator from './NavigationMenuIndicator.vue'
+import NavigationMenuItem from './NavigationMenuItem.vue'
+import NavigationMenuLink from './NavigationMenuLink.vue'
+import NavigationMenuList from './NavigationMenuList.vue'
+import NavigationMenuTrigger from './NavigationMenuTrigger.vue'
+import NavigationMenuViewport from './NavigationMenuViewport.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -30,7 +33,7 @@ async function mountToBody(template: string, components: Record<string, object>)
   return document.body.innerHTML
 }
 
-describe('NavigationMenu', () => {
+describe('navigationMenu', () => {
   it('renders navigation menu with items', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem },
@@ -73,7 +76,7 @@ describe('NavigationMenu', () => {
   })
 })
 
-describe('NavigationMenuList', () => {
+describe('navigationMenuList', () => {
   it('renders with correct base classes', async () => {
     const bodyHtml = await mountToBody(
       `<NavigationMenu><NavigationMenuList><NavigationMenuItem>Item</NavigationMenuItem></NavigationMenuList></NavigationMenu>`,
@@ -109,7 +112,7 @@ describe('NavigationMenuList', () => {
   })
 })
 
-describe('NavigationMenuItem', () => {
+describe('navigationMenuItem', () => {
   it('renders without crashing inside NavigationMenu context', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem },
@@ -169,7 +172,7 @@ describe('NavigationMenuItem', () => {
   })
 })
 
-describe('NavigationMenuTrigger', () => {
+describe('navigationMenuTrigger', () => {
   it('renders trigger with chevron icon', async () => {
     const bodyHtml = await mountToBody(
       `<NavigationMenu><NavigationMenuList><NavigationMenuItem><NavigationMenuTrigger>Menu</NavigationMenuTrigger></NavigationMenuItem></NavigationMenuList></NavigationMenu>`,
@@ -245,7 +248,7 @@ describe('NavigationMenuTrigger', () => {
   })
 })
 
-describe('NavigationMenuContent', () => {
+describe('navigationMenuContent', () => {
   it('renders without crashing inside NavigationMenu context', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuContent },
@@ -347,7 +350,7 @@ describe('NavigationMenuContent', () => {
   })
 })
 
-describe('NavigationMenuLink', () => {
+describe('navigationMenuLink', () => {
   it('renders as link with slot content', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink },
@@ -410,7 +413,7 @@ describe('NavigationMenuLink', () => {
   })
 })
 
-describe('NavigationMenuViewport', () => {
+describe('navigationMenuViewport', () => {
   it('renders without crashing inside NavigationMenu context', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem },
@@ -437,7 +440,7 @@ describe('NavigationMenuViewport', () => {
     expect(bodyHtml).toContain('justify-center')
   })
 
-  it('NavigationMenu includes NavigationMenuViewport by default', () => {
+  it('navigationMenu includes NavigationMenuViewport by default', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuItem },
       template: `
@@ -468,7 +471,7 @@ describe('NavigationMenuViewport', () => {
   })
 })
 
-describe('NavigationMenuIndicator', () => {
+describe('navigationMenuIndicator', () => {
   it('renders without crashing inside NavigationMenu context', () => {
     const wrapper = mount({
       components: { NavigationMenu, NavigationMenuList, NavigationMenuIndicator },
@@ -573,7 +576,7 @@ describe('NavigationMenuIndicator', () => {
   })
 })
 
-describe('NavigationMenu keyboard navigation', () => {
+describe('navigationMenu keyboard navigation', () => {
   it('trigger responds to Enter key', async () => {
     const wrapper = mount(
       {
@@ -660,7 +663,7 @@ describe('NavigationMenu keyboard navigation', () => {
   })
 })
 
-describe('NavigationMenu composition', () => {
+describe('navigationMenu composition', () => {
   it('mounts full navigation menu composition without errors', () => {
     const wrapper = mount({
       components: {

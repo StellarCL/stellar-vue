@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, provide } from 'vue'
 import type { CodeBlockProps } from './code-block.types'
+import { computed, provide } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CodeBlockProps>(), {

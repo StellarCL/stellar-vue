@@ -1,11 +1,10 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import path from 'node:path'
 import prompts from 'prompts'
-import type { ComponentLock } from '../types'
 import { findConfig, readConfig, readLockFile, writeLockFile } from '../utils/config'
-import { getRegistry, getComponent, resolveDependencies } from '../utils/registry'
-import { computeHash } from '../utils/diff'
-import { styles, header, newLine } from '../utils/prompts'
+import { newLine, styles } from '../utils/prompts'
+import { getComponent, getRegistry, resolveDependencies } from '../utils/registry'
 
 interface AddOptions {
   cwd?: string
@@ -39,7 +38,7 @@ export async function addCommand(components: string[], options: AddOptions): Pro
   if (componentNames.length === 0) {
     const registry = getRegistry()
     const categories = [...new Set(registry.map(c => c.category))]
-    const choices = categories.flatMap(cat => {
+    const choices = categories.flatMap((cat) => {
       const items = registry.filter(c => c.category === cat)
       return items.map(item => ({
         title: `${item.name} — ${item.description}`,
@@ -63,7 +62,7 @@ export async function addCommand(components: string[], options: AddOptions): Pro
   }
 
   // Read or create lock file
-  let lock: ComponentLock = (await readLockFile(cwd)) ?? {
+  const lock: ComponentLock = (await readLockFile(cwd)) ?? {
     version: '1.0.0',
     components: {},
   }
@@ -94,7 +93,8 @@ export async function addCommand(components: string[], options: AddOptions): Pro
 
     for (const componentName of allToInstall) {
       const entry = getComponent(componentName)
-      if (!entry) continue
+      if (!entry)
+        continue
 
       // c. Check if already installed
       if (lock.components[componentName] && !options.overwrite) {
@@ -110,7 +110,8 @@ export async function addCommand(components: string[], options: AddOptions): Pro
             console.log(styles.dim(`Skipping "${componentName}".`))
             continue
           }
-        } else {
+        }
+        else {
           console.log(styles.dim(`Skipping "${componentName}" (already installed).`))
           continue
         }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { DialogOverlay } from 'radix-vue'
 import type { SheetOverlayProps } from './sheet.types'
+import { DialogOverlay } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SheetOverlayProps>()

@@ -1,5 +1,5 @@
+import type { Component, ComponentPublicInstance } from 'vue'
 import { mount, type MountingOptions } from '@vue/test-utils'
-import { type Component, type ComponentPublicInstance } from 'vue'
 
 export type ThemeName = 'stellar' | 'sirius' | 'polaris' | 'antares' | 'vega' | 'aldebaran'
 
@@ -37,9 +37,10 @@ export function renderWithTheme<
   // Apply dark mode class
   if (dark) {
     document.documentElement.classList.add('dark')
-  } else {
+  }
+  else {
     document.documentElement.classList.remove('dark')
   }
 
-  return mount<T>(component, mountOptions as MountingOptions<Props>)
+  return mount<T>(component, mountOptions as any)
 }

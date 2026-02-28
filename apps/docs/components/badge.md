@@ -51,10 +51,18 @@ The Badge component supports four visual variants through the `variant` prop:
 ```vue
 <template>
   <div class="flex gap-2">
-    <Badge variant="default">Default</Badge>
-    <Badge variant="secondary">Secondary</Badge>
-    <Badge variant="destructive">Destructive</Badge>
-    <Badge variant="outline">Outline</Badge>
+    <Badge variant="default">
+      Default
+    </Badge>
+    <Badge variant="secondary">
+      Secondary
+    </Badge>
+    <Badge variant="destructive">
+      Destructive
+    </Badge>
+    <Badge variant="outline">
+      Outline
+    </Badge>
   </div>
 </template>
 ```
@@ -71,8 +79,7 @@ The Badge component supports four visual variants through the `variant` prop:
 
 ```vue
 <script setup lang="ts">
-import { Card, CardHeader, CardTitle, CardContent } from '@stellar-vue-ui/core'
-import { Badge } from '@stellar-vue-ui/core'
+import { Badge, Card, CardContent, CardHeader, CardTitle } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -80,7 +87,9 @@ import { Badge } from '@stellar-vue-ui/core'
     <CardHeader>
       <div class="flex items-center gap-2">
         <CardTitle>Feature Request</CardTitle>
-        <Badge variant="secondary">In Progress</Badge>
+        <Badge variant="secondary">
+          In Progress
+        </Badge>
       </div>
     </CardHeader>
     <CardContent>

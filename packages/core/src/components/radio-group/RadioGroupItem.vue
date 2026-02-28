@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RadioGroupItem, RadioGroupIndicator } from 'radix-vue'
 import type { RadioGroupItemProps } from './radio-group.types'
+import { RadioGroupIndicator, RadioGroupItem } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<RadioGroupItemProps>(), {

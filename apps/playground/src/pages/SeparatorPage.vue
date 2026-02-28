@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Separator } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>
@@ -16,8 +16,12 @@ import DemoSection from '../components/DemoSection.vue'
       <DemoSection title="Horizontal (Default)">
         <div class="max-w-md space-y-4">
           <div>
-            <h4 class="text-sm font-medium">Radix Primitives</h4>
-            <p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+            <h4 class="text-sm font-medium">
+              Radix Primitives
+            </h4>
+            <p class="text-sm text-muted-foreground">
+              An open-source UI component library.
+            </p>
           </div>
           <Separator />
           <div class="flex h-5 items-center gap-4 text-sm">
@@ -47,8 +51,12 @@ import DemoSection from '../components/DemoSection.vue'
       <DemoSection title="Section Divider">
         <div class="max-w-md space-y-4">
           <div>
-            <h4 class="text-sm font-semibold">Account Settings</h4>
-            <p class="text-sm text-muted-foreground">Manage your account preferences.</p>
+            <h4 class="text-sm font-semibold">
+              Account Settings
+            </h4>
+            <p class="text-sm text-muted-foreground">
+              Manage your account preferences.
+            </p>
           </div>
           <Separator />
           <div class="grid gap-2">
@@ -63,8 +71,12 @@ import DemoSection from '../components/DemoSection.vue'
           </div>
           <Separator />
           <div>
-            <h4 class="text-sm font-semibold">Privacy</h4>
-            <p class="text-sm text-muted-foreground mt-1">Control your privacy settings.</p>
+            <h4 class="text-sm font-semibold">
+              Privacy
+            </h4>
+            <p class="text-sm text-muted-foreground mt-1">
+              Control your privacy settings.
+            </p>
           </div>
         </div>
       </DemoSection>

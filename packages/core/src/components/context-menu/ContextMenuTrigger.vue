@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ContextMenuTrigger as ContextMenuTriggerPrimitive } from 'radix-vue'
 import type { ContextMenuTriggerProps } from './context-menu.types'
+import { ContextMenuTrigger as ContextMenuTriggerPrimitive } from 'radix-vue'
 
 const props = withDefaults(defineProps<ContextMenuTriggerProps>(), {
   asChild: false,

@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface MenubarProps {
-  /** The controlled value of the menu to open. Used to force-open a specific menu by its value.
+  /**
+   * The controlled value of the menu to open. Used to force-open a specific menu by its value.
    * @default undefined
    */
   modelValue?: string
 
-  /** The value of the menu that should be open when initially rendered.
+  /**
+   * The value of the menu that should be open when initially rendered.
    * @default undefined
    */
   defaultValue?: string
@@ -16,14 +18,16 @@ export interface MenubarProps {
 }
 
 export interface MenubarMenuProps {
-  /** The value of the menu (for controlled open state).
+  /**
+   * The value of the menu (for controlled open state).
    * @default undefined
    */
   value?: string
 }
 
 export interface MenubarTriggerProps {
-  /** When true, prevents the user from interacting with the trigger.
+  /**
+   * When true, prevents the user from interacting with the trigger.
    * @default false
    */
   disabled?: boolean
@@ -33,17 +37,20 @@ export interface MenubarTriggerProps {
 }
 
 export interface MenubarContentProps {
-  /** The preferred alignment against the trigger.
+  /**
+   * The preferred alignment against the trigger.
    * @default 'start'
    */
   align?: 'start' | 'center' | 'end'
 
-  /** The distance in pixels from the trigger.
+  /**
+   * The distance in pixels from the trigger.
    * @default 8
    */
   sideOffset?: number
 
-  /** Alignment offset in pixels.
+  /**
+   * Alignment offset in pixels.
    * @default -4
    */
   alignOffset?: number
@@ -53,12 +60,14 @@ export interface MenubarContentProps {
 }
 
 export interface MenubarItemProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -68,12 +77,14 @@ export interface MenubarItemProps {
 }
 
 export interface MenubarCheckboxItemProps {
-  /** The controlled checked state of the checkbox item.
+  /**
+   * The controlled checked state of the checkbox item.
    * @default false
    */
   checked?: boolean
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -83,7 +94,8 @@ export interface MenubarCheckboxItemProps {
 }
 
 export interface MenubarRadioGroupProps {
-  /** The controlled value of the radio group. Can be bound as `v-model`.
+  /**
+   * The controlled value of the radio group. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
@@ -96,7 +108,8 @@ export interface MenubarRadioItemProps {
   /** The value of the radio item. Required. */
   value: string
 
-  /** When true, prevents the user from interacting with the item.
+  /**
+   * When true, prevents the user from interacting with the item.
    * @default false
    */
   disabled?: boolean
@@ -106,7 +119,8 @@ export interface MenubarRadioItemProps {
 }
 
 export interface MenubarLabelProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
@@ -131,24 +145,28 @@ export interface MenubarGroupProps {
 }
 
 export interface MenubarSubProps {
-  /** The controlled open state of the submenu.
+  /**
+   * The controlled open state of the submenu.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the submenu when it is initially rendered.
+  /**
+   * The open state of the submenu when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 }
 
 export interface MenubarSubTriggerProps {
-  /** When true, adds left padding to align with items that have an indicator.
+  /**
+   * When true, adds left padding to align with items that have an indicator.
    * @default false
    */
   inset?: boolean
 
-  /** When true, prevents the user from interacting with the sub trigger.
+  /**
+   * When true, prevents the user from interacting with the sub trigger.
    * @default false
    */
   disabled?: boolean

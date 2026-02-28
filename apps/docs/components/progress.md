@@ -65,15 +65,16 @@ The Progress component supports four color variants:
 
 ```vue
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { Progress } from '@stellar-vue-ui/core'
+import { onMounted, ref } from 'vue'
 
 const progress = ref(0)
 
 onMounted(() => {
   const timer = setInterval(() => {
     progress.value += 10
-    if (progress.value >= 100) clearInterval(timer)
+    if (progress.value >= 100)
+      clearInterval(timer)
   }, 500)
 })
 </script>
@@ -91,7 +92,9 @@ Use the `max` prop for values other than 100:
 <template>
   <div class="space-y-2">
     <Progress :model-value="3" :max="5" />
-    <p class="text-sm text-muted-foreground">3 of 5 steps completed</p>
+    <p class="text-sm text-muted-foreground">
+      3 of 5 steps completed
+    </p>
   </div>
 </template>
 ```
@@ -100,8 +103,8 @@ Use the `max` prop for values other than 100:
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Progress } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const value = ref(66)
 </script>

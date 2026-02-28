@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { themes } from './index'
 import { validateTheme } from '../validator'
+import { themes } from './index'
 
 describe('built-in themes', () => {
   for (const theme of themes) {
     it(`${theme.name} passes WCAG AA contrast validation`, () => {
       const issues = validateTheme(theme)
       if (issues.length > 0) {
+        // eslint-disable-next-line no-console
         console.log(`${theme.name} issues:`, issues)
       }
       expect(issues).toHaveLength(0)

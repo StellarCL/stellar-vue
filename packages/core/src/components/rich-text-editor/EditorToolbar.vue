@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { EditorToolbarProps } from './rich-text-editor.types'
+import { computed } from 'vue'
+import { cn } from '../../utils'
 import { DEFAULT_TOOLBAR } from './rich-text-editor.types'
 import ToolbarButton from './ToolbarButton.vue'
-import ToolbarSeparator from './ToolbarSeparator.vue'
 import ToolbarGroup from './ToolbarGroup.vue'
-import { cn } from '../../utils'
+import ToolbarSeparator from './ToolbarSeparator.vue'
 
 const props = withDefaults(defineProps<EditorToolbarProps>(), {
   items: () => DEFAULT_TOOLBAR,

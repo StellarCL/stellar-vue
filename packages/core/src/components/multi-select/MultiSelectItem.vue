@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue'
 import type { MultiSelectItemProps } from './multi-select.types'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MultiSelectItemProps>(), {
@@ -23,7 +23,8 @@ const classes = computed(() =>
 )
 
 function handleClick() {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   context?.toggleOption(props.value)
 }
 </script>

@@ -1,19 +1,18 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { defineComponent, h } from 'vue'
 import { useForm } from 'vee-validate'
+import { describe, expect, it } from 'vitest'
+import { computed, defineComponent, h, ref } from 'vue'
+import { provideFormFieldContext } from '../../composables/useFormField'
 import Form from './Form.vue'
+import FormControl from './FormControl.vue'
+import FormDescription from './FormDescription.vue'
+import FormField from './FormField.vue'
 import FormItem from './FormItem.vue'
 import FormLabel from './FormLabel.vue'
-import FormDescription from './FormDescription.vue'
 import FormMessage from './FormMessage.vue'
-import FormControl from './FormControl.vue'
-import FormField from './FormField.vue'
-import { provideFormFieldContext } from '../../composables/useFormField'
-import { ref, computed } from 'vue'
 
 // Helper: wrapper that sets up a VeeValidate form context
-function createVeeFormWrapper(template: string, components: Record<string, any> = {}) {
+function _createVeeFormWrapper(template: string, components: Record<string, any> = {}) {
   return defineComponent({
     components,
     setup() {
@@ -27,7 +26,7 @@ function createVeeFormWrapper(template: string, components: Record<string, any> 
 // Helper: wrapper that provides a mock form field context directly
 function createFieldContextWrapper(
   slotContent: any,
-  contextOverrides: Partial<{ errorValue: string | undefined }> = {}
+  contextOverrides: Partial<{ errorValue: string | undefined }> = {},
 ) {
   const { errorValue } = contextOverrides
   return defineComponent({
@@ -50,7 +49,7 @@ function createFieldContextWrapper(
   })
 }
 
-describe('Form', () => {
+describe('form', () => {
   it('renders as a form element', () => {
     const wrapper = mount(Form)
     expect(wrapper.element.tagName).toBe('FORM')
@@ -75,7 +74,7 @@ describe('Form', () => {
   })
 })
 
-describe('FormItem', () => {
+describe('formItem', () => {
   it('renders as a div', () => {
     const wrapper = mount(FormItem)
     expect(wrapper.element.tagName).toBe('DIV')
@@ -100,7 +99,7 @@ describe('FormItem', () => {
   })
 })
 
-describe('FormLabel', () => {
+describe('formLabel', () => {
   it('renders a label element when outside form context', () => {
     const wrapper = mount(FormLabel, {
       slots: { default: 'Email' },
@@ -139,7 +138,7 @@ describe('FormLabel', () => {
           return h(FormLabel, {}, { default: () => 'Field Label' })
         },
       }),
-      { errorValue: 'This field is required' }
+      { errorValue: 'This field is required' },
     )
     const wrapper = mount(Wrapper)
     const label = wrapper.find('label')
@@ -153,7 +152,7 @@ describe('FormLabel', () => {
           return h(FormLabel, {}, { default: () => 'Field Label' })
         },
       }),
-      { errorValue: undefined }
+      { errorValue: undefined },
     )
     const wrapper = mount(Wrapper)
     const label = wrapper.find('label')
@@ -166,7 +165,7 @@ describe('FormLabel', () => {
         render() {
           return h(FormLabel, {}, { default: () => 'Field Label' })
         },
-      })
+      }),
     )
     const wrapper = mount(Wrapper)
     const label = wrapper.find('label')
@@ -174,7 +173,7 @@ describe('FormLabel', () => {
   })
 })
 
-describe('FormDescription', () => {
+describe('formDescription', () => {
   it('renders as a p element', () => {
     const wrapper = mount(FormDescription, {
       slots: { default: 'Help text' },
@@ -213,7 +212,7 @@ describe('FormDescription', () => {
         render() {
           return h(FormDescription, {}, { default: () => 'Help text' })
         },
-      })
+      }),
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -221,7 +220,7 @@ describe('FormDescription', () => {
   })
 })
 
-describe('FormMessage', () => {
+describe('formMessage', () => {
   it('renders nothing when outside form context', () => {
     const wrapper = mount(FormMessage)
     expect(wrapper.find('p').exists()).toBe(false)
@@ -234,7 +233,7 @@ describe('FormMessage', () => {
           return h(FormMessage)
         },
       }),
-      { errorValue: undefined }
+      { errorValue: undefined },
     )
     const wrapper = mount(Wrapper)
     expect(wrapper.find('p').exists()).toBe(false)
@@ -247,7 +246,7 @@ describe('FormMessage', () => {
           return h(FormMessage)
         },
       }),
-      { errorValue: 'This field is required' }
+      { errorValue: 'This field is required' },
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -262,7 +261,7 @@ describe('FormMessage', () => {
           return h(FormMessage)
         },
       }),
-      { errorValue: 'Error!' }
+      { errorValue: 'Error!' },
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -279,7 +278,7 @@ describe('FormMessage', () => {
           return h(FormMessage)
         },
       }),
-      { errorValue: 'Required' }
+      { errorValue: 'Required' },
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -293,7 +292,7 @@ describe('FormMessage', () => {
           return h(FormMessage)
         },
       }),
-      { errorValue: 'Required' }
+      { errorValue: 'Required' },
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -307,7 +306,7 @@ describe('FormMessage', () => {
           return h(FormMessage, { class: 'custom-message' })
         },
       }),
-      { errorValue: 'Error!' }
+      { errorValue: 'Error!' },
     )
     const wrapper = mount(Wrapper)
     const p = wrapper.find('p')
@@ -316,7 +315,7 @@ describe('FormMessage', () => {
   })
 })
 
-describe('FormControl', () => {
+describe('formControl', () => {
   it('renders slot content', () => {
     const Wrapper = createFieldContextWrapper(
       defineComponent({
@@ -325,7 +324,7 @@ describe('FormControl', () => {
             default: (slotProps: any) => h('input', { ...slotProps }),
           })
         },
-      })
+      }),
     )
     const wrapper = mount(Wrapper)
     expect(wrapper.find('input').exists()).toBe(true)
@@ -339,7 +338,7 @@ describe('FormControl', () => {
             default: (slotProps: any) => h('input', { id: slotProps.id }),
           })
         },
-      })
+      }),
     )
     const wrapper = mount(Wrapper)
     expect(wrapper.find('input').attributes('id')).toBe('form-field-test-0-item')
@@ -357,7 +356,7 @@ describe('FormControl', () => {
           })
         },
       }),
-      { errorValue: undefined }
+      { errorValue: undefined },
     )
     const wrapper = mount(Wrapper)
     const input = wrapper.find('input')
@@ -377,7 +376,7 @@ describe('FormControl', () => {
           })
         },
       }),
-      { errorValue: 'Required' }
+      { errorValue: 'Required' },
     )
     const wrapper = mount(Wrapper)
     const input = wrapper.find('input')
@@ -387,7 +386,7 @@ describe('FormControl', () => {
   })
 })
 
-describe('FormField', () => {
+describe('formField', () => {
   it('renders slot content within VeeValidate form context', () => {
     const TestComponent = defineComponent({
       components: { FormField },

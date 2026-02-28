@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface AlertProps {
-  /** Visual variant of the alert
+  /**
+   * Visual variant of the alert
    * @default 'default'
    */
   variant?: 'default' | 'destructive' | 'success' | 'warning' | 'info'

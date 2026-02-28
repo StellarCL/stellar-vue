@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { inject, computed } from 'vue'
-import { STEPPER_INJECTION_KEY } from './stepper-context'
 import type { StepperTriggerProps } from './stepper.types'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
+import { STEPPER_INJECTION_KEY } from './stepper-context'
 
 const props = defineProps<StepperTriggerProps>()
 
-const context = inject(STEPPER_INJECTION_KEY)
+const context = inject(STEPPER_INJECTION_KEY)!
 
 if (!context) {
   throw new Error('StepperTrigger must be used within a Stepper component')

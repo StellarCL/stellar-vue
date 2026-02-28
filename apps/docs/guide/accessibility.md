@@ -59,8 +59,8 @@ Traps focus within a container element. Used internally by Dialog and other moda
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useFocusTrap } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const containerRef = ref<HTMLElement | null>(null)
 const { activate, deactivate } = useFocusTrap(containerRef)
@@ -73,8 +73,8 @@ Manages arrow key navigation within a list of items. Used internally by menus, s
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useKeyboardNav } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const items = ref(['Option A', 'Option B', 'Option C'])
 const { activeIndex, onKeyDown } = useKeyboardNav(items, {
@@ -91,9 +91,9 @@ const { activeIndex, onKeyDown } = useKeyboardNav(items, {
 We recommend integrating [axe-core](https://github.com/dequelabs/axe-core) into your test suite to catch accessibility regressions automatically:
 
 ```typescript
-import { axe, toHaveNoViolations } from 'jest-axe'
-import { mount } from '@vue/test-utils'
 import { Button } from '@stellar-vue-ui/core'
+import { mount } from '@vue/test-utils'
+import { axe, toHaveNoViolations } from 'jest-axe'
 
 expect.extend(toHaveNoViolations)
 

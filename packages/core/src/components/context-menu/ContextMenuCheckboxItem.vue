@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { ContextMenuCheckboxItemProps } from './context-menu.types'
 import {
   ContextMenuCheckboxItem as ContextMenuCheckboxItemPrimitive,
   ContextMenuItemIndicator,
 } from 'radix-vue'
-import type { ContextMenuCheckboxItemProps } from './context-menu.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ContextMenuCheckboxItemProps>(), {

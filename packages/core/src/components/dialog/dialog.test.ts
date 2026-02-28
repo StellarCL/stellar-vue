@@ -1,18 +1,18 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Dialog from './Dialog.vue'
-import DialogTrigger from './DialogTrigger.vue'
-import DialogContent from './DialogContent.vue'
-import DialogHeader from './DialogHeader.vue'
-import DialogFooter from './DialogFooter.vue'
-import DialogTitle from './DialogTitle.vue'
-import DialogDescription from './DialogDescription.vue'
 import DialogClose from './DialogClose.vue'
+import DialogContent from './DialogContent.vue'
+import DialogDescription from './DialogDescription.vue'
+import DialogFooter from './DialogFooter.vue'
+import DialogHeader from './DialogHeader.vue'
 import DialogOverlay from './DialogOverlay.vue'
 import DialogPortal from './DialogPortal.vue'
+import DialogTitle from './DialogTitle.vue'
+import DialogTrigger from './DialogTrigger.vue'
 
 // Helper: wrap a component that needs DialogRoot context
-function wrapInDialog(component: object, props = {}, slots = {}) {
+function _wrapInDialog(component: object, props = {}, slots = {}) {
   return mount(
     {
       components: { Dialog, ...({ Comp: component } as Record<string, object>) },
@@ -25,7 +25,7 @@ function wrapInDialog(component: object, props = {}, slots = {}) {
   )
 }
 
-describe('Dialog', () => {
+describe('dialog', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Dialog, {
       slots: { default: '<div>content</div>' },
@@ -50,7 +50,7 @@ describe('Dialog', () => {
   })
 })
 
-describe('DialogTrigger', () => {
+describe('dialogTrigger', () => {
   it('renders slot content inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogTrigger },
@@ -69,7 +69,7 @@ describe('DialogTrigger', () => {
   })
 })
 
-describe('DialogHeader', () => {
+describe('dialogHeader', () => {
   it('has correct base classes', () => {
     const wrapper = mount(DialogHeader)
     const div = wrapper.find('div')
@@ -95,7 +95,7 @@ describe('DialogHeader', () => {
   })
 })
 
-describe('DialogFooter', () => {
+describe('dialogFooter', () => {
   it('has correct base classes', () => {
     const wrapper = mount(DialogFooter)
     const div = wrapper.find('div')
@@ -119,7 +119,7 @@ describe('DialogFooter', () => {
   })
 })
 
-describe('DialogTitle', () => {
+describe('dialogTitle', () => {
   it('renders with correct classes inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogTitle },
@@ -138,7 +138,8 @@ describe('DialogTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    } else {
+    }
+    else {
       // Just verify it renders
       expect(wrapper.text()).toContain('Title')
     }
@@ -153,7 +154,7 @@ describe('DialogTitle', () => {
   })
 })
 
-describe('DialogDescription', () => {
+describe('dialogDescription', () => {
   it('renders with correct classes inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogDescription },
@@ -171,7 +172,8 @@ describe('DialogDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Description')
     }
   })
@@ -185,7 +187,7 @@ describe('DialogDescription', () => {
   })
 })
 
-describe('DialogOverlay', () => {
+describe('dialogOverlay', () => {
   it('renders without crashing inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogOverlay },
@@ -203,7 +205,7 @@ describe('DialogOverlay', () => {
   })
 })
 
-describe('DialogClose', () => {
+describe('dialogClose', () => {
   it('renders without crashing inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogClose },
@@ -221,7 +223,7 @@ describe('DialogClose', () => {
   })
 })
 
-describe('DialogContent', () => {
+describe('dialogContent', () => {
   it('renders without crashing inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogContent },
@@ -249,17 +251,17 @@ describe('DialogContent', () => {
     // DialogContent renders a Close button with sr-only span text "Close"
     // Check the component's own rendered output or document.body
     const allHtml = div.innerHTML + document.body.innerHTML
-    const hasCloseButton =
-      allHtml.includes('sr-only') ||
-      wrapper.html().includes('sr-only') ||
-      wrapper.findComponent(DialogContent).exists()
+    const hasCloseButton
+      = allHtml.includes('sr-only')
+        || wrapper.html().includes('sr-only')
+        || wrapper.findComponent(DialogContent).exists()
     expect(hasCloseButton).toBe(true)
     wrapper.unmount()
     document.body.removeChild(div)
   })
 })
 
-describe('DialogPortal', () => {
+describe('dialogPortal', () => {
   it('renders without crashing inside Dialog context', () => {
     const wrapper = mount({
       components: { Dialog, DialogPortal },
@@ -269,7 +271,7 @@ describe('DialogPortal', () => {
   })
 })
 
-describe('Dialog composition', () => {
+describe('dialog composition', () => {
   it('mounts Dialog with all sub-components without errors', () => {
     const wrapper = mount({
       components: {

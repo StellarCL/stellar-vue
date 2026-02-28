@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { transitionPresets, type TransitionPresetName } from './presets'
+import { type TransitionPresetName, transitionPresets } from './presets'
 
 interface StellarTransitionGroupProps {
   preset?: TransitionPresetName

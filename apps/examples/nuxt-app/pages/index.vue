@@ -36,7 +36,7 @@ const submittedData = ref<ContactForm | null>(null)
 
 async function onSubmit(values: ContactForm) {
   // Simulate an async API call
-  await new Promise((resolve) => setTimeout(resolve, 600))
+  await new Promise(resolve => setTimeout(resolve, 600))
   submittedData.value = values
   submitted.value = true
 }
@@ -53,35 +53,53 @@ function resetForm() {
     <!-- Success state -->
     <UICard v-if="submitted" class="border-green-200 bg-green-50 dark:bg-green-950">
       <UICardHeader>
-        <UICardTitle class="text-green-700 dark:text-green-300">Message sent!</UICardTitle>
+        <UICardTitle class="text-green-700 dark:text-green-300">
+          Message sent!
+        </UICardTitle>
         <UICardDescription>Your enquiry has been received.</UICardDescription>
       </UICardHeader>
       <UICardContent>
         <dl class="space-y-2 text-sm">
           <div>
-            <dt class="text-muted-foreground font-medium">Name</dt>
+            <dt class="text-muted-foreground font-medium">
+              Name
+            </dt>
             <dd>{{ submittedData?.name }}</dd>
           </div>
           <div>
-            <dt class="text-muted-foreground font-medium">Email</dt>
+            <dt class="text-muted-foreground font-medium">
+              Email
+            </dt>
             <dd>{{ submittedData?.email }}</dd>
           </div>
           <div>
-            <dt class="text-muted-foreground font-medium">Category</dt>
-            <dd class="capitalize">{{ submittedData?.category }}</dd>
+            <dt class="text-muted-foreground font-medium">
+              Category
+            </dt>
+            <dd class="capitalize">
+              {{ submittedData?.category }}
+            </dd>
           </div>
           <div>
-            <dt class="text-muted-foreground font-medium">Subject</dt>
+            <dt class="text-muted-foreground font-medium">
+              Subject
+            </dt>
             <dd>{{ submittedData?.subject }}</dd>
           </div>
           <div>
-            <dt class="text-muted-foreground font-medium">Message</dt>
-            <dd class="whitespace-pre-wrap">{{ submittedData?.message }}</dd>
+            <dt class="text-muted-foreground font-medium">
+              Message
+            </dt>
+            <dd class="whitespace-pre-wrap">
+              {{ submittedData?.message }}
+            </dd>
           </div>
         </dl>
       </UICardContent>
       <UICardFooter>
-        <UIButton variant="outline" @click="resetForm">Send another message</UIButton>
+        <UIButton variant="outline" @click="resetForm">
+          Send another message
+        </UIButton>
       </UICardFooter>
     </UICard>
 
@@ -134,10 +152,18 @@ function resetForm() {
                     <UISelectValue placeholder="Select a category" />
                   </UISelectTrigger>
                   <UISelectContent>
-                    <UISelectItem value="general">General Enquiry</UISelectItem>
-                    <UISelectItem value="support">Technical Support</UISelectItem>
-                    <UISelectItem value="billing">Billing</UISelectItem>
-                    <UISelectItem value="feedback">Feedback</UISelectItem>
+                    <UISelectItem value="general">
+                      General Enquiry
+                    </UISelectItem>
+                    <UISelectItem value="support">
+                      Technical Support
+                    </UISelectItem>
+                    <UISelectItem value="billing">
+                      Billing
+                    </UISelectItem>
+                    <UISelectItem value="feedback">
+                      Feedback
+                    </UISelectItem>
                   </UISelectContent>
                 </UISelect>
               </UIFormControl>

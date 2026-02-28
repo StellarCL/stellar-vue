@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import type { RatingProps } from './rating.types'
-import { ratingVariants } from './rating.variants'
+import { computed, ref } from 'vue'
 import { cn } from '../../utils'
+import { ratingVariants } from './rating.variants'
 
 const props = withDefaults(defineProps<RatingProps>(), {
   modelValue: 0,
@@ -30,8 +30,8 @@ const classes = computed(() =>
   ),
 )
 
-function getStarValue(index: number, event?: MouseEvent): number {
-  if (props.halfStars && event) {
+function getStarValue(index: number, event?: MouseEvent | KeyboardEvent): number {
+  if (props.halfStars && event && 'clientX' in event) {
     const target = event.currentTarget as HTMLElement
     const rect = target.getBoundingClientRect()
     const x = event.clientX - rect.left
@@ -42,26 +42,31 @@ function getStarValue(index: number, event?: MouseEvent): number {
   return index
 }
 
-function handleClick(index: number, event: MouseEvent) {
-  if (props.readonly) return
+function handleClick(index: number, event: MouseEvent | KeyboardEvent) {
+  if (props.readonly)
+    return
   const value = getStarValue(index, event)
   emit('update:modelValue', value)
 }
 
 function handleMouseMove(index: number, event: MouseEvent) {
-  if (props.readonly) return
+  if (props.readonly)
+    return
   hoverValue.value = getStarValue(index, event)
 }
 
 function handleMouseLeave() {
-  if (props.readonly) return
+  if (props.readonly)
+    return
   hoverValue.value = null
 }
 
 function getStarFill(index: number): 'full' | 'half' | 'empty' {
   const val = displayValue.value
-  if (val >= index) return 'full'
-  if (val >= index - 0.5 && props.halfStars) return 'half'
+  if (val >= index)
+    return 'full'
+  if (val >= index - 0.5 && props.halfStars)
+    return 'half'
   return 'empty'
 }
 </script>

@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Checkbox from './Checkbox.vue'
 
-describe('Checkbox', () => {
+describe('checkbox', () => {
   it('renders unchecked by default', () => {
     const wrapper = mount(Checkbox)
     const root = wrapper.find('[role="checkbox"]')

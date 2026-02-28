@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface AvatarProps {
-  /** Size of the avatar
+  /**
+   * Size of the avatar
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg' | 'xl'

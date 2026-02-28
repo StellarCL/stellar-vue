@@ -1,26 +1,29 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import ContextMenu from './ContextMenu.vue'
-import ContextMenuTrigger from './ContextMenuTrigger.vue'
-import ContextMenuContent from './ContextMenuContent.vue'
-import ContextMenuItem from './ContextMenuItem.vue'
 import ContextMenuCheckboxItem from './ContextMenuCheckboxItem.vue'
+import ContextMenuContent from './ContextMenuContent.vue'
+import ContextMenuGroup from './ContextMenuGroup.vue'
+import ContextMenuItem from './ContextMenuItem.vue'
+import ContextMenuLabel from './ContextMenuLabel.vue'
 import ContextMenuRadioGroup from './ContextMenuRadioGroup.vue'
 import ContextMenuRadioItem from './ContextMenuRadioItem.vue'
-import ContextMenuLabel from './ContextMenuLabel.vue'
 import ContextMenuSeparator from './ContextMenuSeparator.vue'
 import ContextMenuShortcut from './ContextMenuShortcut.vue'
-import ContextMenuGroup from './ContextMenuGroup.vue'
 import ContextMenuSub from './ContextMenuSub.vue'
-import ContextMenuSubTrigger from './ContextMenuSubTrigger.vue'
 import ContextMenuSubContent from './ContextMenuSubContent.vue'
+import ContextMenuSubTrigger from './ContextMenuSubTrigger.vue'
+import ContextMenuTrigger from './ContextMenuTrigger.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -45,7 +48,7 @@ async function mountAndRightClick(template: string, components: Record<string, o
   return document.body.innerHTML
 }
 
-describe('ContextMenu', () => {
+describe('contextMenu', () => {
   it('renders without crashing', () => {
     const wrapper = mount(ContextMenu, {
       slots: { default: '<div>content</div>' },
@@ -70,7 +73,7 @@ describe('ContextMenu', () => {
   })
 })
 
-describe('ContextMenuTrigger', () => {
+describe('contextMenuTrigger', () => {
   it('renders slot content inside ContextMenu context', () => {
     const wrapper = mount({
       components: { ContextMenu, ContextMenuTrigger },
@@ -108,7 +111,7 @@ describe('ContextMenuTrigger', () => {
   })
 })
 
-describe('ContextMenuContent', () => {
+describe('contextMenuContent', () => {
   it('has correct styling classes when opened via right-click', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><p>Item</p></ContextMenuContent></ContextMenu>`,
@@ -136,7 +139,7 @@ describe('ContextMenuContent', () => {
   })
 })
 
-describe('ContextMenuItem', () => {
+describe('contextMenuItem', () => {
   it('renders with correct classes', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuItem>Item Text</ContextMenuItem></ContextMenuContent></ContextMenu>`,
@@ -172,7 +175,7 @@ describe('ContextMenuItem', () => {
   })
 })
 
-describe('ContextMenuCheckboxItem', () => {
+describe('contextMenuCheckboxItem', () => {
   it('renders with indicator area inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuCheckboxItem :checked="true">Check Item</ContextMenuCheckboxItem></ContextMenuContent></ContextMenu>`,
@@ -199,13 +202,13 @@ describe('ContextMenuCheckboxItem', () => {
   })
 
   it('checkbox item toggles - emits update:checked on interaction', async () => {
-    let checkedValue: boolean | undefined
+    let _checkedValue: boolean | undefined
     const wrapper = mount(
       {
         components: { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuCheckboxItem },
         template: `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuCheckboxItem :checked="false" @update:checked="onChecked">Toggle Me</ContextMenuCheckboxItem></ContextMenuContent></ContextMenu>`,
         methods: {
-          onChecked(val: boolean) { checkedValue = val },
+          onChecked(val: boolean) { _checkedValue = val },
         },
       },
       { attachTo: document.body },
@@ -222,7 +225,7 @@ describe('ContextMenuCheckboxItem', () => {
   })
 })
 
-describe('ContextMenuRadioGroup', () => {
+describe('contextMenuRadioGroup', () => {
   it('renders without crashing inside ContextMenu context', () => {
     const wrapper = mount({
       components: { ContextMenu, ContextMenuContent, ContextMenuRadioGroup },
@@ -237,7 +240,7 @@ describe('ContextMenuRadioGroup', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('RadioGroup selection - renders radio items with values', async () => {
+  it('radioGroup selection - renders radio items with values', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="a"><ContextMenuRadioItem value="a">Option A</ContextMenuRadioItem><ContextMenuRadioItem value="b">Option B</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
       { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuRadioGroup, ContextMenuRadioItem },
@@ -247,7 +250,7 @@ describe('ContextMenuRadioGroup', () => {
   })
 })
 
-describe('ContextMenuRadioItem', () => {
+describe('contextMenuRadioItem', () => {
   it('renders with indicator area inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="a"><ContextMenuRadioItem value="a">Option A</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
@@ -274,7 +277,7 @@ describe('ContextMenuRadioItem', () => {
   })
 })
 
-describe('ContextMenuLabel', () => {
+describe('contextMenuLabel', () => {
   it('renders with font-semibold class inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuLabel>My Account</ContextMenuLabel></ContextMenuContent></ContextMenu>`,
@@ -300,7 +303,7 @@ describe('ContextMenuLabel', () => {
   })
 })
 
-describe('ContextMenuSeparator', () => {
+describe('contextMenuSeparator', () => {
   it('renders with bg-muted class inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSeparator /></ContextMenuContent></ContextMenu>`,
@@ -318,7 +321,7 @@ describe('ContextMenuSeparator', () => {
   })
 })
 
-describe('ContextMenuShortcut', () => {
+describe('contextMenuShortcut', () => {
   it('renders with opacity-60 class', () => {
     const wrapper = mount(ContextMenuShortcut, {
       slots: { default: '⌘K' },
@@ -356,7 +359,7 @@ describe('ContextMenuShortcut', () => {
   })
 })
 
-describe('ContextMenuGroup', () => {
+describe('contextMenuGroup', () => {
   it('renders without crashing inside ContextMenu context', () => {
     const wrapper = mount({
       components: { ContextMenu, ContextMenuContent, ContextMenuGroup },
@@ -380,7 +383,7 @@ describe('ContextMenuGroup', () => {
   })
 })
 
-describe('ContextMenuSub', () => {
+describe('contextMenuSub', () => {
   it('renders without crashing inside ContextMenu context', () => {
     const wrapper = mount({
       components: { ContextMenu, ContextMenuContent, ContextMenuSub },
@@ -404,7 +407,7 @@ describe('ContextMenuSub', () => {
   })
 })
 
-describe('ContextMenuSubTrigger', () => {
+describe('contextMenuSubTrigger', () => {
   it('shows chevron icon inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger>More</ContextMenuSubTrigger></ContextMenuSub></ContextMenuContent></ContextMenu>`,
@@ -439,7 +442,7 @@ describe('ContextMenuSubTrigger', () => {
   })
 })
 
-describe('ContextMenuSubContent', () => {
+describe('contextMenuSubContent', () => {
   it('renders without crashing inside ContextMenu context', () => {
     const wrapper = mount({
       components: { ContextMenu, ContextMenuContent, ContextMenuSub, ContextMenuSubContent },
@@ -457,7 +460,7 @@ describe('ContextMenuSubContent', () => {
   })
 })
 
-describe('ContextMenu composition', () => {
+describe('contextMenu composition', () => {
   it('mounts full context menu composition without errors', () => {
     const wrapper = mount({
       components: {
@@ -491,7 +494,7 @@ describe('ContextMenu composition', () => {
     expect(wrapper.text()).toContain('Right-click here')
   })
 
-  it('ContextMenuShortcut renders correctly standalone', () => {
+  it('contextMenuShortcut renders correctly standalone', () => {
     const wrapper = mount(ContextMenuShortcut, {
       slots: { default: '⌘S' },
     })

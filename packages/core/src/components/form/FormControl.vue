@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { useFormField } from '../../composables/useFormField'
 import { computed } from 'vue'
+import { useFormField } from '../../composables/useFormField'
 
 let fieldContext: ReturnType<typeof useFormField> | null = null
 try {
   fieldContext = useFormField()
-} catch {
+}
+catch {
   // Can be used outside form context
 }
 
 const ariaDescribedBy = computed(() => {
-  if (!fieldContext) return undefined
+  if (!fieldContext)
+    return undefined
   const parts: string[] = []
   parts.push(fieldContext.formDescriptionId)
   if (fieldContext.error.value) {

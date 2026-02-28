@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { Label, Switch } from '@stellar-vue-ui/core'
 import { ref } from 'vue'
-import { Switch, Label } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const airplane = ref(false)
 const wifi = ref(true)
@@ -26,7 +26,9 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
           <Switch id="airplane-mode" v-model:checked="airplane" />
           <Label for="airplane-mode">Airplane Mode</Label>
         </div>
-        <p class="mt-2 text-xs text-muted-foreground">Airplane mode: {{ airplane ? 'On' : 'Off' }}</p>
+        <p class="mt-2 text-xs text-muted-foreground">
+          Airplane mode: {{ airplane ? 'On' : 'Off' }}
+        </p>
       </DemoSection>
 
       <!-- Sizes -->
@@ -35,8 +37,8 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
           <div v-for="size in sizes" :key="size" class="flex items-center gap-3">
             <Switch
               :id="`switch-${size}`"
-              :size="size"
               v-model:checked="sizeChecked[size]"
+              :size="size"
             />
             <Label :for="`switch-${size}`">{{ size.toUpperCase() }}</Label>
           </div>
@@ -48,22 +50,34 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
         <div class="max-w-sm space-y-4">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium">Wi-Fi</p>
-              <p class="text-xs text-muted-foreground">Connect to wireless networks</p>
+              <p class="text-sm font-medium">
+                Wi-Fi
+              </p>
+              <p class="text-xs text-muted-foreground">
+                Connect to wireless networks
+              </p>
             </div>
             <Switch v-model:checked="wifi" />
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium">Bluetooth</p>
-              <p class="text-xs text-muted-foreground">Connect to Bluetooth devices</p>
+              <p class="text-sm font-medium">
+                Bluetooth
+              </p>
+              <p class="text-xs text-muted-foreground">
+                Connect to Bluetooth devices
+              </p>
             </div>
             <Switch v-model:checked="bluetooth" />
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium opacity-50">Location Services</p>
-              <p class="text-xs text-muted-foreground">Disabled by administrator</p>
+              <p class="text-sm font-medium opacity-50">
+                Location Services
+              </p>
+              <p class="text-xs text-muted-foreground">
+                Disabled by administrator
+              </p>
             </div>
             <Switch :disabled="true" />
           </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { ColorPickerContext, ColorPickerHueSliderProps } from './color-picker.types'
 import { computed, inject } from 'vue'
-import type { ColorPickerHueSliderProps, ColorPickerContext } from './color-picker.types'
 import { cn } from '../../utils'
 
 const props = defineProps<ColorPickerHueSliderProps>()
@@ -28,5 +28,5 @@ const classes = computed(() =>
     }"
     aria-label="Hue"
     @input="handleInput"
-  />
+  >
 </template>

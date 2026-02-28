@@ -1,12 +1,12 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { defineComponent, h, nextTick, ref } from 'vue'
 import MultiSelect from './MultiSelect.vue'
-import MultiSelectTrigger from './MultiSelectTrigger.vue'
 import MultiSelectContent from './MultiSelectContent.vue'
+import MultiSelectEmpty from './MultiSelectEmpty.vue'
 import MultiSelectItem from './MultiSelectItem.vue'
 import MultiSelectTag from './MultiSelectTag.vue'
-import MultiSelectEmpty from './MultiSelectEmpty.vue'
+import MultiSelectTrigger from './MultiSelectTrigger.vue'
 
 const defaultOptions = [
   { label: 'Apple', value: 'apple' },
@@ -26,11 +26,11 @@ function createMultiSelect(props: Record<string, any> = {}) {
       return h(
         MultiSelect,
         {
-          modelValue: this.modelValue,
-          options: defaultOptions,
-          placeholder: props.placeholder || 'Select items...',
-          disabled: props.disabled || false,
-          max: props.max,
+          'modelValue': this.modelValue,
+          'options': defaultOptions,
+          'placeholder': props.placeholder || 'Select items...',
+          'disabled': props.disabled || false,
+          'max': props.max,
           'onUpdate:modelValue': (val: string[]) => {
             this.modelValue = val
           },
@@ -40,7 +40,7 @@ function createMultiSelect(props: Record<string, any> = {}) {
             h(MultiSelectTrigger, null, {
               default: () => [
                 ...this.modelValue.map((v: string) => {
-                  const opt = defaultOptions.find((o) => o.value === v)
+                  const opt = defaultOptions.find(o => o.value === v)
                   return h(MultiSelectTag, {
                     key: v,
                     value: v,
@@ -54,7 +54,7 @@ function createMultiSelect(props: Record<string, any> = {}) {
             }),
             h(MultiSelectContent, null, {
               default: () => {
-                const items = defaultOptions.map((opt) =>
+                const items = defaultOptions.map(opt =>
                   h(MultiSelectItem, {
                     key: opt.value,
                     value: opt.value,
@@ -71,7 +71,7 @@ function createMultiSelect(props: Record<string, any> = {}) {
   })
 }
 
-describe('MultiSelect', () => {
+describe('multiSelect', () => {
   it('renders with placeholder', () => {
     const Component = createMultiSelect({ placeholder: 'Pick fruits...' })
     const wrapper = mount(Component)
@@ -162,8 +162,8 @@ describe('MultiSelect', () => {
           return h(
             MultiSelect,
             {
-              modelValue: [],
-              options: defaultOptions,
+              'modelValue': [],
+              'options': defaultOptions,
               'onUpdate:modelValue': (val: string[]) => {
                 emitted.push(val)
               },
@@ -175,7 +175,7 @@ describe('MultiSelect', () => {
                 }),
                 h(MultiSelectContent, null, {
                   default: () =>
-                    defaultOptions.map((opt) =>
+                    defaultOptions.map(opt =>
                       h(MultiSelectItem, {
                         key: opt.value,
                         value: opt.value,
@@ -208,7 +208,7 @@ describe('MultiSelect', () => {
   })
 })
 
-describe('MultiSelectTag', () => {
+describe('multiSelectTag', () => {
   it('renders with label', () => {
     const wrapper = mount(MultiSelectTag, {
       props: { value: 'apple', label: 'Apple' },
@@ -250,7 +250,7 @@ describe('MultiSelectTag', () => {
   })
 })
 
-describe('MultiSelectEmpty', () => {
+describe('multiSelectEmpty', () => {
   it('renders default empty message', () => {
     const wrapper = mount(MultiSelectEmpty)
     expect(wrapper.text()).toBe('No results found.')
@@ -271,7 +271,7 @@ describe('MultiSelectEmpty', () => {
   })
 })
 
-describe('MultiSelectItem', () => {
+describe('multiSelectItem', () => {
   it('renders with label', () => {
     const wrapper = mount(MultiSelectItem, {
       props: { value: 'apple', label: 'Apple' },
@@ -319,7 +319,7 @@ describe('MultiSelectItem', () => {
   })
 })
 
-describe('MultiSelectTrigger', () => {
+describe('multiSelectTrigger', () => {
   it('renders with combobox role', () => {
     const wrapper = mount(
       defineComponent({
@@ -387,7 +387,7 @@ describe('MultiSelectTrigger', () => {
   })
 })
 
-describe('MultiSelectContent', () => {
+describe('multiSelectContent', () => {
   it('renders when open', async () => {
     const wrapper = mount(
       defineComponent({
@@ -402,7 +402,7 @@ describe('MultiSelectContent', () => {
                 }),
                 h(MultiSelectContent, null, {
                   default: () =>
-                    defaultOptions.map((opt) =>
+                    defaultOptions.map(opt =>
                       h(MultiSelectItem, {
                         key: opt.value,
                         value: opt.value,
@@ -443,7 +443,7 @@ describe('MultiSelectContent', () => {
                 }),
                 h(MultiSelectContent, null, {
                   default: () =>
-                    defaultOptions.map((opt) =>
+                    defaultOptions.map(opt =>
                       h(MultiSelectItem, {
                         key: opt.value,
                         value: opt.value,
@@ -463,7 +463,7 @@ describe('MultiSelectContent', () => {
   })
 })
 
-describe('MultiSelect clear all', () => {
+describe('multiSelect clear all', () => {
   it('clear all removes all tags', async () => {
     const Component = defineComponent({
       setup() {
@@ -474,8 +474,8 @@ describe('MultiSelect clear all', () => {
         return h(
           MultiSelect,
           {
-            modelValue: this.modelValue,
-            options: defaultOptions,
+            'modelValue': this.modelValue,
+            'options': defaultOptions,
             'onUpdate:modelValue': (val: string[]) => {
               this.modelValue = val
             },
@@ -485,7 +485,7 @@ describe('MultiSelect clear all', () => {
               h(MultiSelectTrigger, null, {
                 default: () => [
                   ...this.modelValue.map((v: string) => {
-                    const opt = defaultOptions.find((o) => o.value === v)
+                    const opt = defaultOptions.find(o => o.value === v)
                     return h(MultiSelectTag, {
                       key: v,
                       value: v,
@@ -496,7 +496,7 @@ describe('MultiSelect clear all', () => {
               }),
               h(MultiSelectContent, null, {
                 default: () =>
-                  defaultOptions.map((opt) =>
+                  defaultOptions.map(opt =>
                     h(MultiSelectItem, {
                       key: opt.value,
                       value: opt.value,
@@ -533,7 +533,7 @@ describe('MultiSelect clear all', () => {
   })
 })
 
-describe('MultiSelect search filters', () => {
+describe('multiSelect search filters', () => {
   it('search filters available options', async () => {
     const Component = defineComponent({
       setup() {
@@ -542,14 +542,14 @@ describe('MultiSelect search filters', () => {
         return { modelValue, searchTerm }
       },
       render() {
-        const filtered = defaultOptions.filter((opt) =>
+        const filtered = defaultOptions.filter(opt =>
           opt.label.toLowerCase().includes(this.searchTerm.toLowerCase()),
         )
         return h(
           MultiSelect,
           {
-            modelValue: this.modelValue,
-            options: defaultOptions,
+            'modelValue': this.modelValue,
+            'options': defaultOptions,
             'onUpdate:modelValue': (val: string[]) => {
               this.modelValue = val
             },
@@ -562,7 +562,7 @@ describe('MultiSelect search filters', () => {
               h(MultiSelectContent, null, {
                 default: () =>
                   filtered.length > 0
-                    ? filtered.map((opt) =>
+                    ? filtered.map(opt =>
                         h(MultiSelectItem, {
                           key: opt.value,
                           value: opt.value,

@@ -1,14 +1,14 @@
-export { default as ChartContainer } from './ChartContainer.vue'
-export { default as ChartTooltip } from './ChartTooltip.vue'
-export { default as ChartLegend } from './ChartLegend.vue'
 export type {
-  ChartType,
+  ChartContainerProps,
   ChartData,
   ChartDataset,
-  ChartOptions,
-  ChartContainerProps,
-  ChartTooltipProps,
   ChartLegendProps,
+  ChartOptions,
+  ChartTooltipProps,
+  ChartType,
   UseChartOptions,
   UseChartReturn,
 } from './chart.types'
+export { default as ChartContainer } from './ChartContainer.vue'
+export { default as ChartLegend } from './ChartLegend.vue'
+export { default as ChartTooltip } from './ChartTooltip.vue'

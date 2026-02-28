@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { generateDiff, computeHash, displayDiff } from './diff'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { computeHash, displayDiff, generateDiff } from './diff'
 
 describe('diff utils', () => {
   describe('generateDiff', () => {

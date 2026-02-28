@@ -21,9 +21,9 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -33,7 +33,7 @@ import {
 
 ```vue
 <script setup lang="ts">
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@stellar-vue-ui/core'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -120,7 +120,7 @@ const openItem = ref('item-1')
 </script>
 
 <template>
-  <Accordion type="single" v-model="openItem" collapsible>
+  <Accordion v-model="openItem" type="single" collapsible>
     <AccordionItem value="item-1">
       <AccordionTrigger>First item</AccordionTrigger>
       <AccordionContent>First content.</AccordionContent>

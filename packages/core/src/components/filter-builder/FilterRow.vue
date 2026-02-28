@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { FieldConfig, FilterCondition, FilterRowProps } from './filter-builder.types'
 import { computed } from 'vue'
-import type { FilterRowProps, FilterCondition, FieldConfig } from './filter-builder.types'
 import { cn } from '../../utils'
 import FilterField from './FilterField.vue'
 import FilterOperator from './FilterOperator.vue'
@@ -21,7 +21,7 @@ const classes = computed(() =>
 )
 
 const selectedField = computed<FieldConfig | undefined>(() =>
-  props.fields.find((f) => f.key === props.rule.field),
+  props.fields.find(f => f.key === props.rule.field),
 )
 
 const availableOperators = computed(() => {
@@ -30,7 +30,7 @@ const availableOperators = computed(() => {
 })
 
 function handleFieldChange(field: string) {
-  const fieldConfig = props.fields.find((f) => f.key === field)
+  const fieldConfig = props.fields.find(f => f.key === field)
   const fieldType = fieldConfig?.type ?? 'string'
   const operators = props.operators[fieldType] ?? []
   emit('update:rule', {
@@ -82,7 +82,7 @@ function handleValueChange(value: string | number | null) {
       aria-label="Remove rule"
       @click="emit('remove')"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
     </button>
   </div>
 </template>

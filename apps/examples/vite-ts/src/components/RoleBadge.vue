@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Badge } from '@stellar-vue-ui/core'
 import type { BadgeVariants } from '@stellar-vue-ui/core'
 import type { RoleBadgeProps } from '@/types'
+import { Badge } from '@stellar-vue-ui/core'
+import { computed } from 'vue'
 
 const props = defineProps<RoleBadgeProps>()
 
@@ -25,5 +25,7 @@ const label = computed<string>(() => labelMap[props.role])
 </script>
 
 <template>
-  <Badge :variant="variant">{{ label }}</Badge>
+  <Badge :variant="variant">
+    {{ label }}
+  </Badge>
 </template>

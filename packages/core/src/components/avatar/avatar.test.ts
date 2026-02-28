@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Avatar from './Avatar.vue'
-import AvatarImage from './AvatarImage.vue'
 import AvatarFallback from './AvatarFallback.vue'
+import AvatarImage from './AvatarImage.vue'
 
-describe('Avatar', () => {
+describe('avatar', () => {
   it('renders with default size classes (h-10 w-10)', () => {
     const wrapper = mount(Avatar)
     const classes = wrapper.classes().join(' ')
@@ -46,7 +46,7 @@ describe('Avatar', () => {
   })
 })
 
-describe('AvatarImage', () => {
+describe('avatarImage', () => {
   it('renders with src and alt', () => {
     const wrapper = mount({
       components: { Avatar, AvatarImage },
@@ -89,7 +89,7 @@ describe('AvatarImage', () => {
   })
 })
 
-describe('AvatarFallback', () => {
+describe('avatarFallback', () => {
   it('renders slot content (initials text)', () => {
     const wrapper = mount({
       components: { Avatar, AvatarFallback },
@@ -130,7 +130,7 @@ describe('AvatarFallback', () => {
   })
 })
 
-describe('Avatar composition', () => {
+describe('avatar composition', () => {
   it('composes Avatar with AvatarImage and AvatarFallback', () => {
     const wrapper = mount({
       components: { Avatar, AvatarImage, AvatarFallback },

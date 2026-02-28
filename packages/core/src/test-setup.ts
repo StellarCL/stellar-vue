@@ -41,8 +41,8 @@ Object.defineProperty(window, 'matchMedia', {
 })
 
 // Assign mocks
-global.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver
-global.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver
+globalThis.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver
+globalThis.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver
 
 // Mock scrollTo
 Element.prototype.scrollTo = vi.fn() as unknown as typeof Element.prototype.scrollTo

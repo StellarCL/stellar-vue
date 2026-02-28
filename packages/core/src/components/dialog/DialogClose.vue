@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogClose } from 'radix-vue'
 import type { DialogCloseProps } from './dialog.types'
+import { DialogClose } from 'radix-vue'
 
 const props = withDefaults(defineProps<DialogCloseProps>(), {
   asChild: false,

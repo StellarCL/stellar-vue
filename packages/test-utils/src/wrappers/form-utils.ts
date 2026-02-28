@@ -1,4 +1,4 @@
-import type { VueWrapper, DOMWrapper } from '@vue/test-utils'
+import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 
 type AnyWrapper = VueWrapper<any>
 
@@ -25,16 +25,17 @@ function buildLabelMap(wrapper: AnyWrapper): Map<string, Element> {
   const el = wrapper.element
 
   // Find all label elements
-  const labels = Array.from(el.querySelectorAll('label'))
+  const labels = Array.from(el.querySelectorAll('label')) as HTMLLabelElement[]
   for (const label of labels) {
     const text = label.textContent?.trim() ?? ''
-    if (!text) continue
+    if (!text)
+      continue
 
     // Find associated input by for/id pair
     const forAttr = label.getAttribute('for')
     if (forAttr) {
-      const input =
-        el.querySelector(`[id="${forAttr}"]`) ?? document.getElementById(forAttr)
+      const input
+        = el.querySelector(`[id="${forAttr}"]`) ?? document.getElementById(forAttr)
       if (input) {
         map.set(text, input)
         continue
@@ -79,11 +80,11 @@ export async function fillForm(
     // Fallback: find by placeholder, name, or id attribute matching the key
     if (!inputEl) {
       const key = labelText.toLowerCase().replace(/\s+/g, '-')
-      inputEl =
-        wrapper.element.querySelector(`[placeholder="${labelText}"]`) ??
-        wrapper.element.querySelector(`[name="${key}"]`) ??
-        wrapper.element.querySelector(`[id="${key}"]`) ??
-        null
+      inputEl
+        = wrapper.element.querySelector(`[placeholder="${labelText}"]`)
+          ?? wrapper.element.querySelector(`[name="${key}"]`)
+          ?? wrapper.element.querySelector(`[id="${key}"]`)
+          ?? null
     }
 
     if (!inputEl) {
@@ -99,12 +100,14 @@ export async function fillForm(
       if (selectWrapper.exists()) {
         await selectWrapper.setValue(value)
       }
-    } else if (tagName === 'input' && (inputType === 'checkbox' || inputType === 'radio')) {
+    }
+    else if (tagName === 'input' && (inputType === 'checkbox' || inputType === 'radio')) {
       ;(inputEl as HTMLInputElement).checked = value === 'true' || value === '1'
       if (triggerChange) {
         inputEl.dispatchEvent(new Event('change', { bubbles: true }))
       }
-    } else {
+    }
+    else {
       // Text input or textarea
       ;(inputEl as HTMLInputElement | HTMLTextAreaElement).value = value
 
@@ -136,13 +139,14 @@ export async function submitForm(wrapper: AnyWrapper): Promise<void> {
 
   if (!formEl) {
     // Try finding a submit button and clicking it
-    const submitBtn =
-      wrapper.element.querySelector('[type="submit"]') ??
-      wrapper.element.querySelector('button:not([type="button"]):not([type="reset"])')
+    const submitBtn
+      = wrapper.element.querySelector('[type="submit"]')
+        ?? wrapper.element.querySelector('button:not([type="button"]):not([type="reset"])')
 
     if (submitBtn) {
       ;(submitBtn as HTMLElement).click()
-    } else {
+    }
+    else {
       console.warn('[submitForm] No form element or submit button found')
     }
     return
@@ -182,9 +186,9 @@ export function getErrors(wrapper: AnyWrapper): string[] {
   const errors: string[] = []
 
   for (const selector of errorSelectors) {
-    const els = Array.from(wrapper.element.querySelectorAll(selector))
+    const els = Array.from(wrapper.element.querySelectorAll(selector)) as Element[]
     for (const el of els) {
-      const text = el.textContent?.trim()
+      const text = (el as Element).textContent?.trim()
       if (text && !seen.has(text)) {
         seen.add(text)
         errors.push(text)

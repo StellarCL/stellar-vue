@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PopoverRoot } from 'radix-vue'
 import type { PopoverProps } from './popover.types'
+import { PopoverRoot } from 'radix-vue'
 
 const props = withDefaults(defineProps<PopoverProps>(), {})
 

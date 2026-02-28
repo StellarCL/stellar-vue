@@ -1,27 +1,30 @@
-import { describe, expect, it, afterEach } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it } from 'vitest'
 import Menubar from './Menubar.vue'
-import MenubarMenu from './MenubarMenu.vue'
-import MenubarTrigger from './MenubarTrigger.vue'
-import MenubarContent from './MenubarContent.vue'
-import MenubarItem from './MenubarItem.vue'
 import MenubarCheckboxItem from './MenubarCheckboxItem.vue'
+import MenubarContent from './MenubarContent.vue'
+import MenubarGroup from './MenubarGroup.vue'
+import MenubarItem from './MenubarItem.vue'
+import MenubarLabel from './MenubarLabel.vue'
+import MenubarMenu from './MenubarMenu.vue'
 import MenubarRadioGroup from './MenubarRadioGroup.vue'
 import MenubarRadioItem from './MenubarRadioItem.vue'
-import MenubarLabel from './MenubarLabel.vue'
 import MenubarSeparator from './MenubarSeparator.vue'
 import MenubarShortcut from './MenubarShortcut.vue'
-import MenubarGroup from './MenubarGroup.vue'
 import MenubarSub from './MenubarSub.vue'
-import MenubarSubTrigger from './MenubarSubTrigger.vue'
 import MenubarSubContent from './MenubarSubContent.vue'
+import MenubarSubTrigger from './MenubarSubTrigger.vue'
+import MenubarTrigger from './MenubarTrigger.vue'
 
 // Track wrappers for cleanup
 const wrappers: ReturnType<typeof mount>[] = []
 
 afterEach(() => {
   wrappers.forEach((w) => {
-    try { w.unmount() } catch {}
+    try {
+      w.unmount()
+    }
+    catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -51,7 +54,7 @@ async function mountMenubarOpen(template: string, components: Record<string, obj
   return document.body.innerHTML
 }
 
-describe('Menubar', () => {
+describe('menubar', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Menubar, {
       slots: { default: '<div>content</div>' },
@@ -98,7 +101,7 @@ describe('Menubar', () => {
   })
 })
 
-describe('MenubarMenu', () => {
+describe('menubarMenu', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu },
@@ -108,7 +111,7 @@ describe('MenubarMenu', () => {
   })
 })
 
-describe('MenubarTrigger', () => {
+describe('menubarTrigger', () => {
   it('renders with correct styling classes', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarTrigger },
@@ -165,7 +168,7 @@ describe('MenubarTrigger', () => {
   })
 })
 
-describe('MenubarContent', () => {
+describe('menubarContent', () => {
   it('has correct styling classes when open', async () => {
     const bodyHtml = await mountOpenToBody(
       `<Menubar><MenubarMenu value="file"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarItem>New</MenubarItem></MenubarContent></MenubarMenu></Menubar>`,
@@ -184,7 +187,7 @@ describe('MenubarContent', () => {
   })
 })
 
-describe('MenubarItem', () => {
+describe('menubarItem', () => {
   it('renders with correct classes when menu is open', async () => {
     const wrapper = mount(
       {
@@ -247,7 +250,7 @@ describe('MenubarItem', () => {
   })
 })
 
-describe('MenubarCheckboxItem', () => {
+describe('menubarCheckboxItem', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarContent, MenubarCheckboxItem },
@@ -318,7 +321,7 @@ describe('MenubarCheckboxItem', () => {
   })
 })
 
-describe('MenubarRadioGroup', () => {
+describe('menubarRadioGroup', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarContent, MenubarRadioGroup },
@@ -336,7 +339,7 @@ describe('MenubarRadioGroup', () => {
   })
 })
 
-describe('MenubarRadioItem', () => {
+describe('menubarRadioItem', () => {
   it('renders with indicator area inside Menubar context', async () => {
     const wrapper = mount(
       {
@@ -395,7 +398,7 @@ describe('MenubarRadioItem', () => {
   })
 })
 
-describe('MenubarLabel', () => {
+describe('menubarLabel', () => {
   it('renders with font-semibold class inside Menubar context', async () => {
     const wrapper = mount(
       {
@@ -455,7 +458,7 @@ describe('MenubarLabel', () => {
   })
 })
 
-describe('MenubarSeparator', () => {
+describe('menubarSeparator', () => {
   it('renders with bg-muted class inside Menubar context', async () => {
     const bodyHtml = await mountMenubarOpen(
       `<Menubar model-value="file-menu"><MenubarMenu value="file-menu"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarSeparator /></MenubarContent></MenubarMenu></Menubar>`,
@@ -473,7 +476,7 @@ describe('MenubarSeparator', () => {
   })
 })
 
-describe('MenubarShortcut', () => {
+describe('menubarShortcut', () => {
   it('renders with opacity-60 class', () => {
     const wrapper = mount(MenubarShortcut, {
       slots: { default: '⌘N' },
@@ -511,7 +514,7 @@ describe('MenubarShortcut', () => {
   })
 })
 
-describe('MenubarGroup', () => {
+describe('menubarGroup', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarContent, MenubarGroup },
@@ -537,7 +540,7 @@ describe('MenubarGroup', () => {
   })
 })
 
-describe('MenubarSub', () => {
+describe('menubarSub', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarContent, MenubarSub },
@@ -555,7 +558,7 @@ describe('MenubarSub', () => {
   })
 })
 
-describe('MenubarSubTrigger', () => {
+describe('menubarSubTrigger', () => {
   it('shows chevron icon inside Menubar context', async () => {
     const bodyHtml = await mountMenubarOpen(
       `<Menubar model-value="file-menu"><MenubarMenu value="file-menu"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarSub><MenubarSubTrigger>More</MenubarSubTrigger></MenubarSub></MenubarContent></MenubarMenu></Menubar>`,
@@ -590,7 +593,7 @@ describe('MenubarSubTrigger', () => {
   })
 })
 
-describe('MenubarSubContent', () => {
+describe('menubarSubContent', () => {
   it('renders without crashing inside Menubar context', () => {
     const wrapper = mount({
       components: { Menubar, MenubarMenu, MenubarContent, MenubarSub, MenubarSubContent },
@@ -610,7 +613,7 @@ describe('MenubarSubContent', () => {
   })
 })
 
-describe('Menubar keyboard navigation', () => {
+describe('menubar keyboard navigation', () => {
   it('keyboard navigation between menus - ArrowRight moves focus', async () => {
     const wrapper = mount(
       {
@@ -687,7 +690,7 @@ describe('Menubar keyboard navigation', () => {
   })
 })
 
-describe('Menubar composition', () => {
+describe('menubar composition', () => {
   it('mounts full menubar composition without errors', () => {
     const wrapper = mount({
       components: {
@@ -732,7 +735,7 @@ describe('Menubar composition', () => {
     expect(wrapper.text()).toContain('Edit')
   })
 
-  it('MenubarShortcut renders correctly standalone', () => {
+  it('menubarShortcut renders correctly standalone', () => {
     const wrapper = mount(MenubarShortcut, {
       slots: { default: '⌘S' },
     })

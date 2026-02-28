@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { CommandContext, CommandInputProps } from './command.types'
 import { computed, inject } from 'vue'
-import type { CommandInputProps, CommandContext } from './command.types'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CommandInputProps>(), {
@@ -12,6 +12,7 @@ const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const context = inject<CommandContext>('command')
 const onSearchChange = inject<(value: string) => void>('command:onSearchChange')
 
@@ -60,6 +61,6 @@ const inputClasses = computed(() =>
       spellcheck="false"
       aria-autocomplete="list"
       @input="handleInput"
-    />
+    >
   </div>
 </template>

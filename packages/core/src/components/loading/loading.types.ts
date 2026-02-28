@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface LoadingProps {
-  /** Animation variant
+  /**
+   * Animation variant
    * @default 'spinner'
    */
   variant?: 'spinner' | 'dots' | 'bar' | 'skeleton'
 
-  /** Size of the loading indicator
+  /**
+   * Size of the loading indicator
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg'
@@ -17,7 +19,8 @@ export interface LoadingProps {
   /** Wrap the loading indicator in an overlay */
   overlay?: boolean
 
-  /** Whether the overlay covers the entire viewport
+  /**
+   * Whether the overlay covers the entire viewport
    * @default false
    */
   fullscreen?: boolean
@@ -30,7 +33,8 @@ export interface LoadingProps {
 }
 
 export interface LoadingSpinnerProps {
-  /** Size of the spinner
+  /**
+   * Size of the spinner
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg'
@@ -40,7 +44,8 @@ export interface LoadingSpinnerProps {
 }
 
 export interface LoadingDotsProps {
-  /** Size of the dots
+  /**
+   * Size of the dots
    * @default 'md'
    */
   size?: 'sm' | 'md' | 'lg'
@@ -58,7 +63,8 @@ export interface LoadingBarProps {
 }
 
 export interface LoadingOverlayProps {
-  /** Whether the overlay covers the entire viewport
+  /**
+   * Whether the overlay covers the entire viewport
    * @default false
    */
   fullscreen?: boolean

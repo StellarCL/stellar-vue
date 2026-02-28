@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarRadioGroup as MenubarRadioGroupPrimitive } from 'radix-vue'
 import type { MenubarRadioGroupProps } from './menubar.types'
+import { MenubarRadioGroup as MenubarRadioGroupPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<MenubarRadioGroupProps>()

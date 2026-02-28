@@ -9,9 +9,7 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/test-utils"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -19,27 +17,29 @@
       "require": "./dist/index.cjs"
     }
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": ["dist"],
-  "sideEffects": false,
-  "peerDependencies": {
-    "vitest": ">=3.0.0",
-    "@vue/test-utils": ">=2.4.0",
-    "vue": ">=3.5.0"
-  },
-  "devDependencies": {
-    "vue": "^3.5.0",
-    "vitest": "^3.0.0",
-    "@vue/test-utils": "^2.4.0",
-    "@vitejs/plugin-vue": "^5.0.0",
-    "jsdom": "^26.0.0",
-    "tsup": "^8.0.0",
-    "typescript": "^5.8.0"
-  },
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format esm,cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "@vue/test-utils": ">=2.4.0",
+    "vitest": ">=3.0.0",
+    "vue": ">=3.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^26.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0",
+    "vue": "^3.5.0"
   }
 }

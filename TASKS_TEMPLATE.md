@@ -2,9 +2,9 @@
 
 ## TASK_SYSTEM_CONFIG
 ```yaml
-version: "1.0.0"
-project_root: "{{absolute_path_to_project}}"
-spec_file: "{{absolute_path_to_SPEC.md}}"
+version: 1.0.0
+project_root: '{{absolute_path_to_project}}'
+spec_file: '{{absolute_path_to_SPEC.md}}'
 ```
 ---
 
@@ -14,11 +14,11 @@ Use this template for each task. Copy and fill in the values.
 -->
 
 ```yaml
-id: "{{phase}}.{{task_number}}"
+id: '{{phase}}.{{task_number}}'
 phase: {{phase_number}}
-name: "{{Descriptive Task Name}}"
-depends_on: ["{{prerequisite_task_id}}", "{{another_prerequisite}}"]
-model: "opus"  # sonnet, opus, haiku - match complexity
+name: '{{Descriptive Task Name}}'
+depends_on: ['{{prerequisite_task_id}}', '{{another_prerequisite}}']
+model: opus # sonnet, opus, haiku - match complexity
 
 prompt: |
   ## Task: {{Task Name}}
@@ -51,10 +51,10 @@ prompt: |
   - {{Edge case 2}}
 
 outputs:
-  - "{{relative/path/to/file1}}"
-  - "{{relative/path/to/file2}}"
+  - '{{relative/path/to/file1}}'
+  - '{{relative/path/to/file2}}'
 
-done_when: "{{Single sentence describing completion state}}"
+done_when: '{{Single sentence describing completion state}}'
 ```
 
 <!--
@@ -69,11 +69,11 @@ The examples below are common patterns - adjust as needed.
 
 ### Task 0.1: Create Project Directory Structure
 ```yaml
-id: "0.1"
+id: '0.1'
 phase: 0
-name: "Create Project Directory Structure"
+name: Create Project Directory Structure
 depends_on: []
-model: "opus"
+model: opus
 
 prompt: |
   ## Task: Create Project Directory Structure
@@ -92,7 +92,7 @@ prompt: |
   ├── {{directory_2}}/
   └── {{directory_3}}/
   ```
-  
+
   Reference: SPEC.md {{APPENDIX_A: FILE_STRUCTURE}}
 
   ## Instructions
@@ -114,14 +114,14 @@ skip_review: true  # Simple task, no code to review
 
 ### Task 0.2: Initialize Project Framework
 ```yaml
-id: "0.2"
+id: '0.2'
 phase: 0
-name: "Initialize {{Framework}} Project"
-status: "pending"
-depends_on: ["0.1"]
-agent_type: "general-purpose"
-model: "sonnet"
-estimated_context: "medium"
+name: 'Initialize {{Framework}} Project'
+status: pending
+depends_on: ['0.1']
+agent_type: general-purpose
+model: sonnet
+estimated_context: medium
 
 prompt: |
   ## Task: Initialize {{Framework}} Project

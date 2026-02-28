@@ -1,4 +1,4 @@
-import { defineNuxtPlugin, useRuntimeConfig, useCookie } from '#imports'
+import { defineNuxtPlugin, useCookie, useRuntimeConfig } from '#imports'
 
 /**
  * Stellar UI Nuxt plugin
@@ -22,8 +22,8 @@ export default defineNuxtPlugin({
 
       nuxtApp.hook('app:rendered', (ctx) => {
         // Inject theme attributes into the rendered HTML head
-        const themeAttr = ` data-theme="${themeName}"`
-        const darkClass = isDarkMode ? ' class="dark"' : ''
+        const _themeAttr = ` data-theme="${themeName}"`
+        const _darkClass = isDarkMode ? ' class="dark"' : ''
         ctx.renderResult = ctx.renderResult || ''
       })
 
@@ -55,7 +55,8 @@ export default defineNuxtPlugin({
             toggleDark()
           }
         }
-      } else {
+      }
+      else {
         // Class strategy: use stored preference
         const shouldBeDark = darkCookie.value === 'true'
         if (shouldBeDark !== isDark.value) {

@@ -1,13 +1,13 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Card from './Card.vue'
+import CardContent from './CardContent.vue'
+import CardDescription from './CardDescription.vue'
+import CardFooter from './CardFooter.vue'
 import CardHeader from './CardHeader.vue'
 import CardTitle from './CardTitle.vue'
-import CardDescription from './CardDescription.vue'
-import CardContent from './CardContent.vue'
-import CardFooter from './CardFooter.vue'
 
-describe('Card', () => {
+describe('card', () => {
   it('renders Card with default variant classes', () => {
     const wrapper = mount(Card)
     const classes = wrapper.classes().join(' ')
@@ -45,7 +45,7 @@ describe('Card', () => {
   })
 })
 
-describe('CardTitle', () => {
+describe('cardTitle', () => {
   it('renders as h3 by default', () => {
     const wrapper = mount(CardTitle, { slots: { default: 'Title' } })
     expect(wrapper.element.tagName).toBe('H3')
@@ -76,7 +76,7 @@ describe('CardTitle', () => {
   })
 })
 
-describe('CardHeader', () => {
+describe('cardHeader', () => {
   it('renders slot content', () => {
     const wrapper = mount(CardHeader, { slots: { default: 'Header content' } })
     expect(wrapper.text()).toBe('Header content')
@@ -96,7 +96,7 @@ describe('CardHeader', () => {
   })
 })
 
-describe('CardDescription', () => {
+describe('cardDescription', () => {
   it('renders text content', () => {
     const wrapper = mount(CardDescription, { slots: { default: 'A description' } })
     expect(wrapper.text()).toBe('A description')
@@ -120,7 +120,7 @@ describe('CardDescription', () => {
   })
 })
 
-describe('CardContent', () => {
+describe('cardContent', () => {
   it('renders slot content', () => {
     const wrapper = mount(CardContent, { slots: { default: 'Content body' } })
     expect(wrapper.text()).toBe('Content body')
@@ -139,7 +139,7 @@ describe('CardContent', () => {
   })
 })
 
-describe('CardFooter', () => {
+describe('cardFooter', () => {
   it('renders slot content', () => {
     const wrapper = mount(CardFooter, { slots: { default: 'Footer content' } })
     expect(wrapper.text()).toBe('Footer content')
@@ -160,7 +160,7 @@ describe('CardFooter', () => {
   })
 })
 
-describe('Card composition', () => {
+describe('card composition', () => {
   it('renders full Card composition with all sub-components', () => {
     const wrapper = mount({
       components: { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter },

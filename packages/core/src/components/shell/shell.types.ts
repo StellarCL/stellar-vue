@@ -6,7 +6,8 @@ export interface AppShellProps {
 }
 
 export interface ShellHeaderProps {
-  /** Height of the header
+  /**
+   * Height of the header
    * @default '4rem'
    */
   height?: string

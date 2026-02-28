@@ -1,24 +1,24 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
-import Toast from './Toast.vue'
-import ToastTitle from './ToastTitle.vue'
-import ToastDescription from './ToastDescription.vue'
-import ToastAction from './ToastAction.vue'
-import ToastClose from './ToastClose.vue'
-import ToastViewport from './ToastViewport.vue'
-import Toaster from './Toaster.vue'
-import { toastVariants } from './toast.variants'
-import { useToast } from '../../composables/useToast'
-
 // Radix Vue Toast primitives need ToastProvider and ToastRoot context.
 import { ToastProvider } from 'radix-vue'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
+import { useToast } from '../../composables/useToast'
+import { toastVariants } from './toast.variants'
+import Toast from './Toast.vue'
+import ToastAction from './ToastAction.vue'
+import ToastClose from './ToastClose.vue'
+import ToastDescription from './ToastDescription.vue'
+import Toaster from './Toaster.vue'
+import ToastTitle from './ToastTitle.vue'
+
+import ToastViewport from './ToastViewport.vue'
 
 /**
  * Helper to mount a full toast setup with provider, toast, viewport,
  * and inspect the document body for teleported content.
  */
-function mountToastWithContent(innerTemplate: string, attachToBody = true) {
+function mountToastWithContent(innerTemplate: string, _attachToBody = true) {
   const div = document.createElement('div')
   document.body.appendChild(div)
   const wrapper = mount(
@@ -53,7 +53,7 @@ function cleanup(wrapper: ReturnType<typeof mount>, div: HTMLDivElement) {
   }
 }
 
-describe('Toast', () => {
+describe('toast', () => {
   it('renders without crashing inside provider context', () => {
     const wrapper = mount({
       components: { ToastProvider, Toast },
@@ -124,7 +124,7 @@ describe('Toast', () => {
   })
 })
 
-describe('ToastTitle', () => {
+describe('toastTitle', () => {
   it('renders slot content inside provider context', async () => {
     const { wrapper, div } = mountToastWithContent(`
       <ToastTitle>My Title</ToastTitle>
@@ -153,7 +153,7 @@ describe('ToastTitle', () => {
   })
 })
 
-describe('ToastDescription', () => {
+describe('toastDescription', () => {
   it('renders slot content inside provider context', async () => {
     const { wrapper, div } = mountToastWithContent(`
       <ToastDescription>My Description</ToastDescription>
@@ -173,7 +173,7 @@ describe('ToastDescription', () => {
   })
 })
 
-describe('ToastAction', () => {
+describe('toastAction', () => {
   it('renders action button inside provider context', async () => {
     const { wrapper, div } = mountToastWithContent(`
       <ToastAction alt-text="Undo action">Undo</ToastAction>
@@ -193,7 +193,7 @@ describe('ToastAction', () => {
   })
 })
 
-describe('ToastClose', () => {
+describe('toastClose', () => {
   it('renders close button inside provider context', async () => {
     const { wrapper, div } = mountToastWithContent(`
       <ToastClose />
@@ -217,7 +217,7 @@ describe('ToastClose', () => {
   })
 })
 
-describe('ToastViewport', () => {
+describe('toastViewport', () => {
   it('renders without crashing inside provider context', () => {
     const wrapper = mount({
       components: { ToastProvider, ToastViewport },
@@ -248,7 +248,7 @@ describe('useToast', () => {
     vi.useFakeTimers()
     // Reset the singleton state by dismissing all toasts
     const { toasts, dismiss } = useToast()
-    toasts.value.forEach((t) => dismiss(t.id))
+    toasts.value.forEach(t => dismiss(t.id))
     vi.runAllTimers()
   })
 
@@ -375,7 +375,7 @@ describe('useToast', () => {
   })
 })
 
-describe('Toaster', () => {
+describe('toaster', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Toaster)
     expect(wrapper.exists()).toBe(true)
@@ -389,7 +389,7 @@ describe('Toaster', () => {
   })
 })
 
-describe('Toast variant styling', () => {
+describe('toast variant styling', () => {
   it('each variant produces distinct classes', () => {
     const defaultClasses = toastVariants({ variant: 'default' })
     const successClasses = toastVariants({ variant: 'success' })

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue'
 import type { SidebarMenuButtonProps } from './sidebar.types'
-import { SIDEBAR_INJECTION_KEY } from './sidebar-context'
+import { computed, inject } from 'vue'
 import { cn } from '../../utils'
+import { SIDEBAR_INJECTION_KEY } from './sidebar-context'
 
 const props = withDefaults(defineProps<SidebarMenuButtonProps>(), {
   active: false,

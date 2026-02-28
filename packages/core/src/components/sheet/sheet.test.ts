@@ -1,15 +1,15 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { nextTick } from 'vue'
 import Sheet from './Sheet.vue'
-import SheetTrigger from './SheetTrigger.vue'
-import SheetContent from './SheetContent.vue'
-import SheetHeader from './SheetHeader.vue'
-import SheetFooter from './SheetFooter.vue'
-import SheetTitle from './SheetTitle.vue'
-import SheetDescription from './SheetDescription.vue'
 import SheetClose from './SheetClose.vue'
+import SheetContent from './SheetContent.vue'
+import SheetDescription from './SheetDescription.vue'
+import SheetFooter from './SheetFooter.vue'
+import SheetHeader from './SheetHeader.vue'
 import SheetOverlay from './SheetOverlay.vue'
+import SheetTitle from './SheetTitle.vue'
+import SheetTrigger from './SheetTrigger.vue'
 
 // Helper: mount an open sheet and return wrapper + cleanup div
 async function mountOpenSheet(template: string, components: Record<string, object>) {
@@ -25,7 +25,7 @@ async function mountOpenSheet(template: string, components: Record<string, objec
   return { wrapper, div }
 }
 
-describe('Sheet', () => {
+describe('sheet', () => {
   it('renders without crashing', () => {
     const wrapper = mount(Sheet, {
       slots: { default: '<div>content</div>' },
@@ -58,7 +58,7 @@ describe('Sheet', () => {
   })
 })
 
-describe('SheetTrigger', () => {
+describe('sheetTrigger', () => {
   it('renders slot content inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetTrigger },
@@ -77,7 +77,7 @@ describe('SheetTrigger', () => {
   })
 })
 
-describe('SheetHeader', () => {
+describe('sheetHeader', () => {
   it('has correct base classes', () => {
     const wrapper = mount(SheetHeader)
     const div = wrapper.find('div')
@@ -103,7 +103,7 @@ describe('SheetHeader', () => {
   })
 })
 
-describe('SheetFooter', () => {
+describe('sheetFooter', () => {
   it('has correct base classes', () => {
     const wrapper = mount(SheetFooter)
     const div = wrapper.find('div')
@@ -129,7 +129,7 @@ describe('SheetFooter', () => {
   })
 })
 
-describe('SheetTitle', () => {
+describe('sheetTitle', () => {
   it('renders with correct classes inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetTitle },
@@ -147,7 +147,8 @@ describe('SheetTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Title')
     }
   })
@@ -161,7 +162,7 @@ describe('SheetTitle', () => {
   })
 })
 
-describe('SheetDescription', () => {
+describe('sheetDescription', () => {
   it('renders with correct classes inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetDescription },
@@ -179,7 +180,8 @@ describe('SheetDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Description')
     }
   })
@@ -193,7 +195,7 @@ describe('SheetDescription', () => {
   })
 })
 
-describe('SheetOverlay', () => {
+describe('sheetOverlay', () => {
   it('renders without crashing inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetOverlay },
@@ -211,7 +213,7 @@ describe('SheetOverlay', () => {
   })
 })
 
-describe('SheetClose', () => {
+describe('sheetClose', () => {
   it('renders without crashing inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetClose },
@@ -229,7 +231,7 @@ describe('SheetClose', () => {
   })
 })
 
-describe('SheetContent', () => {
+describe('sheetContent', () => {
   it('renders without crashing inside Sheet context', () => {
     const wrapper = mount({
       components: { Sheet, SheetContent },
@@ -398,8 +400,8 @@ describe('SheetContent', () => {
       { Sheet, SheetContent },
     )
     const html = document.body.innerHTML
-    const hasCloseButton =
-      html.includes('sr-only') || wrapper.findComponent(SheetContent).exists()
+    const hasCloseButton
+      = html.includes('sr-only') || wrapper.findComponent(SheetContent).exists()
     expect(hasCloseButton).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
@@ -417,7 +419,7 @@ describe('SheetContent', () => {
   })
 })
 
-describe('Sheet — opens on trigger click', () => {
+describe('sheet — opens on trigger click', () => {
   it('shows content after trigger click', async () => {
     document.body.innerHTML = ''
     const div = document.createElement('div')
@@ -440,15 +442,15 @@ describe('Sheet — opens on trigger click', () => {
     await nextTick()
     const html = document.body.innerHTML
     // The sheet content should be in the DOM after trigger click
-    const hasContent =
-      html.includes('Sheet body') || wrapper.findComponent(SheetContent).exists()
+    const hasContent
+      = html.includes('Sheet body') || wrapper.findComponent(SheetContent).exists()
     expect(hasContent).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
   })
 })
 
-describe('Sheet — closes on Escape', () => {
+describe('sheet — closes on Escape', () => {
   it('dialog is dismissed by Escape key', async () => {
     document.body.innerHTML = ''
     const div = document.createElement('div')
@@ -470,7 +472,7 @@ describe('Sheet — closes on Escape', () => {
   })
 })
 
-describe('Sheet composition', () => {
+describe('sheet composition', () => {
   it('mounts with all sub-components without errors', () => {
     const wrapper = mount({
       components: {

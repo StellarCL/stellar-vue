@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import {
-  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
-  DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioGroup,
-  DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator,
-  DropdownMenuShortcut, DropdownMenuGroup, DropdownMenuSub,
-  DropdownMenuSubTrigger, DropdownMenuSubContent,
   Button,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
 } from '@stellar-vue-ui/core'
-import { User, Settings, LogOut, Plus, Mail, MessageSquare, CreditCard } from 'lucide-vue-next'
-import PageHeader from '../components/PageHeader.vue'
+import { CreditCard, LogOut, Mail, MessageSquare, Plus, Settings, User } from 'lucide-vue-next'
+import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 
 const showStatusBar = ref(true)
 const showPanel = ref(false)
@@ -29,7 +38,9 @@ const selectedPosition = ref('bottom')
       <DemoSection title="Basic Menu">
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
-            <Button variant="outline">Open Menu</Button>
+            <Button variant="outline">
+              Open Menu
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent class="w-56">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -65,7 +76,9 @@ const selectedPosition = ref('bottom')
       <DemoSection title="With Checkboxes">
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
-            <Button variant="outline">View Options</Button>
+            <Button variant="outline">
+              View Options
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent class="w-56">
             <DropdownMenuLabel>Appearance</DropdownMenuLabel>
@@ -87,15 +100,23 @@ const selectedPosition = ref('bottom')
       <DemoSection title="With Radio Group">
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
-            <Button variant="outline">Position: {{ selectedPosition }}</Button>
+            <Button variant="outline">
+              Position: {{ selectedPosition }}
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent class="w-56">
             <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuRadioGroup v-model="selectedPosition">
-              <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="top">
+                Top
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="bottom">
+                Bottom
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="right">
+                Right
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -105,7 +126,9 @@ const selectedPosition = ref('bottom')
       <DemoSection title="With Submenu">
         <DropdownMenu>
           <DropdownMenuTrigger as-child>
-            <Button variant="outline">Invite User</Button>
+            <Button variant="outline">
+              Invite User
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent class="w-56">
             <DropdownMenuLabel>Invite</DropdownMenuLabel>

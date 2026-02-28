@@ -21,20 +21,20 @@ pnpm add @stellar-vue-ui/core
 ```typescript
 import {
   Menubar,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
   MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
   MenubarRadioGroup,
   MenubarRadioItem,
-  MenubarLabel,
   MenubarSeparator,
   MenubarShortcut,
-  MenubarGroup,
   MenubarSub,
-  MenubarSubTrigger,
   MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
 } from '@stellar-vue-ui/core'
 ```
 
@@ -46,12 +46,12 @@ import {
 <script setup lang="ts">
 import {
   Menubar,
-  MenubarMenu,
-  MenubarTrigger,
   MenubarContent,
   MenubarItem,
+  MenubarMenu,
   MenubarSeparator,
   MenubarShortcut,
+  MenubarTrigger,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -134,9 +134,15 @@ const theme = ref('system')
         <MenubarSeparator />
         <MenubarLabel>Theme</MenubarLabel>
         <MenubarRadioGroup v-model="theme">
-          <MenubarRadioItem value="light">Light</MenubarRadioItem>
-          <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
-          <MenubarRadioItem value="system">System</MenubarRadioItem>
+          <MenubarRadioItem value="light">
+            Light
+          </MenubarRadioItem>
+          <MenubarRadioItem value="dark">
+            Dark
+          </MenubarRadioItem>
+          <MenubarRadioItem value="system">
+            System
+          </MenubarRadioItem>
         </MenubarRadioGroup>
       </MenubarContent>
     </MenubarMenu>
@@ -162,7 +168,9 @@ const theme = ref('system')
           </MenubarSubContent>
         </MenubarSub>
         <MenubarSeparator />
-        <MenubarItem disabled>Print (unavailable)</MenubarItem>
+        <MenubarItem disabled>
+          Print (unavailable)
+        </MenubarItem>
       </MenubarContent>
     </MenubarMenu>
   </Menubar>

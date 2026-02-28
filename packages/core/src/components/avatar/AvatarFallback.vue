@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { AvatarFallback } from 'radix-vue'
 import type { AvatarFallbackProps } from './avatar.types'
+import { AvatarFallback } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<AvatarFallbackProps>(), {})

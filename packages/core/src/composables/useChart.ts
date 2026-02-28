@@ -1,5 +1,5 @@
+import type { ChartData, ChartOptions, UseChartOptions, UseChartReturn } from '../components/chart/chart.types'
 import { computed } from 'vue'
-import type { UseChartOptions, UseChartReturn, ChartData, ChartOptions } from '../components/chart/chart.types'
 
 /**
  * Stellar theme color palette for charts.
@@ -9,13 +9,13 @@ import type { UseChartOptions, UseChartReturn, ChartData, ChartOptions } from '.
  */
 const STELLAR_CHART_COLORS = [
   'hsl(262.1 83.3% 57.8%)', // primary (stellar purple)
-  'hsl(210 40% 96.1%)',     // secondary
-  'hsl(262.1 83.3% 70%)',   // primary lighter
-  'hsl(180 60% 50%)',       // teal accent
-  'hsl(38 92% 55%)',        // amber
-  'hsl(4 90% 58%)',         // red
-  'hsl(142 71% 45%)',       // green
-  'hsl(217 91% 60%)',       // blue
+  'hsl(210 40% 96.1%)', // secondary
+  'hsl(262.1 83.3% 70%)', // primary lighter
+  'hsl(180 60% 50%)', // teal accent
+  'hsl(38 92% 55%)', // amber
+  'hsl(4 90% 58%)', // red
+  'hsl(142 71% 45%)', // green
+  'hsl(217 91% 60%)', // blue
 ]
 
 /**
@@ -49,8 +49,8 @@ export function useChart(options: UseChartOptions): UseChartReturn {
       return {
         ...dataset,
         backgroundColor:
-          dataset.backgroundColor ??
-          (isPie ? colors.slice(0, dataset.data.length) : `${color}33`),
+          dataset.backgroundColor
+          ?? (isPie ? colors.slice(0, dataset.data.length) : `${color}33`),
         borderColor: dataset.borderColor ?? color,
         borderWidth: dataset.borderWidth ?? 2,
       }
@@ -116,18 +116,19 @@ function mergeDeep(target: Record<string, unknown>, source: Record<string, unkno
     const sourceVal = source[key]
     const targetVal = result[key]
     if (
-      sourceVal !== null &&
-      typeof sourceVal === 'object' &&
-      !Array.isArray(sourceVal) &&
-      targetVal !== null &&
-      typeof targetVal === 'object' &&
-      !Array.isArray(targetVal)
+      sourceVal !== null
+      && typeof sourceVal === 'object'
+      && !Array.isArray(sourceVal)
+      && targetVal !== null
+      && typeof targetVal === 'object'
+      && !Array.isArray(targetVal)
     ) {
       result[key] = mergeDeep(
         targetVal as Record<string, unknown>,
         sourceVal as Record<string, unknown>,
       )
-    } else {
+    }
+    else {
       result[key] = sourceVal
     }
   }

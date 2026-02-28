@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { inject } from 'vue'
-import { WIZARD_INJECTION_KEY } from './wizard-context'
 import type { WizardActionsProps } from './wizard.types'
+import { inject } from 'vue'
 import { cn } from '../../utils'
+import { WIZARD_INJECTION_KEY } from './wizard-context'
 
 const props = withDefaults(defineProps<WizardActionsProps>(), {
   previousLabel: 'Previous',
@@ -14,7 +14,7 @@ const emit = defineEmits<{
   submit: []
 }>()
 
-const context = inject(WIZARD_INJECTION_KEY)
+const context = inject(WIZARD_INJECTION_KEY)!
 
 if (!context) {
   throw new Error('WizardActions must be used within a Wizard component')

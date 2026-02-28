@@ -1,18 +1,21 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface TabsProps {
-  /** The controlled value of the active tab. Can be bound as `v-model`.
+  /**
+   * The controlled value of the active tab. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
 
-  /** The value of the tab that should be active when initially rendered.
+  /**
+   * The value of the tab that should be active when initially rendered.
    * Use when you do not need to control the state of the tabs.
    * @default undefined
    */
   defaultValue?: string
 
-  /** The orientation of the tabs component.
+  /**
+   * The orientation of the tabs component.
    * Affects arrow key navigation direction.
    * @default 'horizontal'
    */
@@ -31,7 +34,8 @@ export interface TabsTriggerProps {
   /** A unique value that associates the trigger with a content panel. */
   value: string
 
-  /** When `true`, prevents the user from interacting with the tab.
+  /**
+   * When `true`, prevents the user from interacting with the tab.
    * @default false
    */
   disabled?: boolean

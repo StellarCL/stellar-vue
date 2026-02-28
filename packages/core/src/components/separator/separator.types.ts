@@ -1,12 +1,14 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface SeparatorProps {
-  /** The orientation of the separator
+  /**
+   * The orientation of the separator
    * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical'
 
-  /** Whether the separator is purely decorative. When true, renders role="none" instead of role="separator"
+  /**
+   * Whether the separator is purely decorative. When true, renders role="none" instead of role="separator"
    * @default false
    */
   decorative?: boolean

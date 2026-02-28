@@ -1,5 +1,5 @@
+export type { TabsContentProps, TabsListProps, TabsProps, TabsTriggerProps } from './tabs.types'
 export { default as Tabs } from './Tabs.vue'
+export { default as TabsContent } from './TabsContent.vue'
 export { default as TabsList } from './TabsList.vue'
 export { default as TabsTrigger } from './TabsTrigger.vue'
-export { default as TabsContent } from './TabsContent.vue'
-export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } from './tabs.types'

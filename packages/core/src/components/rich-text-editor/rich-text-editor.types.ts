@@ -1,5 +1,5 @@
-import type { HTMLAttributes } from 'vue'
 import type { Editor } from '@tiptap/vue-3'
+import type { HTMLAttributes } from 'vue'
 
 /** A toolbar item can be a command name, 'separator', or a group of commands */
 export type ToolbarItemCommand =
@@ -42,37 +42,44 @@ export interface RichTextEditorProps {
   /** Placeholder text shown when editor is empty */
   placeholder?: string
 
-  /** Whether the editor is disabled
+  /**
+   * Whether the editor is disabled
    * @default false
    */
   disabled?: boolean
 
-  /** Toolbar configuration
+  /**
+   * Toolbar configuration
    * @default DEFAULT_TOOLBAR
    */
   toolbar?: ToolbarItem[]
 
-  /** Minimum height of the editor content area
+  /**
+   * Minimum height of the editor content area
    * @default '150px'
    */
   minHeight?: string
 
-  /** Maximum height of the editor content area
+  /**
+   * Maximum height of the editor content area
    * @default '500px'
    */
   maxHeight?: string
 
-  /** Maximum character count (0 = unlimited)
+  /**
+   * Maximum character count (0 = unlimited)
    * @default 0
    */
   maxLength?: number
 
-  /** Whether to show character count
+  /**
+   * Whether to show character count
    * @default false
    */
   showCharacterCount?: boolean
 
-  /** Whether the editor is in an error state
+  /**
+   * Whether the editor is in an error state
    * @default false
    */
   error?: boolean
@@ -88,7 +95,8 @@ export interface EditorToolbarProps {
   /** Toolbar items configuration */
   items?: ToolbarItem[]
 
-  /** Whether the toolbar is disabled
+  /**
+   * Whether the toolbar is disabled
    * @default false
    */
   disabled?: boolean
@@ -104,7 +112,8 @@ export interface ToolbarButtonProps {
   /** The toolbar command name */
   command: ToolbarItemCommand
 
-  /** Whether the button is disabled
+  /**
+   * Whether the button is disabled
    * @default false
    */
   disabled?: boolean
@@ -127,12 +136,14 @@ export interface EditorContentProps {
   /** The tiptap editor instance */
   editor: Editor | null
 
-  /** Minimum height of the content area
+  /**
+   * Minimum height of the content area
    * @default '150px'
    */
   minHeight?: string
 
-  /** Maximum height of the content area
+  /**
+   * Maximum height of the content area
    * @default '500px'
    */
   maxHeight?: string

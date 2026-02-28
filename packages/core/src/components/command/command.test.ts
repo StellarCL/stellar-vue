@@ -1,13 +1,13 @@
-import { describe, expect, it, afterEach, vi } from 'vitest'
-import { mount, flushPromises } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 import Command from './Command.vue'
 import CommandDialog from './CommandDialog.vue'
-import CommandInput from './CommandInput.vue'
-import CommandList from './CommandList.vue'
 import CommandEmpty from './CommandEmpty.vue'
 import CommandGroup from './CommandGroup.vue'
+import CommandInput from './CommandInput.vue'
 import CommandItem from './CommandItem.vue'
+import CommandList from './CommandList.vue'
 import CommandSeparator from './CommandSeparator.vue'
 import CommandShortcut from './CommandShortcut.vue'
 
@@ -19,7 +19,8 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    } catch {}
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -40,7 +41,7 @@ function mountCommand(template: string, components: Record<string, unknown> = {}
 
 // ── Command ──────────────────────────────────────────────────────────────────
 
-describe('Command', () => {
+describe('command', () => {
   it('renders with children', () => {
     const wrapper = mount(Command, {
       slots: { default: '<div class="child">Hello</div>' },
@@ -71,7 +72,7 @@ describe('Command', () => {
 
 // ── CommandInput ─────────────────────────────────────────────────────────────
 
-describe('CommandInput', () => {
+describe('commandInput', () => {
   it('renders with default placeholder', () => {
     const wrapper = mountCommand('<Command><CommandInput /></Command>')
     const input = wrapper.find('input')
@@ -114,7 +115,7 @@ describe('CommandInput', () => {
 
 // ── CommandList ───────────────────────────────────────────────────────────────
 
-describe('CommandList', () => {
+describe('commandList', () => {
   it('renders with correct classes', () => {
     const wrapper = mount(CommandList, {
       slots: { default: '<div>items</div>' },
@@ -144,7 +145,7 @@ describe('CommandList', () => {
 
 // ── CommandEmpty ──────────────────────────────────────────────────────────────
 
-describe('CommandEmpty', () => {
+describe('commandEmpty', () => {
   it('does not show when no search is active (no items registered)', async () => {
     const wrapper = mountCommand(
       '<Command><CommandList><CommandEmpty /></CommandList></Command>',
@@ -217,7 +218,7 @@ describe('CommandEmpty', () => {
 
 // ── CommandGroup ──────────────────────────────────────────────────────────────
 
-describe('CommandGroup', () => {
+describe('commandGroup', () => {
   it('renders heading when provided', () => {
     const wrapper = mountCommand(`
       <Command>
@@ -323,7 +324,7 @@ describe('CommandGroup', () => {
 
 // ── CommandItem ───────────────────────────────────────────────────────────────
 
-describe('CommandItem', () => {
+describe('commandItem', () => {
   it('renders slot content', () => {
     const wrapper = mountCommand(`
       <Command>
@@ -426,7 +427,7 @@ describe('CommandItem', () => {
 
 // ── CommandInput filtering ────────────────────────────────────────────────────
 
-describe('CommandInput filtering', () => {
+describe('commandInput filtering', () => {
   it('filters items by search text (case-insensitive)', async () => {
     const wrapper = mountCommand(`
       <Command>
@@ -446,7 +447,7 @@ describe('CommandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Banana')
   })
@@ -475,7 +476,7 @@ describe('CommandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(2)
   })
 
@@ -497,7 +498,7 @@ describe('CommandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Apple')
   })
@@ -522,7 +523,7 @@ describe('CommandInput filtering', () => {
 
     // Verify filtering applied
     let items = wrapper.findAllComponents(CommandItem)
-    let visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    let visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
 
     // Clear input
@@ -531,15 +532,15 @@ describe('CommandInput filtering', () => {
     await nextTick()
 
     items = wrapper.findAllComponents(CommandItem)
-    visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(3)
   })
 })
 
 // ── Keyboard navigation ───────────────────────────────────────────────────────
 
-describe('Keyboard navigation', () => {
-  it('ArrowDown moves selection to first item', async () => {
+describe('keyboard navigation', () => {
+  it('arrowDown moves selection to first item', async () => {
     const wrapper = mountCommand(`
       <Command>
         <CommandList>
@@ -558,7 +559,7 @@ describe('Keyboard navigation', () => {
     expect(items[1].find('[role="option"]').attributes('aria-selected')).toBeUndefined()
   })
 
-  it('ArrowDown navigates from first to second item', async () => {
+  it('arrowDown navigates from first to second item', async () => {
     const wrapper = mountCommand(`
       <Command>
         <CommandList>
@@ -579,7 +580,7 @@ describe('Keyboard navigation', () => {
     expect(items[1].find('[role="option"]').attributes('aria-selected')).toBe('true')
   })
 
-  it('ArrowUp wraps from first item to last', async () => {
+  it('arrowUp wraps from first item to last', async () => {
     const wrapper = mountCommand(`
       <Command>
         <CommandList>
@@ -603,7 +604,7 @@ describe('Keyboard navigation', () => {
     expect(items[2].find('[role="option"]').attributes('aria-selected')).toBe('true')
   })
 
-  it('ArrowDown wraps from last item to first', async () => {
+  it('arrowDown wraps from last item to first', async () => {
     const wrapper = mountCommand(`
       <Command>
         <CommandList>
@@ -627,8 +628,8 @@ describe('Keyboard navigation', () => {
     expect(items[0].find('[role="option"]').attributes('aria-selected')).toBe('true')
   })
 
-  it('Enter key selects the active item and emits select', async () => {
-    let selected = ''
+  it('enter key selects the active item and emits select', async () => {
+    const _selected = ''
     const wrapper = mountCommand(`
       <Command>
         <CommandList>
@@ -679,7 +680,7 @@ describe('Keyboard navigation', () => {
 
     // Should be on apricot (index 2), not banana (index 1)
     const items = wrapper.findAllComponents(CommandItem)
-    const appleEl = items[0].find('[role="option"]')
+    const _appleEl = items[0].find('[role="option"]')
     const bananaEl = items[1].find('[role="option"]')
     const apricotEl = items[2].find('[role="option"]')
 
@@ -690,7 +691,7 @@ describe('Keyboard navigation', () => {
 
 // ── CommandSeparator ──────────────────────────────────────────────────────────
 
-describe('CommandSeparator', () => {
+describe('commandSeparator', () => {
   it('renders as a div with separator role', () => {
     const wrapper = mount(CommandSeparator)
     expect(wrapper.element.tagName).toBe('DIV')
@@ -712,7 +713,7 @@ describe('CommandSeparator', () => {
 
 // ── CommandShortcut ───────────────────────────────────────────────────────────
 
-describe('CommandShortcut', () => {
+describe('commandShortcut', () => {
   it('renders as a span', () => {
     const wrapper = mount(CommandShortcut, {
       slots: { default: '⌘K' },
@@ -744,7 +745,7 @@ describe('CommandShortcut', () => {
 
 // ── CommandDialog ─────────────────────────────────────────────────────────────
 
-describe('CommandDialog', () => {
+describe('commandDialog', () => {
   it('renders without crashing', () => {
     const wrapper = mount(CommandDialog, {
       props: { open: false },
@@ -843,7 +844,7 @@ describe('CommandDialog', () => {
 
 // ── Full composition ──────────────────────────────────────────────────────────
 
-describe('Command composition', () => {
+describe('command composition', () => {
   it('renders a full command palette without errors', async () => {
     const wrapper = mountCommand(`
       <Command>

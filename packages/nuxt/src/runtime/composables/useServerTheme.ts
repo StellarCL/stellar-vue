@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue'
 import { useCookie, useRuntimeConfig } from '#imports'
+import { computed } from 'vue'
 
 /**
  * Server-safe theme composable for Nuxt.
@@ -27,6 +27,7 @@ export function useServerTheme() {
   if (import.meta.client) {
     // On client: delegate to the core useTheme composable
     // Dynamic import to avoid SSR issues with DOM-dependent code
+    // eslint-disable-next-line ts/no-require-imports
     const { useTheme } = require('@stellar-vue-ui/core') as typeof import('@stellar-vue-ui/core')
     const { theme, isDark, setTheme: coreSetTheme, toggleDark: coreToggleDark } = useTheme({
       defaultTheme: (themeCookie.value || config.theme) as any,

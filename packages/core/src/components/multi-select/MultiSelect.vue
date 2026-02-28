@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { MultiSelectOption, MultiSelectProps } from './multi-select.types'
 import { computed, provide, ref, watch } from 'vue'
-import type { MultiSelectProps, MultiSelectOption } from './multi-select.types'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<MultiSelectProps>(), {
@@ -21,7 +21,8 @@ const selectedValues = computed(() => props.modelValue)
 
 const filteredOptions = computed(() => {
   const term = search.value.toLowerCase()
-  if (!term) return props.options
+  if (!term)
+    return props.options
   return props.options.filter((opt: MultiSelectOption) =>
     opt.label.toLowerCase().includes(term),
   )
@@ -32,31 +33,37 @@ const selectedOptions = computed(() =>
 )
 
 function toggleOption(value: string) {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   const current = [...selectedValues.value]
   const index = current.indexOf(value)
   if (index === -1) {
-    if (props.max !== undefined && current.length >= props.max) return
+    if (props.max !== undefined && current.length >= props.max)
+      return
     current.push(value)
-  } else {
+  }
+  else {
     current.splice(index, 1)
   }
   emit('update:modelValue', current)
 }
 
 function removeValue(value: string) {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   const current = selectedValues.value.filter((v: string) => v !== value)
   emit('update:modelValue', current)
 }
 
 function clearAll() {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   emit('update:modelValue', [])
 }
 
 function handleTriggerClick() {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   open.value = !open.value
 }
 
@@ -73,7 +80,8 @@ watch(open, (isOpen) => {
     setTimeout(() => {
       document.addEventListener('click', handleClickOutside)
     }, 0)
-  } else {
+  }
+  else {
     document.removeEventListener('click', handleClickOutside)
     search.value = ''
   }

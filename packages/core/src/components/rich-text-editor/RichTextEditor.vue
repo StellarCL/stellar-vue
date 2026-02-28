@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, watch } from 'vue'
-import { useEditor } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
-import Image from '@tiptap/extension-image'
-import Placeholder from '@tiptap/extension-placeholder'
-import CharacterCount from '@tiptap/extension-character-count'
 import type { RichTextEditorProps } from './rich-text-editor.types'
-import { DEFAULT_TOOLBAR } from './rich-text-editor.types'
-import EditorToolbar from './EditorToolbar.vue'
-import EditorContentVue from './EditorContent.vue'
+import CharacterCount from '@tiptap/extension-character-count'
+import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
+import Underline from '@tiptap/extension-underline'
+import StarterKit from '@tiptap/starter-kit'
+import { useEditor } from '@tiptap/vue-3'
+import { computed, onBeforeUnmount, watch } from 'vue'
 import { cn } from '../../utils'
+import EditorContentVue from './EditorContent.vue'
+import EditorToolbar from './EditorToolbar.vue'
+import { DEFAULT_TOOLBAR } from './rich-text-editor.types'
 
 const props = withDefaults(defineProps<RichTextEditorProps>(), {
   modelValue: '',
@@ -68,7 +68,7 @@ watch(
   () => props.modelValue,
   (newValue) => {
     if (editor.value && editor.value.getHTML() !== newValue) {
-      editor.value.commands.setContent(newValue, false)
+      editor.value.commands.setContent(newValue, false as any)
     }
   },
 )
@@ -84,18 +84,21 @@ watch(
 )
 
 const characterCount = computed(() => {
-  if (!editor.value) return 0
+  if (!editor.value)
+    return 0
   return editor.value.storage.characterCount.characters()
 })
 
 const wordCount = computed(() => {
-  if (!editor.value) return 0
+  if (!editor.value)
+    return 0
   return editor.value.storage.characterCount.words()
 })
 
 /** Export editor content as markdown-like text */
 function getMarkdown(): string {
-  if (!editor.value) return ''
+  if (!editor.value)
+    return ''
   return editor.value.getHTML()
 }
 

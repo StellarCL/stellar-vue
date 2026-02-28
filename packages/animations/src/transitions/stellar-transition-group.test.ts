@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import StellarTransitionGroup from './StellarTransitionGroup.vue'
+import { describe, expect, it } from 'vitest'
 import { transitionPresets } from './presets'
+import StellarTransitionGroup from './StellarTransitionGroup.vue'
 
-describe('StellarTransitionGroup', () => {
+describe('stellarTransitionGroup', () => {
   it('renders with default tag div', () => {
     const wrapper = mount(StellarTransitionGroup, {
       slots: {
@@ -104,14 +104,6 @@ describe('StellarTransitionGroup', () => {
     // Create a mock element with a data-index attribute
     const el = document.createElement('div')
     el.dataset.index = '2'
-
-    // Access the component's exposed onBeforeEnter function via the internal vm
-    // The component's setup defines onBeforeEnter and uses it in the template @before-enter
-    // We can test the logic by directly calling the internal function through the component
-    // by invoking the TransitionGroup's before-enter hook
-    const vm = wrapper.vm as InstanceType<typeof StellarTransitionGroup> & {
-      onBeforeEnter?: (el: Element) => void
-    }
 
     // The onBeforeEnter function is defined in setup and called by the TransitionGroup
     // Since it's an internal closure, we re-test the logic: stagger=100, index=2 => delay=200ms

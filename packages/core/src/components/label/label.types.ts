@@ -7,7 +7,8 @@ export interface LabelProps {
   /** Additional CSS classes */
   class?: HTMLAttributes['class']
 
-  /** Whether the associated field is required, shows an asterisk indicator
+  /**
+   * Whether the associated field is required, shows an asterisk indicator
    * @default false
    */
   required?: boolean

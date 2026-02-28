@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { SliderRoot, SliderTrack, SliderRange, SliderThumb } from 'radix-vue'
 import type { SliderProps } from './slider.types'
+import { SliderRange, SliderRoot, SliderThumb, SliderTrack } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<SliderProps>(), {
@@ -12,6 +12,7 @@ const props = withDefaults(defineProps<SliderProps>(), {
   orientation: 'horizontal',
 })
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const emit = defineEmits<{
   'update:modelValue': [value: number[]]
 }>()
@@ -28,9 +29,9 @@ const emit = defineEmits<{
     :class="cn(
       'relative flex w-full touch-none select-none items-center',
       orientation === 'vertical' && 'flex-col h-full w-auto',
-      props.class
+      props.class,
     )"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="$emit('update:modelValue', $event as number[])"
   >
     <SliderTrack
       class="relative grow overflow-hidden rounded-full bg-secondary"

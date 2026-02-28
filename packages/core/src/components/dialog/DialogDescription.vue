@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { DialogDescription } from 'radix-vue'
 import type { DialogDescriptionProps } from './dialog.types'
+import { DialogDescription } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<DialogDescriptionProps>()

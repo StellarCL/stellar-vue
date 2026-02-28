@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import RadioGroup from './RadioGroup.vue'
 import RadioGroupItem from './RadioGroupItem.vue'
 
-describe('RadioGroup', () => {
+describe('radioGroup', () => {
   it('renders the radio group', () => {
     const wrapper = mount(RadioGroup)
     expect(wrapper.find('[role="radiogroup"]').exists()).toBe(true)
@@ -98,7 +98,7 @@ describe('RadioGroup', () => {
   })
 })
 
-describe('RadioGroupItem', () => {
+describe('radioGroupItem', () => {
   it('renders as a radio button', () => {
     const wrapper = mount(RadioGroup, {
       slots: {

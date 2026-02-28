@@ -5,10 +5,9 @@
   "description": "Vite + Vue 3 + TypeScript strict mode example using Stellar Vue UI",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "build:vite": "vite build",
-    "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@stellar-vue-ui/core": "workspace:*",

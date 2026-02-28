@@ -7,7 +7,8 @@ export interface CodeBlockProps {
   /** The programming language */
   language?: string
 
-  /** Show line numbers
+  /**
+   * Show line numbers
    * @default true
    */
   showLineNumbers?: boolean
@@ -31,7 +32,8 @@ export interface CodeBlockContentProps {
   /** The code content to display (optional, falls back to parent CodeBlock's code) */
   code?: string
 
-  /** Show line numbers
+  /**
+   * Show line numbers
    * @default true
    */
   showLineNumbers?: boolean

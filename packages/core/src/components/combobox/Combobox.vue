@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ComboboxRoot } from 'radix-vue'
 import type { ComboboxProps } from './combobox.types'
+import { ComboboxRoot } from 'radix-vue'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<ComboboxProps>(), {
   disabled: false,
   defaultOpen: false,

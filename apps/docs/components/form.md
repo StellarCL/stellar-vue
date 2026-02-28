@@ -28,11 +28,11 @@ pnpm add vee-validate
 ```typescript
 import {
   Form,
+  FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
-  FormDescription,
   FormMessage,
 } from '@stellar-vue-ui/core'
 ```
@@ -43,11 +43,10 @@ import {
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@stellar-vue-ui/core'
-import { Input, Button } from '@stellar-vue-ui/core'
+import { Button, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Input } from '@stellar-vue-ui/core'
+import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
-import { toTypedSchema } from '@vee-validate/zod'
 
 const formSchema = toTypedSchema(z.object({
   username: z.string().min(2, 'Username must be at least 2 characters'),
@@ -74,7 +73,9 @@ const onSubmit = handleSubmit((values) => {
         <FormMessage />
       </FormItem>
     </FormField>
-    <Button type="submit">Submit</Button>
+    <Button type="submit">
+      Submit
+    </Button>
   </Form>
 </template>
 ```
@@ -85,8 +86,7 @@ const onSubmit = handleSubmit((values) => {
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@stellar-vue-ui/core'
-import { Input, Textarea, Select, SelectTrigger, SelectValue, SelectContent, SelectItem, Button } from '@stellar-vue-ui/core'
+import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Textarea } from '@stellar-vue-ui/core'
 import { useForm } from 'vee-validate'
 </script>
 
@@ -122,7 +122,9 @@ import { useForm } from 'vee-validate'
       </FormItem>
     </FormField>
 
-    <Button type="submit">Save profile</Button>
+    <Button type="submit">
+      Save profile
+    </Button>
   </Form>
 </template>
 ```
@@ -131,8 +133,7 @@ import { useForm } from 'vee-validate'
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription, FormMessage } from '@stellar-vue-ui/core'
-import { Checkbox, Switch, Button } from '@stellar-vue-ui/core'
+import { Button, Checkbox, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Switch } from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -162,7 +163,9 @@ import { Checkbox, Switch, Button } from '@stellar-vue-ui/core'
       </FormItem>
     </FormField>
 
-    <Button type="submit">Submit</Button>
+    <Button type="submit">
+      Submit
+    </Button>
   </Form>
 </template>
 ```

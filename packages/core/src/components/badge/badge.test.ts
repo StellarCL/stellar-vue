@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Badge from './Badge.vue'
 
-describe('Badge', () => {
+describe('badge', () => {
   it('renders default badge with slot content', () => {
     const wrapper = mount(Badge, {
       slots: { default: 'New' },

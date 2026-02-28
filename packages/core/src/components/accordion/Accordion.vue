@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { AccordionRoot } from 'radix-vue'
 import type { AccordionProps } from './accordion.types'
+import { AccordionRoot } from 'radix-vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<AccordionProps>(), {

@@ -45,13 +45,13 @@ The `useTheme` composable is the primary way to manage dark mode in your applica
 import { useTheme } from '@stellar-vue-ui/core'
 
 const {
-  isDark,       // Ref<boolean> - whether dark mode is active
-  toggleDark,   // () => void - toggle between light and dark
-  setDark,      // (value: boolean) => void - explicitly set dark mode
+  isDark, // Ref<boolean> - whether dark mode is active
+  toggleDark, // () => void - toggle between light and dark
+  setDark, // (value: boolean) => void - explicitly set dark mode
 } = useTheme({
-  strategy: 'class',     // 'class' or 'media'
-  storageKey: 'stellar-theme',  // localStorage key for persistence
-  defaultDark: false,    // default state before detection
+  strategy: 'class', // 'class' or 'media'
+  storageKey: 'stellar-theme', // localStorage key for persistence
+  defaultDark: false, // default state before detection
 })
 </script>
 
@@ -68,8 +68,7 @@ Here is a complete theme toggle component:
 
 ```vue
 <script setup lang="ts">
-import { useTheme } from '@stellar-vue-ui/core'
-import { Button } from '@stellar-vue-ui/core'
+import { Button, useTheme } from '@stellar-vue-ui/core'
 
 const { isDark, toggleDark } = useTheme()
 </script>
@@ -78,8 +77,8 @@ const { isDark, toggleDark } = useTheme()
   <Button
     variant="ghost"
     size="icon"
-    @click="toggleDark"
     :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+    @click="toggleDark"
   >
     <!-- Sun icon for dark mode (click to go light) -->
     <svg
@@ -129,7 +128,7 @@ By default, `useTheme` persists the dark mode preference to `localStorage`. When
 
 ```typescript
 const { isDark } = useTheme({
-  storageKey: 'my-app-dark-mode',  // custom storage key
+  storageKey: 'my-app-dark-mode', // custom storage key
 })
 ```
 
@@ -137,7 +136,7 @@ Set `storageKey` to `null` to disable persistence entirely:
 
 ```typescript
 const { isDark } = useTheme({
-  storageKey: null,  // no persistence
+  storageKey: null, // no persistence
 })
 ```
 
@@ -172,7 +171,7 @@ The `@stellar-vue-ui/nuxt` module handles SSR dark mode automatically. It inject
 export default defineNuxtConfig({
   modules: ['@stellar-vue-ui/nuxt'],
   stellar: {
-    darkMode: 'class',  // or 'media'
+    darkMode: 'class', // or 'media'
   },
 })
 ```

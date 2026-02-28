@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest'
-import { defineComponent, h } from 'vue'
 import { mount } from '@vue/test-utils'
-import { fillForm, submitForm, getErrors } from '../wrappers/form-utils'
+import { describe, expect, it } from 'vitest'
+import { defineComponent, h } from 'vue'
+import { fillForm, getErrors, submitForm } from '../wrappers/form-utils'
 
 // ─── Test Components ──────────────────────────────────────────────────────────
 
@@ -14,7 +14,9 @@ const SimpleForm = defineComponent({
     }
   },
   render() {
-    return h('form', { onSubmit: () => { this.submitted = true } }, [
+    return h('form', { onSubmit: () => {
+      this.submitted = true
+    } }, [
       h('div', {}, [
         h('label', { for: 'name-field' }, 'Full Name'),
         h('input', {
@@ -43,7 +45,7 @@ const FormWithErrors = defineComponent({
     return h('form', {}, [
       h('p', { role: 'alert' }, 'Name is required'),
       h('p', { role: 'alert' }, 'Email is invalid'),
-      h('input', { 'aria-label': 'Name', type: 'text' }),
+      h('input', { 'aria-label': 'Name', 'type': 'text' }),
     ])
   },
 })
@@ -89,7 +91,7 @@ const NestedLabelForm = defineComponent({
   },
 })
 
-const SelectForm = defineComponent({
+const _SelectForm = defineComponent({
   data() {
     return { color: '' }
   },
@@ -113,7 +115,7 @@ const DestructiveErrorForm = defineComponent({
   render() {
     return h('form', {}, [
       h('p', { class: 'text-destructive' }, 'This field is required'),
-      h('input', { 'aria-label': 'Field', type: 'text' }),
+      h('input', { 'aria-label': 'Field', 'type': 'text' }),
     ])
   },
 })
@@ -142,7 +144,7 @@ describe('fillForm', () => {
 
   it('fills an input nested inside a label', async () => {
     const wrapper = mount(NestedLabelForm)
-    await fillForm(wrapper, { 'Username': 'testuser' })
+    await fillForm(wrapper, { Username: 'testuser' })
     const input = wrapper.element.querySelector('input') as HTMLInputElement
     expect(input.value).toBe('testuser')
   })
@@ -221,7 +223,7 @@ describe('getErrors', () => {
     })
     const wrapper = mount(DuplicateErrors)
     const errors = getErrors(wrapper)
-    expect(errors.filter((e) => e === 'Duplicate error')).toHaveLength(1)
+    expect(errors.filter(e => e === 'Duplicate error')).toHaveLength(1)
   })
 
   it('picks up .text-destructive error messages', () => {

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  DialogPortal,
-  DialogOverlay,
-  DialogContent as DialogContentPrimitive,
-  DialogClose,
-} from 'radix-vue'
 import type { DrawerContentProps } from './drawer.types'
+import {
+  DialogClose,
+  DialogContent as DialogContentPrimitive,
+  DialogOverlay,
+  DialogPortal,
+} from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 import { drawerContentVariants } from './drawer.variants'
 

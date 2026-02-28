@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { CalendarNext } from 'radix-vue'
 import type { CalendarNextButtonProps } from './calendar.types'
+import { CalendarNext } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<CalendarNextButtonProps>()

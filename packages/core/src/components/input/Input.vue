@@ -1,13 +1,8 @@
-<script lang="ts">
-let idCounter = 0
-const generateId = () => `stellar-input-${idCounter++}`
-</script>
-
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { InputProps } from './input.types'
-import { inputVariants } from './input.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { inputVariants } from './input.variants'
 
 const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
@@ -19,7 +14,7 @@ const props = withDefaults(defineProps<InputProps>(), {
 
 const model = defineModel<string | number>()
 
-const generatedId = generateId()
+const generatedId = `stellar-input-${Math.random().toString(36).slice(2, 9)}`
 const inputId = computed(() => props.id ?? generatedId)
 
 const classes = computed(() =>
@@ -40,5 +35,5 @@ const classes = computed(() =>
     :required="required"
     :readonly="readonly"
     :class="classes"
-  />
+  >
 </template>

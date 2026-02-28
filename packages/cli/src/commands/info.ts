@@ -1,7 +1,7 @@
 import path from 'node:path'
-import { getComponent } from '../utils/registry'
 import { readLockFile } from '../utils/config'
-import { styles, header, newLine, divider } from '../utils/prompts'
+import { divider, header, newLine, styles } from '../utils/prompts'
+import { getComponent } from '../utils/registry'
 
 export async function infoCommand(name: string, options: { cwd?: string }): Promise<void> {
   const cwd = path.resolve(options.cwd ?? process.cwd())
@@ -42,7 +42,8 @@ export async function infoCommand(name: string, options: { cwd?: string }): Prom
       console.log(`  ${styles.dim('•')} ${pkg} ${styles.dim(version)}`)
     }
     newLine()
-  } else {
+  }
+  else {
     console.log(styles.highlight('npm Dependencies:'))
     console.log(`  ${styles.dim('none')}`)
     newLine()
@@ -55,7 +56,8 @@ export async function infoCommand(name: string, options: { cwd?: string }): Prom
       console.log(`  ${styles.dim('•')} ${peer}`)
     }
     newLine()
-  } else {
+  }
+  else {
     console.log(styles.highlight('Component Dependencies:'))
     console.log(`  ${styles.dim('none')}`)
     newLine()
@@ -73,11 +75,13 @@ export async function infoCommand(name: string, options: { cwd?: string }): Prom
     console.log(`  ${styles.dim('Latest:')}    ${component.version}`)
     if (!isUpToDate) {
       console.log(`  ${styles.warning(`Update available: ${entry.version} → ${component.version}`)}`)
-    } else {
+    }
+    else {
       console.log(`  ${styles.dim('Up to date')}`)
     }
     console.log(`  ${styles.dim('Customized:')} ${entry.customized ? 'Yes' : 'No'}`)
-  } else {
+  }
+  else {
     console.log(`  ${styles.dim('Status:')} ${styles.warning('Not installed')}`)
     console.log(`  ${styles.dim(`Run \`stellar-ui add ${name}\` to install`)}`)
   }

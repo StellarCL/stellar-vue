@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { TreeViewContext, TreeViewItemProps } from './tree-view.types'
 import { computed, inject } from 'vue'
-import type { TreeViewItemProps, TreeViewContext } from './tree-view.types'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<TreeViewItemProps>(), {
@@ -32,7 +32,8 @@ function handleToggleExpand() {
 }
 
 function handleSelect() {
-  if (props.node.disabled) return
+  if (props.node.disabled)
+    return
   context.toggleSelect(props.node.key)
 }
 

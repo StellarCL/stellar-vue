@@ -1,23 +1,23 @@
-export { default as Drawer } from './Drawer.vue'
-export { default as DrawerTrigger } from './DrawerTrigger.vue'
-export { default as DrawerOverlay } from './DrawerOverlay.vue'
-export { default as DrawerContent } from './DrawerContent.vue'
-export { default as DrawerHeader } from './DrawerHeader.vue'
-export { default as DrawerFooter } from './DrawerFooter.vue'
-export { default as DrawerTitle } from './DrawerTitle.vue'
-export { default as DrawerDescription } from './DrawerDescription.vue'
-export { default as DrawerClose } from './DrawerClose.vue'
 export type {
-  DrawerProps,
-  DrawerTriggerProps,
-  DrawerPortalProps,
-  DrawerOverlayProps,
-  DrawerContentProps,
-  DrawerHeaderProps,
-  DrawerFooterProps,
-  DrawerTitleProps,
-  DrawerDescriptionProps,
   DrawerCloseProps,
+  DrawerContentProps,
+  DrawerDescriptionProps,
+  DrawerFooterProps,
+  DrawerHeaderProps,
+  DrawerOverlayProps,
+  DrawerPortalProps,
+  DrawerProps,
   DrawerSide,
   DrawerSize,
+  DrawerTitleProps,
+  DrawerTriggerProps,
 } from './drawer.types'
+export { default as Drawer } from './Drawer.vue'
+export { default as DrawerClose } from './DrawerClose.vue'
+export { default as DrawerContent } from './DrawerContent.vue'
+export { default as DrawerDescription } from './DrawerDescription.vue'
+export { default as DrawerFooter } from './DrawerFooter.vue'
+export { default as DrawerHeader } from './DrawerHeader.vue'
+export { default as DrawerOverlay } from './DrawerOverlay.vue'
+export { default as DrawerTitle } from './DrawerTitle.vue'
+export { default as DrawerTrigger } from './DrawerTrigger.vue'

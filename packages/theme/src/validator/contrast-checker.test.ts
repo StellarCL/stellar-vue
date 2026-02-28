@@ -1,6 +1,6 @@
+import type { ThemeConfig } from '../types'
 import { describe, expect, it } from 'vitest'
 import { validateTheme } from './contrast-checker'
-import type { ThemeConfig } from '../types'
 
 describe('validateTheme', () => {
   it('passes for a well-contrasted theme', () => {

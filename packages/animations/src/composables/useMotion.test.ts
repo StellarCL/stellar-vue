@@ -1,4 +1,4 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useMotion } from './useMotion'
 
 // Mock Element.animate since jsdom doesn't support Web Animation API
@@ -114,26 +114,15 @@ describe('useMotion', () => {
 
     expect(animateSpy).toHaveBeenCalledWith(
       expect.anything(),
-      expect.objectContaining({ duration: 400, easing: 'linear' })
+      expect.objectContaining({ duration: 400, easing: 'linear' }),
     )
   })
 
   it('cancel stops current animation and sets isAnimating to false', async () => {
-    let resolveAnimation!: () => void
-    const cancelSpy = vi.fn()
-    const mockAnim = {
-      finished: new Promise<Animation>((res, rej) => {
-        resolveAnimation = () => res({} as Animation)
-        // cancel rejects the promise
-      }),
-      cancel: cancelSpy,
-    } as unknown as Animation
-
     // Make cancel also reject the finished promise
     let rejectAnimation!: (e: unknown) => void
     const mockAnim2 = {
-      finished: new Promise<Animation>((res, rej) => {
-        resolveAnimation = () => res({} as Animation)
+      finished: new Promise<Animation>((_res, rej) => {
         rejectAnimation = rej
       }),
       cancel: vi.fn(() => {
@@ -205,12 +194,10 @@ describe('useMotion', () => {
   })
 
   it('starting a new animation cancels the previous one', async () => {
-    let resolve1!: () => void
     let reject1!: (e: unknown) => void
     const cancelSpy = vi.fn()
     const anim1 = {
-      finished: new Promise<Animation>((res, rej) => {
-        resolve1 = () => res({} as Animation)
+      finished: new Promise<Animation>((_res, rej) => {
         reject1 = rej
       }),
       cancel: vi.fn(() => {
@@ -244,8 +231,10 @@ describe('useMotion', () => {
 
   it('isAnimating is readonly', () => {
     const { isAnimating } = useMotion()
-    // @ts-expect-error testing readonly at runtime
-    expect(() => { isAnimating.value = true }).not.toThrow()
+    expect(() => {
+      // @ts-expect-error testing readonly at runtime
+      isAnimating.value = true
+    }).not.toThrow()
     expect(isAnimating.value).toBe(false)
   })
 })

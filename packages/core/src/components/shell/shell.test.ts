@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import AppShell from './AppShell.vue'
-import ShellHeader from './ShellHeader.vue'
-import ShellSidebar from './ShellSidebar.vue'
-import ShellMain from './ShellMain.vue'
 import ShellFooter from './ShellFooter.vue'
+import ShellHeader from './ShellHeader.vue'
+import ShellMain from './ShellMain.vue'
+import ShellSidebar from './ShellSidebar.vue'
 
 function mountAppShell(includeSidebar = true) {
   return mount({
@@ -30,7 +30,7 @@ function mountAppShell(includeSidebar = true) {
   })
 }
 
-describe('AppShell', () => {
+describe('appShell', () => {
   it('renders all sections (header, sidebar, main, footer)', () => {
     const wrapper = mountAppShell(true)
     expect(wrapper.text()).toContain('Header content')
@@ -65,7 +65,7 @@ describe('AppShell', () => {
   })
 })
 
-describe('ShellHeader', () => {
+describe('shellHeader', () => {
   it('renders as header element', () => {
     const wrapper = mount(ShellHeader, {
       slots: { default: 'Header' },
@@ -105,7 +105,7 @@ describe('ShellHeader', () => {
   })
 })
 
-describe('ShellSidebar', () => {
+describe('shellSidebar', () => {
   it('renders as aside element', () => {
     const wrapper = mount(ShellSidebar, {
       slots: { default: 'Sidebar' },
@@ -128,7 +128,7 @@ describe('ShellSidebar', () => {
   })
 })
 
-describe('ShellMain', () => {
+describe('shellMain', () => {
   it('renders as main element', () => {
     const wrapper = mount(ShellMain, {
       slots: { default: 'Content' },
@@ -161,7 +161,7 @@ describe('ShellMain', () => {
   })
 })
 
-describe('ShellFooter', () => {
+describe('shellFooter', () => {
   it('renders as footer element', () => {
     const wrapper = mount(ShellFooter, {
       slots: { default: 'Footer' },

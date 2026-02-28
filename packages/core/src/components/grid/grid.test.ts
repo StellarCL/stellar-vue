@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Grid from './Grid.vue'
 import GridItem from './GridItem.vue'
 
-describe('Grid', () => {
+describe('grid', () => {
   it('renders with specified columns', () => {
     const wrapper = mount(Grid, {
       props: { cols: 3 },
@@ -70,7 +70,7 @@ describe('Grid', () => {
   })
 })
 
-describe('GridItem', () => {
+describe('gridItem', () => {
   it('renders without span classes when no props', () => {
     const wrapper = mount(GridItem, {
       slots: { default: 'Content' },
@@ -115,7 +115,7 @@ describe('GridItem', () => {
   })
 })
 
-describe('Grid with GridItem', () => {
+describe('grid with GridItem', () => {
   it('renders grid with items', () => {
     const wrapper = mount({
       components: { Grid, GridItem },

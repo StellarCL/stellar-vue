@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogRoot } from 'radix-vue'
 import type { DialogProps } from './dialog.types'
+import { DialogRoot } from 'radix-vue'
 
 const props = withDefaults(defineProps<DialogProps>(), {
   defaultOpen: false,

@@ -61,8 +61,8 @@ The checkbox supports an indeterminate state, commonly used for "select all" pat
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Checkbox, Label } from '@stellar-vue-ui/core'
+import { ref } from 'vue'
 
 const selectAll = ref<boolean | 'indeterminate'>('indeterminate')
 </script>
@@ -90,8 +90,7 @@ const selectAll = ref<boolean | 'indeterminate'>('indeterminate')
 
 ```vue
 <script setup lang="ts">
-import { Form, FormField, FormItem, FormControl, FormLabel, FormMessage } from '@stellar-vue-ui/core'
-import { Checkbox } from '@stellar-vue-ui/core'
+import { Checkbox, Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@stellar-vue-ui/core'
 </script>
 
 <template>

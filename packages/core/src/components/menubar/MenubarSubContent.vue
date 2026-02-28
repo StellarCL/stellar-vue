@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { MenubarPortal, MenubarSubContent as MenubarSubContentPrimitive } from 'radix-vue'
 import type { MenubarSubContentProps } from './menubar.types'
+import { MenubarPortal, MenubarSubContent as MenubarSubContentPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<MenubarSubContentProps>()

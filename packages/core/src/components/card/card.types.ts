@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface CardProps {
-  /** Visual variant of the card
+  /**
+   * Visual variant of the card
    * @default 'default'
    */
   variant?: 'default' | 'bordered' | 'elevated'
@@ -16,7 +17,8 @@ export interface CardHeaderProps {
 }
 
 export interface CardTitleProps {
-  /** Heading element to render as
+  /**
+   * Heading element to render as
    * @default 'h3'
    */
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'

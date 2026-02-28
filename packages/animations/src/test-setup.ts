@@ -31,6 +31,6 @@ if (!Element.prototype.animate) {
         removeEventListener: vi.fn(),
       } as unknown as Animation
       return animation
-    }
+    },
   ) as typeof Element.prototype.animate
 }

@@ -40,8 +40,8 @@ export function mockTableData(
   const lastNames = ['Smith', 'Jones', 'Williams', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson']
 
   return Array.from({ length: count }, (_, i) => {
-    const firstName = firstNames[i % firstNames.length]
-    const lastName = lastNames[i % lastNames.length]
+    const firstName = firstNames[i % firstNames.length]!
+    const lastName = lastNames[i % lastNames.length]!
     const row: MockTableRow = { id: i + 1 }
 
     for (const col of columns) {
@@ -50,19 +50,19 @@ export function mockTableData(
           row[col] = `${firstName} ${lastName}`
           break
         case 'firstName':
-          row[col] = firstName
+          row[col] = firstName!
           break
         case 'lastName':
-          row[col] = lastName
+          row[col] = lastName!
           break
         case 'email':
           row[col] = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i > 0 ? i : ''}@example.com`
           break
         case 'status':
-          row[col] = statuses[i % statuses.length]
+          row[col] = statuses[i % statuses.length]!
           break
         case 'role':
-          row[col] = roles[i % roles.length]
+          row[col] = roles[i % roles.length]!
           break
         case 'age':
           row[col] = 20 + (i % 40)
@@ -127,14 +127,30 @@ export function mockFormData(
  */
 export function mockSelectOptions(count: number = 5): MockSelectOption[] {
   const labels = [
-    'Apple', 'Banana', 'Cherry', 'Date', 'Elderberry',
-    'Fig', 'Grape', 'Honeydew', 'Kiwi', 'Lemon',
-    'Mango', 'Nectarine', 'Orange', 'Papaya', 'Quince',
-    'Raspberry', 'Strawberry', 'Tangerine', 'Ugli Fruit', 'Watermelon',
+    'Apple',
+    'Banana',
+    'Cherry',
+    'Date',
+    'Elderberry',
+    'Fig',
+    'Grape',
+    'Honeydew',
+    'Kiwi',
+    'Lemon',
+    'Mango',
+    'Nectarine',
+    'Orange',
+    'Papaya',
+    'Quince',
+    'Raspberry',
+    'Strawberry',
+    'Tangerine',
+    'Ugli Fruit',
+    'Watermelon',
   ]
 
   return Array.from({ length: count }, (_, i) => {
-    const label = labels[i % labels.length]
+    const label = labels[i % labels.length]!
     return {
       label,
       value: label.toLowerCase().replace(/\s+/g, '-'),
@@ -154,7 +170,7 @@ export function mockBreadcrumbs(count: number = 3): MockBreadcrumb[] {
   const segments = ['Home', 'Products', 'Category', 'Item', 'Details', 'Settings', 'Profile']
 
   return Array.from({ length: count }, (_, i) => {
-    const label = segments[i % segments.length]
+    const label = segments[i % segments.length]!
     const isFirst = i === 0
     const href = isFirst ? '/' : `/${segments.slice(1, i + 1).map(s => s.toLowerCase()).join('/')}`
 

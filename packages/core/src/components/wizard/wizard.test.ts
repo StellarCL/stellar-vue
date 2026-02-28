@@ -1,8 +1,8 @@
-import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it, vi } from 'vitest'
 import Wizard from './Wizard.vue'
-import WizardStep from './WizardStep.vue'
 import WizardActions from './WizardActions.vue'
+import WizardStep from './WizardStep.vue'
 
 function mountWizard(
   options: {
@@ -43,7 +43,7 @@ function mountWizard(
   })
 }
 
-describe('Wizard', () => {
+describe('wizard', () => {
   it('renders current step content', () => {
     const wrapper = mountWizard({ initialStep: 1 })
     expect(wrapper.text()).toContain('Step 1 content')
@@ -84,29 +84,29 @@ describe('Wizard', () => {
   })
 })
 
-describe('WizardActions', () => {
-  it('Previous button is disabled on first step', () => {
+describe('wizardActions', () => {
+  it('previous button is disabled on first step', () => {
     const wrapper = mountWizard({ initialStep: 1 })
     const buttons = wrapper.findAll('button')
     const prevButton = buttons.find(b => b.text() === 'Previous')
     expect(prevButton!.attributes('disabled')).toBeDefined()
   })
 
-  it('Previous button is enabled on non-first steps', () => {
+  it('previous button is enabled on non-first steps', () => {
     const wrapper = mountWizard({ initialStep: 2 })
     const buttons = wrapper.findAll('button')
     const prevButton = buttons.find(b => b.text() === 'Previous')
     expect(prevButton!.attributes('disabled')).toBeUndefined()
   })
 
-  it('Next button is shown on non-last steps', () => {
+  it('next button is shown on non-last steps', () => {
     const wrapper = mountWizard({ initialStep: 1 })
     const buttons = wrapper.findAll('button')
     const nextButton = buttons.find(b => b.text() === 'Next')
     expect(nextButton).toBeDefined()
   })
 
-  it('Submit button is shown on the last step', () => {
+  it('submit button is shown on the last step', () => {
     const wrapper = mountWizard({ initialStep: 3 })
     const buttons = wrapper.findAll('button')
     const submitButton = buttons.find(b => b.text() === 'Submit')
@@ -114,14 +114,14 @@ describe('WizardActions', () => {
     expect(submitButton!.exists()).toBe(true)
   })
 
-  it('Next button is not shown on the last step', () => {
+  it('next button is not shown on the last step', () => {
     const wrapper = mountWizard({ initialStep: 3 })
     const buttons = wrapper.findAll('button')
     const nextButton = buttons.find(b => b.text() === 'Next')
     expect(nextButton).toBeUndefined()
   })
 
-  it('Submit button emits submit event', async () => {
+  it('submit button emits submit event', async () => {
     const wrapper = mount({
       components: { Wizard, WizardStep, WizardActions },
       template: `
@@ -176,8 +176,8 @@ describe('WizardActions', () => {
   })
 })
 
-describe('Wizard validation', () => {
-  it('Next with validate returning false blocks advancement', async () => {
+describe('wizard validation', () => {
+  it('next with validate returning false blocks advancement', async () => {
     const validate = vi.fn(async () => false)
     const wrapper = mountWizard({
       initialStep: 1,
@@ -197,7 +197,7 @@ describe('Wizard validation', () => {
     expect(wrapper.text()).not.toContain('Step 2 content')
   })
 
-  it('Next with validate returning true allows advancement', async () => {
+  it('next with validate returning true allows advancement', async () => {
     const validate = vi.fn(async () => true)
     const wrapper = mountWizard({
       initialStep: 1,
@@ -214,7 +214,7 @@ describe('Wizard validation', () => {
     expect(wrapper.text()).toContain('Step 2 content')
   })
 
-  it('Next without validateOnNext advances normally without calling validate', async () => {
+  it('next without validateOnNext advances normally without calling validate', async () => {
     const validate = vi.fn(async () => false)
     const wrapper = mountWizard({
       initialStep: 1,
@@ -231,7 +231,7 @@ describe('Wizard validation', () => {
     expect(wrapper.text()).toContain('Step 2 content')
   })
 
-  it('Previous goes to prior step without validation', async () => {
+  it('previous goes to prior step without validation', async () => {
     const validate = vi.fn(async () => false)
     const wrapper = mountWizard({
       initialStep: 2,
@@ -266,7 +266,7 @@ describe('Wizard validation', () => {
   })
 })
 
-describe('WizardStep', () => {
+describe('wizardStep', () => {
   it('only renders when active', () => {
     const wrapper = mountWizard({ initialStep: 1 })
     const steps = wrapper.findAll('[data-step]')

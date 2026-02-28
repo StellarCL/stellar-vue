@@ -1,18 +1,18 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import type { ComponentLock } from '../types'
+import prompts from 'prompts'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineConfig } from '../types'
+
 import { writeConfig, writeLockFile } from '../utils/config'
+import { removeCommand } from './remove'
 
 // Mock prompts module
 vi.mock('prompts', () => ({
   default: vi.fn(),
 }))
-
-import prompts from 'prompts'
-import { removeCommand } from './remove'
 
 describe('remove command', () => {
   let tmpDir: string

@@ -1,18 +1,17 @@
+import type { ComponentLock } from '../types'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import type { ComponentLock } from '../types'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { defineConfig } from '../types'
 import { writeConfig, writeLockFile } from '../utils/config'
+
+import { updateCommand } from './update'
 
 // Mock prompts module
 vi.mock('prompts', () => ({
   default: vi.fn(),
 }))
-
-import prompts from 'prompts'
-import { updateCommand } from './update'
 
 describe('update command', () => {
   let tmpDir: string
@@ -71,7 +70,7 @@ describe('update command', () => {
     // Lock file version should still be the same
     const lockPath = path.join(tmpDir, 'components.lock.json')
     const lock = JSON.parse(fs.readFileSync(lockPath, 'utf-8')) as ComponentLock
-    expect(lock.components.button.version).toBe('0.1.0')
+    expect(lock.components.button!.version).toBe('0.1.0')
   })
 
   it('updates lock file version after update', async () => {
@@ -82,7 +81,7 @@ describe('update command', () => {
 
     const lockPath = path.join(tmpDir, 'components.lock.json')
     const lock = JSON.parse(fs.readFileSync(lockPath, 'utf-8')) as ComponentLock
-    expect(lock.components.button.version).toBe('0.1.0')
+    expect(lock.components.button!.version).toBe('0.1.0')
   })
 
   it('--all flag updates all installed components', async () => {
@@ -123,8 +122,8 @@ describe('update command', () => {
 
     const lockPath = path.join(tmpDir, 'components.lock.json')
     const updatedLock = JSON.parse(fs.readFileSync(lockPath, 'utf-8')) as ComponentLock
-    expect(updatedLock.components.button.version).toBe('0.1.0')
-    expect(updatedLock.components.card.version).toBe('0.1.0')
+    expect(updatedLock.components.button!.version).toBe('0.1.0')
+    expect(updatedLock.components.card!.version).toBe('0.1.0')
   })
 
   it('errors when component not installed', async () => {

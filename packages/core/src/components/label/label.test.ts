@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Label from './Label.vue'
 
-describe('Label', () => {
+describe('label', () => {
   it('renders text content', () => {
     const wrapper = mount(Label, {
       slots: { default: 'Email address' },

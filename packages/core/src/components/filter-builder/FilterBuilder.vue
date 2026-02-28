@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { FilterBuilderProps, FilterGroup } from './filter-builder.types'
-import { defaultOperators } from './filter-builder.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { defaultOperators } from './filter-builder.types'
 import FilterGroupComponent from './FilterGroup.vue'
 
 const props = withDefaults(defineProps<FilterBuilderProps>(), {

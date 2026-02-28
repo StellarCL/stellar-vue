@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { CommandContext, CommandItemProps } from './command.types'
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue'
-import type { CommandItemProps, CommandContext } from './command.types'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<CommandItemProps>(), {
@@ -25,11 +25,12 @@ const itemEl = ref<HTMLDivElement | null>(null)
 const myIndex = ref(-1)
 
 onMounted(() => {
-  if (!context) return
+  if (!context)
+    return
 
   // Derive the filter value from the explicit prop or the element's text content
-  const filterValue =
-    props.value ?? itemEl.value?.textContent?.trim() ?? ''
+  const filterValue
+    = props.value ?? itemEl.value?.textContent?.trim() ?? ''
 
   myIndex.value = context.registerItem(filterValue)
   groupRegister?.(myIndex.value)
@@ -38,7 +39,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (!context || myIndex.value === -1) return
+  if (!context || myIndex.value === -1)
+    return
   context.unregisterItem(myIndex.value)
   groupUnregister?.(myIndex.value)
   unregisterEnter?.(myIndex.value)
@@ -53,7 +55,8 @@ const isVisible = computed(
 )
 
 function handleSelect(): void {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   context?.selectItem(myIndex.value)
   emit('select', props.value ?? itemEl.value?.textContent?.trim() ?? '')
 }

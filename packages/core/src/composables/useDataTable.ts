@@ -1,5 +1,5 @@
-import { ref, computed, isRef, unref, type Ref } from 'vue'
 import type { ColumnDef, SortDirection, SortingState } from '../components/data-table/data-table.types'
+import { computed, isRef, ref, type Ref, unref } from 'vue'
 
 export interface UseDataTableOptions<T> {
   data: Ref<T[]> | T[]
@@ -28,11 +28,13 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
   // Sorted data (client-side)
   const sortedData = computed<T[]>(() => {
     const data = unref(rawData)
-    if (sorting.value.length === 0) return [...data]
+    if (sorting.value.length === 0)
+      return [...data]
 
     const { id, desc } = sorting.value[0]
     const col = options.columns.find(c => c.id === id)
-    if (!col) return [...data]
+    if (!col)
+      return [...data]
 
     return [...data].sort((a, b) => {
       let aVal: any
@@ -51,9 +53,12 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
       }
 
       // Null/undefined handling
-      if (aVal == null && bVal == null) return 0
-      if (aVal == null) return desc ? -1 : 1
-      if (bVal == null) return desc ? 1 : -1
+      if (aVal == null && bVal == null)
+        return 0
+      if (aVal == null)
+        return desc ? -1 : 1
+      if (bVal == null)
+        return desc ? 1 : -1
 
       let result: number
       if (typeof aVal === 'number' && typeof bVal === 'number') {
@@ -102,9 +107,20 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
 
   function getSortDirection(columnId: string): SortDirection {
     const existing = sorting.value.find(s => s.id === columnId)
-    if (!existing) return false
+    if (!existing)
+      return false
     return existing.desc ? 'desc' : 'asc'
   }
+
+  const isAllSelected = computed<boolean>(() => {
+    if (sortedData.value.length === 0)
+      return false
+    return sortedData.value.every((_, i) => selectedRows.value.has(i))
+  })
+
+  const isIndeterminate = computed<boolean>(() => {
+    return selectedRows.value.size > 0 && !isAllSelected.value
+  })
 
   // Row selection helpers (indices into the full sorted dataset)
   function toggleRowSelection(index: number): void {
@@ -130,15 +146,6 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
   function isRowSelected(index: number): boolean {
     return selectedRows.value.has(index)
   }
-
-  const isAllSelected = computed<boolean>(() => {
-    if (sortedData.value.length === 0) return false
-    return sortedData.value.every((_, i) => selectedRows.value.has(i))
-  })
-
-  const isIndeterminate = computed<boolean>(() => {
-    return selectedRows.value.size > 0 && !isAllSelected.value
-  })
 
   // Column visibility helpers
   function toggleColumnVisibility(columnId: string): void {

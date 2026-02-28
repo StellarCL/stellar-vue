@@ -347,11 +347,13 @@ export function resolveDependencies(name: string): string[] {
   const visited = new Set<string>()
 
   function resolve(componentName: string): void {
-    if (visited.has(componentName)) return
+    if (visited.has(componentName))
+      return
     visited.add(componentName)
 
     const entry = getComponent(componentName)
-    if (!entry) return
+    if (!entry)
+      return
 
     for (const dep of entry.peerDependencies) {
       resolved.add(dep)

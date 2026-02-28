@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Label, Input, Checkbox } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
+import { Checkbox, Input, Label } from '@stellar-vue-ui/core'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>

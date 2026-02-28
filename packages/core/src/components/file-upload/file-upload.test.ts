@@ -1,19 +1,19 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import type { FileWithPreview } from './file-upload.types'
 import { mount } from '@vue/test-utils'
-import { nextTick, ref } from 'vue'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { nextTick } from 'vue'
+import { useFileUpload } from '../../composables/useFileUpload'
 import FileUpload from './FileUpload.vue'
 import FileUploadDropzone from './FileUploadDropzone.vue'
-import FileUploadTrigger from './FileUploadTrigger.vue'
+import FileUploadList from './FileUploadList.vue'
 import FileUploadPreview from './FileUploadPreview.vue'
 import FileUploadProgress from './FileUploadProgress.vue'
-import FileUploadList from './FileUploadList.vue'
-import { useFileUpload } from '../../composables/useFileUpload'
-import type { FileWithPreview } from './file-upload.types'
+import FileUploadTrigger from './FileUploadTrigger.vue'
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
 function makeFile(name: string, type: string, size = 1024): File {
-  const content = new Array(size).fill('a').join('')
+  const content = Array.from({ length: size }, () => 'a').join('')
   return new File([content], name, { type })
 }
 
@@ -50,7 +50,7 @@ afterEach(() => {
 
 // ─── FileUpload (root) ──────────────────────────────────────────────────────
 
-describe('FileUpload', () => {
+describe('fileUpload', () => {
   it('renders without crashing', () => {
     const wrapper = mount(FileUpload)
     expect(wrapper.exists()).toBe(true)
@@ -78,7 +78,7 @@ describe('FileUpload', () => {
 
 // ─── FileUploadDropzone ─────────────────────────────────────────────────────
 
-describe('FileUploadDropzone', () => {
+describe('fileUploadDropzone', () => {
   it('renders without crashing', () => {
     const wrapper = mount(FileUploadDropzone)
     expect(wrapper.exists()).toBe(true)
@@ -166,7 +166,7 @@ describe('FileUploadDropzone', () => {
 
 // ─── FileUploadTrigger ──────────────────────────────────────────────────────
 
-describe('FileUploadTrigger', () => {
+describe('fileUploadTrigger', () => {
   it('renders without crashing', () => {
     const wrapper = mount(FileUploadTrigger)
     expect(wrapper.exists()).toBe(true)
@@ -224,7 +224,7 @@ describe('FileUploadTrigger', () => {
 
 // ─── FileUploadPreview ──────────────────────────────────────────────────────
 
-describe('FileUploadPreview', () => {
+describe('fileUploadPreview', () => {
   it('renders without crashing', () => {
     const file = makeFileWithPreview()
     const wrapper = mount(FileUploadPreview, { props: { file } })
@@ -285,7 +285,7 @@ describe('FileUploadPreview', () => {
 
 // ─── FileUploadProgress ─────────────────────────────────────────────────────
 
-describe('FileUploadProgress', () => {
+describe('fileUploadProgress', () => {
   it('renders without crashing', () => {
     const wrapper = mount(FileUploadProgress, { props: { progress: 0 } })
     expect(wrapper.exists()).toBe(true)
@@ -324,7 +324,7 @@ describe('FileUploadProgress', () => {
 
 // ─── FileUploadList ─────────────────────────────────────────────────────────
 
-describe('FileUploadList', () => {
+describe('fileUploadList', () => {
   it('renders without crashing', () => {
     const wrapper = mount(FileUploadList, { props: { files: [] } })
     expect(wrapper.exists()).toBe(true)
@@ -385,7 +385,7 @@ describe('FileUploadList', () => {
 
 // ─── Integrated FileUpload composition ─────────────────────────────────────
 
-describe('FileUpload composition (FileUpload + FileUploadDropzone + FileUploadTrigger + FileUploadList)', () => {
+describe('fileUpload composition (FileUpload + FileUploadDropzone + FileUploadTrigger + FileUploadList)', () => {
   it('mounts all sub-components together without errors', () => {
     const wrapper = mount({
       components: { FileUpload, FileUploadDropzone, FileUploadTrigger, FileUploadList },
@@ -537,7 +537,7 @@ describe('useFileUpload composable', () => {
   })
 
   it('clearFiles revokes all preview URLs', () => {
-    const { files, addFiles, clearFiles } = useFileUpload()
+    const { addFiles, clearFiles } = useFileUpload()
     addFiles([makeFile('a.png', 'image/png'), makeFile('b.png', 'image/png')])
     clearFiles()
     expect(revokeObjectUrlMock).toHaveBeenCalledTimes(2)
@@ -578,7 +578,7 @@ describe('useFileUpload composable', () => {
   it('each file gets a unique id', () => {
     const { files, addFiles } = useFileUpload()
     addFiles([makeFile('a.png', 'image/png'), makeFile('b.png', 'image/png')])
-    const ids = files.value.map((f) => f.id)
+    const ids = files.value.map(f => f.id)
     expect(new Set(ids).size).toBe(2)
   })
 

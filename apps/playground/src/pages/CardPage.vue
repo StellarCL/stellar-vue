@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import {
-  Card, CardHeader, CardTitle, CardDescription,
-  CardContent, CardFooter, Button, Badge,
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from '@stellar-vue-ui/core'
-import PageHeader from '../components/PageHeader.vue'
 import DemoSection from '../components/DemoSection.vue'
+import PageHeader from '../components/PageHeader.vue'
 </script>
 
 <template>
@@ -28,8 +34,12 @@ import DemoSection from '../components/DemoSection.vue'
             </p>
           </CardContent>
           <CardFooter class="flex justify-end gap-2">
-            <Button variant="outline" size="sm">Cancel</Button>
-            <Button size="sm">Confirm</Button>
+            <Button variant="outline" size="sm">
+              Cancel
+            </Button>
+            <Button size="sm">
+              Confirm
+            </Button>
           </CardFooter>
         </Card>
       </DemoSection>
@@ -50,7 +60,9 @@ import DemoSection from '../components/DemoSection.vue'
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" size="sm" class="w-full">View message</Button>
+            <Button variant="ghost" size="sm" class="w-full">
+              View message
+            </Button>
           </CardFooter>
         </Card>
       </DemoSection>
@@ -60,7 +72,9 @@ import DemoSection from '../components/DemoSection.vue'
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card v-for="i in 3" :key="i">
             <CardHeader>
-              <CardTitle class="text-base">Project {{ i }}</CardTitle>
+              <CardTitle class="text-base">
+                Project {{ i }}
+              </CardTitle>
               <CardDescription>Last updated 2 days ago</CardDescription>
             </CardHeader>
             <CardContent>
@@ -69,8 +83,12 @@ import DemoSection from '../components/DemoSection.vue'
               </div>
             </CardContent>
             <CardFooter class="flex justify-between items-center">
-              <Badge variant="secondary">Active</Badge>
-              <Button variant="ghost" size="sm">Open</Button>
+              <Badge variant="secondary">
+                Active
+              </Badge>
+              <Button variant="ghost" size="sm">
+                Open
+              </Button>
             </CardFooter>
           </Card>
         </div>
@@ -92,26 +110,38 @@ import DemoSection from '../components/DemoSection.vue'
         <div class="flex flex-wrap gap-4">
           <Card class="w-48">
             <CardHeader>
-              <CardTitle class="text-sm">Default</CardTitle>
+              <CardTitle class="text-sm">
+                Default
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <p class="text-xs text-muted-foreground">Default card style</p>
+              <p class="text-xs text-muted-foreground">
+                Default card style
+              </p>
             </CardContent>
           </Card>
           <Card variant="bordered" class="w-48">
             <CardHeader>
-              <CardTitle class="text-sm">Bordered</CardTitle>
+              <CardTitle class="text-sm">
+                Bordered
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <p class="text-xs text-muted-foreground">Bordered card style</p>
+              <p class="text-xs text-muted-foreground">
+                Bordered card style
+              </p>
             </CardContent>
           </Card>
           <Card variant="elevated" class="w-48">
             <CardHeader>
-              <CardTitle class="text-sm">Elevated</CardTitle>
+              <CardTitle class="text-sm">
+                Elevated
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <p class="text-xs text-muted-foreground">Elevated card style</p>
+              <p class="text-xs text-muted-foreground">
+                Elevated card style
+              </p>
             </CardContent>
           </Card>
         </div>

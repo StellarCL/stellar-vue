@@ -1,4 +1,4 @@
-import { ref, readonly, type Ref } from 'vue'
+import { readonly, ref, type Ref } from 'vue'
 
 interface UseKeyboardNavOptions {
   items: Ref<HTMLElement[]>
@@ -15,29 +15,35 @@ export function useKeyboardNav(options: UseKeyboardNavOptions) {
 
   function onKeyDown(e: KeyboardEvent) {
     const items = options.items.value
-    if (items.length === 0) return
+    if (items.length === 0)
+      return
 
     if (e.key === nextKey) {
       e.preventDefault()
       if (activeIndex.value < items.length - 1) {
         activeIndex.value++
-      } else if (loop) {
+      }
+      else if (loop) {
         activeIndex.value = 0
       }
       items[activeIndex.value]?.focus()
-    } else if (e.key === prevKey) {
+    }
+    else if (e.key === prevKey) {
       e.preventDefault()
       if (activeIndex.value > 0) {
         activeIndex.value--
-      } else if (loop) {
+      }
+      else if (loop) {
         activeIndex.value = items.length - 1
       }
       items[activeIndex.value]?.focus()
-    } else if (e.key === 'Home') {
+    }
+    else if (e.key === 'Home') {
       e.preventDefault()
       activeIndex.value = 0
       items[0]?.focus()
-    } else if (e.key === 'End') {
+    }
+    else if (e.key === 'End') {
       e.preventDefault()
       activeIndex.value = items.length - 1
       items[items.length - 1]?.focus()

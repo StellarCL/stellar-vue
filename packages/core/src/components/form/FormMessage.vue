@@ -8,7 +8,8 @@ const props = defineProps<{ class?: HTMLAttributes['class'] }>()
 let fieldContext: ReturnType<typeof useFormField> | null = null
 try {
   fieldContext = useFormField()
-} catch {
+}
+catch {
   // FormMessage can be used outside form context
 }
 </script>

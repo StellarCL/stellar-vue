@@ -1,15 +1,15 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Sidebar from './Sidebar.vue'
 import SidebarContent from './SidebarContent.vue'
-import SidebarHeader from './SidebarHeader.vue'
 import SidebarFooter from './SidebarFooter.vue'
 import SidebarGroup from './SidebarGroup.vue'
-import SidebarGroupLabel from './SidebarGroupLabel.vue'
 import SidebarGroupContent from './SidebarGroupContent.vue'
+import SidebarGroupLabel from './SidebarGroupLabel.vue'
+import SidebarHeader from './SidebarHeader.vue'
 import SidebarMenu from './SidebarMenu.vue'
-import SidebarMenuItem from './SidebarMenuItem.vue'
 import SidebarMenuButton from './SidebarMenuButton.vue'
+import SidebarMenuItem from './SidebarMenuItem.vue'
 
 function mountSidebar(collapsed = false, collapsible = true) {
   return mount({
@@ -50,7 +50,7 @@ function mountSidebar(collapsed = false, collapsible = true) {
   })
 }
 
-describe('Sidebar', () => {
+describe('sidebar', () => {
   it('renders expanded by default', () => {
     const wrapper = mountSidebar(false)
     const sidebar = wrapper.find('div')
@@ -147,7 +147,7 @@ describe('Sidebar', () => {
   })
 })
 
-describe('SidebarGroup', () => {
+describe('sidebarGroup', () => {
   it('renders group with label and content', () => {
     const wrapper = mount({
       components: { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent },
@@ -167,7 +167,7 @@ describe('SidebarGroup', () => {
   })
 })
 
-describe('SidebarMenu', () => {
+describe('sidebarMenu', () => {
   it('renders as ul element', () => {
     const wrapper = mount({
       components: { Sidebar, SidebarMenu },
@@ -183,7 +183,7 @@ describe('SidebarMenu', () => {
   })
 })
 
-describe('SidebarMenuItem', () => {
+describe('sidebarMenuItem', () => {
   it('renders as li element', () => {
     const wrapper = mount({
       components: { Sidebar, SidebarMenu, SidebarMenuItem },
@@ -200,7 +200,7 @@ describe('SidebarMenuItem', () => {
   })
 })
 
-describe('SidebarMenuButton', () => {
+describe('sidebarMenuButton', () => {
   it('renders as button element', () => {
     const wrapper = mount({
       components: { Sidebar, SidebarMenuButton },

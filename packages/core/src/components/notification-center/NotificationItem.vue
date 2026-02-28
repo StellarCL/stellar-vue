@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { NotificationItemProps } from './notification-center.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<NotificationItemProps>()
 
 const emit = defineEmits<{
-  'mark-read': [id: string]
-  'dismiss': [id: string]
-  'action': [id: string]
+  markRead: [id: string]
+  dismiss: [id: string]
+  action: [id: string]
 }>()
 
 const classes = computed(() =>
@@ -26,10 +26,14 @@ function formatTimestamp(date: Date): string {
   const hours = Math.floor(diff / 3600000)
   const days = Math.floor(diff / 86400000)
 
-  if (minutes < 1) return 'just now'
-  if (minutes < 60) return `${minutes}m ago`
-  if (hours < 24) return `${hours}h ago`
-  if (days < 7) return `${days}d ago`
+  if (minutes < 1)
+    return 'just now'
+  if (minutes < 60)
+    return `${minutes}m ago`
+  if (hours < 24)
+    return `${hours}h ago`
+  if (days < 7)
+    return `${days}d ago`
   return date.toLocaleDateString()
 }
 </script>
@@ -40,7 +44,7 @@ function formatTimestamp(date: Date): string {
     :data-read="notification.read"
     data-testid="notification-item"
     role="article"
-    @click="!notification.read && emit('mark-read', notification.id)"
+    @click="!notification.read && emit('markRead', notification.id)"
   >
     <!-- Unread indicator -->
     <div class="mt-1.5 shrink-0">
@@ -62,7 +66,7 @@ function formatTimestamp(date: Date): string {
         :src="notification.avatar"
         :alt="notification.title"
         class="h-8 w-8 rounded-full object-cover"
-      />
+      >
       <span v-else>{{ notification.avatar }}</span>
     </div>
 
@@ -81,7 +85,7 @@ function formatTimestamp(date: Date): string {
           aria-label="Dismiss notification"
           @click.stop="emit('dismiss', notification.id)"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
         </button>
       </div>
 

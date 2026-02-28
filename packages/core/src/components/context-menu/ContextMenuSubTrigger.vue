@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { ContextMenuSubTrigger as ContextMenuSubTriggerPrimitive } from 'radix-vue'
 import type { ContextMenuSubTriggerProps } from './context-menu.types'
+import { ContextMenuSubTrigger as ContextMenuSubTriggerPrimitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = withDefaults(defineProps<ContextMenuSubTriggerProps>(), {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { TooltipRoot } from 'radix-vue'
 import type { TooltipProps } from './tooltip.types'
+import { TooltipRoot } from 'radix-vue'
 
 const props = withDefaults(defineProps<TooltipProps>(), {})
 

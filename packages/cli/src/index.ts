@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-import { Command } from 'commander'
 import { createRequire } from 'node:module'
-import { initCommand } from './commands/init'
+import { Command } from 'commander'
 import { addCommand } from './commands/add'
-import { updateCommand } from './commands/update'
-import { removeCommand } from './commands/remove'
-import { listCommand } from './commands/list'
-import { registerThemeCommand } from './commands/theme'
-import { infoCommand } from './commands/info'
-import { depsCommand } from './commands/deps'
 import { auditCommand } from './commands/audit'
+import { depsCommand } from './commands/deps'
+import { infoCommand } from './commands/info'
+import { initCommand } from './commands/init'
+import { listCommand } from './commands/list'
+import { removeCommand } from './commands/remove'
+import { registerThemeCommand } from './commands/theme'
+import { updateCommand } from './commands/update'
 
 const require = createRequire(import.meta.url)
 const pkg = require('../package.json') as { version: string }

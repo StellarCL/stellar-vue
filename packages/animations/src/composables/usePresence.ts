@@ -1,4 +1,4 @@
-import { ref, readonly, watch, type Ref } from 'vue'
+import { readonly, ref, type Ref, watch } from 'vue'
 
 export interface UsePresenceReturn {
   isPresent: Readonly<Ref<boolean>>
@@ -15,7 +15,8 @@ export function usePresence(show: Ref<boolean>): UsePresenceReturn {
       // Entering: add to DOM immediately
       isPresent.value = true
       isAnimating.value = false
-    } else {
+    }
+    else {
       // Exiting: start exit animation, keep in DOM until safeToRemove() is called
       isAnimating.value = true
     }

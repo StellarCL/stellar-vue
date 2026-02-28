@@ -1,18 +1,18 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { defineComponent, h } from 'vue'
 import Select from './Select.vue'
+import SelectContent from './SelectContent.vue'
+import SelectGroup from './SelectGroup.vue'
+import SelectItem from './SelectItem.vue'
+import SelectLabel from './SelectLabel.vue'
+import SelectScrollDownButton from './SelectScrollDownButton.vue'
+import SelectScrollUpButton from './SelectScrollUpButton.vue'
+import SelectSeparator from './SelectSeparator.vue'
 import SelectTrigger from './SelectTrigger.vue'
 import SelectValue from './SelectValue.vue'
-import SelectContent from './SelectContent.vue'
-import SelectItem from './SelectItem.vue'
-import SelectGroup from './SelectGroup.vue'
-import SelectLabel from './SelectLabel.vue'
-import SelectSeparator from './SelectSeparator.vue'
-import SelectScrollUpButton from './SelectScrollUpButton.vue'
-import SelectScrollDownButton from './SelectScrollDownButton.vue'
 
-describe('SelectTrigger', () => {
+describe('selectTrigger', () => {
   it('renders SelectTrigger with placeholder via SelectValue', () => {
     const wrapper = mount(
       defineComponent({
@@ -30,7 +30,7 @@ describe('SelectTrigger', () => {
     expect(wrapper.text()).toContain('Select an option')
   })
 
-  it('SelectTrigger has chevron-down SVG icon', () => {
+  it('selectTrigger has chevron-down SVG icon', () => {
     const wrapper = mount(
       defineComponent({
         render() {
@@ -48,7 +48,7 @@ describe('SelectTrigger', () => {
     expect(svgs.length).toBeGreaterThan(0)
   })
 
-  it('SelectTrigger applies base styling classes', () => {
+  it('selectTrigger applies base styling classes', () => {
     const wrapper = mount(
       defineComponent({
         render() {
@@ -72,7 +72,7 @@ describe('SelectTrigger', () => {
     expect(classes).toContain('border')
   })
 
-  it('SelectTrigger applies custom class', () => {
+  it('selectTrigger applies custom class', () => {
     const wrapper = mount(
       defineComponent({
         render() {
@@ -91,7 +91,7 @@ describe('SelectTrigger', () => {
   })
 })
 
-describe('SelectLabel', () => {
+describe('selectLabel', () => {
   it('renders with correct styling classes', () => {
     const wrapper = mount(SelectLabel, {
       slots: { default: 'Fruits' },
@@ -120,7 +120,7 @@ describe('SelectLabel', () => {
   })
 })
 
-describe('SelectSeparator', () => {
+describe('selectSeparator', () => {
   it('renders with correct styling classes', () => {
     const wrapper = mount(SelectSeparator)
     const classes = wrapper.classes().join(' ')
@@ -138,7 +138,7 @@ describe('SelectSeparator', () => {
   })
 })
 
-describe('SelectGroup', () => {
+describe('selectGroup', () => {
   it('renders with p-1 class', () => {
     const wrapper = mount(SelectGroup, {
       slots: { default: 'content' },
@@ -155,7 +155,7 @@ describe('SelectGroup', () => {
   })
 })
 
-describe('SelectScrollUpButton', () => {
+describe('selectScrollUpButton', () => {
   // Radix Vue scroll buttons require SelectContent context to render DOM.
   // They are conditionally visible based on scroll position.
   // We verify the component mounts without error and has the correct setup.
@@ -193,7 +193,7 @@ describe('SelectScrollUpButton', () => {
   })
 })
 
-describe('SelectScrollDownButton', () => {
+describe('selectScrollDownButton', () => {
   // Radix Vue scroll buttons require SelectContent context to render DOM.
   // They are conditionally visible based on scroll position.
 
@@ -226,7 +226,7 @@ describe('SelectScrollDownButton', () => {
   })
 })
 
-describe('SelectItem', () => {
+describe('selectItem', () => {
   it('renders slot content as item text', () => {
     // SelectItem requires SelectRoot context; we mount inside a composed tree
     const wrapper = mount(
@@ -246,7 +246,7 @@ describe('SelectItem', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('SelectItem has correct base styling classes when rendered standalone with mocked context', () => {
+  it('selectItem has correct base styling classes when rendered standalone with mocked context', () => {
     // Test the class computation by checking the component definition
     // SelectItem needs Radix context so we verify through a full composition
     const wrapper = mount(
@@ -266,7 +266,7 @@ describe('SelectItem', () => {
   })
 })
 
-describe('Select composition', () => {
+describe('select composition', () => {
   it('mounts full Select composition without errors', () => {
     const wrapper = mount(
       defineComponent({
@@ -302,7 +302,7 @@ describe('Select composition', () => {
     expect(wrapper.text()).toContain('Choose fruit')
   })
 
-  it('Select is disabled when disabled prop is set', () => {
+  it('select is disabled when disabled prop is set', () => {
     const wrapper = mount(
       defineComponent({
         render() {
@@ -321,8 +321,8 @@ describe('Select composition', () => {
   })
 })
 
-describe('SelectContent', () => {
-  it('SelectContent is teleported to document body when select is opened', async () => {
+describe('selectContent', () => {
+  it('selectContent is teleported to document body when select is opened', async () => {
     const wrapper = mount(
       defineComponent({
         render() {

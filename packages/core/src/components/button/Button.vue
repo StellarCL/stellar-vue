@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Primitive } from 'radix-vue'
 import type { ButtonProps } from './button.types'
-import { buttonVariants } from './button.variants'
+import { Primitive } from 'radix-vue'
+import { computed } from 'vue'
 import { cn } from '../../utils'
+import { buttonVariants } from './button.variants'
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   variant: 'default',

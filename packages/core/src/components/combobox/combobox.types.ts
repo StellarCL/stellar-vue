@@ -1,22 +1,26 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface ComboboxProps {
-  /** The controlled value of the Combobox. Can be bound as `v-model`.
+  /**
+   * The controlled value of the Combobox. Can be bound as `v-model`.
    * @default undefined
    */
   modelValue?: string
 
-  /** The controlled open state of the Combobox. Can be bound as `v-model:open`.
+  /**
+   * The controlled open state of the Combobox. Can be bound as `v-model:open`.
    * @default undefined
    */
   open?: boolean
 
-  /** The open state of the Combobox when it is initially rendered.
+  /**
+   * The open state of the Combobox when it is initially rendered.
    * @default false
    */
   defaultOpen?: boolean
 
-  /** Whether the Combobox is disabled.
+  /**
+   * Whether the Combobox is disabled.
    * @default false
    */
   disabled?: boolean
@@ -39,17 +43,20 @@ export interface ComboboxTriggerProps {
 }
 
 export interface ComboboxContentProps {
-  /** The positioning mode of the combobox content.
+  /**
+   * The positioning mode of the combobox content.
    * @default 'popper'
    */
   position?: 'inline' | 'popper'
 
-  /** The preferred side of the trigger to render against.
+  /**
+   * The preferred side of the trigger to render against.
    * @default 'bottom'
    */
   side?: 'top' | 'right' | 'bottom' | 'left'
 
-  /** The distance in pixels from the trigger.
+  /**
+   * The distance in pixels from the trigger.
    * @default 4
    */
   sideOffset?: number
@@ -62,7 +69,8 @@ export interface ComboboxItemProps {
   /** The value of the item. Required. */
   value: string
 
-  /** Whether the item is disabled.
+  /**
+   * Whether the item is disabled.
    * @default false
    */
   disabled?: boolean

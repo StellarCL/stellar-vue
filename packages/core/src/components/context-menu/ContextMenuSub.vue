@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ContextMenuSub as ContextMenuSubPrimitive } from 'radix-vue'
 import type { ContextMenuSubProps } from './context-menu.types'
+import { ContextMenuSub as ContextMenuSubPrimitive } from 'radix-vue'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const props = withDefaults(defineProps<ContextMenuSubProps>(), {
   defaultOpen: false,
 })

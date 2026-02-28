@@ -1,22 +1,26 @@
 import type { HTMLAttributes } from 'vue'
 
 export interface CarouselProps {
-  /** Enable auto-play
+  /**
+   * Enable auto-play
    * @default false
    */
   autoPlay?: boolean
 
-  /** Auto-play interval in milliseconds
+  /**
+   * Auto-play interval in milliseconds
    * @default 5000
    */
   autoPlayInterval?: number
 
-  /** Enable looping from last to first slide
+  /**
+   * Enable looping from last to first slide
    * @default false
    */
   loop?: boolean
 
-  /** Carousel orientation
+  /**
+   * Carousel orientation
    * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical'

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { SheetHeaderProps } from './sheet.types'
+import { computed } from 'vue'
 import { cn } from '../../utils'
 
 const props = defineProps<SheetHeaderProps>()

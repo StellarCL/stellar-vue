@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { LoadingProps } from './loading.types'
-import { loadingWrapperVariants } from './loading.variants'
+import { computed } from 'vue'
 import { cn } from '../../utils'
-import LoadingSpinner from './LoadingSpinner.vue'
-import LoadingDots from './LoadingDots.vue'
-import LoadingBar from './LoadingBar.vue'
-import LoadingOverlay from './LoadingOverlay.vue'
 import { Skeleton } from '../skeleton'
+import { loadingWrapperVariants } from './loading.variants'
+import LoadingBar from './LoadingBar.vue'
+import LoadingDots from './LoadingDots.vue'
+import LoadingOverlay from './LoadingOverlay.vue'
+import LoadingSpinner from './LoadingSpinner.vue'
 
 const props = withDefaults(defineProps<LoadingProps>(), {
   variant: 'spinner',
@@ -21,8 +21,10 @@ const wrapperClass = computed(() =>
 )
 
 const textSizeClass = computed(() => {
-  if (props.size === 'sm') return 'text-xs text-muted-foreground'
-  if (props.size === 'lg') return 'text-base text-muted-foreground'
+  if (props.size === 'sm')
+    return 'text-xs text-muted-foreground'
+  if (props.size === 'lg')
+    return 'text-base text-muted-foreground'
   return 'text-sm text-muted-foreground'
 })
 </script>

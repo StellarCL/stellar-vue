@@ -1,15 +1,17 @@
 {
   "name": "stellar-vue-ui-monorepo",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.14.2",
   "description": "Monorepo for Stellar Vue UI component library",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
+  "homepage": "https://stellar-vue-ui.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/StellarCL/stellar-vue.git"
   },
-  "homepage": "https://stellar-vue-ui.dev",
   "bugs": {
     "url": "https://github.com/StellarCL/stellar-vue/issues"
   },
@@ -28,8 +30,6 @@
     "node": ">=18.0.0",
     "pnpm": ">=9.0.0"
   },
-  "type": "module",
-  "packageManager": "pnpm@9.14.2",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -46,14 +46,6 @@
     "version": "changeset version",
     "release": "turbo build && changeset publish"
   },
-  "lint-staged": {
-    "*.{ts,tsx,vue}": [
-      "eslint --fix"
-    ],
-    "*.{ts,tsx,vue,css,md,json}": [
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
     "@axe-core/playwright": "^4.11.1",
@@ -68,5 +60,13 @@
     "turbo": "^2.0.0",
     "typescript": "^5.8.0",
     "vitest": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": [
+      "eslint --fix"
+    ],
+    "*.{ts,tsx,vue,css,md,json}": [
+      "prettier --write"
+    ]
   }
 }

@@ -1,19 +1,19 @@
+// Generator
+export { defineTheme, generateCSS, generateTheme } from './generator'
+
+// Themes
+export { aldebaran, antares, polaris, sirius, stellar, type ThemeName, themeNames, themes, vega } from './themes'
+
 // Types
 export type {
-  ThemeConfig,
-  ThemeColors,
-  ThemeBorderRadius,
   ColorPair,
   DefineThemeOptions,
-  ValidationIssue,
   GenerateThemeOptions,
+  ThemeBorderRadius,
+  ThemeColors,
+  ThemeConfig,
+  ValidationIssue,
 } from './types'
-
-// Generator
-export { defineTheme, generateTheme, generateCSS } from './generator'
 
 // Validator
 export { validateTheme } from './validator'
-
-// Themes
-export { stellar, sirius, polaris, antares, vega, aldebaran, themes, themeNames, type ThemeName } from './themes'

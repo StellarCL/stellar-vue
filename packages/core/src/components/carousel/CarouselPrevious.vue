@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { CarouselContext, CarouselPreviousProps } from './carousel.types'
 import { computed, inject } from 'vue'
-import type { CarouselPreviousProps, CarouselContext } from './carousel.types'
 import { cn } from '../../utils'
 
 const props = defineProps<CarouselPreviousProps>()

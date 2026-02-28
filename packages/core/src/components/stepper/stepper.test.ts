@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import Stepper from './Stepper.vue'
-import StepperItem from './StepperItem.vue'
-import StepperTrigger from './StepperTrigger.vue'
-import StepperSeparator from './StepperSeparator.vue'
 import StepperContent from './StepperContent.vue'
+import StepperItem from './StepperItem.vue'
+import StepperSeparator from './StepperSeparator.vue'
+import StepperTrigger from './StepperTrigger.vue'
 
 const defaultSteps = [
   { title: 'Account', description: 'Set up your account' },
@@ -39,7 +39,7 @@ function mountStepper(activeStep = 1, orientation: 'horizontal' | 'vertical' = '
   })
 }
 
-describe('Stepper', () => {
+describe('stepper', () => {
   it('renders all step titles', () => {
     const wrapper = mountStepper()
     expect(wrapper.text()).toContain('Account')
@@ -73,7 +73,7 @@ describe('Stepper', () => {
   })
 })
 
-describe('StepperTrigger', () => {
+describe('stepperTrigger', () => {
   it('shows step number for upcoming steps', () => {
     const wrapper = mountStepper(1)
     const buttons = wrapper.findAll('button')
@@ -143,7 +143,7 @@ describe('StepperTrigger', () => {
   })
 })
 
-describe('StepperSeparator', () => {
+describe('stepperSeparator', () => {
   it('shows completed state for passed steps', () => {
     const wrapper = mountStepper(3)
     // When active step is 3, separators for steps 1 and 2 should be completed
@@ -175,7 +175,7 @@ describe('StepperSeparator', () => {
   })
 })
 
-describe('StepperContent', () => {
+describe('stepperContent', () => {
   it('only shows content for the active step', () => {
     const wrapper = mountStepper(2)
     expect(wrapper.text()).toContain('Step 2 content')
@@ -213,7 +213,7 @@ describe('StepperContent', () => {
   })
 })
 
-describe('StepperItem', () => {
+describe('stepperItem', () => {
   it('non-last items have flex-1 class', () => {
     const wrapper = mountStepper(1)
     const items = wrapper.findAll('[data-step]')

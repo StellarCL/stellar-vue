@@ -32,16 +32,16 @@ pnpm --filter @stellar-vue-ui/example-nuxt-app dev
 The `@stellar-vue-ui/nuxt` module registers all components with the configured `prefix` (default `UI`). Components are globally available in your templates — no import needed:
 
 ```vue
+<script setup>
+// Composables are also auto-imported
+const { theme, setTheme } = useTheme()
+</script>
+
 <template>
   <!-- No import statement required -->
   <UIButton>Click me</UIButton>
   <UICard>...</UICard>
 </template>
-
-<script setup>
-// Composables are also auto-imported
-const { theme, setTheme } = useTheme()
-</script>
 ```
 
 ## nuxt.config.ts Options
