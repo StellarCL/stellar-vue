@@ -62,6 +62,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --project=chromium
       - uses: actions/upload-artifact@v4
