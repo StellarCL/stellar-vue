@@ -26,6 +26,10 @@ import { Progress } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ProgressBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Progress } from '@stellar-vue-ui/core'
@@ -35,6 +39,9 @@ import { Progress } from '@stellar-vue-ui/core'
   <Progress :model-value="33" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -73,8 +80,7 @@ const progress = ref(0)
 onMounted(() => {
   const timer = setInterval(() => {
     progress.value += 10
-    if (progress.value >= 100)
-      clearInterval(timer)
+    if (progress.value >= 100) clearInterval(timer)
   }, 500)
 })
 </script>
@@ -92,9 +98,7 @@ Use the `max` prop for values other than 100:
 <template>
   <div class="space-y-2">
     <Progress :model-value="3" :max="5" />
-    <p class="text-sm text-muted-foreground">
-      3 of 5 steps completed
-    </p>
+    <p class="text-sm text-muted-foreground">3 of 5 steps completed</p>
   </div>
 </template>
 ```
@@ -124,12 +128,12 @@ const value = ref(66)
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `number` | `0` | Current progress value |
-| `max` | `number` | `100` | Maximum progress value |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Color variant |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                                                   | Default     | Description            |
+| ------------ | ------------------------------------------------------ | ----------- | ---------------------- |
+| `modelValue` | `number`                                               | `0`         | Current progress value |
+| `max`        | `number`                                               | `100`       | Maximum progress value |
+| `variant`    | `'default' \| 'success' \| 'warning' \| 'destructive'` | `'default'` | Color variant          |
+| `class`      | `HTMLAttributes['class']`                              | `undefined` | Additional CSS classes |
 
 ### Events
 

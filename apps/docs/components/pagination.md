@@ -36,6 +36,10 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <PaginationBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -74,6 +78,9 @@ const page = ref(1)
   </Pagination>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -120,51 +127,51 @@ Control how many page numbers are visible on each side of the current page:
 
 ### Pagination Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `total` | `number` | *required* | Total number of items |
-| `pageSize` | `number` | `10` | Items per page |
-| `page` | `number` | `1` | Current page (v-model:page) |
-| `siblingCount` | `number` | `1` | Number of sibling pages on each side |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop           | Type                      | Default     | Description                          |
+| -------------- | ------------------------- | ----------- | ------------------------------------ |
+| `total`        | `number`                  | _required_  | Total number of items                |
+| `pageSize`     | `number`                  | `10`        | Items per page                       |
+| `page`         | `number`                  | `1`         | Current page (v-model:page)          |
+| `siblingCount` | `number`                  | `1`         | Number of sibling pages on each side |
+| `class`        | `HTMLAttributes['class']` | `undefined` | Additional CSS classes               |
 
 ### PaginationLink Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `page` | `number` | *required* | Page number this link navigates to |
-| `isActive` | `boolean` | `false` | Whether this is the active page |
-| `disabled` | `boolean` | `false` | Whether the link is non-interactive |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                         |
+| ---------- | ------------------------- | ----------- | ----------------------------------- |
+| `page`     | `number`                  | _required_  | Page number this link navigates to  |
+| `isActive` | `boolean`                 | `false`     | Whether this is the active page     |
+| `disabled` | `boolean`                 | `false`     | Whether the link is non-interactive |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes              |
 
 ### PaginationPrevious, PaginationNext, PaginationFirst, PaginationLast Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `disabled` | `boolean` | `false` | Whether the button is non-interactive |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                           |
+| ---------- | ------------------------- | ----------- | ------------------------------------- |
+| `disabled` | `boolean`                 | `false`     | Whether the button is non-interactive |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload  | Description                           |
+| ------------- | -------- | ------------------------------------- |
 | `update:page` | `number` | Emitted when the current page changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Pagination` | `default` | PaginationContent |
-| `PaginationContent` | `default` | PaginationItem elements |
-| `PaginationItem` | `default` | Navigation elements (links, buttons, ellipsis) |
+| Component           | Slot      | Description                                    |
+| ------------------- | --------- | ---------------------------------------------- |
+| `Pagination`        | `default` | PaginationContent                              |
+| `PaginationContent` | `default` | PaginationItem elements                        |
+| `PaginationItem`    | `default` | Navigation elements (links, buttons, ellipsis) |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Tab` | Moves focus between pagination controls |
+| Key               | Action                                    |
+| ----------------- | ----------------------------------------- |
+| `Tab`             | Moves focus between pagination controls   |
 | `Enter` / `Space` | Activates the focused page link or button |
 
 ### ARIA Attributes

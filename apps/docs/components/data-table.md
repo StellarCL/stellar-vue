@@ -39,6 +39,10 @@ import {
 
 The simplest usage is to pass `columns` and `data` to the `DataTable` component:
 
+<ComponentPreview title="Basic">
+  <DataTableBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import type { ColumnDef } from '@stellar-vue-ui/core'
@@ -67,6 +71,9 @@ const data: User[] = [
   <DataTable :columns="columns" :data="data" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -127,7 +134,8 @@ const columns: ColumnDef<Task>[] = [
     accessorKey: 'status',
     cell: ({ getValue }) => {
       const status = getValue() as string
-      const variant = status === 'done' ? 'default' : status === 'in-progress' ? 'secondary' : 'outline'
+      const variant =
+        status === 'done' ? 'default' : status === 'in-progress' ? 'secondary' : 'outline'
       return h(Badge, { variant }, () => status)
     },
   },
@@ -149,58 +157,58 @@ Control the number of rows per page:
 
 ### DataTable Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `columns` | `ColumnDef<T>[]` | *required* | Column definitions array |
-| `data` | `T[]` | *required* | Row data array |
-| `pageSize` | `number` | `10` | Number of rows per page |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description              |
+| ---------- | ------------------------- | ----------- | ------------------------ |
+| `columns`  | `ColumnDef<T>[]`          | _required_  | Column definitions array |
+| `data`     | `T[]`                     | _required_  | Row data array           |
+| `pageSize` | `number`                  | `10`        | Number of rows per page  |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes   |
 
 ### ColumnDef Interface
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | `string` | *required* | Unique column identifier |
-| `header` | `string \| Component` | `undefined` | Column header label |
-| `accessorKey` | `string` | `undefined` | Key on the row object for cell value |
-| `accessorFn` | `(row: T) => any` | `undefined` | Function to derive cell value |
-| `cell` | `(info) => string \| VNode` | `undefined` | Custom cell renderer |
-| `enableSorting` | `boolean` | `false` | Whether this column supports sorting |
-| `enableHiding` | `boolean` | `true` | Whether this column can be hidden |
-| `size` | `number` | `undefined` | Preferred column width in pixels |
+| Property        | Type                        | Default     | Description                          |
+| --------------- | --------------------------- | ----------- | ------------------------------------ |
+| `id`            | `string`                    | _required_  | Unique column identifier             |
+| `header`        | `string \| Component`       | `undefined` | Column header label                  |
+| `accessorKey`   | `string`                    | `undefined` | Key on the row object for cell value |
+| `accessorFn`    | `(row: T) => any`           | `undefined` | Function to derive cell value        |
+| `cell`          | `(info) => string \| VNode` | `undefined` | Custom cell renderer                 |
+| `enableSorting` | `boolean`                   | `false`     | Whether this column supports sorting |
+| `enableHiding`  | `boolean`                   | `true`      | Whether this column can be hidden    |
+| `size`          | `number`                    | `undefined` | Preferred column width in pixels     |
 
 ### DataTableRow Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `selected` | `boolean` | `false` | Whether this row is selected |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                  |
+| ---------- | ------------------------- | ----------- | ---------------------------- |
+| `selected` | `boolean`                 | `false`     | Whether this row is selected |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes       |
 
 ### DataTableColumnHeader Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | *required* | Column title |
-| `sortDirection` | `'asc' \| 'desc' \| false` | `undefined` | Current sort direction |
-| `canSort` | `boolean` | `false` | Whether sorting is enabled |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop            | Type                       | Default     | Description                |
+| --------------- | -------------------------- | ----------- | -------------------------- |
+| `title`         | `string`                   | _required_  | Column title               |
+| `sortDirection` | `'asc' \| 'desc' \| false` | `undefined` | Current sort direction     |
+| `canSort`       | `boolean`                  | `false`     | Whether sorting is enabled |
+| `class`         | `HTMLAttributes['class']`  | `undefined` | Additional CSS classes     |
 
 ### DataTablePagination Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `total` | `number` | *required* | Total number of rows |
-| `page` | `number` | *required* | Current page (1-indexed) |
-| `pageSize` | `number` | *required* | Rows per page |
-| `selectedCount` | `number` | *required* | Number of selected rows |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop            | Type                      | Default     | Description              |
+| --------------- | ------------------------- | ----------- | ------------------------ |
+| `total`         | `number`                  | _required_  | Total number of rows     |
+| `page`          | `number`                  | _required_  | Current page (1-indexed) |
+| `pageSize`      | `number`                  | _required_  | Rows per page            |
+| `selectedCount` | `number`                  | _required_  | Number of selected rows  |
+| `class`         | `HTMLAttributes['class']` | `undefined` | Additional CSS classes   |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload  | Description                                            |
+| ------------- | -------- | ------------------------------------------------------ |
 | `update:page` | `number` | Emitted when the page changes (on DataTablePagination) |
-| `sort` | -- | Emitted when a sortable column header is clicked |
+| `sort`        | --       | Emitted when a sortable column header is clicked       |
 
 ### Slots
 

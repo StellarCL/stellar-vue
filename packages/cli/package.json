@@ -9,12 +9,27 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/cli"
   },
-  "main": "./dist/index.cjs",
+  "keywords": [
+    "vue",
+    "vue3",
+    "cli",
+    "stellar-vue-ui",
+    "component-library"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "stellar-ui": "./dist/index.cjs"
+    "stellar-ui": "./dist/index.js"
   },
-  "files": ["dist", "templates"],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format cjs --dts --watch",

@@ -35,6 +35,12 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <DialogBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -45,7 +51,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from '@stellar-vue-ui/core'
 </script>
 
@@ -62,17 +68,16 @@ import {
         </DialogDescription>
       </DialogHeader>
       <DialogFooter>
-        <Button variant="outline">
-          Cancel
-        </Button>
-        <Button variant="destructive">
-          Delete
-        </Button>
+        <Button variant="outline"> Cancel </Button>
+        <Button variant="destructive"> Delete </Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -82,16 +87,21 @@ Use `v-model:open` to control the dialog state programmatically:
 
 ```vue
 <script setup lang="ts">
-import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
 </script>
 
 <template>
-  <Button @click="isOpen = true">
-    Open Dialog
-  </Button>
+  <Button @click="isOpen = true"> Open Dialog </Button>
 
   <Dialog v-model:open="isOpen">
     <DialogContent>
@@ -99,9 +109,7 @@ const isOpen = ref(false)
         <DialogTitle>Controlled Dialog</DialogTitle>
         <DialogDescription>This dialog is controlled with v-model:open.</DialogDescription>
       </DialogHeader>
-      <Button @click="isOpen = false">
-        Close
-      </Button>
+      <Button @click="isOpen = false"> Close </Button>
     </DialogContent>
   </Dialog>
 </template>
@@ -111,7 +119,18 @@ const isOpen = ref(false)
 
 ```vue
 <script setup lang="ts">
-import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -137,9 +156,7 @@ import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogH
         </div>
       </div>
       <DialogFooter>
-        <Button type="submit">
-          Save changes
-        </Button>
+        <Button type="submit"> Save changes </Button>
       </DialogFooter>
     </DialogContent>
   </Dialog>
@@ -167,64 +184,64 @@ Use the `defaultOpen` prop to show the dialog on initial render:
 
 ### Dialog Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state. Bind with `v-model:open`. |
-| `defaultOpen` | `boolean` | `false` | Open state when initially rendered (uncontrolled) |
+| Prop          | Type      | Default     | Description                                       |
+| ------------- | --------- | ----------- | ------------------------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state. Bind with `v-model:open`.  |
+| `defaultOpen` | `boolean` | `false`     | Open state when initially rendered (uncontrolled) |
 
 ### DialogTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element instead of a button |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description                                 |
+| --------- | ------------------------- | ----------- | ------------------------------------------- |
+| `asChild` | `boolean`                 | `false`     | Render as child element instead of a button |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                      |
 
 ### DialogContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### DialogClose Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description             |
+| --------- | ------------------------- | ----------- | ----------------------- |
+| `asChild` | `boolean`                 | `false`     | Render as child element |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### DialogHeader, DialogFooter, DialogTitle, DialogDescription Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                                |
+| ------------- | --------- | ------------------------------------------ |
 | `update:open` | `boolean` | Emitted when the dialog open state changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Dialog` | `default` | Dialog sub-components (Trigger, Content) |
-| `DialogTrigger` | `default` | The trigger element |
-| `DialogContent` | `default` | Dialog body content. Includes a built-in close button. |
-| `DialogHeader` | `default` | Title and description |
-| `DialogFooter` | `default` | Action buttons |
-| `DialogTitle` | `default` | Heading text |
-| `DialogDescription` | `default` | Descriptive text |
+| Component           | Slot      | Description                                            |
+| ------------------- | --------- | ------------------------------------------------------ |
+| `Dialog`            | `default` | Dialog sub-components (Trigger, Content)               |
+| `DialogTrigger`     | `default` | The trigger element                                    |
+| `DialogContent`     | `default` | Dialog body content. Includes a built-in close button. |
+| `DialogHeader`      | `default` | Title and description                                  |
+| `DialogFooter`      | `default` | Action buttons                                         |
+| `DialogTitle`       | `default` | Heading text                                           |
+| `DialogDescription` | `default` | Descriptive text                                       |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Escape` | Closes the dialog |
-| `Tab` | Cycles focus within the dialog (focus trapped) |
-| `Shift + Tab` | Cycles focus backwards within the dialog |
+| Key           | Action                                         |
+| ------------- | ---------------------------------------------- |
+| `Escape`      | Closes the dialog                              |
+| `Tab`         | Cycles focus within the dialog (focus trapped) |
+| `Shift + Tab` | Cycles focus backwards within the dialog       |
 
 ### ARIA Attributes
 

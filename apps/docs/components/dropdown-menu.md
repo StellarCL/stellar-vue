@@ -41,6 +41,12 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <DropdownMenuBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -49,16 +55,14 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">
-        Open Menu
-      </Button>
+      <Button variant="outline"> Open Menu </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
       <DropdownMenuItem>Profile</DropdownMenuItem>
@@ -70,6 +74,9 @@ import {
 </template>
 ```
 
+  </template>
+</ComponentPreview>
+
 ## Examples
 
 ### With Labels and Groups
@@ -78,9 +85,7 @@ import {
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">
-        My Account
-      </Button>
+      <Button variant="outline"> My Account </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -117,9 +122,7 @@ const showActivityBar = ref(false)
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">
-        View
-      </Button>
+      <Button variant="outline"> View </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuCheckboxItem v-model:checked="showStatusBar">
@@ -145,23 +148,15 @@ const position = ref('bottom')
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">
-        Panel Position
-      </Button>
+      <Button variant="outline"> Panel Position </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuRadioGroup v-model="position">
-        <DropdownMenuRadioItem value="top">
-          Top
-        </DropdownMenuRadioItem>
-        <DropdownMenuRadioItem value="bottom">
-          Bottom
-        </DropdownMenuRadioItem>
-        <DropdownMenuRadioItem value="right">
-          Right
-        </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="top"> Top </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="bottom"> Bottom </DropdownMenuRadioItem>
+        <DropdownMenuRadioItem value="right"> Right </DropdownMenuRadioItem>
       </DropdownMenuRadioGroup>
     </DropdownMenuContent>
   </DropdownMenu>
@@ -174,9 +169,7 @@ const position = ref('bottom')
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline">
-        Options
-      </Button>
+      <Button variant="outline"> Options </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent class="w-56">
       <DropdownMenuItem>New Tab</DropdownMenuItem>
@@ -188,9 +181,7 @@ const position = ref('bottom')
         </DropdownMenuSubContent>
       </DropdownMenuSub>
       <DropdownMenuSeparator />
-      <DropdownMenuItem disabled>
-        Print (unavailable)
-      </DropdownMenuItem>
+      <DropdownMenuItem disabled> Print (unavailable) </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
@@ -200,70 +191,70 @@ const position = ref('bottom')
 
 ### DropdownMenu Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Open state when initially rendered |
+| Prop          | Type      | Default     | Description                        |
+| ------------- | --------- | ----------- | ---------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state              |
+| `defaultOpen` | `boolean` | `false`     | Open state when initially rendered |
 
 ### DropdownMenuTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description             |
+| --------- | ------------------------- | ----------- | ----------------------- |
+| `asChild` | `boolean`                 | `false`     | Render as child element |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### DropdownMenuContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `sideOffset` | `number` | `4` | Distance in pixels from the trigger |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                      | Default     | Description                         |
+| ------------ | ------------------------- | ----------- | ----------------------------------- |
+| `sideOffset` | `number`                  | `4`         | Distance in pixels from the trigger |
+| `class`      | `HTMLAttributes['class']` | `undefined` | Additional CSS classes              |
 
 ### DropdownMenuItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `inset` | `boolean` | `false` | Adds left padding for alignment with indicator items |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                                          |
+| ---------- | ------------------------- | ----------- | ---------------------------------------------------- |
+| `inset`    | `boolean`                 | `false`     | Adds left padding for alignment with indicator items |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction                                 |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                               |
 
 ### DropdownMenuCheckboxItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Controlled checked state |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description              |
+| ---------- | ------------------------- | ----------- | ------------------------ |
+| `checked`  | `boolean`                 | `false`     | Controlled checked state |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction     |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes   |
 
 ### DropdownMenuRadioGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | Controlled value (v-model) |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                      | Default     | Description                |
+| ------------ | ------------------------- | ----------- | -------------------------- |
+| `modelValue` | `string`                  | `undefined` | Controlled value (v-model) |
+| `class`      | `HTMLAttributes['class']` | `undefined` | Additional CSS classes     |
 
 ### DropdownMenuRadioItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | The value of the radio item |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                 |
+| ---------- | ------------------------- | ----------- | --------------------------- |
+| `value`    | `string`                  | _required_  | The value of the radio item |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction        |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes      |
 
 ### DropdownMenuSubTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `inset` | `boolean` | `false` | Adds left padding |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description            |
+| ---------- | ------------------------- | ----------- | ---------------------- |
+| `inset`    | `boolean`                 | `false`     | Adds left padding      |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction   |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:open` | `boolean` | Emitted when the menu open state changes |
-| `select` | -- | Emitted when a DropdownMenuItem is selected |
+| Event         | Payload   | Description                                 |
+| ------------- | --------- | ------------------------------------------- |
+| `update:open` | `boolean` | Emitted when the menu open state changes    |
+| `select`      | --        | Emitted when a DropdownMenuItem is selected |
 
 ### Slots
 
@@ -273,14 +264,14 @@ All sub-components expose a `default` slot for their content.
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
+| Key               | Action                                              |
+| ----------------- | --------------------------------------------------- |
 | `Space` / `Enter` | Opens the menu from trigger; selects a focused item |
-| `ArrowDown` | Opens the menu; moves focus to next item |
-| `ArrowUp` | Moves focus to previous item |
-| `ArrowRight` | Opens a submenu when focused on a sub-trigger |
-| `ArrowLeft` | Closes a submenu |
-| `Escape` | Closes the menu |
+| `ArrowDown`       | Opens the menu; moves focus to next item            |
+| `ArrowUp`         | Moves focus to previous item                        |
+| `ArrowRight`      | Opens a submenu when focused on a sub-trigger       |
+| `ArrowLeft`       | Closes a submenu                                    |
+| `Escape`          | Closes the menu                                     |
 
 ### ARIA Attributes
 

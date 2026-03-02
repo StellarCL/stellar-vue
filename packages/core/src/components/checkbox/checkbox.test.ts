@@ -77,8 +77,8 @@ describe('checkbox', () => {
   it('applies base styling classes', () => {
     const wrapper = mount(Checkbox)
     const classes = wrapper.find('[role="checkbox"]').classes().join(' ')
-    expect(classes).toContain('h-4')
-    expect(classes).toContain('w-4')
+    expect(classes).toContain('h-5')
+    expect(classes).toContain('w-5')
     expect(classes).toContain('rounded-sm')
   })
 

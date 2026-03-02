@@ -22,8 +22,7 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    }
-    catch {}
+    } catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -32,11 +31,11 @@ afterEach(() => {
 
 // Mount a component with contextmenu event triggered on the trigger element
 // Returns body innerHTML after the event and DOM flush
-async function mountAndRightClick(template: string, components: Record<string, object>): Promise<string> {
-  const wrapper = mount(
-    { components, template },
-    { attachTo: document.body },
-  )
+async function mountAndRightClick(
+  template: string,
+  components: Record<string, object>,
+): Promise<string> {
+  const wrapper = mount({ components, template }, { attachTo: document.body })
   wrappers.push(wrapper)
   await flushPromises()
   // Find the trigger span (ContextMenuTrigger renders as a span) and dispatch contextmenu
@@ -119,7 +118,7 @@ describe('contextMenuContent', () => {
     )
     expect(bodyHtml).toContain('z-50')
     expect(bodyHtml).toContain('min-w-')
-    expect(bodyHtml).toContain('rounded-md')
+    expect(bodyHtml).toContain('rounded-lg')
   })
 
   it('renders without crashing inside ContextMenu context', () => {
@@ -205,10 +204,17 @@ describe('contextMenuCheckboxItem', () => {
     let _checkedValue: boolean | undefined
     const wrapper = mount(
       {
-        components: { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuCheckboxItem },
+        components: {
+          ContextMenu,
+          ContextMenuTrigger,
+          ContextMenuContent,
+          ContextMenuCheckboxItem,
+        },
         template: `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuCheckboxItem :checked="false" @update:checked="onChecked">Toggle Me</ContextMenuCheckboxItem></ContextMenuContent></ContextMenu>`,
         methods: {
-          onChecked(val: boolean) { _checkedValue = val },
+          onChecked(val: boolean) {
+            _checkedValue = val
+          },
         },
       },
       { attachTo: document.body },
@@ -243,7 +249,13 @@ describe('contextMenuRadioGroup', () => {
   it('radioGroup selection - renders radio items with values', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="a"><ContextMenuRadioItem value="a">Option A</ContextMenuRadioItem><ContextMenuRadioItem value="b">Option B</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuRadioGroup, ContextMenuRadioItem },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuRadioGroup,
+        ContextMenuRadioItem,
+      },
     )
     expect(bodyHtml).toContain('Option A')
     expect(bodyHtml).toContain('Option B')
@@ -254,7 +266,13 @@ describe('contextMenuRadioItem', () => {
   it('renders with indicator area inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="a"><ContextMenuRadioItem value="a">Option A</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuRadioGroup, ContextMenuRadioItem },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuRadioGroup,
+        ContextMenuRadioItem,
+      },
     )
     // Indicator area (span with absolute positioning)
     expect(bodyHtml).toContain('absolute')
@@ -263,7 +281,13 @@ describe('contextMenuRadioItem', () => {
   it('renders slot content', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="b"><ContextMenuRadioItem value="b">Option B</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuRadioGroup, ContextMenuRadioItem },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuRadioGroup,
+        ContextMenuRadioItem,
+      },
     )
     expect(bodyHtml).toContain('Option B')
   })
@@ -271,7 +295,13 @@ describe('contextMenuRadioItem', () => {
   it('merges custom classes', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuRadioGroup model-value="a"><ContextMenuRadioItem value="a" class="custom-radio">Option A</ContextMenuRadioItem></ContextMenuRadioGroup></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuRadioGroup, ContextMenuRadioItem },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuRadioGroup,
+        ContextMenuRadioItem,
+      },
     )
     expect(bodyHtml).toContain('custom-radio')
   })
@@ -309,7 +339,7 @@ describe('contextMenuSeparator', () => {
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSeparator /></ContextMenuContent></ContextMenu>`,
       { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSeparator },
     )
-    expect(bodyHtml).toContain('bg-muted')
+    expect(bodyHtml).toContain('bg-slate-150')
   })
 
   it('merges custom classes', async () => {
@@ -401,7 +431,15 @@ describe('contextMenuSub', () => {
   it('sub-menus open - SubTrigger renders in open ContextMenu', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger>More Options</ContextMenuSubTrigger><ContextMenuSubContent><ContextMenuItem>Sub Item</ContextMenuItem></ContextMenuSubContent></ContextMenuSub></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSub, ContextMenuSubTrigger, ContextMenuSubContent, ContextMenuItem },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuSub,
+        ContextMenuSubTrigger,
+        ContextMenuSubContent,
+        ContextMenuItem,
+      },
     )
     expect(bodyHtml).toContain('More Options')
   })
@@ -411,7 +449,13 @@ describe('contextMenuSubTrigger', () => {
   it('shows chevron icon inside ContextMenu context', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger>More</ContextMenuSubTrigger></ContextMenuSub></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSub, ContextMenuSubTrigger },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuSub,
+        ContextMenuSubTrigger,
+      },
     )
     // SVG chevron polyline should be present
     expect(bodyHtml).toContain('polyline')
@@ -420,7 +464,13 @@ describe('contextMenuSubTrigger', () => {
   it('renders slot text content', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger>More Options</ContextMenuSubTrigger></ContextMenuSub></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSub, ContextMenuSubTrigger },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuSub,
+        ContextMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('More Options')
   })
@@ -428,7 +478,13 @@ describe('contextMenuSubTrigger', () => {
   it('inset adds pl-8 class', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger :inset="true">More</ContextMenuSubTrigger></ContextMenuSub></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSub, ContextMenuSubTrigger },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuSub,
+        ContextMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('pl-8')
   })
@@ -436,7 +492,13 @@ describe('contextMenuSubTrigger', () => {
   it('merges custom classes', async () => {
     const bodyHtml = await mountAndRightClick(
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSub><ContextMenuSubTrigger class="custom-sub-trigger">More</ContextMenuSubTrigger></ContextMenuSub></ContextMenuContent></ContextMenu>`,
-      { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSub, ContextMenuSubTrigger },
+      {
+        ContextMenu,
+        ContextMenuTrigger,
+        ContextMenuContent,
+        ContextMenuSub,
+        ContextMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('custom-sub-trigger')
   })

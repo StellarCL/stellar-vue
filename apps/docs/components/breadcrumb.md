@@ -34,6 +34,10 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <BreadcrumbBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -50,15 +54,11 @@ import {
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">
-          Home
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/"> Home </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
-        <BreadcrumbLink href="/components">
-          Components
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/components"> Components </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -68,6 +68,9 @@ import {
   </Breadcrumb>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -80,9 +83,7 @@ Use `BreadcrumbEllipsis` to collapse long paths:
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">
-          Home
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/"> Home </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -90,9 +91,7 @@ Use `BreadcrumbEllipsis` to collapse long paths:
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
-        <BreadcrumbLink href="/components">
-          Components
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/components"> Components </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
@@ -112,15 +111,11 @@ Override the default chevron separator using the slot:
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/">
-          Home
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/"> Home </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator>/</BreadcrumbSeparator>
       <BreadcrumbItem>
-        <BreadcrumbLink href="/docs">
-          Docs
-        </BreadcrumbLink>
+        <BreadcrumbLink href="/docs"> Docs </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator>/</BreadcrumbSeparator>
       <BreadcrumbItem>
@@ -141,9 +136,7 @@ Use `asChild` to render custom link components (e.g., Vue Router `RouterLink`):
     <BreadcrumbList>
       <BreadcrumbItem>
         <BreadcrumbLink as-child>
-          <RouterLink to="/">
-            Home
-          </RouterLink>
+          <RouterLink to="/"> Home </RouterLink>
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
@@ -159,23 +152,23 @@ Use `asChild` to render custom link components (e.g., Vue Router `RouterLink`):
 
 ### Breadcrumb Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `ariaLabel` | `string` | `'Breadcrumb'` | Accessible label for the navigation landmark |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop        | Type                      | Default        | Description                                  |
+| ----------- | ------------------------- | -------------- | -------------------------------------------- |
+| `ariaLabel` | `string`                  | `'Breadcrumb'` | Accessible label for the navigation landmark |
+| `class`     | `HTMLAttributes['class']` | `undefined`    | Additional CSS classes                       |
 
 ### BreadcrumbLink Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `href` | `string` | `undefined` | URL the link points to |
-| `asChild` | `boolean` | `false` | Render as child element (for custom link components) |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description                                          |
+| --------- | ------------------------- | ----------- | ---------------------------------------------------- |
+| `href`    | `string`                  | `undefined` | URL the link points to                               |
+| `asChild` | `boolean`                 | `false`     | Render as child element (for custom link components) |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                               |
 
 ### BreadcrumbList, BreadcrumbItem, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
@@ -184,13 +177,13 @@ This component does not emit any custom events. Navigation is handled by the lin
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Breadcrumb` | `default` | BreadcrumbList |
-| `BreadcrumbList` | `default` | BreadcrumbItem and BreadcrumbSeparator elements |
-| `BreadcrumbItem` | `default` | BreadcrumbLink, BreadcrumbPage, or BreadcrumbEllipsis |
-| `BreadcrumbLink` | `default` | Link text |
-| `BreadcrumbPage` | `default` | Current page text |
+| Component             | Slot      | Description                                           |
+| --------------------- | --------- | ----------------------------------------------------- |
+| `Breadcrumb`          | `default` | BreadcrumbList                                        |
+| `BreadcrumbList`      | `default` | BreadcrumbItem and BreadcrumbSeparator elements       |
+| `BreadcrumbItem`      | `default` | BreadcrumbLink, BreadcrumbPage, or BreadcrumbEllipsis |
+| `BreadcrumbLink`      | `default` | Link text                                             |
+| `BreadcrumbPage`      | `default` | Current page text                                     |
 | `BreadcrumbSeparator` | `default` | Custom separator character (defaults to chevron icon) |
 
 ## Accessibility

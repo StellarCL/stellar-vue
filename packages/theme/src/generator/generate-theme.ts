@@ -31,9 +31,12 @@ export function generateTheme(options: GenerateThemeOptions): ThemeConfig {
       background: isLight ? oklch(1, 0, 0) : oklch(0.13, 0.02, 285),
       foreground: isLight ? oklch(0.15, 0.02, 285) : oklch(0.98, 0, 0),
       primary: createColorPair(isLight ? 0.55 : 0.75, 0.15, 285),
+      primaryFocus: oklch(isLight ? 0.48 : 0.68, 0.15, 285),
       secondary: createColorPair(isLight ? 0.92 : 0.25, 0.01, 285),
       accent: createColorPair(isLight ? 0.92 : 0.25, 0.01, 285),
       destructive: createColorPair(isLight ? 0.55 : 0.65, 0.2, 27),
+      error: createColorPair(isLight ? 0.55 : 0.65, 0.2, 27),
+      errorFocus: oklch(isLight ? 0.48 : 0.58, 0.2, 27),
       muted: createColorPair(isLight ? 0.94 : 0.2, 0.01, 285),
       card: {
         DEFAULT: isLight ? oklch(1, 0, 0) : oklch(0.15, 0.02, 285),
@@ -47,8 +50,11 @@ export function generateTheme(options: GenerateThemeOptions): ThemeConfig {
       input: isLight ? oklch(0.91, 0.005, 285) : oklch(0.25, 0.02, 285),
       ring: isLight ? oklch(0.55, 0.15, 285) : oklch(0.75, 0.15, 285),
       success: createColorPair(isLight ? 0.55 : 0.65, 0.15, 145),
+      successFocus: oklch(isLight ? 0.48 : 0.58, 0.15, 145),
       warning: createColorPair(isLight ? 0.7 : 0.75, 0.15, 80),
+      warningFocus: oklch(isLight ? 0.63 : 0.68, 0.15, 80),
       info: createColorPair(isLight ? 0.55 : 0.65, 0.15, 250),
+      infoFocus: oklch(isLight ? 0.48 : 0.58, 0.15, 250),
     },
   })
 }

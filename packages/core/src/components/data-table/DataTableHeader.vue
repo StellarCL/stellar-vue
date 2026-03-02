@@ -5,7 +5,12 @@ import { cn } from '../../utils'
 
 const props = defineProps<DataTableHeaderProps>()
 
-const classes = computed(() => cn('[&_tr]:border-b', props.class))
+const classes = computed(() =>
+  cn(
+    '[&_tr]:border-b [&_tr]:border-slate-150 dark:[&_tr]:border-navy-500 bg-slate-50 dark:bg-navy-800',
+    props.class,
+  ),
+)
 </script>
 
 <template>

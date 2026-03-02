@@ -9,10 +9,12 @@ const props = defineProps<AccordionTriggerProps>()
 <template>
   <AccordionHeader as="div">
     <AccordionTrigger
-      :class="cn(
-        'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-        props.class,
-      )"
+      :class="
+        cn(
+          'flex flex-1 items-center justify-between py-4 text-base font-medium text-slate-700 dark:text-navy-100 transition-all hover:text-primary [&[data-state=open]>svg]:rotate-180',
+          props.class,
+        )
+      "
     >
       <slot />
       <svg

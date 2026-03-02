@@ -46,8 +46,8 @@ describe('loading', () => {
 
   it('renders skeleton variant', () => {
     const wrapper = mount(Loading, { props: { variant: 'skeleton' } })
-    // Skeleton renders divs with animate-pulse
-    expect(wrapper.html()).toContain('animate-pulse')
+    // Skeleton renders divs with skeleton wave animation
+    expect(wrapper.html()).toContain('animate-skeleton-wave')
   })
 
   describe('size variants', () => {

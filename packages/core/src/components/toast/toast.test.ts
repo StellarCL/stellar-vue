@@ -88,29 +88,30 @@ describe('toast', () => {
 
   it('applies success variant classes', () => {
     const classes = toastVariants({ variant: 'success' })
-    expect(classes).toContain('border-green-500/50')
-    expect(classes).toContain('bg-green-50')
-    expect(classes).toContain('text-green-900')
+    expect(classes).toContain('bg-success/10')
+    expect(classes).toContain('text-success')
+    expect(classes).toContain('border-success/20')
   })
 
   it('applies destructive variant classes', () => {
     const classes = toastVariants({ variant: 'destructive' })
-    expect(classes).toContain('bg-destructive')
-    expect(classes).toContain('text-destructive-foreground')
+    expect(classes).toContain('bg-destructive/10')
+    expect(classes).toContain('text-destructive')
+    expect(classes).toContain('border-destructive/20')
   })
 
   it('applies warning variant classes', () => {
     const classes = toastVariants({ variant: 'warning' })
-    expect(classes).toContain('border-yellow-500/50')
-    expect(classes).toContain('bg-yellow-50')
-    expect(classes).toContain('text-yellow-900')
+    expect(classes).toContain('bg-warning/10')
+    expect(classes).toContain('text-warning')
+    expect(classes).toContain('border-warning/20')
   })
 
   it('applies info variant classes', () => {
     const classes = toastVariants({ variant: 'info' })
-    expect(classes).toContain('border-blue-500/50')
-    expect(classes).toContain('bg-blue-50')
-    expect(classes).toContain('text-blue-900')
+    expect(classes).toContain('bg-info/10')
+    expect(classes).toContain('text-info')
+    expect(classes).toContain('border-info/20')
   })
 
   it('has correct base classes in all variants', () => {
@@ -118,8 +119,8 @@ describe('toast', () => {
     for (const variant of variants) {
       const classes = toastVariants({ variant })
       expect(classes).toContain('pointer-events-auto')
-      expect(classes).toContain('rounded-md')
-      expect(classes).toContain('shadow-lg')
+      expect(classes).toContain('rounded-lg')
+      expect(classes).toContain('shadow-soft')
     }
   })
 })
@@ -403,19 +404,19 @@ describe('toast variant styling', () => {
     expect(unique.size).toBe(5)
   })
 
-  it('success variant includes green classes', () => {
+  it('success variant includes success token classes', () => {
     const classes = toastVariants({ variant: 'success' })
-    expect(classes).toContain('green')
+    expect(classes).toContain('success')
   })
 
-  it('warning variant includes yellow classes', () => {
+  it('warning variant includes warning token classes', () => {
     const classes = toastVariants({ variant: 'warning' })
-    expect(classes).toContain('yellow')
+    expect(classes).toContain('warning')
   })
 
-  it('info variant includes blue classes', () => {
+  it('info variant includes info token classes', () => {
     const classes = toastVariants({ variant: 'info' })
-    expect(classes).toContain('blue')
+    expect(classes).toContain('info')
   })
 
   it('destructive variant includes destructive classes', () => {

@@ -15,9 +15,12 @@ export interface ThemeColors {
   background: string
   foreground: string
   primary: ColorPair
+  primaryFocus: string
   secondary: ColorPair
   accent: ColorPair
   destructive: ColorPair
+  error: ColorPair
+  errorFocus: string
   muted: ColorPair
   card: ColorPair
   popover: ColorPair
@@ -25,8 +28,11 @@ export interface ThemeColors {
   input: string
   ring: string
   success: ColorPair
+  successFocus: string
   warning: ColorPair
+  warningFocus: string
   info: ColorPair
+  infoFocus: string
 }
 
 /**

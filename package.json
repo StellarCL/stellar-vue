@@ -69,5 +69,8 @@
     "*.{ts,tsx,vue,css,md,json}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "tailwindcss-animate": "^1.0.7"
   }
 }

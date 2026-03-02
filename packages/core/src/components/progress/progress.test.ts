@@ -8,12 +8,12 @@ describe('progress', () => {
     expect(wrapper.find('[role="progressbar"]').exists()).toBe(true)
   })
 
-  it('has correct base classes (h-4, rounded-full, bg-secondary)', () => {
+  it('has correct base classes (h-2, rounded-full, bg-slate-150)', () => {
     const wrapper = mount(Progress)
     const rootClasses = wrapper.find('[role="progressbar"]').classes().join(' ')
-    expect(rootClasses).toContain('h-4')
+    expect(rootClasses).toContain('h-2')
     expect(rootClasses).toContain('rounded-full')
-    expect(rootClasses).toContain('bg-secondary')
+    expect(rootClasses).toContain('bg-slate-150')
   })
 
   it('indicator has correct default color (bg-primary)', () => {
@@ -28,16 +28,16 @@ describe('progress', () => {
     expect(indicator.attributes('style')).toContain('width: 50%')
   })
 
-  it('success variant applies bg-green-500', () => {
+  it('success variant applies bg-success', () => {
     const wrapper = mount(Progress, { props: { variant: 'success' } })
     const indicator = wrapper.find('[role="progressbar"] > div')
-    expect(indicator.classes().join(' ')).toContain('bg-green-500')
+    expect(indicator.classes().join(' ')).toContain('bg-success')
   })
 
-  it('warning variant applies bg-yellow-500', () => {
+  it('warning variant applies bg-warning', () => {
     const wrapper = mount(Progress, { props: { variant: 'warning' } })
     const indicator = wrapper.find('[role="progressbar"] > div')
-    expect(indicator.classes().join(' ')).toContain('bg-yellow-500')
+    expect(indicator.classes().join(' ')).toContain('bg-warning')
   })
 
   it('destructive variant applies bg-destructive', () => {

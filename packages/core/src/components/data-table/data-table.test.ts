@@ -498,7 +498,7 @@ describe('dataTable column visibility', () => {
 
     table.toggleColumnVisibility('age')
     expect(table.isColumnVisible('age')).toBe(false)
-    expect(table.visibleColumns.value.map(c => c.id)).not.toContain('age')
+    expect(table.visibleColumns.value.map((c) => c.id)).not.toContain('age')
   })
 
   it('toggling column visibility twice restores it', () => {
@@ -523,7 +523,7 @@ describe('dataTable column visibility', () => {
     expect(table.visibleColumns.value).toHaveLength(3)
     table.toggleColumnVisibility('age')
     expect(table.visibleColumns.value).toHaveLength(2)
-    expect(table.visibleColumns.value.map(c => c.id)).not.toContain('age')
+    expect(table.visibleColumns.value.map((c) => c.id)).not.toContain('age')
   })
 })
 
@@ -643,7 +643,7 @@ describe('dataTableHead', () => {
     expect(classes).toContain('px-4')
     expect(classes).toContain('text-left')
     expect(classes).toContain('align-middle')
-    expect(classes).toContain('font-medium')
+    expect(classes).toContain('font-semibold')
   })
 
   it('accepts custom class', () => {
@@ -1027,7 +1027,7 @@ describe('useDataTable composable', () => {
       {
         id: 'fullName',
         header: 'Full Name',
-        accessorFn: row => `${row.name} (${row.id})`,
+        accessorFn: (row) => `${row.name} (${row.id})`,
         enableSorting: true,
       },
     ]

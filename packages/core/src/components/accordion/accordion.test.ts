@@ -89,7 +89,7 @@ describe('accordionTrigger', () => {
     expect(wrapper.find('polyline').exists()).toBe(true)
   })
 
-  it('has hover:underline class on trigger button', () => {
+  it('has hover:text-primary class on trigger button', () => {
     const wrapper = mount({
       components: { Accordion, AccordionItem, AccordionTrigger },
       template: `
@@ -101,7 +101,7 @@ describe('accordionTrigger', () => {
       `,
     })
     const trigger = wrapper.find('button')
-    expect(trigger.classes().join(' ')).toContain('hover:underline')
+    expect(trigger.classes().join(' ')).toContain('hover:text-primary')
   })
 
   it('merges custom class on AccordionTrigger', () => {
@@ -184,7 +184,7 @@ describe('accordion composition', () => {
     const triggers = wrapper.findAll('button')
     expect(triggers.length).toBe(2)
     triggers.forEach((trigger) => {
-      expect(trigger.classes().join(' ')).toContain('hover:underline')
+      expect(trigger.classes().join(' ')).toContain('hover:text-primary')
     })
 
     const svgs = wrapper.findAll('svg')

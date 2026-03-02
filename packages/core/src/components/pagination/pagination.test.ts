@@ -1,6 +1,16 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationFirst, PaginationItem, PaginationLast, PaginationLink, PaginationNext, PaginationPrevious } from '.'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationFirst,
+  PaginationItem,
+  PaginationLast,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '.'
 
 // Helper to build a full pagination component for testing
 function _buildPagination(props: Record<string, unknown>, pageRange: Array<number | 'ellipsis'>) {
@@ -135,7 +145,7 @@ describe('paginationLink', () => {
       props: { page: 1, isActive: true },
     })
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('bg-accent')
+    expect(classes).toContain('bg-primary')
   })
 
   it('does not apply active styling when isActive is false', () => {
@@ -297,12 +307,12 @@ describe('paginationEllipsis', () => {
     expect(srOnly.text()).toBe('More pages')
   })
 
-  it('applies h-10 w-10 flex classes', () => {
+  it('applies h-8 min-w-[2rem] flex classes', () => {
     const wrapper = mount(PaginationEllipsis)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('flex')
-    expect(classes).toContain('h-10')
-    expect(classes).toContain('w-10')
+    expect(classes).toContain('h-8')
+    expect(classes).toContain('min-w-[2rem]')
     expect(classes).toContain('items-center')
     expect(classes).toContain('justify-center')
   })
@@ -691,7 +701,7 @@ describe('pagination internal pageRange computation', () => {
     // Should have 7 page buttons + 2 ellipsis = 9 items
     expect(buttons.length).toBe(7)
 
-    const activeButton = buttons.find(b => b.attributes('aria-current') === 'page')
+    const activeButton = buttons.find((b) => b.attributes('aria-current') === 'page')
     expect(activeButton).toBeDefined()
     expect(activeButton!.text()).toBe('5')
   })
@@ -751,7 +761,7 @@ describe('pagination composition', () => {
     expect(buttons.length).toBe(9)
 
     // Active page button
-    const activeButton = buttons.find(b => b.attributes('aria-current') === 'page')
+    const activeButton = buttons.find((b) => b.attributes('aria-current') === 'page')
     expect(activeButton).toBeDefined()
     expect(activeButton!.text()).toBe('3')
 

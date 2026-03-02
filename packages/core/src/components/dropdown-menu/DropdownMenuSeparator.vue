@@ -6,7 +6,7 @@ import { cn } from '../../utils'
 
 const props = defineProps<DropdownMenuSeparatorProps>()
 
-const classes = computed(() => cn('-mx-1 my-1 h-px bg-muted', props.class))
+const classes = computed(() => cn('-mx-1 my-1 h-px bg-slate-150 dark:bg-navy-500', props.class))
 </script>
 
 <template>

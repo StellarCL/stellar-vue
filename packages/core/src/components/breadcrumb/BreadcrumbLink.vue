@@ -7,12 +7,7 @@ const props = withDefaults(defineProps<BreadcrumbLinkProps>(), {
   asChild: false,
 })
 
-const classes = computed(() =>
-  cn(
-    'transition-colors hover:text-foreground',
-    props.class,
-  ),
-)
+const classes = computed(() => cn('transition-colors hover:text-primary', props.class))
 </script>
 
 <template>

@@ -26,6 +26,10 @@ import { Checkbox } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <CheckboxBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Checkbox, Label } from '@stellar-vue-ui/core'
@@ -41,6 +45,9 @@ const checked = ref(false)
   </div>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -90,7 +97,15 @@ const selectAll = ref<boolean | 'indeterminate'>('indeterminate')
 
 ```vue
 <script setup lang="ts">
-import { Checkbox, Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@stellar-vue-ui/core'
+import {
+  Checkbox,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -114,18 +129,18 @@ import { Checkbox, Form, FormControl, FormField, FormItem, FormLabel, FormMessag
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean \| 'indeterminate'` | `false` | The checked state (v-model) |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `required` | `boolean` | `false` | Indicates the checkbox must be checked before form submission |
-| `id` | `string` | `undefined` | The id attribute of the checkbox element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                         | Default     | Description                                                   |
+| ------------ | ---------------------------- | ----------- | ------------------------------------------------------------- |
+| `modelValue` | `boolean \| 'indeterminate'` | `false`     | The checked state (v-model)                                   |
+| `disabled`   | `boolean`                    | `false`     | Prevents interaction                                          |
+| `required`   | `boolean`                    | `false`     | Indicates the checkbox must be checked before form submission |
+| `id`         | `string`                     | `undefined` | The id attribute of the checkbox element                      |
+| `class`      | `HTMLAttributes['class']`    | `undefined` | Additional CSS classes                                        |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload                      | Description                            |
+| ------------------- | ---------------------------- | -------------------------------------- |
 | `update:modelValue` | `boolean \| 'indeterminate'` | Emitted when the checked state changes |
 
 ### Slots
@@ -136,10 +151,10 @@ This component does not expose any slots. The check and indeterminate icons are 
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Space` | Toggles the checkbox |
-| `Tab` | Moves focus to/from the checkbox |
+| Key     | Action                           |
+| ------- | -------------------------------- |
+| `Space` | Toggles the checkbox             |
+| `Tab`   | Moves focus to/from the checkbox |
 
 ### ARIA Attributes
 

@@ -26,6 +26,12 @@ import { Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <PopoverBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui/core'
@@ -34,9 +40,7 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui
 <template>
   <Popover>
     <PopoverTrigger as-child>
-      <Button variant="outline">
-        Open popover
-      </Button>
+      <Button variant="outline"> Open popover </Button>
     </PopoverTrigger>
     <PopoverContent>
       <p>This is the popover content.</p>
@@ -44,6 +48,9 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from '@stellar-vue-ui
   </Popover>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -57,19 +64,13 @@ import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from '@
 <template>
   <Popover>
     <PopoverTrigger as-child>
-      <Button variant="outline">
-        Dimensions
-      </Button>
+      <Button variant="outline"> Dimensions </Button>
     </PopoverTrigger>
     <PopoverContent class="w-80">
       <div class="grid gap-4">
         <div class="space-y-2">
-          <h4 class="font-medium leading-none">
-            Dimensions
-          </h4>
-          <p class="text-sm text-muted-foreground">
-            Set the dimensions for the layer.
-          </p>
+          <h4 class="font-medium leading-none">Dimensions</h4>
+          <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
         </div>
         <div class="grid gap-2">
           <div class="grid grid-cols-3 items-center gap-4">
@@ -96,9 +97,7 @@ Control the popover position with `side` and `align` props:
   <div class="flex gap-4">
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">
-          Top
-        </Button>
+        <Button variant="outline"> Top </Button>
       </PopoverTrigger>
       <PopoverContent side="top">
         <p>Popover on top</p>
@@ -107,9 +106,7 @@ Control the popover position with `side` and `align` props:
 
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">
-          Right
-        </Button>
+        <Button variant="outline"> Right </Button>
       </PopoverTrigger>
       <PopoverContent side="right">
         <p>Popover on right</p>
@@ -118,9 +115,7 @@ Control the popover position with `side` and `align` props:
 
     <Popover>
       <PopoverTrigger as-child>
-        <Button variant="outline">
-          Left
-        </Button>
+        <Button variant="outline"> Left </Button>
       </PopoverTrigger>
       <PopoverContent side="left">
         <p>Popover on left</p>
@@ -149,9 +144,7 @@ const isOpen = ref(false)
     </PopoverTrigger>
     <PopoverContent>
       <p>Controlled popover content.</p>
-      <Button size="sm" @click="isOpen = false">
-        Done
-      </Button>
+      <Button size="sm" @click="isOpen = false"> Done </Button>
     </PopoverContent>
   </Popover>
 </template>
@@ -161,50 +154,50 @@ const isOpen = ref(false)
 
 ### Popover Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state (v-model:open) |
-| `defaultOpen` | `boolean` | `undefined` | Open state when initially rendered |
+| Prop          | Type      | Default     | Description                          |
+| ------------- | --------- | ----------- | ------------------------------------ |
+| `open`        | `boolean` | `undefined` | Controlled open state (v-model:open) |
+| `defaultOpen` | `boolean` | `undefined` | Open state when initially rendered   |
 
 ### PopoverTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description             |
+| --------- | ------------------------- | ----------- | ----------------------- |
+| `asChild` | `boolean`                 | `false`     | Render as child element |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### PopoverContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `side` | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'` | Preferred side to render against |
-| `align` | `'start' \| 'center' \| 'end'` | `'center'` | Preferred alignment against the anchor |
-| `sideOffset` | `number` | `4` | Distance in pixels from the anchor |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                                     | Default     | Description                            |
+| ------------ | ---------------------------------------- | ----------- | -------------------------------------- |
+| `side`       | `'top' \| 'right' \| 'bottom' \| 'left'` | `'bottom'`  | Preferred side to render against       |
+| `align`      | `'start' \| 'center' \| 'end'`           | `'center'`  | Preferred alignment against the anchor |
+| `sideOffset` | `number`                                 | `4`         | Distance in pixels from the anchor     |
+| `class`      | `HTMLAttributes['class']`                | `undefined` | Additional CSS classes                 |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                                 |
+| ------------- | --------- | ------------------------------------------- |
 | `update:open` | `boolean` | Emitted when the popover open state changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Popover` | `default` | Trigger and Content elements |
-| `PopoverTrigger` | `default` | The trigger element |
-| `PopoverContent` | `default` | Popover body content |
+| Component        | Slot      | Description                  |
+| ---------------- | --------- | ---------------------------- |
+| `Popover`        | `default` | Trigger and Content elements |
+| `PopoverTrigger` | `default` | The trigger element          |
+| `PopoverContent` | `default` | Popover body content         |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
+| Key               | Action                                    |
+| ----------------- | ----------------------------------------- |
 | `Enter` / `Space` | Opens/closes the popover from the trigger |
-| `Escape` | Closes the popover |
-| `Tab` | Cycles focus within the popover content |
+| `Escape`          | Closes the popover                        |
+| `Tab`             | Cycles focus within the popover content   |
 
 ### ARIA Attributes
 

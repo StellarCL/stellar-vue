@@ -40,11 +40,31 @@ describe('badge', () => {
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('inline-flex')
     expect(classes).toContain('items-center')
-    expect(classes).toContain('rounded-full')
-    expect(classes).toContain('px-2.5')
+    expect(classes).toContain('rounded-sm')
+    expect(classes).toContain('px-2')
     expect(classes).toContain('py-0.5')
     expect(classes).toContain('text-xs')
-    expect(classes).toContain('font-semibold')
+    expect(classes).toContain('font-medium')
+  })
+
+  it('applies soft variant classes', () => {
+    const wrapper = mount(Badge, { props: { variant: 'soft' } })
+    expect(wrapper.classes().join(' ')).toContain('text-primary')
+  })
+
+  it('applies success variant classes', () => {
+    const wrapper = mount(Badge, { props: { variant: 'success' } })
+    expect(wrapper.classes().join(' ')).toContain('bg-success')
+  })
+
+  it('applies warning variant classes', () => {
+    const wrapper = mount(Badge, { props: { variant: 'warning' } })
+    expect(wrapper.classes().join(' ')).toContain('bg-warning')
+  })
+
+  it('applies info variant classes', () => {
+    const wrapper = mount(Badge, { props: { variant: 'info' } })
+    expect(wrapper.classes().join(' ')).toContain('bg-info')
   })
 
   it('merges custom classes via class prop', () => {

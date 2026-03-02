@@ -12,10 +12,9 @@ describe('card', () => {
     const wrapper = mount(Card)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('rounded-lg')
-    expect(classes).toContain('border')
-    expect(classes).toContain('bg-card')
+    expect(classes).toContain('bg-white')
     expect(classes).toContain('text-card-foreground')
-    expect(classes).toContain('shadow-sm')
+    expect(classes).toContain('shadow-soft')
   })
 
   it('applies bordered variant', () => {
@@ -64,10 +63,11 @@ describe('cardTitle', () => {
   it('applies correct classes', () => {
     const wrapper = mount(CardTitle, { slots: { default: 'Title' } })
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('text-2xl')
+    expect(classes).toContain('text-base')
     expect(classes).toContain('font-semibold')
     expect(classes).toContain('leading-none')
     expect(classes).toContain('tracking-tight')
+    expect(classes).toContain('text-slate-700')
   })
 
   it('accepts custom class', () => {

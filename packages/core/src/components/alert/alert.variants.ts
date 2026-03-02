@@ -5,14 +5,12 @@ export const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-background text-foreground',
+        default: 'bg-white text-foreground dark:bg-navy-700',
         destructive:
-          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
-        success:
-          'border-green-500/50 text-green-700 dark:text-green-400 [&>svg]:text-green-600',
-        warning:
-          'border-yellow-500/50 text-yellow-700 dark:text-yellow-400 [&>svg]:text-yellow-600',
-        info: 'border-blue-500/50 text-blue-700 dark:text-blue-400 [&>svg]:text-blue-600',
+          'bg-destructive/10 text-destructive border-destructive/20 [&>svg]:text-destructive',
+        success: 'bg-success/10 text-success border-success/20 [&>svg]:text-success',
+        warning: 'bg-warning/10 text-warning border-warning/20 [&>svg]:text-warning',
+        info: 'bg-info/10 text-info border-info/20 [&>svg]:text-info',
       },
     },
     defaultVariants: {

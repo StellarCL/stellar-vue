@@ -19,8 +19,7 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    }
-    catch {}
+    } catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -32,7 +31,20 @@ afterEach(() => {
 
 function mountCommand(template: string, components: Record<string, unknown> = {}) {
   const wrapper = mount(
-    { components: { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut, ...components }, template },
+    {
+      components: {
+        Command,
+        CommandInput,
+        CommandList,
+        CommandEmpty,
+        CommandGroup,
+        CommandItem,
+        CommandSeparator,
+        CommandShortcut,
+        ...components,
+      },
+      template,
+    },
     { attachTo: document.body },
   )
   wrappers.push(wrapper)
@@ -56,7 +68,7 @@ describe('command', () => {
     expect(classes).toContain('flex')
     expect(classes).toContain('flex-col')
     expect(classes).toContain('overflow-hidden')
-    expect(classes).toContain('rounded-md')
+    expect(classes).toContain('rounded-lg')
   })
 
   it('merges custom classes', () => {
@@ -147,9 +159,7 @@ describe('commandList', () => {
 
 describe('commandEmpty', () => {
   it('does not show when no search is active (no items registered)', async () => {
-    const wrapper = mountCommand(
-      '<Command><CommandList><CommandEmpty /></CommandList></Command>',
-    )
+    const wrapper = mountCommand('<Command><CommandList><CommandEmpty /></CommandList></Command>')
     await nextTick()
     // With no items registered, empty state should not show
     const emptyEl = wrapper.findComponent(CommandEmpty)
@@ -447,7 +457,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Banana')
   })
@@ -476,7 +486,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(2)
   })
 
@@ -498,7 +508,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Apple')
   })
@@ -523,7 +533,7 @@ describe('commandInput filtering', () => {
 
     // Verify filtering applied
     let items = wrapper.findAllComponents(CommandItem)
-    let visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
+    let visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
 
     // Clear input
@@ -532,7 +542,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     items = wrapper.findAllComponents(CommandItem)
-    visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
+    visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(3)
   })
 })
@@ -702,7 +712,7 @@ describe('commandSeparator', () => {
     const wrapper = mount(CommandSeparator)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('h-px')
-    expect(classes).toContain('bg-border')
+    expect(classes).toContain('bg-slate-150')
   })
 
   it('merges custom classes', () => {
@@ -838,7 +848,9 @@ describe('commandDialog', () => {
 
     // Simulate pressing Escape (Radix Vue Dialog handles this internally)
     // Verify that update:open is supported as a valid emit
-    expect(wrapper.emitted('update:open') === undefined || Array.isArray(wrapper.emitted('update:open'))).toBe(true)
+    expect(
+      wrapper.emitted('update:open') === undefined || Array.isArray(wrapper.emitted('update:open')),
+    ).toBe(true)
   })
 })
 

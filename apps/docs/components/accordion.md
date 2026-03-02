@@ -19,17 +19,16 @@ pnpm add @stellar-vue-ui/core
 ## Import
 
 ```typescript
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@stellar-vue-ui/core'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@stellar-vue-ui/core'
 ```
 
 ## Usage
 
 ### Basic
+
+<ComponentPreview title="Basic">
+  <AccordionBasic />
+  <template #code>
 
 ```vue
 <script setup lang="ts">
@@ -40,9 +39,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@s
   <Accordion type="single" collapsible>
     <AccordionItem value="item-1">
       <AccordionTrigger>Is it accessible?</AccordionTrigger>
-      <AccordionContent>
-        Yes. It adheres to the WAI-ARIA design pattern.
-      </AccordionContent>
+      <AccordionContent> Yes. It adheres to the WAI-ARIA design pattern. </AccordionContent>
     </AccordionItem>
     <AccordionItem value="item-2">
       <AccordionTrigger>Is it styled?</AccordionTrigger>
@@ -59,6 +56,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@s
   </Accordion>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -77,9 +77,7 @@ Only one item can be open at a time. Set `collapsible` to allow closing all item
     </AccordionItem>
     <AccordionItem value="faq-2">
       <AccordionTrigger>How do I install it?</AccordionTrigger>
-      <AccordionContent>
-        Use the CLI: npx stellar add [component-name]
-      </AccordionContent>
+      <AccordionContent> Use the CLI: npx stellar add [component-name] </AccordionContent>
     </AccordionItem>
   </Accordion>
 </template>
@@ -154,60 +152,60 @@ const openItem = ref('item-1')
 
 ### Accordion Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `'single' \| 'multiple'` | `'single'` | Whether one or multiple items can be open at once |
-| `modelValue` | `string \| string[]` | `undefined` | Controlled expanded item(s) (v-model) |
-| `collapsible` | `boolean` | `false` | When type is single, allows closing the open item |
-| `disabled` | `boolean` | `false` | Disables all accordion items |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                      | Default     | Description                                       |
+| ------------- | ------------------------- | ----------- | ------------------------------------------------- |
+| `type`        | `'single' \| 'multiple'`  | `'single'`  | Whether one or multiple items can be open at once |
+| `modelValue`  | `string \| string[]`      | `undefined` | Controlled expanded item(s) (v-model)             |
+| `collapsible` | `boolean`                 | `false`     | When type is single, allows closing the open item |
+| `disabled`    | `boolean`                 | `false`     | Disables all accordion items                      |
+| `class`       | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                            |
 
 ### AccordionItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | Unique value for this accordion item |
-| `disabled` | `boolean` | `false` | Disables this specific item |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                          |
+| ---------- | ------------------------- | ----------- | ------------------------------------ |
+| `value`    | `string`                  | _required_  | Unique value for this accordion item |
+| `disabled` | `boolean`                 | `false`     | Disables this specific item          |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes               |
 
 ### AccordionTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### AccordionContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload                           | Description                              |
+| ------------------- | --------------------------------- | ---------------------------------------- |
 | `update:modelValue` | `string \| string[] \| undefined` | Emitted when the expanded item(s) change |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Accordion` | `default` | AccordionItem elements |
-| `AccordionItem` | `default` | AccordionTrigger and AccordionContent |
+| Component          | Slot      | Description                                             |
+| ------------------ | --------- | ------------------------------------------------------- |
+| `Accordion`        | `default` | AccordionItem elements                                  |
+| `AccordionItem`    | `default` | AccordionTrigger and AccordionContent                   |
 | `AccordionTrigger` | `default` | Trigger text. A chevron icon is appended automatically. |
-| `AccordionContent` | `default` | Content revealed when the item is expanded |
+| `AccordionContent` | `default` | Content revealed when the item is expanded              |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
+| Key               | Action                             |
+| ----------------- | ---------------------------------- |
 | `Enter` / `Space` | Toggles the focused accordion item |
-| `ArrowDown` | Moves focus to next trigger |
-| `ArrowUp` | Moves focus to previous trigger |
-| `Home` | Moves focus to first trigger |
-| `End` | Moves focus to last trigger |
+| `ArrowDown`       | Moves focus to next trigger        |
+| `ArrowUp`         | Moves focus to previous trigger    |
+| `Home`            | Moves focus to first trigger       |
+| `End`             | Moves focus to last trigger        |
 
 ### ARIA Attributes
 

@@ -41,6 +41,12 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <ContextMenuBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -54,7 +60,9 @@ import {
 
 <template>
   <ContextMenu>
-    <ContextMenuTrigger class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+    <ContextMenuTrigger
+      class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"
+    >
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent>
@@ -77,6 +85,9 @@ import {
 </template>
 ```
 
+  </template>
+</ComponentPreview>
+
 ## Examples
 
 ### With Checkbox Items
@@ -91,7 +102,9 @@ const showFullUrls = ref(false)
 
 <template>
   <ContextMenu>
-    <ContextMenuTrigger class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed">
+    <ContextMenuTrigger
+      class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed"
+    >
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent class="w-64">
@@ -117,22 +130,18 @@ const theme = ref('system')
 
 <template>
   <ContextMenu>
-    <ContextMenuTrigger class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed">
+    <ContextMenuTrigger
+      class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed"
+    >
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent class="w-64">
       <ContextMenuLabel>Theme</ContextMenuLabel>
       <ContextMenuSeparator />
       <ContextMenuRadioGroup v-model="theme">
-        <ContextMenuRadioItem value="light">
-          Light
-        </ContextMenuRadioItem>
-        <ContextMenuRadioItem value="dark">
-          Dark
-        </ContextMenuRadioItem>
-        <ContextMenuRadioItem value="system">
-          System
-        </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="light"> Light </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="dark"> Dark </ContextMenuRadioItem>
+        <ContextMenuRadioItem value="system"> System </ContextMenuRadioItem>
       </ContextMenuRadioGroup>
     </ContextMenuContent>
   </ContextMenu>
@@ -144,7 +153,9 @@ const theme = ref('system')
 ```vue
 <template>
   <ContextMenu>
-    <ContextMenuTrigger class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed">
+    <ContextMenuTrigger
+      class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed"
+    >
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent class="w-64">
@@ -169,63 +180,63 @@ const theme = ref('system')
 
 ### ContextMenu Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `undefined` | Controlled open state |
-| `defaultOpen` | `boolean` | `false` | Open state when initially rendered |
+| Prop          | Type      | Default     | Description                        |
+| ------------- | --------- | ----------- | ---------------------------------- |
+| `open`        | `boolean` | `undefined` | Controlled open state              |
+| `defaultOpen` | `boolean` | `false`     | Open state when initially rendered |
 
 ### ContextMenuTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `asChild` | `boolean` | `false` | Render as child element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description             |
+| --------- | ------------------------- | ----------- | ----------------------- |
+| `asChild` | `boolean`                 | `false`     | Render as child element |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### ContextMenuContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `sideOffset` | `number` | `0` | Distance from the trigger |
-| `alignOffset` | `number` | `2` | Alignment offset |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                      | Default     | Description               |
+| ------------- | ------------------------- | ----------- | ------------------------- |
+| `sideOffset`  | `number`                  | `0`         | Distance from the trigger |
+| `alignOffset` | `number`                  | `2`         | Alignment offset          |
+| `class`       | `HTMLAttributes['class']` | `undefined` | Additional CSS classes    |
 
 ### ContextMenuItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `inset` | `boolean` | `false` | Adds left padding for alignment |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                     |
+| ---------- | ------------------------- | ----------- | ------------------------------- |
+| `inset`    | `boolean`                 | `false`     | Adds left padding for alignment |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction            |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes          |
 
 ### ContextMenuCheckboxItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Controlled checked state |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description              |
+| ---------- | ------------------------- | ----------- | ------------------------ |
+| `checked`  | `boolean`                 | `false`     | Controlled checked state |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction     |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes   |
 
 ### ContextMenuRadioGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | Controlled value (v-model) |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                      | Default     | Description                |
+| ------------ | ------------------------- | ----------- | -------------------------- |
+| `modelValue` | `string`                  | `undefined` | Controlled value (v-model) |
+| `class`      | `HTMLAttributes['class']` | `undefined` | Additional CSS classes     |
 
 ### ContextMenuRadioItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | The value of the radio item |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                 |
+| ---------- | ------------------------- | ----------- | --------------------------- |
+| `value`    | `string`                  | _required_  | The value of the radio item |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction        |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes      |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                              |
+| ------------- | --------- | ---------------------------------------- |
 | `update:open` | `boolean` | Emitted when the menu open state changes |
-| `select` | -- | Emitted when an item is selected |
+| `select`      | --        | Emitted when an item is selected         |
 
 ### Slots
 
@@ -235,14 +246,14 @@ All sub-components expose a `default` slot for their content.
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `ArrowDown` | Moves focus to next item |
-| `ArrowUp` | Moves focus to previous item |
-| `ArrowRight` | Opens a submenu |
-| `ArrowLeft` | Closes a submenu |
-| `Enter` / `Space` | Selects the focused item |
-| `Escape` | Closes the context menu |
+| Key               | Action                       |
+| ----------------- | ---------------------------- |
+| `ArrowDown`       | Moves focus to next item     |
+| `ArrowUp`         | Moves focus to previous item |
+| `ArrowRight`      | Opens a submenu              |
+| `ArrowLeft`       | Closes a submenu             |
+| `Enter` / `Space` | Selects the focused item     |
+| `Escape`          | Closes the context menu      |
 
 ### ARIA Attributes
 

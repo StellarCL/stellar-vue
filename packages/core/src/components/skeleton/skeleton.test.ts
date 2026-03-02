@@ -11,9 +11,9 @@ describe('skeleton', () => {
   it('applies base classes', () => {
     const wrapper = mount(Skeleton)
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('animate-pulse')
+    expect(classes).toContain('animate-skeleton-wave')
     expect(classes).toContain('rounded-md')
-    expect(classes).toContain('bg-muted')
+    expect(classes).toContain('bg-gradient-to-r')
   })
 
   it('has role="status" for accessibility', () => {

@@ -47,9 +47,18 @@ export function validateTheme(theme: ThemeConfig): ValidationIssue[] {
   // Check all color pairs (foreground on its background)
   const pairs: Array<{ name: string, bg: string, fg: string }> = [
     { name: 'primary', bg: theme.colors.primary.DEFAULT, fg: theme.colors.primary.foreground },
-    { name: 'secondary', bg: theme.colors.secondary.DEFAULT, fg: theme.colors.secondary.foreground },
+    {
+      name: 'secondary',
+      bg: theme.colors.secondary.DEFAULT,
+      fg: theme.colors.secondary.foreground,
+    },
     { name: 'accent', bg: theme.colors.accent.DEFAULT, fg: theme.colors.accent.foreground },
-    { name: 'destructive', bg: theme.colors.destructive.DEFAULT, fg: theme.colors.destructive.foreground },
+    {
+      name: 'destructive',
+      bg: theme.colors.destructive.DEFAULT,
+      fg: theme.colors.destructive.foreground,
+    },
+    { name: 'error', bg: theme.colors.error.DEFAULT, fg: theme.colors.error.foreground },
     { name: 'muted', bg: theme.colors.muted.DEFAULT, fg: theme.colors.muted.foreground },
     { name: 'card', bg: theme.colors.card.DEFAULT, fg: theme.colors.card.foreground },
     { name: 'popover', bg: theme.colors.popover.DEFAULT, fg: theme.colors.popover.foreground },

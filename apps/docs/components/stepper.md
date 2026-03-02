@@ -32,9 +32,19 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <StepperBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
-import { Stepper, StepperContent, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
+import {
+  Stepper,
+  StepperContent,
+  StepperItem,
+  StepperSeparator,
+  StepperTrigger,
+} from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const currentStep = ref(1)
@@ -66,22 +76,27 @@ const steps = [
 </template>
 ```
 
+  </template>
+</ComponentPreview>
+
 ## Examples
 
 ### Horizontal (Default)
 
 ```vue
 <script setup lang="ts">
-import { Button, Stepper, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Stepper,
+  StepperItem,
+  StepperSeparator,
+  StepperTrigger,
+} from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const currentStep = ref(2)
 
-const steps = [
-  { title: 'Details' },
-  { title: 'Payment' },
-  { title: 'Confirmation' },
-]
+const steps = [{ title: 'Details' }, { title: 'Payment' }, { title: 'Confirmation' }]
 </script>
 
 <template>
@@ -96,9 +111,7 @@ const steps = [
     <Button variant="outline" :disabled="currentStep <= 1" @click="currentStep--">
       Previous
     </Button>
-    <Button :disabled="currentStep >= steps.length" @click="currentStep++">
-      Next
-    </Button>
+    <Button :disabled="currentStep >= steps.length" @click="currentStep++"> Next </Button>
   </div>
 </template>
 ```
@@ -136,16 +149,21 @@ Combine the stepper with content panels that show based on the current step:
 
 ```vue
 <script setup lang="ts">
-import { Button, Input, Label, Stepper, StepperContent, StepperItem, StepperSeparator, StepperTrigger } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Input,
+  Label,
+  Stepper,
+  StepperContent,
+  StepperItem,
+  StepperSeparator,
+  StepperTrigger,
+} from '@stellar-vue-ui/core'
 import { ref } from 'vue'
 
 const currentStep = ref(1)
 
-const steps = [
-  { title: 'Account' },
-  { title: 'Profile' },
-  { title: 'Done' },
-]
+const steps = [{ title: 'Account' }, { title: 'Profile' }, { title: 'Done' }]
 </script>
 
 <template>
@@ -163,9 +181,7 @@ const steps = [
           <Label for="email">Email</Label>
           <Input id="email" type="email" placeholder="you@example.com" />
         </div>
-        <Button @click="currentStep = 2">
-          Continue
-        </Button>
+        <Button @click="currentStep = 2"> Continue </Button>
       </div>
     </StepperContent>
 
@@ -176,20 +192,14 @@ const steps = [
           <Input id="name" placeholder="Your name" />
         </div>
         <div class="flex gap-2">
-          <Button variant="outline" @click="currentStep = 1">
-            Back
-          </Button>
-          <Button @click="currentStep = 3">
-            Continue
-          </Button>
+          <Button variant="outline" @click="currentStep = 1"> Back </Button>
+          <Button @click="currentStep = 3"> Continue </Button>
         </div>
       </div>
     </StepperContent>
 
     <StepperContent :step="3">
-      <p class="text-center text-lg">
-        All done! Your account is ready.
-      </p>
+      <p class="text-center text-lg">All done! Your account is ready.</p>
     </StepperContent>
   </div>
 </template>
@@ -199,64 +209,64 @@ const steps = [
 
 ### Stepper Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `steps` | `StepConfig[]` | *required* | Array of step configuration objects |
-| `modelValue` | `number` | `1` | Current active step, 1-based (v-model) |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                         | Default        | Description                            |
+| ------------- | ---------------------------- | -------------- | -------------------------------------- |
+| `steps`       | `StepConfig[]`               | _required_     | Array of step configuration objects    |
+| `modelValue`  | `number`                     | `1`            | Current active step, 1-based (v-model) |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Layout orientation                     |
+| `class`       | `HTMLAttributes['class']`    | `undefined`    | Additional CSS classes                 |
 
 ### StepConfig Interface
 
-| Property | Type | Required | Description |
-|----------|------|----------|-------------|
-| `title` | `string` | Yes | Step title |
-| `description` | `string` | No | Optional step description |
-| `icon` | `Component` | No | Optional custom icon component |
+| Property      | Type        | Required | Description                    |
+| ------------- | ----------- | -------- | ------------------------------ |
+| `title`       | `string`    | Yes      | Step title                     |
+| `description` | `string`    | No       | Optional step description      |
+| `icon`        | `Component` | No       | Optional custom icon component |
 
 ### StepperItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `step` | `number` | *required* | The 1-based step number |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description             |
+| ------- | ------------------------- | ----------- | ----------------------- |
+| `step`  | `number`                  | _required_  | The 1-based step number |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### StepperTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `step` | `number` | *required* | The 1-based step number |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description             |
+| ------- | ------------------------- | ----------- | ----------------------- |
+| `step`  | `number`                  | _required_  | The 1-based step number |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes  |
 
 ### StepperSeparator Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `step` | `number` | *required* | Step number before this separator |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description                       |
+| ------- | ------------------------- | ----------- | --------------------------------- |
+| `step`  | `number`                  | _required_  | Step number before this separator |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes            |
 
 ### StepperContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `step` | `number` | *required* | The step number this content belongs to |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description                             |
+| ------- | ------------------------- | ----------- | --------------------------------------- |
+| `step`  | `number`                  | _required_  | The step number this content belongs to |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                  |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                          |
+| ------------------- | -------- | ------------------------------------ |
 | `update:modelValue` | `number` | Emitted when the active step changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Stepper` | `default` | StepperItem elements |
-| `StepperItem` | `default` | StepperTrigger and StepperSeparator |
-| `StepperTrigger` | `default` | Custom trigger content (defaults to step number/check icon) |
-| `StepperSeparator` | -- | No slots; renders a line indicator |
-| `StepperContent` | `default` | Step content panel |
+| Component          | Slot      | Description                                                 |
+| ------------------ | --------- | ----------------------------------------------------------- |
+| `Stepper`          | `default` | StepperItem elements                                        |
+| `StepperItem`      | `default` | StepperTrigger and StepperSeparator                         |
+| `StepperTrigger`   | `default` | Custom trigger content (defaults to step number/check icon) |
+| `StepperSeparator` | --        | No slots; renders a line indicator                          |
+| `StepperContent`   | `default` | Step content panel                                          |
 
 ## Accessibility
 

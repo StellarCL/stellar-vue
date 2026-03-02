@@ -7,7 +7,7 @@ const router = useRouter()
 
 // Theme management
 const themes = ['stellar', 'sirius', 'polaris', 'antares', 'vega', 'aldebaran'] as const
-type ThemeName = typeof themes[number]
+type ThemeName = (typeof themes)[number]
 
 const currentTheme = ref<ThemeName>('stellar')
 const isDark = ref(false)
@@ -31,16 +31,14 @@ onMounted(() => {
   if (savedTheme && themes.includes(savedTheme)) {
     currentTheme.value = savedTheme
     document.documentElement.setAttribute('data-theme', savedTheme)
-  }
-  else {
+  } else {
     document.documentElement.setAttribute('data-theme', 'stellar')
   }
 
   const savedDark = localStorage.getItem('stellar-playground-dark')
   if (savedDark !== null) {
     isDark.value = savedDark === 'true'
-  }
-  else {
+  } else {
     isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
   }
   document.documentElement.classList.toggle('dark', isDark.value)
@@ -50,28 +48,97 @@ onMounted(() => {
 const navGroups = [
   {
     label: 'Overview',
-    items: [
-      { label: 'Theme Preview', path: '/themes' },
-    ],
+    items: [{ label: 'Theme Preview', path: '/themes' }],
   },
   {
-    label: 'Tier 1 — Core',
+    label: 'General',
     items: [
       { label: 'Button', path: '/button' },
-      { label: 'Input', path: '/input' },
-      { label: 'Label', path: '/label' },
-      { label: 'Card', path: '/card' },
-      { label: 'Dialog', path: '/dialog' },
-      { label: 'Dropdown Menu', path: '/dropdown-menu' },
-      { label: 'Select', path: '/select' },
-      { label: 'Checkbox', path: '/checkbox' },
-      { label: 'Radio Group', path: '/radio-group' },
-      { label: 'Switch', path: '/switch' },
-      { label: 'Textarea', path: '/textarea' },
-      { label: 'Alert', path: '/alert' },
       { label: 'Badge', path: '/badge' },
       { label: 'Separator', path: '/separator' },
       { label: 'Skeleton', path: '/skeleton' },
+      { label: 'Avatar', path: '/avatar' },
+      { label: 'Empty State', path: '/empty-state' },
+      { label: 'Loading', path: '/loading' },
+    ],
+  },
+  {
+    label: 'Layout',
+    items: [
+      { label: 'Card', path: '/card' },
+      { label: 'Alert', path: '/alert' },
+      { label: 'Grid', path: '/grid' },
+      { label: 'Stack', path: '/stack' },
+      { label: 'Shell', path: '/shell' },
+      { label: 'Sidebar', path: '/sidebar' },
+    ],
+  },
+  {
+    label: 'Form',
+    items: [
+      { label: 'Input', path: '/input' },
+      { label: 'Label', path: '/label' },
+      { label: 'Textarea', path: '/textarea' },
+      { label: 'Checkbox', path: '/checkbox' },
+      { label: 'Radio Group', path: '/radio-group' },
+      { label: 'Switch', path: '/switch' },
+      { label: 'Select', path: '/select' },
+      { label: 'Combobox', path: '/combobox' },
+      { label: 'Multi-Select', path: '/multi-select' },
+      { label: 'Slider', path: '/slider' },
+      { label: 'Color Picker', path: '/color-picker' },
+      { label: 'Date Picker', path: '/date-picker' },
+      { label: 'Calendar', path: '/calendar' },
+      { label: 'File Upload', path: '/file-upload' },
+      { label: 'Rating', path: '/rating' },
+      { label: 'Filter Builder', path: '/filter-builder' },
+      { label: 'Form', path: '/form' },
+    ],
+  },
+  {
+    label: 'Navigation',
+    items: [
+      { label: 'Tabs', path: '/tabs' },
+      { label: 'Accordion', path: '/accordion' },
+      { label: 'Breadcrumb', path: '/breadcrumb' },
+      { label: 'Menubar', path: '/menubar' },
+      { label: 'Navigation Menu', path: '/navigation-menu' },
+      { label: 'Pagination', path: '/pagination' },
+      { label: 'Stepper', path: '/stepper' },
+    ],
+  },
+  {
+    label: 'Overlay',
+    items: [
+      { label: 'Dialog', path: '/dialog' },
+      { label: 'Dropdown Menu', path: '/dropdown-menu' },
+      { label: 'Popover', path: '/popover' },
+      { label: 'Tooltip', path: '/tooltip' },
+      { label: 'Command', path: '/command' },
+      { label: 'Context Menu', path: '/context-menu' },
+      { label: 'Drawer', path: '/drawer' },
+      { label: 'Sheet', path: '/sheet' },
+      { label: 'Toast', path: '/toast' },
+    ],
+  },
+  {
+    label: 'Data Display',
+    items: [
+      { label: 'Progress', path: '/progress' },
+      { label: 'Data Table', path: '/data-table' },
+      { label: 'Code Block', path: '/code-block' },
+      { label: 'Chart', path: '/chart' },
+      { label: 'Timeline', path: '/timeline' },
+      { label: 'Tree View', path: '/tree-view' },
+      { label: 'Notification Center', path: '/notification-center' },
+      { label: 'Carousel', path: '/carousel' },
+    ],
+  },
+  {
+    label: 'Composite',
+    items: [
+      { label: 'Wizard', path: '/wizard' },
+      { label: 'Rich Text Editor', path: '/rich-text-editor' },
     ],
   },
 ]
@@ -96,7 +163,9 @@ const themeLabels: Record<ThemeName, string> = {
       </div>
       <nav class="flex-1 px-2 py-4 space-y-6">
         <div v-for="group in navGroups" :key="group.label">
-          <p class="px-3 mb-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          <p
+            class="px-3 mb-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+          >
             {{ group.label }}
           </p>
           <ul class="space-y-0.5">
@@ -117,10 +186,10 @@ const themeLabels: Record<ThemeName, string> = {
     <!-- Main area -->
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- Header -->
-      <header class="h-14 shrink-0 border-b border-border bg-card flex items-center justify-between px-6">
-        <h1 class="text-sm font-medium text-muted-foreground">
-          Component Playground
-        </h1>
+      <header
+        class="h-14 shrink-0 border-b border-border bg-card flex items-center justify-between px-6"
+      >
+        <h1 class="text-sm font-medium text-muted-foreground">Component Playground</h1>
         <div class="flex items-center gap-3">
           <!-- Theme Switcher -->
           <div class="relative">
@@ -179,10 +248,13 @@ const themeLabels: Record<ThemeName, string> = {
     </div>
 
     <!-- Overlay for closing theme dropdown -->
+    <div v-if="themeDropdownOpen" class="fixed inset-0 z-40" @click="themeDropdownOpen = false" />
+    <!--
+      Tailwind v4 safelist: @source doesn't scan workspace packages reliably,
+      so we reference all animation + data-variant classes used by core components.
+    -->
     <div
-      v-if="themeDropdownOpen"
-      class="fixed inset-0 z-40"
-      @click="themeDropdownOpen = false"
+      class="hidden animate-in animate-out fade-in fade-out fade-in-0 fade-out-0 fade-out-80 zoom-in-90 zoom-in-95 zoom-out-95 slide-in-from-top slide-in-from-bottom slide-in-from-left slide-in-from-right slide-out-to-top slide-out-to-bottom slide-out-to-left slide-out-to-right slide-in-from-top-2 slide-in-from-bottom-2 slide-in-from-left-2 slide-in-from-right-2 slide-out-to-top-2 slide-out-to-bottom-2 slide-out-to-left-2 slide-out-to-right-2 slide-in-from-left-1/2 slide-in-from-top-1/2 slide-out-to-left-1/2 slide-out-to-top-1/2 slide-in-from-right-52 slide-in-from-left-52 slide-out-to-right-52 slide-out-to-left-52 slide-in-from-top-full slide-in-from-bottom-full slide-out-to-right-full data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=closed]:fade-out-80 data-[state=open]:zoom-in-90 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 data-[state=open]:slide-in-from-top data-[state=open]:slide-in-from-bottom data-[state=open]:slide-in-from-left data-[state=open]:slide-in-from-right data-[state=closed]:slide-out-to-top data-[state=closed]:slide-out-to-bottom data-[state=closed]:slide-out-to-left data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-1/2 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-1/2 data-[state=open]:slide-in-from-top-full data-[state=closed]:slide-out-to-right-full data-[state=open]:duration-500 data-[state=closed]:duration-300 data-[state=open]:bg-accent data-[state=open]:text-accent-foreground data-[state=open]:text-muted-foreground data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[side=bottom]:translate-y-1 data-[side=right]:translate-x-1 data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[state=visible]:animate-in data-[state=visible]:fade-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[swipe=end]:animate-out data-[state=open]:sm:slide-in-from-bottom-full data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none"
     />
   </div>
 </template>

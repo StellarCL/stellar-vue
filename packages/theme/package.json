@@ -10,17 +10,32 @@
     "directory": "packages/theme"
   },
   "sideEffects": false,
+  "keywords": [
+    "vue",
+    "vue3",
+    "theme",
+    "design-tokens",
+    "tailwindcss"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format esm,cjs --dts --tsconfig tsconfig.build.json --watch",

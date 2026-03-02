@@ -49,12 +49,22 @@ describe('button', () => {
 
   it('applies sm size classes', () => {
     const wrapper = mount(Button, { props: { size: 'sm' } })
-    expect(wrapper.classes().join(' ')).toContain('h-9')
+    expect(wrapper.classes().join(' ')).toContain('h-8')
   })
 
   it('applies lg size classes', () => {
     const wrapper = mount(Button, { props: { size: 'lg' } })
-    expect(wrapper.classes().join(' ')).toContain('h-11')
+    expect(wrapper.classes().join(' ')).toContain('h-10')
+  })
+
+  it('applies xl size classes', () => {
+    const wrapper = mount(Button, { props: { size: 'xl' } })
+    expect(wrapper.classes().join(' ')).toContain('h-12')
+  })
+
+  it('applies soft variant classes', () => {
+    const wrapper = mount(Button, { props: { variant: 'soft' } })
+    expect(wrapper.classes().join(' ')).toContain('text-primary')
   })
 
   it('applies icon size classes', () => {

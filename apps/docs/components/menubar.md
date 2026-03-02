@@ -42,6 +42,12 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <MenubarBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -107,6 +113,9 @@ import {
 </template>
 ```
 
+  </template>
+</ComponentPreview>
+
 ## Examples
 
 ### With Checkbox and Radio Items
@@ -125,24 +134,14 @@ const theme = ref('system')
     <MenubarMenu>
       <MenubarTrigger>View</MenubarTrigger>
       <MenubarContent>
-        <MenubarCheckboxItem v-model:checked="showToolbar">
-          Toolbar
-        </MenubarCheckboxItem>
-        <MenubarCheckboxItem v-model:checked="showSidebar">
-          Sidebar
-        </MenubarCheckboxItem>
+        <MenubarCheckboxItem v-model:checked="showToolbar"> Toolbar </MenubarCheckboxItem>
+        <MenubarCheckboxItem v-model:checked="showSidebar"> Sidebar </MenubarCheckboxItem>
         <MenubarSeparator />
         <MenubarLabel>Theme</MenubarLabel>
         <MenubarRadioGroup v-model="theme">
-          <MenubarRadioItem value="light">
-            Light
-          </MenubarRadioItem>
-          <MenubarRadioItem value="dark">
-            Dark
-          </MenubarRadioItem>
-          <MenubarRadioItem value="system">
-            System
-          </MenubarRadioItem>
+          <MenubarRadioItem value="light"> Light </MenubarRadioItem>
+          <MenubarRadioItem value="dark"> Dark </MenubarRadioItem>
+          <MenubarRadioItem value="system"> System </MenubarRadioItem>
         </MenubarRadioGroup>
       </MenubarContent>
     </MenubarMenu>
@@ -168,9 +167,7 @@ const theme = ref('system')
           </MenubarSubContent>
         </MenubarSub>
         <MenubarSeparator />
-        <MenubarItem disabled>
-          Print (unavailable)
-        </MenubarItem>
+        <MenubarItem disabled> Print (unavailable) </MenubarItem>
       </MenubarContent>
     </MenubarMenu>
   </Menubar>
@@ -181,78 +178,78 @@ const theme = ref('system')
 
 ### Menubar Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | Controlled open menu value |
-| `defaultValue` | `string` | `undefined` | Initially open menu |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop           | Type                      | Default     | Description                |
+| -------------- | ------------------------- | ----------- | -------------------------- |
+| `modelValue`   | `string`                  | `undefined` | Controlled open menu value |
+| `defaultValue` | `string`                  | `undefined` | Initially open menu        |
+| `class`        | `HTMLAttributes['class']` | `undefined` | Additional CSS classes     |
 
 ### MenubarMenu Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type     | Default     | Description                     |
+| ------- | -------- | ----------- | ------------------------------- |
 | `value` | `string` | `undefined` | Value for controlled open state |
 
 ### MenubarTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description            |
+| ---------- | ------------------------- | ----------- | ---------------------- |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction   |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### MenubarContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `align` | `'start' \| 'center' \| 'end'` | `'start'` | Alignment against the trigger |
-| `sideOffset` | `number` | `8` | Distance from the trigger |
-| `alignOffset` | `number` | `-4` | Alignment offset |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                           | Default     | Description                   |
+| ------------- | ------------------------------ | ----------- | ----------------------------- |
+| `align`       | `'start' \| 'center' \| 'end'` | `'start'`   | Alignment against the trigger |
+| `sideOffset`  | `number`                       | `8`         | Distance from the trigger     |
+| `alignOffset` | `number`                       | `-4`        | Alignment offset              |
+| `class`       | `HTMLAttributes['class']`      | `undefined` | Additional CSS classes        |
 
 ### MenubarItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `inset` | `boolean` | `false` | Adds left padding |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description            |
+| ---------- | ------------------------- | ----------- | ---------------------- |
+| `inset`    | `boolean`                 | `false`     | Adds left padding      |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction   |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### MenubarCheckboxItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | `false` | Controlled checked state |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description              |
+| ---------- | ------------------------- | ----------- | ------------------------ |
+| `checked`  | `boolean`                 | `false`     | Controlled checked state |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction     |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes   |
 
 ### MenubarRadioGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | Controlled value (v-model) |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                      | Default     | Description                |
+| ------------ | ------------------------- | ----------- | -------------------------- |
+| `modelValue` | `string`                  | `undefined` | Controlled value (v-model) |
+| `class`      | `HTMLAttributes['class']` | `undefined` | Additional CSS classes     |
 
 ### MenubarRadioItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | The value of the radio item |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                 |
+| ---------- | ------------------------- | ----------- | --------------------------- |
+| `value`    | `string`                  | _required_  | The value of the radio item |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction        |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes      |
 
 ### MenubarSubTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `inset` | `boolean` | `false` | Adds left padding |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description            |
+| ---------- | ------------------------- | ----------- | ---------------------- |
+| `inset`    | `boolean`                 | `false`     | Adds left padding      |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction   |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `select` | -- | Emitted when a menu item is selected |
+| Event    | Payload | Description                          |
+| -------- | ------- | ------------------------------------ |
+| `select` | --      | Emitted when a menu item is selected |
 
 ### Slots
 
@@ -262,14 +259,14 @@ All sub-components expose a `default` slot for their content.
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `ArrowRight` | Opens the next menu or moves to the next trigger |
-| `ArrowLeft` | Opens the previous menu or closes a submenu |
-| `ArrowDown` | Opens a menu; moves focus to next item |
-| `ArrowUp` | Moves focus to previous item |
+| Key               | Action                                            |
+| ----------------- | ------------------------------------------------- |
+| `ArrowRight`      | Opens the next menu or moves to the next trigger  |
+| `ArrowLeft`       | Opens the previous menu or closes a submenu       |
+| `ArrowDown`       | Opens a menu; moves focus to next item            |
+| `ArrowUp`         | Moves focus to previous item                      |
 | `Enter` / `Space` | Opens a menu from trigger; selects a focused item |
-| `Escape` | Closes the current menu |
+| `Escape`          | Closes the current menu                           |
 
 ### ARIA Attributes
 

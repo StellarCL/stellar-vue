@@ -9,17 +9,14 @@ const props = withDefaults(defineProps<DataTableRowProps>(), {
 
 const classes = computed(() =>
   cn(
-    'border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
+    'border-b border-slate-150 dark:border-navy-500 transition-colors hover:bg-slate-50 dark:hover:bg-navy-600/50 data-[state=selected]:bg-muted',
     props.class,
   ),
 )
 </script>
 
 <template>
-  <tr
-    :class="classes"
-    :data-state="selected ? 'selected' : undefined"
-  >
+  <tr :class="classes" :data-state="selected ? 'selected' : undefined">
     <slot />
   </tr>
 </template>

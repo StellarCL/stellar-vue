@@ -9,6 +9,17 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/animations"
   },
+  "keywords": [
+    "vue",
+    "vue3",
+    "animations",
+    "transitions",
+    "motion"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
@@ -20,9 +31,13 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
   "scripts": {
-    "build": "vite build --config vite.config.build.ts && vue-tsc --declaration --emitDeclarationOnly --outDir dist",
+    "build": "vite build --config vite.config.build.ts && vue-tsc --project tsconfig.build.json",
     "dev": "vite build --config vite.config.build.ts --watch",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -13,11 +13,11 @@ const emit = defineEmits<{
 
 const classes = computed(() =>
   cn(
-    'inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+    'inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md text-sm font-medium font-inter transition-colors',
+    'focus:outline-none focus-visible:outline-none',
     'disabled:pointer-events-none disabled:opacity-50',
     'hover:bg-accent hover:text-accent-foreground',
-    'h-10 w-10',
+    'h-8 min-w-[2rem]',
     props.class,
   ),
 )

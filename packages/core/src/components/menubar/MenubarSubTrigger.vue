@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<MenubarSubTriggerProps>(), {
 
 const classes = computed(() =>
   cn(
-    'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent data-[state=open]:bg-accent',
+    'flex h-8 cursor-default select-none items-center rounded-sm px-3 text-sm outline-none focus:bg-primary/10 focus:text-primary data-[state=open]:bg-primary/10',
     props.inset && 'pl-8',
     props.class,
   ),

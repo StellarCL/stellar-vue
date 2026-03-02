@@ -18,7 +18,7 @@ const emit = defineEmits<{
 
 const classes = computed(() =>
   cn(
-    'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+    'relative flex h-8 cursor-default select-none items-center rounded-sm pl-8 pr-3 text-sm outline-none transition-colors focus:bg-primary/10 focus:text-primary data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
     props.class,
   ),
 )

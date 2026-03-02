@@ -18,10 +18,12 @@ const model = defineModel<boolean | 'indeterminate'>({ default: false })
     :checked="model"
     :disabled="disabled"
     :required="required"
-    :class="cn(
-      'peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground',
-      props.class,
-    )"
+    :class="
+      cn(
+        'peer h-5 w-5 shrink-0 rounded-sm border border-slate-400/70 dark:border-navy-450 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground',
+        props.class,
+      )
+    "
     @update:checked="model = $event"
   >
     <CheckboxIndicator class="flex items-center justify-center text-current">

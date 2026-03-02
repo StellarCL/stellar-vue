@@ -23,8 +23,7 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    }
-    catch {}
+    } catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -32,11 +31,11 @@ afterEach(() => {
 })
 
 // Mount a component open, attached to document.body, flush DOM updates, and return body innerHTML
-async function mountOpenToBody(template: string, components: Record<string, object>): Promise<string> {
-  const wrapper = mount(
-    { components, template },
-    { attachTo: document.body },
-  )
+async function mountOpenToBody(
+  template: string,
+  components: Record<string, object>,
+): Promise<string> {
+  const wrapper = mount({ components, template }, { attachTo: document.body })
   wrappers.push(wrapper)
   await flushPromises()
   return document.body.innerHTML
@@ -44,11 +43,11 @@ async function mountOpenToBody(template: string, components: Record<string, obje
 
 // Mount a menubar with a specific menu forced open via model-value, then return body innerHTML.
 // The template must use MenubarMenu with value="file-menu" and Menubar with model-value="file-menu".
-async function mountMenubarOpen(template: string, components: Record<string, object>): Promise<string> {
-  const wrapper = mount(
-    { components, template },
-    { attachTo: document.body },
-  )
+async function mountMenubarOpen(
+  template: string,
+  components: Record<string, object>,
+): Promise<string> {
+  const wrapper = mount({ components, template }, { attachTo: document.body })
   wrappers.push(wrapper)
   await flushPromises()
   return document.body.innerHTML
@@ -343,7 +342,14 @@ describe('menubarRadioItem', () => {
   it('renders with indicator area inside Menubar context', async () => {
     const wrapper = mount(
       {
-        components: { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarRadioGroup, MenubarRadioItem },
+        components: {
+          Menubar,
+          MenubarMenu,
+          MenubarTrigger,
+          MenubarContent,
+          MenubarRadioGroup,
+          MenubarRadioItem,
+        },
         template: `
           <Menubar>
             <MenubarMenu>
@@ -372,7 +378,14 @@ describe('menubarRadioItem', () => {
   it('merges custom classes', async () => {
     const wrapper = mount(
       {
-        components: { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarRadioGroup, MenubarRadioItem },
+        components: {
+          Menubar,
+          MenubarMenu,
+          MenubarTrigger,
+          MenubarContent,
+          MenubarRadioGroup,
+          MenubarRadioItem,
+        },
         template: `
           <Menubar>
             <MenubarMenu>
@@ -464,7 +477,7 @@ describe('menubarSeparator', () => {
       `<Menubar model-value="file-menu"><MenubarMenu value="file-menu"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarSeparator /></MenubarContent></MenubarMenu></Menubar>`,
       { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarSeparator },
     )
-    expect(bodyHtml).toContain('bg-muted')
+    expect(bodyHtml).toContain('bg-slate-150')
   })
 
   it('merges custom classes', async () => {
@@ -749,7 +762,16 @@ describe('menubar composition', () => {
   it('sub-menus work within menubar', async () => {
     const bodyHtml = await mountMenubarOpen(
       `<Menubar model-value="file-menu"><MenubarMenu value="file-menu"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarItem>New</MenubarItem><MenubarSub><MenubarSubTrigger>Share</MenubarSubTrigger><MenubarSubContent><MenubarItem>Email</MenubarItem></MenubarSubContent></MenubarSub></MenubarContent></MenubarMenu></Menubar>`,
-      { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSub, MenubarSubTrigger, MenubarSubContent },
+      {
+        Menubar,
+        MenubarMenu,
+        MenubarTrigger,
+        MenubarContent,
+        MenubarItem,
+        MenubarSub,
+        MenubarSubTrigger,
+        MenubarSubContent,
+      },
     )
     expect(bodyHtml).toContain('polyline')
   })

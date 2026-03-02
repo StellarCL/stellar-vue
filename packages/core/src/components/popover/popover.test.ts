@@ -11,19 +11,18 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    }
-    catch {}
+    } catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
 })
 
 // Mount an open popover attached to document.body and flush DOM updates
-async function mountOpenToBody(template: string, components: Record<string, object>): Promise<string> {
-  const wrapper = mount(
-    { components, template },
-    { attachTo: document.body },
-  )
+async function mountOpenToBody(
+  template: string,
+  components: Record<string, object>,
+): Promise<string> {
+  const wrapper = mount({ components, template }, { attachTo: document.body })
   wrappers.push(wrapper)
   await flushPromises()
   return document.body.innerHTML
@@ -54,12 +53,13 @@ describe('popoverContent', () => {
       { Popover, PopoverTrigger, PopoverContent },
     )
     expect(bodyHtml).toContain('w-72')
-    expect(bodyHtml).toContain('rounded-md')
+    expect(bodyHtml).toContain('rounded-lg')
     expect(bodyHtml).toContain('border')
-    expect(bodyHtml).toContain('bg-popover')
+    expect(bodyHtml).toContain('border-slate-150')
+    expect(bodyHtml).toContain('bg-white')
     expect(bodyHtml).toContain('p-4')
     expect(bodyHtml).toContain('text-popover-foreground')
-    expect(bodyHtml).toContain('shadow-md')
+    expect(bodyHtml).toContain('shadow-soft')
   })
 
   it('merges custom classes', async () => {

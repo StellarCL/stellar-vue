@@ -6,9 +6,7 @@ import { cn } from '../../utils'
 
 const props = defineProps<CalendarGridRowProps>()
 
-const classes = computed(() =>
-  cn('flex', props.class),
-)
+const classes = computed(() => cn('flex gap-1', props.class))
 </script>
 
 <template>

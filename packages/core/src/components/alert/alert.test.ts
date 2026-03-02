@@ -25,7 +25,7 @@ describe('alert', () => {
   it('applies default variant classes', () => {
     const wrapper = mount(Alert)
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('bg-background')
+    expect(classes).toContain('bg-white')
     expect(classes).toContain('text-foreground')
   })
 
@@ -38,19 +38,19 @@ describe('alert', () => {
   it('applies success variant classes', () => {
     const wrapper = mount(Alert, { props: { variant: 'success' } })
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('text-green-700')
+    expect(classes).toContain('text-success')
   })
 
   it('applies warning variant classes', () => {
     const wrapper = mount(Alert, { props: { variant: 'warning' } })
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('text-yellow-700')
+    expect(classes).toContain('text-warning')
   })
 
   it('applies info variant classes', () => {
     const wrapper = mount(Alert, { props: { variant: 'info' } })
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('text-blue-700')
+    expect(classes).toContain('text-info')
   })
 
   it('applies base classes', () => {

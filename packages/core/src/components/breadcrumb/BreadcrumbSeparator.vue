@@ -6,16 +6,12 @@ import { cn } from '../../utils'
 const props = defineProps<BreadcrumbSeparatorProps>()
 
 const classes = computed(() =>
-  cn('[&>svg]:w-3.5 [&>svg]:h-3.5 text-muted-foreground', props.class),
+  cn('[&>svg]:w-3.5 [&>svg]:h-3.5 text-slate-400 dark:text-navy-300', props.class),
 )
 </script>
 
 <template>
-  <li
-    role="presentation"
-    aria-hidden="true"
-    :class="classes"
-  >
+  <li role="presentation" aria-hidden="true" :class="classes">
     <slot>/</slot>
   </li>
 </template>

@@ -26,6 +26,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <TabsBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
@@ -34,12 +38,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
 <template>
   <Tabs default-value="account">
     <TabsList>
-      <TabsTrigger value="account">
-        Account
-      </TabsTrigger>
-      <TabsTrigger value="password">
-        Password
-      </TabsTrigger>
+      <TabsTrigger value="account"> Account </TabsTrigger>
+      <TabsTrigger value="password"> Password </TabsTrigger>
     </TabsList>
     <TabsContent value="account">
       <p>Make changes to your account here.</p>
@@ -50,6 +50,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
   </Tabs>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -66,31 +69,17 @@ const activeTab = ref('overview')
 </script>
 
 <template>
-  <Button @click="activeTab = 'settings'">
-    Go to Settings
-  </Button>
+  <Button @click="activeTab = 'settings'"> Go to Settings </Button>
 
   <Tabs v-model="activeTab">
     <TabsList>
-      <TabsTrigger value="overview">
-        Overview
-      </TabsTrigger>
-      <TabsTrigger value="analytics">
-        Analytics
-      </TabsTrigger>
-      <TabsTrigger value="settings">
-        Settings
-      </TabsTrigger>
+      <TabsTrigger value="overview"> Overview </TabsTrigger>
+      <TabsTrigger value="analytics"> Analytics </TabsTrigger>
+      <TabsTrigger value="settings"> Settings </TabsTrigger>
     </TabsList>
-    <TabsContent value="overview">
-      Overview content.
-    </TabsContent>
-    <TabsContent value="analytics">
-      Analytics content.
-    </TabsContent>
-    <TabsContent value="settings">
-      Settings content.
-    </TabsContent>
+    <TabsContent value="overview"> Overview content. </TabsContent>
+    <TabsContent value="analytics"> Analytics content. </TabsContent>
+    <TabsContent value="settings"> Settings content. </TabsContent>
   </Tabs>
 </template>
 ```
@@ -101,25 +90,13 @@ const activeTab = ref('overview')
 <template>
   <Tabs default-value="active">
     <TabsList>
-      <TabsTrigger value="active">
-        Active
-      </TabsTrigger>
-      <TabsTrigger value="disabled" disabled>
-        Disabled
-      </TabsTrigger>
-      <TabsTrigger value="other">
-        Other
-      </TabsTrigger>
+      <TabsTrigger value="active"> Active </TabsTrigger>
+      <TabsTrigger value="disabled" disabled> Disabled </TabsTrigger>
+      <TabsTrigger value="other"> Other </TabsTrigger>
     </TabsList>
-    <TabsContent value="active">
-      Active tab content.
-    </TabsContent>
-    <TabsContent value="disabled">
-      This panel cannot be reached.
-    </TabsContent>
-    <TabsContent value="other">
-      Other tab content.
-    </TabsContent>
+    <TabsContent value="active"> Active tab content. </TabsContent>
+    <TabsContent value="disabled"> This panel cannot be reached. </TabsContent>
+    <TabsContent value="other"> Other tab content. </TabsContent>
   </Tabs>
 </template>
 ```
@@ -130,18 +107,28 @@ Combine tabs with card components for a structured layout:
 
 ```vue
 <script setup lang="ts">
-import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Input,
+  Label,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
   <Tabs default-value="account" class="w-[400px]">
     <TabsList class="grid w-full grid-cols-2">
-      <TabsTrigger value="account">
-        Account
-      </TabsTrigger>
-      <TabsTrigger value="password">
-        Password
-      </TabsTrigger>
+      <TabsTrigger value="account"> Account </TabsTrigger>
+      <TabsTrigger value="password"> Password </TabsTrigger>
     </TabsList>
     <TabsContent value="account">
       <Card>
@@ -189,62 +176,62 @@ import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, Car
 
 ### Tabs Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | Controlled active tab value (v-model) |
-| `defaultValue` | `string` | `undefined` | Active tab when initially rendered (uncontrolled) |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation; affects arrow key navigation |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop           | Type                         | Default        | Description                                       |
+| -------------- | ---------------------------- | -------------- | ------------------------------------------------- |
+| `modelValue`   | `string`                     | `undefined`    | Controlled active tab value (v-model)             |
+| `defaultValue` | `string`                     | `undefined`    | Active tab when initially rendered (uncontrolled) |
+| `orientation`  | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation; affects arrow key navigation         |
+| `class`        | `HTMLAttributes['class']`    | `undefined`    | Additional CSS classes                            |
 
 ### TabsList Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### TabsTrigger Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | Value associating this trigger with a content panel |
-| `disabled` | `boolean` | `false` | Prevents interaction with this tab |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                                         |
+| ---------- | ------------------------- | ----------- | --------------------------------------------------- |
+| `value`    | `string`                  | _required_  | Value associating this trigger with a content panel |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction with this tab                  |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                              |
 
 ### TabsContent Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | Value associating this content with a trigger |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description                                   |
+| ------- | ------------------------- | ----------- | --------------------------------------------- |
+| `value` | `string`                  | _required_  | Value associating this content with a trigger |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                        |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                         |
+| ------------------- | -------- | ----------------------------------- |
 | `update:modelValue` | `string` | Emitted when the active tab changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Tabs` | `default` | TabsList and TabsContent elements |
-| `TabsList` | `default` | TabsTrigger elements |
-| `TabsTrigger` | `default` | Trigger label text |
-| `TabsContent` | `default` | Panel content |
+| Component     | Slot      | Description                       |
+| ------------- | --------- | --------------------------------- |
+| `Tabs`        | `default` | TabsList and TabsContent elements |
+| `TabsList`    | `default` | TabsTrigger elements              |
+| `TabsTrigger` | `default` | Trigger label text                |
+| `TabsContent` | `default` | Panel content                     |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Tab` | Moves focus into the tabs list, then to the active panel |
-| `ArrowRight` | Moves focus and activates the next tab (horizontal) |
-| `ArrowLeft` | Moves focus and activates the previous tab (horizontal) |
-| `ArrowDown` | Moves focus and activates the next tab (vertical) |
-| `ArrowUp` | Moves focus and activates the previous tab (vertical) |
-| `Home` | Moves focus to the first tab |
-| `End` | Moves focus to the last tab |
+| Key          | Action                                                   |
+| ------------ | -------------------------------------------------------- |
+| `Tab`        | Moves focus into the tabs list, then to the active panel |
+| `ArrowRight` | Moves focus and activates the next tab (horizontal)      |
+| `ArrowLeft`  | Moves focus and activates the previous tab (horizontal)  |
+| `ArrowDown`  | Moves focus and activates the next tab (vertical)        |
+| `ArrowUp`    | Moves focus and activates the previous tab (vertical)    |
+| `Home`       | Moves focus to the first tab                             |
+| `End`        | Moves focus to the last tab                              |
 
 ### ARIA Attributes
 

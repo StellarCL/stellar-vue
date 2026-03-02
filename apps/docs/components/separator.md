@@ -26,6 +26,10 @@ import { Separator } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <SeparatorBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Separator } from '@stellar-vue-ui/core'
@@ -33,14 +37,15 @@ import { Separator } from '@stellar-vue-ui/core'
 
 <template>
   <div>
-    <h2 class="text-lg font-semibold">
-      Section Title
-    </h2>
+    <h2 class="text-lg font-semibold">Section Title</h2>
     <Separator class="my-4" />
     <p>Content below the separator.</p>
   </div>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -49,12 +54,8 @@ import { Separator } from '@stellar-vue-ui/core'
 ```vue
 <template>
   <div class="space-y-1">
-    <h4 class="text-sm font-medium">
-      Stellar Vue UI
-    </h4>
-    <p class="text-sm text-muted-foreground">
-      An open-source component library.
-    </p>
+    <h4 class="text-sm font-medium">Stellar Vue UI</h4>
+    <p class="text-sm text-muted-foreground">An open-source component library.</p>
   </div>
   <Separator class="my-4" />
   <div class="flex gap-4 text-sm">
@@ -95,11 +96,11 @@ When the separator is purely decorative (not semantically separating content), s
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the separator |
-| `decorative` | `boolean` | `false` | When true, renders `role="none"` instead of `role="separator"` |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes merged via `cn()` |
+| Prop          | Type                         | Default        | Description                                                    |
+| ------------- | ---------------------------- | -------------- | -------------------------------------------------------------- |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the separator                                   |
+| `decorative`  | `boolean`                    | `false`        | When true, renders `role="none"` instead of `role="separator"` |
+| `class`       | `HTMLAttributes['class']`    | `undefined`    | Additional CSS classes merged via `cn()`                       |
 
 ### Events
 

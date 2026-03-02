@@ -20,15 +20,8 @@ const errorValue = ref('')
       <DemoSection title="Default">
         <div class="max-w-sm space-y-2">
           <Label for="default-input">Email address</Label>
-          <Input
-            id="default-input"
-            v-model="value"
-            type="email"
-            placeholder="you@example.com"
-          />
-          <p v-if="value" class="text-xs text-muted-foreground">
-            Value: {{ value }}
-          </p>
+          <Input id="default-input" v-model="value" type="email" placeholder="you@example.com" />
+          <p v-if="value" class="text-xs text-muted-foreground">Value: {{ value }}</p>
         </div>
       </DemoSection>
 
@@ -79,14 +72,8 @@ const errorValue = ref('')
           </div>
           <div class="space-y-1.5">
             <Label>Error state</Label>
-            <Input
-              v-model="errorValue"
-              :error="true"
-              placeholder="Invalid value"
-            />
-            <p class="text-xs text-destructive">
-              This field is required.
-            </p>
+            <Input v-model="errorValue" :error="true" placeholder="Invalid value" />
+            <p class="text-xs text-destructive">This field is required.</p>
           </div>
           <div class="space-y-1.5">
             <Label>Read only</Label>
@@ -95,11 +82,11 @@ const errorValue = ref('')
         </div>
       </DemoSection>
 
-      <!-- File input -->
-      <DemoSection title="File Input">
+      <!-- Telephone input -->
+      <DemoSection title="Telephone Input">
         <div class="max-w-sm space-y-1.5">
-          <Label>Upload file</Label>
-          <Input type="file" />
+          <Label>Phone number</Label>
+          <Input type="tel" placeholder="+1 (555) 000-0000" />
         </div>
       </DemoSection>
     </div>

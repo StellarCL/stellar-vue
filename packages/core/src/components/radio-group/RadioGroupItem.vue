@@ -13,10 +13,12 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
     :id="id"
     :value="value"
     :disabled="disabled"
-    :class="cn(
-      'aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-      props.class,
-    )"
+    :class="
+      cn(
+        'aspect-square h-5 w-5 rounded-full border border-slate-400/70 dark:border-navy-450 text-primary focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+        props.class,
+      )
+    "
   >
     <RadioGroupIndicator class="flex items-center justify-center">
       <div class="h-2.5 w-2.5 rounded-full bg-current" />

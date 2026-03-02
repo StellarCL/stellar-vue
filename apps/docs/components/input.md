@@ -26,6 +26,10 @@ import { Input } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <InputBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Input } from '@stellar-vue-ui/core'
@@ -38,6 +42,9 @@ const value = ref('')
   <Input v-model="value" placeholder="Enter your name" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -85,9 +92,7 @@ Set the `error` prop to `true` to apply destructive styling, indicating a valida
   <div class="grid gap-2">
     <Label for="username">Username</Label>
     <Input id="username" error placeholder="Required field" />
-    <p class="text-sm text-destructive">
-      This field is required.
-    </p>
+    <p class="text-sm text-destructive">This field is required.</p>
   </div>
 </template>
 ```
@@ -114,7 +119,15 @@ Use Input inside the Form component for validation integration:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input } from '@stellar-vue-ui/core'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -136,22 +149,22 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input }
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `'text' \| 'email' \| 'password' \| 'number' \| 'search' \| 'tel' \| 'url'` | `'text'` | The type of the input element |
-| `modelValue` | `string \| number` | `undefined` | The controlled value of the input (for v-model) |
-| `placeholder` | `string` | `undefined` | Placeholder text displayed when the input is empty |
-| `disabled` | `boolean` | `false` | Whether the input is disabled |
-| `required` | `boolean` | `false` | Whether the input is required |
-| `readonly` | `boolean` | `false` | Whether the input is read-only |
-| `error` | `boolean` | `false` | Whether the input is in an error state |
-| `id` | `string` | auto-generated | The id attribute of the input element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes merged via `cn()` |
+| Prop          | Type                                                                        | Default        | Description                                        |
+| ------------- | --------------------------------------------------------------------------- | -------------- | -------------------------------------------------- |
+| `type`        | `'text' \| 'email' \| 'password' \| 'number' \| 'search' \| 'tel' \| 'url'` | `'text'`       | The type of the input element                      |
+| `modelValue`  | `string \| number`                                                          | `undefined`    | The controlled value of the input (for v-model)    |
+| `placeholder` | `string`                                                                    | `undefined`    | Placeholder text displayed when the input is empty |
+| `disabled`    | `boolean`                                                                   | `false`        | Whether the input is disabled                      |
+| `required`    | `boolean`                                                                   | `false`        | Whether the input is required                      |
+| `readonly`    | `boolean`                                                                   | `false`        | Whether the input is read-only                     |
+| `error`       | `boolean`                                                                   | `false`        | Whether the input is in an error state             |
+| `id`          | `string`                                                                    | auto-generated | The id attribute of the input element              |
+| `class`       | `HTMLAttributes['class']`                                                   | `undefined`    | Additional CSS classes merged via `cn()`           |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload            | Description                                                |
+| ------------------- | ------------------ | ---------------------------------------------------------- |
 | `update:modelValue` | `string \| number` | Emitted when the input value changes (for v-model binding) |
 
 ### Slots
@@ -162,9 +175,9 @@ This component does not expose any slots. Content is controlled via the `modelVa
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Tab` | Moves focus to the input |
+| Key                      | Action                     |
+| ------------------------ | -------------------------- |
+| `Tab`                    | Moves focus to the input   |
 | Standard text input keys | Normal text entry behavior |
 
 ### ARIA Attributes

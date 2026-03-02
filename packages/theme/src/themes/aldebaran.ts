@@ -16,6 +16,7 @@ export const aldebaran = defineTheme({
       DEFAULT: 'oklch(55% 0.14 75)',
       foreground: 'oklch(98% 0.005 75)',
     },
+    primaryFocus: 'oklch(48% 0.14 75)',
     secondary: {
       DEFAULT: 'oklch(94% 0.02 75)',
       foreground: 'oklch(18% 0.03 75)',
@@ -28,6 +29,11 @@ export const aldebaran = defineTheme({
       DEFAULT: 'oklch(50% 0.2 27)',
       foreground: 'oklch(98% 0 0)',
     },
+    error: {
+      DEFAULT: 'oklch(50% 0.2 27)',
+      foreground: 'oklch(98% 0 0)',
+    },
+    errorFocus: 'oklch(45% 0.2 27)',
     muted: {
       DEFAULT: 'oklch(95% 0.01 75)',
       foreground: 'oklch(42% 0.02 75)',
@@ -48,13 +54,16 @@ export const aldebaran = defineTheme({
       DEFAULT: 'oklch(42% 0.15 155)',
       foreground: 'oklch(98% 0 0)',
     },
+    successFocus: 'oklch(38% 0.15 155)',
     warning: {
       DEFAULT: 'oklch(82% 0.15 80)',
       foreground: 'oklch(18% 0.05 80)',
     },
+    warningFocus: 'oklch(75% 0.15 80)',
     info: {
       DEFAULT: 'oklch(50% 0.15 245)',
       foreground: 'oklch(98% 0 0)',
     },
+    infoFocus: 'oklch(45% 0.15 245)',
   },
 })

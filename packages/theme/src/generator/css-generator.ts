@@ -12,13 +12,32 @@ export function generateCSS(theme: ThemeConfig): string {
   lines.push(`  --color-background: ${theme.colors.background};`)
   lines.push(`  --color-foreground: ${theme.colors.foreground};`)
 
-  const colorPairs = ['primary', 'secondary', 'accent', 'destructive', 'muted', 'card', 'popover', 'success', 'warning', 'info'] as const
+  const colorPairs = [
+    'primary',
+    'secondary',
+    'accent',
+    'destructive',
+    'error',
+    'muted',
+    'card',
+    'popover',
+    'success',
+    'warning',
+    'info',
+  ] as const
 
   for (const name of colorPairs) {
     const pair = theme.colors[name]
     lines.push(`  --color-${name}: ${pair.DEFAULT};`)
     lines.push(`  --color-${name}-foreground: ${pair.foreground};`)
   }
+
+  // Focus variant tokens
+  lines.push(`  --color-primary-focus: ${theme.colors.primaryFocus};`)
+  lines.push(`  --color-error-focus: ${theme.colors.errorFocus};`)
+  lines.push(`  --color-success-focus: ${theme.colors.successFocus};`)
+  lines.push(`  --color-warning-focus: ${theme.colors.warningFocus};`)
+  lines.push(`  --color-info-focus: ${theme.colors.infoFocus};`)
 
   lines.push(`  --color-border: ${theme.colors.border};`)
   lines.push(`  --color-input: ${theme.colors.input};`)

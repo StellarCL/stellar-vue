@@ -10,6 +10,17 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/nuxt"
   },
+  "keywords": [
+    "vue",
+    "vue3",
+    "nuxt",
+    "nuxt-module",
+    "stellar-vue-ui"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
@@ -21,6 +32,8 @@
   "module": "./dist/module.mjs",
   "types": "./dist/types.d.ts",
   "files": [
+    "LICENSE",
+    "README.md",
     "dist"
   ],
   "scripts": {

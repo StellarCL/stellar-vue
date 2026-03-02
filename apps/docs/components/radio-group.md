@@ -26,6 +26,10 @@ import { RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <RadioGroupBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Label, RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
@@ -51,6 +55,9 @@ const plan = ref('free')
   </RadioGroup>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -115,7 +122,17 @@ Use the `orientation` prop to lay out options horizontally:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Label, RadioGroup, RadioGroupItem } from '@stellar-vue-ui/core'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Label,
+  RadioGroup,
+  RadioGroupItem,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -150,45 +167,45 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Label, 
 
 ### RadioGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | The controlled value (v-model) |
-| `disabled` | `boolean` | `false` | Disables all radio items in the group |
-| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout orientation |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                         | Default      | Description                           |
+| ------------- | ---------------------------- | ------------ | ------------------------------------- |
+| `modelValue`  | `string`                     | `undefined`  | The controlled value (v-model)        |
+| `disabled`    | `boolean`                    | `false`      | Disables all radio items in the group |
+| `orientation` | `'horizontal' \| 'vertical'` | `'vertical'` | Layout orientation                    |
+| `class`       | `HTMLAttributes['class']`    | `undefined`  | Additional CSS classes                |
 
 ### RadioGroupItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | *required* | The value of the radio item |
-| `disabled` | `boolean` | `false` | Prevents interaction with this item |
-| `id` | `string` | `undefined` | The id attribute of the radio element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                           |
+| ---------- | ------------------------- | ----------- | ------------------------------------- |
+| `value`    | `string`                  | _required_  | The value of the radio item           |
+| `disabled` | `boolean`                 | `false`     | Prevents interaction with this item   |
+| `id`       | `string`                  | `undefined` | The id attribute of the radio element |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                             |
+| ------------------- | -------- | --------------------------------------- |
 | `update:modelValue` | `string` | Emitted when the selected value changes |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `RadioGroup` | `default` | RadioGroupItem elements |
-| `RadioGroupItem` | -- | No slots; the indicator circle is rendered internally |
+| Component        | Slot      | Description                                           |
+| ---------------- | --------- | ----------------------------------------------------- |
+| `RadioGroup`     | `default` | RadioGroupItem elements                               |
+| `RadioGroupItem` | --        | No slots; the indicator circle is rendered internally |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Tab` | Moves focus into and out of the radio group |
-| `ArrowDown` / `ArrowRight` | Moves focus and selection to next item |
-| `ArrowUp` / `ArrowLeft` | Moves focus and selection to previous item |
-| `Space` | Selects the focused item |
+| Key                        | Action                                      |
+| -------------------------- | ------------------------------------------- |
+| `Tab`                      | Moves focus into and out of the radio group |
+| `ArrowDown` / `ArrowRight` | Moves focus and selection to next item      |
+| `ArrowUp` / `ArrowLeft`    | Moves focus and selection to previous item  |
+| `Space`                    | Selects the focused item                    |
 
 ### ARIA Attributes
 

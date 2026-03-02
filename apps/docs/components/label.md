@@ -26,6 +26,10 @@ import { Label } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <LabelBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Label } from '@stellar-vue-ui/core'
@@ -35,6 +39,9 @@ import { Label } from '@stellar-vue-ui/core'
   <Label for="name">Full Name</Label>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -85,11 +92,11 @@ import { Checkbox, Label } from '@stellar-vue-ui/core'
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `for` | `string` | `undefined` | The id of the form element this label is associated with |
-| `required` | `boolean` | `false` | Whether to show a required asterisk indicator |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes merged via `cn()` |
+| Prop       | Type                      | Default     | Description                                              |
+| ---------- | ------------------------- | ----------- | -------------------------------------------------------- |
+| `for`      | `string`                  | `undefined` | The id of the form element this label is associated with |
+| `required` | `boolean`                 | `false`     | Whether to show a required asterisk indicator            |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes merged via `cn()`                 |
 
 ### Events
 
@@ -97,8 +104,8 @@ This component does not emit any custom events.
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
+| Slot      | Description        |
+| --------- | ------------------ |
 | `default` | Label text content |
 
 ## Accessibility

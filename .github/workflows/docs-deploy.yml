@@ -22,6 +22,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @stellar-vue-ui/core --filter @stellar-vue-ui/theme build
       - run: pnpm --filter @stellar-vue-ui/docs build
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3

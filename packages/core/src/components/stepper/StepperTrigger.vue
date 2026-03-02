@@ -18,18 +18,15 @@ const stepConfig = computed(() => context.steps[props.step - 1])
 
 const circleClasses = computed(() =>
   cn(
-    'flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2',
+    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 font-inter tracking-wide',
     isActive.value && 'border-primary bg-primary text-primary-foreground',
     isCompleted.value && 'border-primary bg-primary text-primary-foreground',
-    !isActive.value && !isCompleted.value && 'border-muted-foreground/25',
+    !isActive.value && !isCompleted.value && 'border-slate-300 dark:border-navy-500',
   ),
 )
 
 const triggerClasses = computed(() =>
-  cn(
-    'flex flex-col items-center gap-1 cursor-pointer',
-    props.class,
-  ),
+  cn('flex flex-col items-center gap-1 cursor-pointer', props.class),
 )
 
 function handleClick() {
@@ -60,8 +57,13 @@ function handleClick() {
       <component :is="stepConfig?.icon" v-else-if="stepConfig?.icon" />
       <span v-else class="text-sm font-semibold">{{ step }}</span>
     </span>
-    <span class="text-xs font-medium text-center">{{ stepConfig?.title }}</span>
-    <span v-if="stepConfig?.description" class="text-xs text-muted-foreground text-center">
+    <span class="text-xs font-medium text-center font-inter tracking-wide">{{
+      stepConfig?.title
+    }}</span>
+    <span
+      v-if="stepConfig?.description"
+      class="text-xs text-muted-foreground text-center font-inter tracking-wide"
+    >
       {{ stepConfig.description }}
     </span>
   </button>

@@ -17,10 +17,7 @@ async function mountOpenSheet(template: string, components: Record<string, objec
   document.body.innerHTML = ''
   const div = document.createElement('div')
   document.body.appendChild(div)
-  const wrapper = mount(
-    { components, template },
-    { attachTo: div },
-  )
+  const wrapper = mount({ components, template }, { attachTo: div })
   await nextTick()
   return { wrapper, div }
 }
@@ -147,8 +144,7 @@ describe('sheetTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    }
-    else {
+    } else {
       expect(wrapper.text()).toContain('Title')
     }
   })
@@ -180,8 +176,7 @@ describe('sheetDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    }
-    else {
+    } else {
       expect(wrapper.text()).toContain('Description')
     }
   })
@@ -389,7 +384,7 @@ describe('sheetContent', () => {
       { Sheet, SheetContent },
     )
     const html = document.body.innerHTML
-    expect(html).toContain('bg-black')
+    expect(html).toContain('bg-slate-900/60')
     wrapper.unmount()
     document.body.innerHTML = ''
   })
@@ -400,8 +395,7 @@ describe('sheetContent', () => {
       { Sheet, SheetContent },
     )
     const html = document.body.innerHTML
-    const hasCloseButton
-      = html.includes('sr-only') || wrapper.findComponent(SheetContent).exists()
+    const hasCloseButton = html.includes('sr-only') || wrapper.findComponent(SheetContent).exists()
     expect(hasCloseButton).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
@@ -442,8 +436,7 @@ describe('sheet — opens on trigger click', () => {
     await nextTick()
     const html = document.body.innerHTML
     // The sheet content should be in the DOM after trigger click
-    const hasContent
-      = html.includes('Sheet body') || wrapper.findComponent(SheetContent).exists()
+    const hasContent = html.includes('Sheet body') || wrapper.findComponent(SheetContent).exists()
     expect(hasContent).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''

@@ -10,6 +10,7 @@ build/
 .nuxt/
 .next/
 out/
+.vitepress/cache/
 
 # Turbo cache
 .turbo/

@@ -36,6 +36,12 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <ClientOnly>
+    <CommandBasic />
+  </ClientOnly>
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import {
@@ -62,6 +68,9 @@ import {
   </Command>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -97,9 +106,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeydown))
 </script>
 
 <template>
-  <p class="text-sm text-muted-foreground">
-    Press <kbd>Cmd+K</kbd> to open the command palette.
-  </p>
+  <p class="text-sm text-muted-foreground">Press <kbd>Cmd+K</kbd> to open the command palette.</p>
 
   <CommandDialog v-model:open="open">
     <CommandInput placeholder="Type a command or search..." />
@@ -158,9 +165,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeydown))
       <CommandGroup heading="Actions">
         <CommandItem>Copy</CommandItem>
         <CommandItem>Paste</CommandItem>
-        <CommandItem disabled>
-          Delete (no permission)
-        </CommandItem>
+        <CommandItem disabled> Delete (no permission) </CommandItem>
       </CommandGroup>
     </CommandList>
   </Command>
@@ -171,71 +176,71 @@ onUnmounted(() => document.removeEventListener('keydown', handleKeydown))
 
 ### Command Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `placeholder` | `string` | `undefined` | Placeholder override for CommandInput |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                      | Default     | Description                           |
+| ------------- | ------------------------- | ----------- | ------------------------------------- |
+| `placeholder` | `string`                  | `undefined` | Placeholder override for CommandInput |
+| `class`       | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                |
 
 ### CommandDialog Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `open` | `boolean` | `false` | Controlled open state (v-model:open) |
+| Prop    | Type                      | Default     | Description                                 |
+| ------- | ------------------------- | ----------- | ------------------------------------------- |
+| `open`  | `boolean`                 | `false`     | Controlled open state (v-model:open)        |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes for the Command root |
 
 ### CommandInput Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `placeholder` | `string` | `'Search...'` | Placeholder text |
-| `modelValue` | `string` | `''` | Input value (v-model) |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                      | Default       | Description            |
+| ------------- | ------------------------- | ------------- | ---------------------- |
+| `placeholder` | `string`                  | `'Search...'` | Placeholder text       |
+| `modelValue`  | `string`                  | `''`          | Input value (v-model)  |
+| `class`       | `HTMLAttributes['class']` | `undefined`   | Additional CSS classes |
 
 ### CommandGroup Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `heading` | `string` | `undefined` | Group heading label |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description            |
+| --------- | ------------------------- | ----------- | ---------------------- |
+| `heading` | `string`                  | `undefined` | Group heading label    |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### CommandItem Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | `undefined` | Value used for filtering. Falls back to text content. |
-| `disabled` | `boolean` | `false` | Prevents selection |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop       | Type                      | Default     | Description                                           |
+| ---------- | ------------------------- | ----------- | ----------------------------------------------------- |
+| `value`    | `string`                  | `undefined` | Value used for filtering. Falls back to text content. |
+| `disabled` | `boolean`                 | `false`     | Prevents selection                                    |
+| `class`    | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                                |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event         | Payload   | Description                                   |
+| ------------- | --------- | --------------------------------------------- |
 | `update:open` | `boolean` | Emitted when CommandDialog open state changes |
-| `select` | -- | Emitted when a CommandItem is selected |
+| `select`      | --        | Emitted when a CommandItem is selected        |
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Command` | `default` | CommandInput, CommandList |
-| `CommandDialog` | `default` | CommandInput, CommandList |
-| `CommandList` | `default` | CommandGroup, CommandEmpty, CommandSeparator |
-| `CommandGroup` | `default` | CommandItem elements |
-| `CommandItem` | `default` | Item label and optional CommandShortcut |
-| `CommandShortcut` | `default` | Keyboard shortcut text |
-| `CommandEmpty` | `default` | Content shown when no items match |
+| Component         | Slot      | Description                                  |
+| ----------------- | --------- | -------------------------------------------- |
+| `Command`         | `default` | CommandInput, CommandList                    |
+| `CommandDialog`   | `default` | CommandInput, CommandList                    |
+| `CommandList`     | `default` | CommandGroup, CommandEmpty, CommandSeparator |
+| `CommandGroup`    | `default` | CommandItem elements                         |
+| `CommandItem`     | `default` | Item label and optional CommandShortcut      |
+| `CommandShortcut` | `default` | Keyboard shortcut text                       |
+| `CommandEmpty`    | `default` | Content shown when no items match            |
 
 ## Accessibility
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `ArrowDown` | Moves highlight to next item |
-| `ArrowUp` | Moves highlight to previous item |
-| `Enter` | Selects the highlighted item |
-| `Escape` | Closes the command dialog |
-| Type-ahead | Filters items in real-time |
+| Key         | Action                           |
+| ----------- | -------------------------------- |
+| `ArrowDown` | Moves highlight to next item     |
+| `ArrowUp`   | Moves highlight to previous item |
+| `Enter`     | Selects the highlighted item     |
+| `Escape`    | Closes the command dialog        |
+| Type-ahead  | Filters items in real-time       |
 
 ### ARIA Attributes
 

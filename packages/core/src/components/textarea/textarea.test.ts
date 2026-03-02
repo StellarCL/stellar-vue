@@ -41,7 +41,7 @@ describe('textarea', () => {
   it('applies error state classes when error is true', () => {
     const wrapper = mount(Textarea, { props: { error: true } })
     expect(wrapper.classes().join(' ')).toContain('border-destructive')
-    expect(wrapper.classes().join(' ')).toContain('focus-visible:ring-destructive')
+    expect(wrapper.classes().join(' ')).toContain('focus:border-destructive')
   })
 
   it('does not apply error classes by default', () => {

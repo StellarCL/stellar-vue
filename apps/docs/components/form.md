@@ -18,9 +18,11 @@ pnpm add @stellar-vue-ui/core
 
 ::: tip
 The Form component depends on `vee-validate` for field validation. Install it as a peer dependency:
+
 ```bash
 pnpm add vee-validate
 ```
+
 :::
 
 ## Import
@@ -41,16 +43,32 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <FormBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
-import { Button, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Input } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+} from '@stellar-vue-ui/core'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import * as z from 'zod'
 
-const formSchema = toTypedSchema(z.object({
-  username: z.string().min(2, 'Username must be at least 2 characters'),
-}))
+const formSchema = toTypedSchema(
+  z.object({
+    username: z.string().min(2, 'Username must be at least 2 characters'),
+  }),
+)
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema,
@@ -73,12 +91,13 @@ const onSubmit = handleSubmit((values) => {
         <FormMessage />
       </FormItem>
     </FormField>
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -86,7 +105,22 @@ const onSubmit = handleSubmit((values) => {
 
 ```vue
 <script setup lang="ts">
-import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Textarea } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Textarea,
+} from '@stellar-vue-ui/core'
 import { useForm } from 'vee-validate'
 </script>
 
@@ -122,9 +156,7 @@ import { useForm } from 'vee-validate'
       </FormItem>
     </FormField>
 
-    <Button type="submit">
-      Save profile
-    </Button>
+    <Button type="submit"> Save profile </Button>
   </Form>
 </template>
 ```
@@ -133,7 +165,18 @@ import { useForm } from 'vee-validate'
 
 ```vue
 <script setup lang="ts">
-import { Button, Checkbox, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Switch } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Checkbox,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Switch,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -163,9 +206,7 @@ import { Button, Checkbox, Form, FormControl, FormDescription, FormField, FormIt
       </FormItem>
     </FormField>
 
-    <Button type="submit">
-      Submit
-    </Button>
+    <Button type="submit"> Submit </Button>
   </Form>
 </template>
 ```
@@ -174,49 +215,49 @@ import { Button, Checkbox, Form, FormControl, FormDescription, FormField, FormIt
 
 ### Form Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### FormField Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | *required* | Field name for VeeValidate registration |
+| Prop   | Type     | Default    | Description                             |
+| ------ | -------- | ---------- | --------------------------------------- |
+| `name` | `string` | _required_ | Field name for VeeValidate registration |
 
 ### FormItem, FormLabel, FormControl, FormDescription, FormMessage Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event    | Payload | Description                  |
+| -------- | ------- | ---------------------------- |
 | `submit` | `Event` | Native form submission event |
 
 ### Slots
 
-| Component | Slot | Props | Description |
-|-----------|------|-------|-------------|
-| `Form` | `default` | -- | FormField elements and submit button |
-| `FormField` | `default` | `{ field, error, meta }` | Field binding object, error message, and VeeValidate meta |
-| `FormItem` | `default` | -- | Label, control, description, message |
-| `FormLabel` | `default` | -- | Label text |
-| `FormControl` | `default` | -- | The form control (Input, Select, etc.) |
-| `FormDescription` | `default` | -- | Help text below the control |
-| `FormMessage` | `default` | -- | Validation error message (auto-populated from VeeValidate) |
+| Component         | Slot      | Props                    | Description                                                |
+| ----------------- | --------- | ------------------------ | ---------------------------------------------------------- |
+| `Form`            | `default` | --                       | FormField elements and submit button                       |
+| `FormField`       | `default` | `{ field, error, meta }` | Field binding object, error message, and VeeValidate meta  |
+| `FormItem`        | `default` | --                       | Label, control, description, message                       |
+| `FormLabel`       | `default` | --                       | Label text                                                 |
+| `FormControl`     | `default` | --                       | The form control (Input, Select, etc.)                     |
+| `FormDescription` | `default` | --                       | Help text below the control                                |
+| `FormMessage`     | `default` | --                       | Validation error message (auto-populated from VeeValidate) |
 
 ### FormField Slot Props
 
 The `FormField` scoped slot exposes:
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `field` | `object` | Binding object with `name`, `modelValue`, `onUpdate:modelValue`, `onBlur` |
-| `error` | `string \| undefined` | Current validation error message |
-| `meta` | `FieldMeta` | VeeValidate field metadata (touched, dirty, valid, etc.) |
+| Prop    | Type                  | Description                                                               |
+| ------- | --------------------- | ------------------------------------------------------------------------- |
+| `field` | `object`              | Binding object with `name`, `modelValue`, `onUpdate:modelValue`, `onBlur` |
+| `error` | `string \| undefined` | Current validation error message                                          |
+| `meta`  | `FieldMeta`           | VeeValidate field metadata (touched, dirty, valid, etc.)                  |
 
 ## Accessibility
 

@@ -26,6 +26,10 @@ import { Textarea } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <TextareaBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Textarea } from '@stellar-vue-ui/core'
@@ -38,6 +42,9 @@ const message = ref('')
   <Textarea v-model="message" placeholder="Type your message here" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -78,9 +85,7 @@ Set the `error` prop to apply destructive styling:
   <div class="grid gap-2">
     <Label for="comment">Comment</Label>
     <Textarea id="comment" error placeholder="Required field" />
-    <p class="text-sm text-destructive">
-      Please enter a comment.
-    </p>
+    <p class="text-sm text-destructive">Please enter a comment.</p>
   </div>
 </template>
 ```
@@ -105,7 +110,16 @@ Set the `error` prop to apply destructive styling:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Textarea } from '@stellar-vue-ui/core'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Textarea,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -116,9 +130,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
         <FormControl>
           <Textarea placeholder="Tell us a little about yourself" v-bind="field" />
         </FormControl>
-        <FormDescription>
-          You can use up to 500 characters.
-        </FormDescription>
+        <FormDescription> You can use up to 500 characters. </FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
@@ -130,22 +142,22 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `undefined` | The controlled value (v-model) |
-| `placeholder` | `string` | `undefined` | Placeholder text |
-| `disabled` | `boolean` | `false` | Whether the textarea is disabled |
-| `required` | `boolean` | `false` | Whether the textarea is required |
-| `readonly` | `boolean` | `false` | Whether the textarea is read-only |
-| `error` | `boolean` | `false` | Whether the textarea is in an error state |
-| `rows` | `number` | `3` | The number of visible text rows |
-| `id` | `string` | auto-generated | The id attribute of the textarea element |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes merged via `cn()` |
+| Prop          | Type                      | Default        | Description                               |
+| ------------- | ------------------------- | -------------- | ----------------------------------------- |
+| `modelValue`  | `string`                  | `undefined`    | The controlled value (v-model)            |
+| `placeholder` | `string`                  | `undefined`    | Placeholder text                          |
+| `disabled`    | `boolean`                 | `false`        | Whether the textarea is disabled          |
+| `required`    | `boolean`                 | `false`        | Whether the textarea is required          |
+| `readonly`    | `boolean`                 | `false`        | Whether the textarea is read-only         |
+| `error`       | `boolean`                 | `false`        | Whether the textarea is in an error state |
+| `rows`        | `number`                  | `3`            | The number of visible text rows           |
+| `id`          | `string`                  | auto-generated | The id attribute of the textarea element  |
+| `class`       | `HTMLAttributes['class']` | `undefined`    | Additional CSS classes merged via `cn()`  |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                             |
+| ------------------- | -------- | --------------------------------------- |
 | `update:modelValue` | `string` | Emitted when the textarea value changes |
 
 ### Slots
@@ -156,10 +168,10 @@ This component does not expose any slots.
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Tab` | Moves focus to the textarea |
-| Standard text input keys | Normal text entry behavior |
+| Key                      | Action                      |
+| ------------------------ | --------------------------- |
+| `Tab`                    | Moves focus to the textarea |
+| Standard text input keys | Normal text entry behavior  |
 
 ### ARIA Attributes
 

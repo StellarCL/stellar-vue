@@ -29,12 +29,10 @@ const items = [
       <!-- Basic -->
       <DemoSection title="Basic Checkbox">
         <div class="flex items-center gap-2">
-          <Checkbox id="basic-checkbox" v-model:checked="checked" />
+          <Checkbox id="basic-checkbox" v-model="checked" />
           <Label for="basic-checkbox">Accept terms and conditions</Label>
         </div>
-        <p class="mt-2 text-xs text-muted-foreground">
-          State: {{ checked }}
-        </p>
+        <p class="mt-2 text-xs text-muted-foreground">State: {{ checked }}</p>
       </DemoSection>
 
       <!-- States -->
@@ -45,11 +43,11 @@ const items = [
             <Label for="cb-unchecked">Unchecked</Label>
           </div>
           <div class="flex items-center gap-2">
-            <Checkbox id="cb-checked" :default-checked="true" />
+            <Checkbox id="cb-checked" :model-value="true" />
             <Label for="cb-checked">Checked (default)</Label>
           </div>
           <div class="flex items-center gap-2">
-            <Checkbox id="cb-indeterminate" checked="indeterminate" />
+            <Checkbox id="cb-indeterminate" :model-value="'indeterminate'" />
             <Label for="cb-indeterminate">Indeterminate</Label>
           </div>
           <div class="flex items-center gap-2">
@@ -57,7 +55,7 @@ const items = [
             <Label for="cb-disabled" class="opacity-50">Disabled unchecked</Label>
           </div>
           <div class="flex items-center gap-2">
-            <Checkbox id="cb-disabled-checked" :disabled="true" :default-checked="true" />
+            <Checkbox id="cb-disabled-checked" :disabled="true" :model-value="true" />
             <Label for="cb-disabled-checked" class="opacity-50">Disabled checked</Label>
           </div>
         </div>
@@ -69,11 +67,13 @@ const items = [
           <div v-for="item in items" :key="item.id" class="flex items-center gap-2">
             <Checkbox
               :id="item.id"
-              :checked="selectedItems.includes(item.id)"
-              @update:checked="(val) => {
-                if (val) selectedItems.push(item.id)
-                else selectedItems = selectedItems.filter(i => i !== item.id)
-              }"
+              :model-value="selectedItems.includes(item.id)"
+              @update:model-value="
+                (val: boolean | 'indeterminate') => {
+                  if (val === true) selectedItems.push(item.id)
+                  else selectedItems = selectedItems.filter((i) => i !== item.id)
+                }
+              "
             />
             <Label :for="item.id">{{ item.label }}</Label>
           </div>

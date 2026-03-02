@@ -1,6 +1,14 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '.'
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '.'
 
 describe('breadcrumb', () => {
   it('renders a nav element', () => {
@@ -114,9 +122,9 @@ describe('breadcrumbLink', () => {
     expect(wrapper.classes()).toContain('transition-colors')
   })
 
-  it('applies hover:text-foreground class', () => {
+  it('applies hover:text-primary class', () => {
     const wrapper = mount(BreadcrumbLink)
-    expect(wrapper.classes()).toContain('hover:text-foreground')
+    expect(wrapper.classes()).toContain('hover:text-primary')
   })
 
   it('accepts custom class', () => {
@@ -306,7 +314,13 @@ describe('breadcrumb composition', () => {
 
   it('renders with custom separator slot', () => {
     const wrapper = mount({
-      components: { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator },
+      components: {
+        Breadcrumb,
+        BreadcrumbList,
+        BreadcrumbItem,
+        BreadcrumbLink,
+        BreadcrumbSeparator,
+      },
       template: `
         <Breadcrumb>
           <BreadcrumbList>

@@ -26,15 +26,17 @@ const emit = defineEmits<{
     :step="step"
     :disabled="disabled"
     :orientation="orientation"
-    :class="cn(
-      'relative flex w-full touch-none select-none items-center',
-      orientation === 'vertical' && 'flex-col h-full w-auto',
-      props.class,
-    )"
+    :class="
+      cn(
+        'relative flex w-full touch-none select-none items-center',
+        orientation === 'vertical' && 'flex-col h-full w-auto',
+        props.class,
+      )
+    "
     @update:model-value="$emit('update:modelValue', $event as number[])"
   >
     <SliderTrack
-      class="relative grow overflow-hidden rounded-full bg-secondary"
+      class="relative grow overflow-hidden rounded-full bg-slate-150 dark:bg-navy-500"
       :class="orientation === 'vertical' ? 'w-2 h-full' : 'h-2 w-full'"
     >
       <SliderRange
@@ -45,7 +47,7 @@ const emit = defineEmits<{
     <SliderThumb
       v-for="(_, index) in modelValue"
       :key="index"
-      class="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+      class="block h-5 w-5 rounded-full border-2 border-primary bg-background transition-colors focus:outline-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
     />
   </SliderRoot>
 </template>

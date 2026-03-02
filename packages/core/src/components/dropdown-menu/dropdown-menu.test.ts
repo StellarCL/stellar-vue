@@ -22,8 +22,7 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    }
-    catch {}
+    } catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content
@@ -31,11 +30,11 @@ afterEach(() => {
 })
 
 // Mount a component open, attached to document.body, flush DOM updates, and return body innerHTML
-async function mountOpenToBody(template: string, components: Record<string, object>): Promise<string> {
-  const wrapper = mount(
-    { components, template },
-    { attachTo: document.body },
-  )
+async function mountOpenToBody(
+  template: string,
+  components: Record<string, object>,
+): Promise<string> {
+  const wrapper = mount({ components, template }, { attachTo: document.body })
   wrappers.push(wrapper)
   await flushPromises()
   return document.body.innerHTML
@@ -92,7 +91,7 @@ describe('dropdownMenuContent', () => {
     )
     expect(bodyHtml).toContain('z-50')
     expect(bodyHtml).toContain('min-w-')
-    expect(bodyHtml).toContain('rounded-md')
+    expect(bodyHtml).toContain('rounded-lg')
   })
 
   it('renders without crashing inside DropdownMenu context', () => {
@@ -186,7 +185,13 @@ describe('dropdownMenuRadioItem', () => {
   it('renders with indicator area inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuRadioGroup model-value="a"><DropdownMenuRadioItem value="a">Option A</DropdownMenuRadioItem></DropdownMenuRadioGroup></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuRadioGroup,
+        DropdownMenuRadioItem,
+      },
     )
     // Indicator area (span with absolute positioning)
     expect(bodyHtml).toContain('absolute')
@@ -195,7 +200,13 @@ describe('dropdownMenuRadioItem', () => {
   it('renders slot content', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuRadioGroup model-value="b"><DropdownMenuRadioItem value="b">Option B</DropdownMenuRadioItem></DropdownMenuRadioGroup></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuRadioGroup,
+        DropdownMenuRadioItem,
+      },
     )
     expect(bodyHtml).toContain('Option B')
   })
@@ -203,7 +214,13 @@ describe('dropdownMenuRadioItem', () => {
   it('merges custom classes', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuRadioGroup model-value="a"><DropdownMenuRadioItem value="a" class="custom-radio">Option A</DropdownMenuRadioItem></DropdownMenuRadioGroup></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuRadioGroup,
+        DropdownMenuRadioItem,
+      },
     )
     expect(bodyHtml).toContain('custom-radio')
   })
@@ -241,7 +258,7 @@ describe('dropdownMenuSeparator', () => {
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSeparator /></DropdownMenuContent></DropdownMenu>`,
       { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator },
     )
-    expect(bodyHtml).toContain('bg-muted')
+    expect(bodyHtml).toContain('bg-slate-150')
   })
 
   it('merges custom classes', async () => {
@@ -335,7 +352,13 @@ describe('dropdownMenuSubTrigger', () => {
   it('shows chevron icon inside DropdownMenu context', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSub><DropdownMenuSubTrigger>More</DropdownMenuSubTrigger></DropdownMenuSub></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubTrigger },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuSub,
+        DropdownMenuSubTrigger,
+      },
     )
     // SVG chevron polyline should be present
     expect(bodyHtml).toContain('polyline')
@@ -344,7 +367,13 @@ describe('dropdownMenuSubTrigger', () => {
   it('renders slot text content', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSub><DropdownMenuSubTrigger>More Options</DropdownMenuSubTrigger></DropdownMenuSub></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubTrigger },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuSub,
+        DropdownMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('More Options')
   })
@@ -352,7 +381,13 @@ describe('dropdownMenuSubTrigger', () => {
   it('inset adds pl-8 class', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSub><DropdownMenuSubTrigger :inset="true">More</DropdownMenuSubTrigger></DropdownMenuSub></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubTrigger },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuSub,
+        DropdownMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('pl-8')
   })
@@ -360,7 +395,13 @@ describe('dropdownMenuSubTrigger', () => {
   it('merges custom classes', async () => {
     const bodyHtml = await mountOpenToBody(
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSub><DropdownMenuSubTrigger class="custom-sub-trigger">More</DropdownMenuSubTrigger></DropdownMenuSub></DropdownMenuContent></DropdownMenu>`,
-      { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSub, DropdownMenuSubTrigger },
+      {
+        DropdownMenu,
+        DropdownMenuTrigger,
+        DropdownMenuContent,
+        DropdownMenuSub,
+        DropdownMenuSubTrigger,
+      },
     )
     expect(bodyHtml).toContain('custom-sub-trigger')
   })

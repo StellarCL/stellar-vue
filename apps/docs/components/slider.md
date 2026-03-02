@@ -26,6 +26,10 @@ import { Slider } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <SliderBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Slider } from '@stellar-vue-ui/core'
@@ -38,6 +42,9 @@ const value = ref([50])
   <Slider v-model="value" :max="100" :step="1" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -129,20 +136,20 @@ const value = ref([50])
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `number[]` | `[0]` | Current value(s). Use a single-element array for single slider, two elements for a range. |
-| `min` | `number` | `0` | Minimum value |
-| `max` | `number` | `100` | Maximum value |
-| `step` | `number` | `1` | Step increment |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the slider |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop          | Type                         | Default        | Description                                                                               |
+| ------------- | ---------------------------- | -------------- | ----------------------------------------------------------------------------------------- |
+| `modelValue`  | `number[]`                   | `[0]`          | Current value(s). Use a single-element array for single slider, two elements for a range. |
+| `min`         | `number`                     | `0`            | Minimum value                                                                             |
+| `max`         | `number`                     | `100`          | Maximum value                                                                             |
+| `step`        | `number`                     | `1`            | Step increment                                                                            |
+| `disabled`    | `boolean`                    | `false`        | Prevents interaction                                                                      |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Orientation of the slider                                                                 |
+| `class`       | `HTMLAttributes['class']`    | `undefined`    | Additional CSS classes                                                                    |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload    | Description                             |
+| ------------------- | ---------- | --------------------------------------- |
 | `update:modelValue` | `number[]` | Emitted when the slider value(s) change |
 
 ### Slots
@@ -153,14 +160,14 @@ This component does not expose any slots. The track, range, and thumb(s) are ren
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `ArrowRight` / `ArrowUp` | Increases the value by one step |
-| `ArrowLeft` / `ArrowDown` | Decreases the value by one step |
-| `Home` | Sets the value to the minimum |
-| `End` | Sets the value to the maximum |
-| `Page Up` | Increases the value by a large step |
-| `Page Down` | Decreases the value by a large step |
+| Key                       | Action                              |
+| ------------------------- | ----------------------------------- |
+| `ArrowRight` / `ArrowUp`  | Increases the value by one step     |
+| `ArrowLeft` / `ArrowDown` | Decreases the value by one step     |
+| `Home`                    | Sets the value to the minimum       |
+| `End`                     | Sets the value to the maximum       |
+| `Page Up`                 | Increases the value by a large step |
+| `Page Down`               | Decreases the value by a large step |
 
 ### ARIA Attributes
 

@@ -45,7 +45,7 @@ provide(STEPPER_INJECTION_KEY, {
 
 const classes = computed(() =>
   cn(
-    props.orientation === 'vertical' ? 'flex flex-col' : 'flex',
+    props.orientation === 'vertical' ? 'flex flex-col gap-2' : 'flex items-center gap-2',
     props.class,
   ),
 )

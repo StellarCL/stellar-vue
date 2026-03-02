@@ -26,6 +26,10 @@ import { Switch } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <SwitchBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Label, Switch } from '@stellar-vue-ui/core'
@@ -41,6 +45,9 @@ const enabled = ref(false)
   </div>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -67,11 +74,11 @@ Three sizes are available via the `size` prop:
 </template>
 ```
 
-| Size | Dimensions | Thumb Size | Description |
-|------|-----------|------------|-------------|
-| `sm` | `h-5 w-9` | `h-4 w-4` | Compact size for dense UIs |
-| `md` | `h-6 w-11` | `h-5 w-5` | Default size |
-| `lg` | `h-7 w-[3.25rem]` | `h-6 w-6` | Larger size for prominent toggles |
+| Size | Dimensions        | Thumb Size | Description                       |
+| ---- | ----------------- | ---------- | --------------------------------- |
+| `sm` | `h-5 w-9`         | `h-4 w-4`  | Compact size for dense UIs        |
+| `md` | `h-6 w-11`        | `h-5 w-5`  | Default size                      |
+| `lg` | `h-7 w-[3.25rem]` | `h-6 w-6`  | Larger size for prominent toggles |
 
 ### Disabled
 
@@ -88,7 +95,15 @@ Three sizes are available via the `size` prop:
 
 ```vue
 <script setup lang="ts">
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Switch } from '@stellar-vue-ui/core'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  Switch,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -112,17 +127,17 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Swi
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean` | `false` | The checked state (v-model) |
-| `disabled` | `boolean` | `false` | Prevents interaction |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Size of the switch |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop         | Type                      | Default     | Description                 |
+| ------------ | ------------------------- | ----------- | --------------------------- |
+| `modelValue` | `boolean`                 | `false`     | The checked state (v-model) |
+| `disabled`   | `boolean`                 | `false`     | Prevents interaction        |
+| `size`       | `'sm' \| 'md' \| 'lg'`    | `'md'`      | Size of the switch          |
+| `class`      | `HTMLAttributes['class']` | `undefined` | Additional CSS classes      |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload   | Description                            |
+| ------------------- | --------- | -------------------------------------- |
 | `update:modelValue` | `boolean` | Emitted when the checked state changes |
 
 ### Slots
@@ -133,11 +148,11 @@ This component does not expose any slots. The thumb is rendered internally.
 
 ### Keyboard Interaction
 
-| Key | Action |
-|-----|--------|
-| `Space` | Toggles the switch |
-| `Enter` | Toggles the switch |
-| `Tab` | Moves focus to/from the switch |
+| Key     | Action                         |
+| ------- | ------------------------------ |
+| `Space` | Toggles the switch             |
+| `Enter` | Toggles the switch             |
+| `Tab`   | Moves focus to/from the switch |
 
 ### ARIA Attributes
 

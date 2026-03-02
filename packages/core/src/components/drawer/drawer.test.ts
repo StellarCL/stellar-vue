@@ -17,10 +17,7 @@ async function mountOpenDrawer(template: string, components: Record<string, obje
   document.body.innerHTML = ''
   const div = document.createElement('div')
   document.body.appendChild(div)
-  const wrapper = mount(
-    { components, template },
-    { attachTo: div },
-  )
+  const wrapper = mount({ components, template }, { attachTo: div })
   await nextTick()
   return { wrapper, div }
 }
@@ -147,8 +144,7 @@ describe('drawerTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    }
-    else {
+    } else {
       expect(wrapper.text()).toContain('Title')
     }
   })
@@ -180,8 +176,7 @@ describe('drawerDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    }
-    else {
+    } else {
       expect(wrapper.text()).toContain('Description')
     }
   })
@@ -323,7 +318,7 @@ describe('drawerContent', () => {
       { Drawer, DrawerContent },
     )
     const html = document.body.innerHTML
-    expect(html).toContain('bg-black')
+    expect(html).toContain('bg-slate-900/60')
     wrapper.unmount()
     document.body.innerHTML = ''
   })
@@ -334,8 +329,7 @@ describe('drawerContent', () => {
       { Drawer, DrawerContent },
     )
     const html = document.body.innerHTML
-    const hasCloseButton
-      = html.includes('sr-only') || wrapper.findComponent(DrawerContent).exists()
+    const hasCloseButton = html.includes('sr-only') || wrapper.findComponent(DrawerContent).exists()
     expect(hasCloseButton).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''
@@ -376,8 +370,7 @@ describe('drawer — opens on trigger click', () => {
     await nextTick()
     const html = document.body.innerHTML
     // The drawer content should be in the DOM after trigger click
-    const hasContent
-      = html.includes('Drawer body') || wrapper.findComponent(DrawerContent).exists()
+    const hasContent = html.includes('Drawer body') || wrapper.findComponent(DrawerContent).exists()
     expect(hasContent).toBe(true)
     wrapper.unmount()
     document.body.innerHTML = ''

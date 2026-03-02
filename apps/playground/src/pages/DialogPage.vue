@@ -15,6 +15,8 @@ import {
 import { ref } from 'vue'
 import DemoSection from '../components/DemoSection.vue'
 import PageHeader from '../components/PageHeader.vue'
+
+const controlledOpen = ref(false)
 </script>
 
 <template>
@@ -35,19 +37,15 @@ import PageHeader from '../components/PageHeader.vue'
             <DialogHeader>
               <DialogTitle>Are you absolutely sure?</DialogTitle>
               <DialogDescription>
-                This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers.
+                This action cannot be undone. This will permanently delete your account and remove
+                your data from our servers.
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <DialogClose as-child>
-                <Button variant="outline">
-                  Cancel
-                </Button>
+                <Button variant="outline"> Cancel </Button>
               </DialogClose>
-              <Button variant="destructive">
-                Delete Account
-              </Button>
+              <Button variant="destructive"> Delete Account </Button>
             </DialogFooter>
           </DialogContent>
         </Dialog>
@@ -57,9 +55,7 @@ import PageHeader from '../components/PageHeader.vue'
       <DemoSection title="Dialog with Form">
         <Dialog>
           <DialogTrigger as-child>
-            <Button variant="outline">
-              Edit Profile
-            </Button>
+            <Button variant="outline"> Edit Profile </Button>
           </DialogTrigger>
           <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
@@ -80,9 +76,7 @@ import PageHeader from '../components/PageHeader.vue'
             </div>
             <DialogFooter>
               <DialogClose as-child>
-                <Button variant="outline">
-                  Cancel
-                </Button>
+                <Button variant="outline"> Cancel </Button>
               </DialogClose>
               <Button>Save changes</Button>
             </DialogFooter>
@@ -92,12 +86,10 @@ import PageHeader from '../components/PageHeader.vue'
 
       <!-- Controlled Dialog -->
       <DemoSection title="Controlled (v-model:open)">
-        <div>
-          <Dialog :open="ref(false).value">
+        <div class="flex items-center gap-4">
+          <Dialog v-model:open="controlledOpen">
             <DialogTrigger as-child>
-              <Button variant="secondary">
-                Controlled Dialog
-              </Button>
+              <Button variant="secondary"> Controlled Dialog </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -113,6 +105,7 @@ import PageHeader from '../components/PageHeader.vue'
               </DialogFooter>
             </DialogContent>
           </Dialog>
+          <p class="text-sm text-muted-foreground">Open: {{ controlledOpen }}</p>
         </div>
       </DemoSection>
     </div>

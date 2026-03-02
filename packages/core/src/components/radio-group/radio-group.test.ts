@@ -145,8 +145,8 @@ describe('radioGroupItem', () => {
       },
     })
     const classes = wrapper.find('[role="radio"]').classes().join(' ')
-    expect(classes).toContain('h-4')
-    expect(classes).toContain('w-4')
+    expect(classes).toContain('h-5')
+    expect(classes).toContain('w-5')
     expect(classes).toContain('rounded-full')
   })
 

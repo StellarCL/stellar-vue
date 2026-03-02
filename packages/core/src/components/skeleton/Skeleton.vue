@@ -6,14 +6,13 @@ import { cn } from '../../utils'
 const props = defineProps<SkeletonProps>()
 
 const classes = computed(() =>
-  cn('animate-pulse rounded-md bg-muted', props.class),
+  cn(
+    'animate-skeleton-wave rounded-md bg-gradient-to-r from-slate-150 via-slate-200 to-slate-150 dark:from-navy-500 dark:via-navy-600 dark:to-navy-500 bg-[length:200%_100%]',
+    props.class,
+  ),
 )
 </script>
 
 <template>
-  <div
-    :class="classes"
-    role="status"
-    aria-label="Loading"
-  />
+  <div :class="classes" role="status" aria-label="Loading" />
 </template>

@@ -33,9 +33,21 @@ import {
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <CardBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
-import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@stellar-vue-ui/core'
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@stellar-vue-ui/core'
 </script>
 
 <template>
@@ -53,6 +65,9 @@ import { Button, Card, CardContent, CardDescription, CardFooter, CardHeader, Car
   </Card>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -104,9 +119,7 @@ The `CardTitle` component renders as `<h3>` by default. Use the `as` prop to cha
 <template>
   <Card>
     <CardHeader>
-      <CardTitle as="h2">
-        Section Title
-      </CardTitle>
+      <CardTitle as="h2"> Section Title </CardTitle>
       <CardDescription>Using h2 for a section-level heading.</CardDescription>
     </CardHeader>
     <CardContent>Content here.</CardContent>
@@ -132,36 +145,36 @@ Cards are flexible -- you can use just the parts you need:
 
 ### Card Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop      | Type                                    | Default     | Description                |
+| --------- | --------------------------------------- | ----------- | -------------------------- |
 | `variant` | `'default' \| 'bordered' \| 'elevated'` | `'default'` | Visual variant of the card |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| `class`   | `HTMLAttributes['class']`               | `undefined` | Additional CSS classes     |
 
 ### CardTitle Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `as` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'` | `'h3'` | Heading element to render as |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                                           | Default     | Description                  |
+| ------- | ---------------------------------------------- | ----------- | ---------------------------- |
+| `as`    | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6'` | `'h3'`      | Heading element to render as |
+| `class` | `HTMLAttributes['class']`                      | `undefined` | Additional CSS classes       |
 
 ### CardHeader, CardDescription, CardContent, CardFooter Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Slots
 
 All Card sub-components expose a `default` slot for content:
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Card` | `default` | Card sub-components (Header, Content, Footer) |
-| `CardHeader` | `default` | Title, description, and header content |
-| `CardTitle` | `default` | The heading text |
-| `CardDescription` | `default` | Descriptive text below the title |
-| `CardContent` | `default` | Main card body content |
-| `CardFooter` | `default` | Actions and footer content |
+| Component         | Slot      | Description                                   |
+| ----------------- | --------- | --------------------------------------------- |
+| `Card`            | `default` | Card sub-components (Header, Content, Footer) |
+| `CardHeader`      | `default` | Title, description, and header content        |
+| `CardTitle`       | `default` | The heading text                              |
+| `CardDescription` | `default` | Descriptive text below the title              |
+| `CardContent`     | `default` | Main card body content                        |
+| `CardFooter`      | `default` | Actions and footer content                    |
 
 ## Accessibility
 

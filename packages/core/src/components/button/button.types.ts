@@ -5,13 +5,13 @@ export interface ButtonProps {
    * Visual variant of the button
    * @default 'default'
    */
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'soft'
 
   /**
    * Size of the button
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg' | 'icon'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'icon'
 
   /**
    * Whether the button is disabled

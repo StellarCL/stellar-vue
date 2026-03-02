@@ -58,8 +58,8 @@ describe('switch', () => {
   it('applies md size classes by default', () => {
     const wrapper = mount(Switch)
     const classes = wrapper.find('[role="switch"]').classes().join(' ')
-    expect(classes).toContain('h-6')
-    expect(classes).toContain('w-11')
+    expect(classes).toContain('h-5')
+    expect(classes).toContain('w-10')
   })
 
   it('applies lg size classes', () => {
@@ -117,8 +117,8 @@ describe('switch', () => {
     })
     const thumb = wrapper.find('[role="switch"] span')
     const classes = thumb.classes().join(' ')
-    expect(classes).toContain('h-5')
-    expect(classes).toContain('w-5')
+    expect(classes).toContain('h-4')
+    expect(classes).toContain('w-4')
   })
 
   it('lg thumb has correct translate classes', () => {

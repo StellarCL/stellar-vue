@@ -34,13 +34,9 @@ describe('tabsList', () => {
     const list = wrapper.find('[role="tablist"]')
     const classes = list.classes().join(' ')
     expect(classes).toContain('inline-flex')
-    expect(classes).toContain('h-10')
     expect(classes).toContain('items-center')
-    expect(classes).toContain('justify-center')
-    expect(classes).toContain('rounded-md')
-    expect(classes).toContain('bg-muted')
-    expect(classes).toContain('p-1')
-    expect(classes).toContain('text-muted-foreground')
+    expect(classes).toContain('border-b')
+    expect(classes).toContain('border-slate-150')
   })
 
   it('merges custom classes', () => {
@@ -75,11 +71,14 @@ describe('tabsTrigger', () => {
     expect(classes).toContain('items-center')
     expect(classes).toContain('justify-center')
     expect(classes).toContain('whitespace-nowrap')
-    expect(classes).toContain('rounded-sm')
-    expect(classes).toContain('px-3')
-    expect(classes).toContain('py-1.5')
+    expect(classes).toContain('border-b-2')
+    expect(classes).toContain('border-transparent')
+    expect(classes).toContain('px-4')
+    expect(classes).toContain('py-2')
     expect(classes).toContain('text-sm')
     expect(classes).toContain('font-medium')
+    expect(classes).toContain('tracking-wide')
+    expect(classes).toContain('text-muted-foreground')
   })
 
   it('merges custom classes on TabsTrigger', () => {

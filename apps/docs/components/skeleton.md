@@ -26,6 +26,10 @@ import { Skeleton } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <SkeletonBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Skeleton } from '@stellar-vue-ui/core'
@@ -35,6 +39,9 @@ import { Skeleton } from '@stellar-vue-ui/core'
   <Skeleton class="h-4 w-[250px]" />
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -108,8 +115,8 @@ Represent loading text content:
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description                                                                                 |
+| ------- | ------------------------- | ----------- | ------------------------------------------------------------------------------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes. Use Tailwind utilities to control width, height, and border radius. |
 
 ### Events
@@ -129,6 +136,7 @@ animate-pulse rounded-md bg-muted
 ```
 
 Override or extend using the `class` prop:
+
 - **Dimensions:** `h-4 w-[200px]`, `h-12 w-12`
 - **Border radius:** `rounded-full` (for circles), `rounded-lg`
 - **Width:** `w-full`, `w-3/4`, `w-[250px]`

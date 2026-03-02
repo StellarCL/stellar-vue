@@ -9,6 +9,19 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/core"
   },
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "tailwindcss",
+    "radix-vue",
+    "component-library"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
@@ -39,7 +52,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vue-tsc --project tsconfig.build.json",
     "dev": "vite build --watch",
     "test": "vitest run",
     "test:watch": "vitest",

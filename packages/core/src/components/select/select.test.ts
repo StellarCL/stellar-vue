@@ -68,7 +68,7 @@ describe('selectTrigger', () => {
     expect(classes).toContain('flex')
     expect(classes).toContain('h-10')
     expect(classes).toContain('w-full')
-    expect(classes).toContain('rounded-md')
+    expect(classes).toContain('rounded-lg')
     expect(classes).toContain('border')
   })
 
@@ -78,9 +78,13 @@ describe('selectTrigger', () => {
         render() {
           return h(Select, null, {
             default: () => [
-              h(SelectTrigger, { class: 'custom-trigger-class' }, {
-                default: () => h(SelectValue, { placeholder: 'Pick one' }),
-              }),
+              h(
+                SelectTrigger,
+                { class: 'custom-trigger-class' },
+                {
+                  default: () => h(SelectValue, { placeholder: 'Pick one' }),
+                },
+              ),
             ],
           })
         },
@@ -252,13 +256,17 @@ describe('selectItem', () => {
     const wrapper = mount(
       defineComponent({
         render() {
-          return h(Select, { defaultOpen: false }, {
-            default: () => [
-              h(SelectTrigger, null, {
-                default: () => h(SelectValue, { placeholder: 'Pick' }),
-              }),
-            ],
-          })
+          return h(
+            Select,
+            { defaultOpen: false },
+            {
+              default: () => [
+                h(SelectTrigger, null, {
+                  default: () => h(SelectValue, { placeholder: 'Pick' }),
+                }),
+              ],
+            },
+          )
         },
       }),
     )
@@ -271,13 +279,17 @@ describe('select composition', () => {
     const wrapper = mount(
       defineComponent({
         render() {
-          return h(Select, { modelValue: '' }, {
-            default: () => [
-              h(SelectTrigger, null, {
-                default: () => h(SelectValue, { placeholder: 'Select a fruit' }),
-              }),
-            ],
-          })
+          return h(
+            Select,
+            { modelValue: '' },
+            {
+              default: () => [
+                h(SelectTrigger, null, {
+                  default: () => h(SelectValue, { placeholder: 'Select a fruit' }),
+                }),
+              ],
+            },
+          )
         },
       }),
     )
@@ -306,13 +318,17 @@ describe('select composition', () => {
     const wrapper = mount(
       defineComponent({
         render() {
-          return h(Select, { disabled: true }, {
-            default: () => [
-              h(SelectTrigger, null, {
-                default: () => h(SelectValue, { placeholder: 'Disabled' }),
-              }),
-            ],
-          })
+          return h(
+            Select,
+            { disabled: true },
+            {
+              default: () => [
+                h(SelectTrigger, null, {
+                  default: () => h(SelectValue, { placeholder: 'Disabled' }),
+                }),
+              ],
+            },
+          )
         },
       }),
     )
@@ -326,19 +342,23 @@ describe('selectContent', () => {
     const wrapper = mount(
       defineComponent({
         render() {
-          return h(Select, { defaultOpen: true }, {
-            default: () => [
-              h(SelectTrigger, null, {
-                default: () => h(SelectValue, { placeholder: 'Pick' }),
-              }),
-              h(SelectContent, null, {
-                default: () => [
-                  h(SelectItem, { value: 'apple' }, { default: () => 'Apple' }),
-                  h(SelectItem, { value: 'banana' }, { default: () => 'Banana' }),
-                ],
-              }),
-            ],
-          })
+          return h(
+            Select,
+            { defaultOpen: true },
+            {
+              default: () => [
+                h(SelectTrigger, null, {
+                  default: () => h(SelectValue, { placeholder: 'Pick' }),
+                }),
+                h(SelectContent, null, {
+                  default: () => [
+                    h(SelectItem, { value: 'apple' }, { default: () => 'Apple' }),
+                    h(SelectItem, { value: 'banana' }, { default: () => 'Banana' }),
+                  ],
+                }),
+              ],
+            },
+          )
         },
       }),
       { attachTo: document.body },

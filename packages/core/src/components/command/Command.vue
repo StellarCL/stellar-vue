@@ -34,13 +34,10 @@ function unregisterItem(index: number): void {
 }
 
 function isItemVisible(index: number): boolean {
-  if (index < 0 || index >= items.value.length)
-    return false
+  if (index < 0 || index >= items.value.length) return false
   const item = items.value[index]
-  if (item === null)
-    return false
-  if (!search.value)
-    return true
+  if (item === null) return false
+  if (!search.value) return true
   return item.toLowerCase().includes(search.value.toLowerCase())
 }
 
@@ -49,9 +46,7 @@ const selectedIndex = ref(-1)
 
 /** Returns the flat list of valid visible indices in registration order */
 function getVisibleIndices(): number[] {
-  return items.value
-    .map((_, i) => i)
-    .filter(i => items.value[i] !== null && isItemVisible(i))
+  return items.value.map((_, i) => i).filter((i) => items.value[i] !== null && isItemVisible(i))
 }
 
 function moveSelection(direction: 1 | -1): void {
@@ -63,16 +58,13 @@ function moveSelection(direction: 1 | -1): void {
   const currentPos = visible.indexOf(selectedIndex.value)
   if (currentPos === -1) {
     selectedIndex.value = direction === 1 ? visible[0] : visible[visible.length - 1]
-  }
-  else {
+  } else {
     const next = currentPos + direction
     if (next < 0) {
       selectedIndex.value = visible[visible.length - 1]
-    }
-    else if (next >= visible.length) {
+    } else if (next >= visible.length) {
       selectedIndex.value = visible[0]
-    }
-    else {
+    } else {
       selectedIndex.value = visible[next]
     }
   }
@@ -121,8 +113,7 @@ function unregisterEnterCallback(index: number): void {
 
 function triggerSelectedEnter(): void {
   const cb = enterCallbacks.value.get(selectedIndex.value)
-  if (cb)
-    cb()
+  if (cb) cb()
 }
 
 // Augment keydown to fire the enter callback
@@ -136,7 +127,7 @@ function handleKeydownWithEnter(event: KeyboardEvent): void {
 }
 
 // ── Provide context ──────────────────────────────────────────────────────────
-const itemCount = computed(() => items.value.filter(v => v !== null).length)
+const itemCount = computed(() => items.value.filter((v) => v !== null).length)
 
 provide<CommandContext>('command', {
   search: search as unknown as { value: string },
@@ -156,7 +147,7 @@ provide('command:onSearchChange', handleSearchChange)
 // ── Classes ──────────────────────────────────────────────────────────────────
 const classes = computed(() =>
   cn(
-    'flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground',
+    'flex h-full w-full flex-col overflow-hidden rounded-lg border border-slate-150 bg-white shadow-soft font-inter dark:border-navy-500 dark:bg-navy-700 text-popover-foreground',
     props.class,
   ),
 )

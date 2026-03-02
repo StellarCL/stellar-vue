@@ -9,18 +9,33 @@
     "url": "https://github.com/StellarCL/stellar-vue.git",
     "directory": "packages/test-utils"
   },
+  "keywords": [
+    "vue",
+    "vue3",
+    "testing",
+    "test-utils",
+    "vitest"
+  ],
+  "homepage": "https://github.com/StellarCL/stellar-vue",
+  "publishConfig": {
+    "access": "public"
+  },
   "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format esm,cjs --dts --watch",

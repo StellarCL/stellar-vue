@@ -23,7 +23,7 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
       <!-- Basic -->
       <DemoSection title="Basic Switch">
         <div class="flex items-center gap-3">
-          <Switch id="airplane-mode" v-model:checked="airplane" />
+          <Switch id="airplane-mode" v-model="airplane" />
           <Label for="airplane-mode">Airplane Mode</Label>
         </div>
         <p class="mt-2 text-xs text-muted-foreground">
@@ -35,11 +35,7 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
       <DemoSection title="Sizes">
         <div class="space-y-3">
           <div v-for="size in sizes" :key="size" class="flex items-center gap-3">
-            <Switch
-              :id="`switch-${size}`"
-              v-model:checked="sizeChecked[size]"
-              :size="size"
-            />
+            <Switch :id="`switch-${size}`" v-model="sizeChecked[size]" :size="size" />
             <Label :for="`switch-${size}`">{{ size.toUpperCase() }}</Label>
           </div>
         </div>
@@ -50,34 +46,22 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
         <div class="max-w-sm space-y-4">
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium">
-                Wi-Fi
-              </p>
-              <p class="text-xs text-muted-foreground">
-                Connect to wireless networks
-              </p>
+              <p class="text-sm font-medium">Wi-Fi</p>
+              <p class="text-xs text-muted-foreground">Connect to wireless networks</p>
             </div>
-            <Switch v-model:checked="wifi" />
+            <Switch v-model="wifi" />
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium">
-                Bluetooth
-              </p>
-              <p class="text-xs text-muted-foreground">
-                Connect to Bluetooth devices
-              </p>
+              <p class="text-sm font-medium">Bluetooth</p>
+              <p class="text-xs text-muted-foreground">Connect to Bluetooth devices</p>
             </div>
-            <Switch v-model:checked="bluetooth" />
+            <Switch v-model="bluetooth" />
           </div>
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium opacity-50">
-                Location Services
-              </p>
-              <p class="text-xs text-muted-foreground">
-                Disabled by administrator
-              </p>
+              <p class="text-sm font-medium opacity-50">Location Services</p>
+              <p class="text-xs text-muted-foreground">Disabled by administrator</p>
             </div>
             <Switch :disabled="true" />
           </div>
@@ -92,7 +76,7 @@ const sizeChecked = ref({ sm: false, md: true, lg: false })
             <Label class="opacity-50">Disabled unchecked</Label>
           </div>
           <div class="flex items-center gap-3">
-            <Switch :disabled="true" :default-checked="true" />
+            <Switch :disabled="true" :model-value="true" />
             <Label class="opacity-50">Disabled checked</Label>
           </div>
         </div>

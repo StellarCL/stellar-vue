@@ -24,25 +24,26 @@ const table = useDataTable<T>({
 // Provide table state to descendant components
 provide('dataTable', table)
 
-const wrapperClasses = computed(() => cn('w-full overflow-auto', props.class))
+const wrapperClasses = computed(() =>
+  cn(
+    'w-full overflow-auto rounded-lg border border-slate-150 shadow-soft dark:border-navy-500',
+    props.class,
+  ),
+)
 
 // Helper: get cell value for a row using column definition
 function getCellValue(row: T, colIndex: number): any {
   const col = table.visibleColumns.value[colIndex]
-  if (!col)
-    return ''
-  if (col.accessorFn)
-    return col.accessorFn(row)
-  if (col.accessorKey)
-    return (row as any)[col.accessorKey]
+  if (!col) return ''
+  if (col.accessorFn) return col.accessorFn(row)
+  if (col.accessorKey) return (row as any)[col.accessorKey]
   return ''
 }
 
 // Helper: render a cell — either via custom cell renderer or raw value
 function renderCell(row: T, colIndex: number): string | VNode {
   const col = table.visibleColumns.value[colIndex]
-  if (!col)
-    return ''
+  if (!col) return ''
 
   const getValue = () => getCellValue(row, colIndex)
 
@@ -57,10 +58,8 @@ function renderCell(row: T, colIndex: number): string | VNode {
 // Checkbox indeterminate state for header select-all
 // eslint-disable-next-line unused-imports/no-unused-vars
 const selectAllChecked = computed<boolean | 'indeterminate'>(() => {
-  if (table.isAllSelected.value)
-    return true
-  if (table.isIndeterminate.value)
-    return 'indeterminate'
+  if (table.isAllSelected.value) return true
+  if (table.isIndeterminate.value) return 'indeterminate'
   return false
 })
 
@@ -84,14 +83,11 @@ function handlePageChange(newPage: number) {
               :aria-label="table.isAllSelected.value ? 'Deselect all rows' : 'Select all rows'"
               class="h-4 w-4 cursor-pointer rounded-sm border border-primary"
               @change="table.toggleAllRows()"
-            >
+            />
           </DataTableHead>
 
           <!-- Column headers -->
-          <DataTableHead
-            v-for="col in table.visibleColumns.value"
-            :key="col.id"
-          >
+          <DataTableHead v-for="col in table.visibleColumns.value" :key="col.id">
             <DataTableColumnHeader
               v-if="col.enableSorting"
               :title="typeof col.header === 'string' ? col.header : col.id"
@@ -109,10 +105,7 @@ function handlePageChange(newPage: number) {
       <DataTableBody>
         <!-- Empty state -->
         <DataTableRow v-if="table.rows.value.length === 0">
-          <DataTableCell
-            :colspan="table.visibleColumns.value.length + 1"
-            class="h-24 text-center"
-          >
+          <DataTableCell :colspan="table.visibleColumns.value.length + 1" class="h-24 text-center">
             No results.
           </DataTableCell>
         </DataTableRow>
@@ -122,27 +115,34 @@ function handlePageChange(newPage: number) {
           <DataTableRow
             v-for="(row, pageRowIndex) in table.rows.value"
             :key="pageRowIndex"
-            :selected="table.isRowSelected((table.page.value - 1) * table.pageSize.value + pageRowIndex)"
+            :selected="
+              table.isRowSelected((table.page.value - 1) * table.pageSize.value + pageRowIndex)
+            "
           >
             <!-- Row selection checkbox -->
             <DataTableCell>
               <input
                 type="checkbox"
                 role="checkbox"
-                :checked="table.isRowSelected((table.page.value - 1) * table.pageSize.value + pageRowIndex)"
+                :checked="
+                  table.isRowSelected((table.page.value - 1) * table.pageSize.value + pageRowIndex)
+                "
                 :aria-label="`Select row ${pageRowIndex + 1}`"
                 class="h-4 w-4 cursor-pointer rounded-sm border border-primary"
-                @change="table.toggleRowSelection((table.page.value - 1) * table.pageSize.value + pageRowIndex)"
-              >
+                @change="
+                  table.toggleRowSelection(
+                    (table.page.value - 1) * table.pageSize.value + pageRowIndex,
+                  )
+                "
+              />
             </DataTableCell>
 
             <!-- Data cells -->
-            <DataTableCell
-              v-for="(col, colIndex) in table.visibleColumns.value"
-              :key="col.id"
-            >
+            <DataTableCell v-for="(col, colIndex) in table.visibleColumns.value" :key="col.id">
               <component
-                :is="typeof renderCell(row, colIndex) === 'string' ? 'span' : renderCell(row, colIndex)"
+                :is="
+                  typeof renderCell(row, colIndex) === 'string' ? 'span' : renderCell(row, colIndex)
+                "
                 v-if="typeof renderCell(row, colIndex) !== 'string'"
               />
               <template v-else>

@@ -26,6 +26,10 @@ import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <AlertBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
@@ -34,12 +38,13 @@ import { Alert, AlertDescription, AlertTitle } from '@stellar-vue-ui/core'
 <template>
   <Alert>
     <AlertTitle>Heads up!</AlertTitle>
-    <AlertDescription>
-      You can add components to your app using the CLI.
-    </AlertDescription>
+    <AlertDescription> You can add components to your app using the CLI. </AlertDescription>
   </Alert>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -95,7 +100,21 @@ Place an SVG icon before the title to create an icon + text alert. The alert's C
 ```vue
 <template>
   <Alert variant="destructive">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="15" y1="9" x2="9" y2="15" /><line x1="9" y1="9" x2="15" y2="15" /></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <line x1="15" y1="9" x2="9" y2="15" />
+      <line x1="9" y1="9" x2="15" y2="15" />
+    </svg>
     <AlertTitle>Error</AlertTitle>
     <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
   </Alert>
@@ -109,9 +128,7 @@ You can use just the description without a title:
 ```vue
 <template>
   <Alert>
-    <AlertDescription>
-      This is a simple alert with only a description.
-    </AlertDescription>
+    <AlertDescription> This is a simple alert with only a description. </AlertDescription>
   </Alert>
 </template>
 ```
@@ -120,21 +137,21 @@ You can use just the description without a title:
 
 ### Alert Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'destructive' \| 'success' \| 'warning' \| 'info'` | `'default'` | Visual variant |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                                                             | Default     | Description            |
+| --------- | ---------------------------------------------------------------- | ----------- | ---------------------- |
+| `variant` | `'default' \| 'destructive' \| 'success' \| 'warning' \| 'info'` | `'default'` | Visual variant         |
+| `class`   | `HTMLAttributes['class']`                                        | `undefined` | Additional CSS classes |
 
 ### AlertTitle Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### AlertDescription Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop    | Type                      | Default     | Description            |
+| ------- | ------------------------- | ----------- | ---------------------- |
 | `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
 
 ### Events
@@ -143,11 +160,11 @@ This component does not emit any custom events.
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Alert` | `default` | SVG icon (optional), AlertTitle, and AlertDescription |
-| `AlertTitle` | `default` | Title text content |
-| `AlertDescription` | `default` | Description text content |
+| Component          | Slot      | Description                                           |
+| ------------------ | --------- | ----------------------------------------------------- |
+| `Alert`            | `default` | SVG icon (optional), AlertTitle, and AlertDescription |
+| `AlertTitle`       | `default` | Title text content                                    |
+| `AlertDescription` | `default` | Description text content                              |
 
 ## Accessibility
 

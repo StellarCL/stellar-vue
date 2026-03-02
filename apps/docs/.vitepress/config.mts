@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
@@ -5,6 +6,15 @@ export default defineConfig({
   description: 'A modern, accessible, and themeable component library for Vue 3',
 
   ignoreDeadLinks: true,
+
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+    ssr: {
+      noExternal: ['radix-vue'],
+    },
+  },
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],

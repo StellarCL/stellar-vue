@@ -83,8 +83,8 @@ const showCode = ref(false)
 }
 
 .preview-area.dark {
-  background-color: #1a1a2e;
-  color: #e0e0e0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
 }
 
 .preview-code {

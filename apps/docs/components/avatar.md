@@ -26,6 +26,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@stellar-vue-ui/core'
 
 ### Basic
 
+<ComponentPreview title="Basic">
+  <AvatarBasic />
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { Avatar, AvatarFallback, AvatarImage } from '@stellar-vue-ui/core'
@@ -38,6 +42,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@stellar-vue-ui/core'
   </Avatar>
 </template>
 ```
+
+  </template>
+</ComponentPreview>
 
 ## Examples
 
@@ -68,11 +75,11 @@ Four sizes are available via the `size` prop:
 </template>
 ```
 
-| Size | Dimensions | Description |
-|------|-----------|-------------|
-| `sm` | `h-8 w-8` | Compact, for dense lists |
-| `md` | `h-10 w-10` | Default size |
-| `lg` | `h-12 w-12` | Prominent display |
+| Size | Dimensions  | Description                     |
+| ---- | ----------- | ------------------------------- |
+| `sm` | `h-8 w-8`   | Compact, for dense lists        |
+| `md` | `h-10 w-10` | Default size                    |
+| `lg` | `h-12 w-12` | Prominent display               |
 | `xl` | `h-16 w-16` | Profile pages and hero sections |
 
 ### Fallback Only
@@ -100,9 +107,7 @@ Use `delayMs` on `AvatarFallback` to only show the fallback after a delay, preve
 <template>
   <Avatar>
     <AvatarImage src="https://example.com/slow-image.png" alt="User" />
-    <AvatarFallback :delay-ms="600">
-      JD
-    </AvatarFallback>
+    <AvatarFallback :delay-ms="600"> JD </AvatarFallback>
   </Avatar>
 </template>
 ```
@@ -133,25 +138,25 @@ Stack multiple avatars in a row:
 
 ### Avatar Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Size of the avatar |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                           | Default     | Description            |
+| ------- | ------------------------------ | ----------- | ---------------------- |
+| `size`  | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`      | Size of the avatar     |
+| `class` | `HTMLAttributes['class']`      | `undefined` | Additional CSS classes |
 
 ### AvatarImage Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `src` | `string` | *required* | URL of the image |
-| `alt` | `string` | *required* | Accessible alternative text |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop    | Type                      | Default     | Description                 |
+| ------- | ------------------------- | ----------- | --------------------------- |
+| `src`   | `string`                  | _required_  | URL of the image            |
+| `alt`   | `string`                  | _required_  | Accessible alternative text |
+| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes      |
 
 ### AvatarFallback Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `delayMs` | `number` | `undefined` | Delay in ms before showing the fallback |
-| `class` | `HTMLAttributes['class']` | `undefined` | Additional CSS classes |
+| Prop      | Type                      | Default     | Description                             |
+| --------- | ------------------------- | ----------- | --------------------------------------- |
+| `delayMs` | `number`                  | `undefined` | Delay in ms before showing the fallback |
+| `class`   | `HTMLAttributes['class']` | `undefined` | Additional CSS classes                  |
 
 ### Events
 
@@ -159,10 +164,10 @@ This component does not emit any custom events.
 
 ### Slots
 
-| Component | Slot | Description |
-|-----------|------|-------------|
-| `Avatar` | `default` | AvatarImage and AvatarFallback |
-| `AvatarImage` | -- | No slots; renders the `<img>` element |
+| Component        | Slot      | Description                                      |
+| ---------------- | --------- | ------------------------------------------------ |
+| `Avatar`         | `default` | AvatarImage and AvatarFallback                   |
+| `AvatarImage`    | --        | No slots; renders the `<img>` element            |
 | `AvatarFallback` | `default` | Fallback content (typically initials or an icon) |
 
 ## Accessibility
