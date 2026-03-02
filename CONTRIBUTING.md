@@ -83,12 +83,12 @@ Branches must follow this format:
 
 ### Types
 
-| Type | Purpose |
-|------|---------|
-| `feature/` | New components or features |
-| `fix/` | Bug fixes |
+| Type        | Purpose                                   |
+| ----------- | ----------------------------------------- |
+| `feature/`  | New components or features                |
+| `fix/`      | Bug fixes                                 |
 | `refactor/` | Code improvements without behavior change |
-| `docs/` | Documentation updates |
+| `docs/`     | Documentation updates                     |
 
 ### Examples
 
@@ -119,32 +119,32 @@ This project follows the [Conventional Commits](https://www.conventionalcommits.
 
 ### Types
 
-| Type | Description |
-|------|-------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation only changes |
-| `style` | Code style changes (formatting, missing semi-colons, etc.) |
-| `refactor` | Code refactor without feature or bug changes |
-| `perf` | Performance improvement |
-| `test` | Adding or updating tests |
-| `chore` | Maintenance tasks |
-| `ci` | CI/CD configuration changes |
-| `build` | Build system changes |
-| `revert` | Revert a previous commit |
+| Type       | Description                                                |
+| ---------- | ---------------------------------------------------------- |
+| `feat`     | New feature                                                |
+| `fix`      | Bug fix                                                    |
+| `docs`     | Documentation only changes                                 |
+| `style`    | Code style changes (formatting, missing semi-colons, etc.) |
+| `refactor` | Code refactor without feature or bug changes               |
+| `perf`     | Performance improvement                                    |
+| `test`     | Adding or updating tests                                   |
+| `chore`    | Maintenance tasks                                          |
+| `ci`       | CI/CD configuration changes                                |
+| `build`    | Build system changes                                       |
+| `revert`   | Revert a previous commit                                   |
 
 ### Scopes
 
-| Scope | Description |
-|-------|-------------|
-| `core` | Core package (`@stellar-vue-ui/core`) |
-| `cli` | CLI tool (`@stellar-vue-ui/cli`) |
-| `nuxt` | Nuxt module (`@stellar-vue-ui/nuxt`) |
-| `docs` | Documentation site |
-| `theme` | Theme system (`@stellar-vue-ui/theme`) |
-| `animations` | Animation system (`@stellar-vue-ui/animations`) |
-| `test-utils` | Testing utilities (`@stellar-vue-ui/test-utils`) |
-| Component names | e.g., `button`, `dialog`, `table`, `input` |
+| Scope           | Description                                      |
+| --------------- | ------------------------------------------------ |
+| `core`          | Core package (`@stellar-vue-ui/core`)            |
+| `cli`           | CLI tool (`@stellar-vue-ui/cli`)                 |
+| `nuxt`          | Nuxt module (`@stellar-vue-ui/nuxt`)             |
+| `docs`          | Documentation site                               |
+| `theme`         | Theme system (`@stellar-vue-ui/theme`)           |
+| `animations`    | Animation system (`@stellar-vue-ui/animations`)  |
+| `test-utils`    | Testing utilities (`@stellar-vue-ui/test-utils`) |
+| Component names | e.g., `button`, `dialog`, `table`, `input`       |
 
 ### Examples
 
@@ -176,6 +176,7 @@ BREAKING CHANGE: Vue 3.6+ is now required as a minimum peer dependency.
 ### Steps
 
 1. **Create a feature branch** from `develop`:
+
    ```bash
    git checkout develop
    git pull origin develop
@@ -189,6 +190,7 @@ BREAKING CHANGE: Vue 3.6+ is now required as a minimum peer dependency.
 4. **Update documentation** for any user-facing changes.
 
 5. **Run all checks locally** before opening a PR:
+
    ```bash
    pnpm lint
    pnpm typecheck
@@ -197,6 +199,7 @@ BREAKING CHANGE: Vue 3.6+ is now required as a minimum peer dependency.
    ```
 
 6. **Create a PR** targeting the `develop` branch using the PR template. Follow the PR title format:
+
    ```
    <type>(<scope>): <description>
 
