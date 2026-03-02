@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/animations",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Animation primitives for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
