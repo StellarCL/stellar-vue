@@ -1,5 +1,11 @@
 # @stellar-vue-ui/cli
 
+## 0.2.1
+
+### Patch Changes
+
+- a3b50ca: Fix CLI crash: remove duplicate shebang and replace import.meta.url with CJS-compatible \_\_dirname
+
 ## 0.2.0
 
 ### Minor Changes
