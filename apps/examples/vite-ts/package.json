@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/example-vite-ts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Vite + Vue 3 + TypeScript strict mode example using Stellar Vue UI",
   "scripts": {

@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/example-basic-vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Basic Vite + Vue 3 example using Stellar Vue UI",
   "scripts": {
