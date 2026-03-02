@@ -4,6 +4,7 @@
   "description": "Production-ready Vue 3 components built on Radix Vue with Tailwind CSS",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
+  "homepage": "https://github.com/StellarCL/stellar-vue",
   "repository": {
     "type": "git",
     "url": "https://github.com/StellarCL/stellar-vue.git",
@@ -18,7 +19,6 @@
     "radix-vue",
     "component-library"
   ],
-  "homepage": "https://github.com/StellarCL/stellar-vue",
   "publishConfig": {
     "access": "public"
   },

@@ -701,7 +701,7 @@ describe('pagination internal pageRange computation', () => {
     // Should have 7 page buttons + 2 ellipsis = 9 items
     expect(buttons.length).toBe(7)
 
-    const activeButton = buttons.find((b) => b.attributes('aria-current') === 'page')
+    const activeButton = buttons.find(b => b.attributes('aria-current') === 'page')
     expect(activeButton).toBeDefined()
     expect(activeButton!.text()).toBe('5')
   })
@@ -761,7 +761,7 @@ describe('pagination composition', () => {
     expect(buttons.length).toBe(9)
 
     // Active page button
-    const activeButton = buttons.find((b) => b.attributes('aria-current') === 'page')
+    const activeButton = buttons.find(b => b.attributes('aria-current') === 'page')
     expect(activeButton).toBeDefined()
     expect(activeButton!.text()).toBe('3')
 

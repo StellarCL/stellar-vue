@@ -19,11 +19,11 @@ const unregisterEnter = inject<(index: number) => void>('command:unregisterEnter
 // Group-level registration so CommandGroup can track visibility
 const groupRegister = inject<((index: number) => void) | undefined>(
   'command:group:registerItem',
-  undefined,
+undefined,
 )
 const groupUnregister = inject<((index: number) => void) | undefined>(
   'command:group:unregisterItem',
-  undefined,
+undefined,
 )
 
 const itemEl = ref<HTMLDivElement | null>(null)
@@ -31,7 +31,8 @@ const itemEl = ref<HTMLDivElement | null>(null)
 const myIndex = ref(-1)
 
 onMounted(() => {
-  if (!context) return
+  if (!context)
+    return
 
   // Derive the filter value from the explicit prop or the element's text content
   const filterValue = props.value ?? itemEl.value?.textContent?.trim() ?? ''
@@ -43,7 +44,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (!context || myIndex.value === -1) return
+  if (!context || myIndex.value === -1)
+    return
   context.unregisterItem(myIndex.value)
   groupUnregister?.(myIndex.value)
   unregisterEnter?.(myIndex.value)
@@ -56,7 +58,8 @@ const isSelected = computed(
 const isVisible = computed(() => context === undefined || context.isItemVisible(myIndex.value))
 
 function handleSelect(): void {
-  if (props.disabled) return
+  if (props.disabled)
+    return
   context?.selectItem(myIndex.value)
   emit('select', props.value ?? itemEl.value?.textContent?.trim() ?? '')
 }

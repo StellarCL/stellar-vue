@@ -46,6 +46,9 @@
     "version": "changeset version",
     "release": "turbo build && changeset publish"
   },
+  "dependencies": {
+    "tailwindcss-animate": "^1.0.7"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^3.0.0",
     "@axe-core/playwright": "^4.11.1",
@@ -69,8 +72,5 @@
     "*.{ts,tsx,vue,css,md,json}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "tailwindcss-animate": "^1.0.7"
   }
 }

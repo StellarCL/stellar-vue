@@ -144,7 +144,8 @@ describe('sheetTitle', () => {
     const el = wrapper.find('h2')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('font-semibold')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Title')
     }
   })
@@ -176,7 +177,8 @@ describe('sheetDescription', () => {
     const el = wrapper.find('p')
     if (el.exists()) {
       expect(el.classes().join(' ')).toContain('text-sm')
-    } else {
+    }
+    else {
       expect(wrapper.text()).toContain('Description')
     }
   })

@@ -11,7 +11,8 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    } catch {}
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''

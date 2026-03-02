@@ -19,7 +19,8 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    } catch {}
+    }
+    catch {}
   })
   wrappers.length = 0
   document.body.innerHTML = ''
@@ -457,7 +458,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Banana')
   })
@@ -486,7 +487,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(2)
   })
 
@@ -508,7 +509,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     const items = wrapper.findAllComponents(CommandItem)
-    const visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    const visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
     expect(visibleItems[0].text()).toContain('Apple')
   })
@@ -533,7 +534,7 @@ describe('commandInput filtering', () => {
 
     // Verify filtering applied
     let items = wrapper.findAllComponents(CommandItem)
-    let visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    let visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(1)
 
     // Clear input
@@ -542,7 +543,7 @@ describe('commandInput filtering', () => {
     await nextTick()
 
     items = wrapper.findAllComponents(CommandItem)
-    visibleItems = items.filter((item) => item.find('[role="option"]').isVisible())
+    visibleItems = items.filter(item => item.find('[role="option"]').isVisible())
     expect(visibleItems.length).toBe(3)
   })
 })

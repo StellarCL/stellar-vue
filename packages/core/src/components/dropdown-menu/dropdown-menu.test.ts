@@ -22,7 +22,8 @@ afterEach(() => {
   wrappers.forEach((w) => {
     try {
       w.unmount()
-    } catch {}
+    }
+    catch {}
   })
   wrappers.length = 0
   // Clean up any leftover portal content

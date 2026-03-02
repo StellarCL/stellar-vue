@@ -34,16 +34,20 @@ const wrapperClasses = computed(() =>
 // Helper: get cell value for a row using column definition
 function getCellValue(row: T, colIndex: number): any {
   const col = table.visibleColumns.value[colIndex]
-  if (!col) return ''
-  if (col.accessorFn) return col.accessorFn(row)
-  if (col.accessorKey) return (row as any)[col.accessorKey]
+  if (!col)
+    return ''
+  if (col.accessorFn)
+    return col.accessorFn(row)
+  if (col.accessorKey)
+    return (row as any)[col.accessorKey]
   return ''
 }
 
 // Helper: render a cell — either via custom cell renderer or raw value
 function renderCell(row: T, colIndex: number): string | VNode {
   const col = table.visibleColumns.value[colIndex]
-  if (!col) return ''
+  if (!col)
+    return ''
 
   const getValue = () => getCellValue(row, colIndex)
 
@@ -58,8 +62,10 @@ function renderCell(row: T, colIndex: number): string | VNode {
 // Checkbox indeterminate state for header select-all
 // eslint-disable-next-line unused-imports/no-unused-vars
 const selectAllChecked = computed<boolean | 'indeterminate'>(() => {
-  if (table.isAllSelected.value) return true
-  if (table.isIndeterminate.value) return 'indeterminate'
+  if (table.isAllSelected.value)
+    return true
+  if (table.isIndeterminate.value)
+    return 'indeterminate'
   return false
 })
 
@@ -83,7 +89,7 @@ function handlePageChange(newPage: number) {
               :aria-label="table.isAllSelected.value ? 'Deselect all rows' : 'Select all rows'"
               class="h-4 w-4 cursor-pointer rounded-sm border border-primary"
               @change="table.toggleAllRows()"
-            />
+            >
           </DataTableHead>
 
           <!-- Column headers -->
@@ -134,7 +140,7 @@ function handlePageChange(newPage: number) {
                     (table.page.value - 1) * table.pageSize.value + pageRowIndex,
                   )
                 "
-              />
+              >
             </DataTableCell>
 
             <!-- Data cells -->

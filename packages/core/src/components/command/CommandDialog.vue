@@ -38,7 +38,8 @@ function handleGlobalKeydown(event: KeyboardEvent): void {
     event.preventDefault()
     if (isOpen.value) {
       close()
-    } else {
+    }
+    else {
       open()
     }
   }

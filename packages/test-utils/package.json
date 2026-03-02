@@ -4,6 +4,7 @@
   "description": "Testing utilities for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
+  "homepage": "https://github.com/StellarCL/stellar-vue",
   "repository": {
     "type": "git",
     "url": "https://github.com/StellarCL/stellar-vue.git",
@@ -16,7 +17,6 @@
     "test-utils",
     "vitest"
   ],
-  "homepage": "https://github.com/StellarCL/stellar-vue",
   "publishConfig": {
     "access": "public"
   },
