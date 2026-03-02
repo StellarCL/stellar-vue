@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import ora from 'ora'
 import prompts from 'prompts'
+import { UTIL_TEMPLATES } from '../templates/utils'
 import { defineConfig } from '../types'
 import { DEFAULT_CONFIG, findConfig, writeConfig, writeLockFile } from '../utils/config'
 import { header, newLine, styles } from '../utils/prompts'
@@ -250,14 +251,27 @@ export async function initCommand(options: InitOptions): Promise<void> {
     const lockSpinner = ora('Lock file created').start()
     lockSpinner.succeed('Lock file created')
 
-    // 7. Success message
+    // 7. Write shared utils (cn.ts, variants.ts, index.ts)
+    const utilsAbsDir = path.join(cwd, config.utilsDir)
+    if (!fs.existsSync(utilsAbsDir)) {
+      fs.mkdirSync(utilsAbsDir, { recursive: true })
+    }
+    for (const [fileName, content] of Object.entries(UTIL_TEMPLATES)) {
+      fs.writeFileSync(path.join(utilsAbsDir, fileName), content, 'utf-8')
+    }
+    const utilsSpinner = ora('Shared utils created').start()
+    utilsSpinner.succeed('Shared utils created')
+
+    // 8. Success message
     newLine()
     console.log(styles.success('Stellar UI initialized successfully!'))
     newLine()
     console.log(styles.highlight('Next steps:'))
-    console.log(styles.dim(`  1. Add components:  npx stellar-ui add button`))
-    console.log(styles.dim(`  2. Import in your app and start building`))
-    console.log(styles.dim(`  3. Customize theme in ${config.cssVariables}`))
+    console.log(styles.dim(`  1. Install utils dependencies:`))
+    console.log(styles.dim(`     npm install clsx tailwind-merge class-variance-authority`))
+    console.log(styles.dim(`  2. Add components:  npx stellar-ui add button`))
+    console.log(styles.dim(`  3. Import in your app and start building`))
+    console.log(styles.dim(`  4. Customize theme in ${config.cssVariables}`))
     newLine()
   }
   catch (error) {

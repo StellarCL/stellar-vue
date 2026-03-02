@@ -14,31 +14,55 @@ const ALL_COMPONENT_NAMES = [
   'badge',
   'breadcrumb',
   'button',
+  'calendar',
   'card',
+  'carousel',
+  'chart',
   'checkbox',
+  'code-block',
+  'color-picker',
+  'combobox',
   'command',
   'context-menu',
   'data-table',
+  'date-picker',
   'dialog',
+  'drawer',
   'dropdown-menu',
+  'empty-state',
+  'file-upload',
+  'filter-builder',
   'form',
+  'grid',
   'input',
   'label',
+  'loading',
   'menubar',
+  'multi-select',
   'navigation-menu',
+  'notification-center',
   'pagination',
   'popover',
   'progress',
   'radio-group',
+  'rating',
+  'rich-text-editor',
   'select',
   'separator',
+  'sheet',
+  'shell',
+  'sidebar',
   'skeleton',
   'slider',
+  'stack',
   'stepper',
   'switch',
   'tabs',
   'textarea',
+  'timeline',
+  'toast',
   'tooltip',
+  'tree-view',
   'wizard',
 ]
 
@@ -50,7 +74,7 @@ describe('registry utils', () => {
       expect(registry.length).toBeGreaterThan(0)
     })
 
-    it('includes all 32 component families', () => {
+    it('includes all 56 component families', () => {
       const registry = getRegistry()
       const names = registry.map(c => c.name).sort()
 
@@ -58,7 +82,7 @@ describe('registry utils', () => {
         expect(names).toContain(name)
       }
 
-      expect(registry.length).toBe(32)
+      expect(registry.length).toBe(56)
     })
   })
 

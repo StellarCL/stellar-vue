@@ -47,8 +47,8 @@ describe('infoCommand', () => {
 
     const output = logs.join('\n')
     expect(output).toContain('card')
-    // card has 7 files
-    expect(output).toContain('7 files')
+    // card has 9 files (including types and variants)
+    expect(output).toContain('9 files')
   })
 
   it('shows npm dependencies', async () => {
@@ -86,17 +86,21 @@ describe('infoCommand', () => {
     // Create a config file (needed for lock file lookup)
     fs.writeFileSync(
       path.join(tmpDir, '.stellar-ui.json'),
-      JSON.stringify({
-        componentsDir: './components/ui',
-        composablesDir: './composables',
-        utilsDir: './lib',
-        cssVariables: './assets/css/variables.css',
-        tailwindConfig: './tailwind.config.ts',
-        typescript: true,
-        aliases: { '@': './src', '~': './' },
-        framework: 'vue',
-        features: { animations: true, forms: true, icons: 'lucide' },
-      }, null, 2),
+      JSON.stringify(
+        {
+          componentsDir: './components/ui',
+          composablesDir: './composables',
+          utilsDir: './lib',
+          cssVariables: './assets/css/variables.css',
+          tailwindConfig: './tailwind.config.ts',
+          typescript: true,
+          aliases: { '@': './src', '~': './' },
+          framework: 'vue',
+          features: { animations: true, forms: true, icons: 'lucide' },
+        },
+        null,
+        2,
+      ),
       'utf-8',
     )
 
@@ -130,17 +134,21 @@ describe('infoCommand', () => {
     // Create a config file
     fs.writeFileSync(
       path.join(tmpDir, '.stellar-ui.json'),
-      JSON.stringify({
-        componentsDir: './components/ui',
-        composablesDir: './composables',
-        utilsDir: './lib',
-        cssVariables: './assets/css/variables.css',
-        tailwindConfig: './tailwind.config.ts',
-        typescript: true,
-        aliases: { '@': './src', '~': './' },
-        framework: 'vue',
-        features: { animations: true, forms: true, icons: 'lucide' },
-      }, null, 2),
+      JSON.stringify(
+        {
+          componentsDir: './components/ui',
+          composablesDir: './composables',
+          utilsDir: './lib',
+          cssVariables: './assets/css/variables.css',
+          tailwindConfig: './tailwind.config.ts',
+          typescript: true,
+          aliases: { '@': './src', '~': './' },
+          framework: 'vue',
+          features: { animations: true, forms: true, icons: 'lucide' },
+        },
+        null,
+        2,
+      ),
       'utf-8',
     )
 
@@ -165,17 +173,21 @@ describe('infoCommand', () => {
     // Create a config file
     fs.writeFileSync(
       path.join(tmpDir, '.stellar-ui.json'),
-      JSON.stringify({
-        componentsDir: './components/ui',
-        composablesDir: './composables',
-        utilsDir: './lib',
-        cssVariables: './assets/css/variables.css',
-        tailwindConfig: './tailwind.config.ts',
-        typescript: true,
-        aliases: { '@': './src', '~': './' },
-        framework: 'vue',
-        features: { animations: true, forms: true, icons: 'lucide' },
-      }, null, 2),
+      JSON.stringify(
+        {
+          componentsDir: './components/ui',
+          composablesDir: './composables',
+          utilsDir: './lib',
+          cssVariables: './assets/css/variables.css',
+          tailwindConfig: './tailwind.config.ts',
+          typescript: true,
+          aliases: { '@': './src', '~': './' },
+          framework: 'vue',
+          features: { animations: true, forms: true, icons: 'lucide' },
+        },
+        null,
+        2,
+      ),
       'utf-8',
     )
 

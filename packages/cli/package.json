@@ -31,8 +31,11 @@
     "dist"
   ],
   "scripts": {
+    "generate": "tsx scripts/generate-templates.ts",
+    "prebuild": "tsx scripts/generate-templates.ts",
     "build": "tsup src/index.ts --format cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format cjs --dts --watch",
+    "pretest": "tsx scripts/generate-templates.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -51,6 +54,7 @@
     "@types/diff": "^5.2.0",
     "@types/prompts": "^2.4.9",
     "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
     "typescript": "^5.8.0",
     "vitest": "^3.0.0"
   }

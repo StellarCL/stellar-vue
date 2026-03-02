@@ -1,8 +1,9 @@
 import type { ComponentRegistryEntry } from '../types'
+import { COMPONENT_TEMPLATES } from '../templates/components'
 
 /**
  * Embedded component registry.
- * In a future version this will be fetched from an API endpoint.
+ * File lists are derived at runtime from COMPONENT_TEMPLATES.
  */
 const REGISTRY: ComponentRegistryEntry[] = [
   // --- Layout ---
@@ -11,7 +12,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Versatile container with header, content, and footer sections',
     category: 'layout',
     version: '0.1.0',
-    files: ['components/ui/card/Card.vue', 'components/ui/card/CardHeader.vue', 'components/ui/card/CardTitle.vue', 'components/ui/card/CardDescription.vue', 'components/ui/card/CardContent.vue', 'components/ui/card/CardFooter.vue', 'components/ui/card/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: [],
   },
@@ -20,7 +21,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Visual divider between content sections',
     category: 'layout',
     version: '0.1.0',
-    files: ['components/ui/separator/Separator.vue', 'components/ui/separator/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -29,7 +30,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Placeholder loading animation for content',
     category: 'layout',
     version: '0.1.0',
-    files: ['components/ui/skeleton/Skeleton.vue', 'components/ui/skeleton/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: [],
   },
@@ -38,7 +39,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Collapsible content panels for showing and hiding sections',
     category: 'layout',
     version: '0.1.0',
-    files: ['components/ui/accordion/Accordion.vue', 'components/ui/accordion/AccordionItem.vue', 'components/ui/accordion/AccordionTrigger.vue', 'components/ui/accordion/AccordionContent.vue', 'components/ui/accordion/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -47,8 +48,35 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Tabbed interface for switching between content panels',
     category: 'layout',
     version: '0.1.0',
-    files: ['components/ui/tabs/Tabs.vue', 'components/ui/tabs/TabsList.vue', 'components/ui/tabs/TabsTrigger.vue', 'components/ui/tabs/TabsContent.vue', 'components/ui/tabs/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'grid',
+    description: 'Responsive grid layout system with flexible columns',
+    category: 'layout',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'stack',
+    description: 'Vertical and horizontal stack layout with spacing control',
+    category: 'layout',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'shell',
+    description: 'Application shell layout with header, sidebar, and main content',
+    category: 'layout',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
     peerDependencies: [],
   },
 
@@ -58,7 +86,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Interactive button with multiple variants, sizes, and states',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/button/Button.vue', 'components/ui/button/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -67,7 +95,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Text input field with validation and icon support',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/input/Input.vue', 'components/ui/input/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: ['label'],
   },
@@ -76,7 +104,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Multi-line text input with auto-resize support',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/textarea/Textarea.vue', 'components/ui/textarea/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: ['label'],
   },
@@ -85,7 +113,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Toggle control for boolean values with indeterminate state',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/checkbox/Checkbox.vue', 'components/ui/checkbox/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['label'],
   },
@@ -94,7 +122,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Group of radio buttons for single selection from options',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/radio-group/RadioGroup.vue', 'components/ui/radio-group/RadioGroupItem.vue', 'components/ui/radio-group/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['label'],
   },
@@ -103,7 +131,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Dropdown selection control with search and multi-select',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/select/Select.vue', 'components/ui/select/SelectTrigger.vue', 'components/ui/select/SelectContent.vue', 'components/ui/select/SelectItem.vue', 'components/ui/select/SelectGroup.vue', 'components/ui/select/SelectLabel.vue', 'components/ui/select/SelectSeparator.vue', 'components/ui/select/SelectValue.vue', 'components/ui/select/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['label'],
   },
@@ -112,7 +140,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Toggle switch for on/off states',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/switch/Switch.vue', 'components/ui/switch/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['label'],
   },
@@ -121,7 +149,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Range input for selecting a numeric value within a range',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/slider/Slider.vue', 'components/ui/slider/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -130,7 +158,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Accessible label for form controls',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/label/Label.vue', 'components/ui/label/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -139,9 +167,89 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Form wrapper with validation integration using vee-validate',
     category: 'forms',
     version: '0.1.0',
-    files: ['components/ui/form/Form.vue', 'components/ui/form/FormField.vue', 'components/ui/form/FormItem.vue', 'components/ui/form/FormLabel.vue', 'components/ui/form/FormControl.vue', 'components/ui/form/FormDescription.vue', 'components/ui/form/FormMessage.vue', 'components/ui/form/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0', 'vee-validate': '^4.13.0' },
     peerDependencies: ['label', 'button'],
+  },
+  {
+    name: 'combobox',
+    description: 'Searchable dropdown with autocomplete and custom filtering',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'multi-select',
+    description: 'Multi-value selection input with tags and search',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'color-picker',
+    description: 'Color selection control with area, hue, and alpha sliders',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'file-upload',
+    description: 'File upload with drag-and-drop, previews, and progress',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'filter-builder',
+    description: 'Dynamic filter construction with rules and groups',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: ['button', 'select', 'input'],
+  },
+  {
+    name: 'rating',
+    description: 'Star rating input for scoring and feedback',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'rich-text-editor',
+    description: 'Rich text editor with toolbar and formatting controls',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: {
+      '@tiptap/vue-3': '^2.0.0',
+      '@tiptap/starter-kit': '^2.0.0',
+      '@tiptap/extension-placeholder': '^2.0.0',
+      '@tiptap/extension-underline': '^2.0.0',
+      '@tiptap/extension-link': '^2.0.0',
+      '@tiptap/extension-image': '^2.0.0',
+      '@tiptap/extension-character-count': '^2.0.0',
+    },
+    peerDependencies: [],
+  },
+  {
+    name: 'date-picker',
+    description: 'Date selection with calendar dropdown and presets',
+    category: 'forms',
+    version: '0.1.0',
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0', '@internationalized/date': '^3.0.0' },
+    peerDependencies: ['calendar', 'popover', 'button'],
   },
 
   // --- Feedback ---
@@ -150,7 +258,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Contextual feedback messages for user actions',
     category: 'feedback',
     version: '0.1.0',
-    files: ['components/ui/alert/Alert.vue', 'components/ui/alert/AlertTitle.vue', 'components/ui/alert/AlertDescription.vue', 'components/ui/alert/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: [],
   },
@@ -159,7 +267,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Small status indicators and labels',
     category: 'feedback',
     version: '0.1.0',
-    files: ['components/ui/badge/Badge.vue', 'components/ui/badge/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: [],
   },
@@ -168,7 +276,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Progress bar for indicating completion status',
     category: 'feedback',
     version: '0.1.0',
-    files: ['components/ui/progress/Progress.vue', 'components/ui/progress/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -177,7 +285,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Multi-step progress indicator for guided workflows',
     category: 'feedback',
     version: '0.1.0',
-    files: ['components/ui/stepper/Stepper.vue', 'components/ui/stepper/StepperItem.vue', 'components/ui/stepper/StepperTrigger.vue', 'components/ui/stepper/StepperContent.vue', 'components/ui/stepper/StepperSeparator.vue', 'components/ui/stepper/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['button'],
   },
@@ -186,9 +294,54 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Full-featured multi-step wizard with navigation and validation',
     category: 'feedback',
     version: '0.1.0',
-    files: ['components/ui/wizard/Wizard.vue', 'components/ui/wizard/WizardStep.vue', 'components/ui/wizard/WizardNavigation.vue', 'components/ui/wizard/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: ['button', 'stepper'],
+  },
+  {
+    name: 'loading',
+    description: 'Loading indicators with spinner, dots, bar, and overlay variants',
+    category: 'feedback',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'toast',
+    description: 'Toast notifications with variants and auto-dismiss',
+    category: 'feedback',
+    version: '0.1.0',
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'timeline',
+    description: 'Chronological timeline display for events and history',
+    category: 'feedback',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'empty-state',
+    description: 'Placeholder display for empty content areas',
+    category: 'feedback',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'notification-center',
+    description: 'Notification management panel with grouping and actions',
+    category: 'feedback',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
   },
 
   // --- Navigation ---
@@ -197,7 +350,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Navigation breadcrumb trail showing page hierarchy',
     category: 'navigation',
     version: '0.1.0',
-    files: ['components/ui/breadcrumb/Breadcrumb.vue', 'components/ui/breadcrumb/BreadcrumbList.vue', 'components/ui/breadcrumb/BreadcrumbItem.vue', 'components/ui/breadcrumb/BreadcrumbLink.vue', 'components/ui/breadcrumb/BreadcrumbSeparator.vue', 'components/ui/breadcrumb/BreadcrumbPage.vue', 'components/ui/breadcrumb/index.ts'],
+    files: [],
     dependencies: {},
     peerDependencies: [],
   },
@@ -206,7 +359,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Accessible navigation menu with nested submenus',
     category: 'navigation',
     version: '0.1.0',
-    files: ['components/ui/navigation-menu/NavigationMenu.vue', 'components/ui/navigation-menu/NavigationMenuList.vue', 'components/ui/navigation-menu/NavigationMenuItem.vue', 'components/ui/navigation-menu/NavigationMenuTrigger.vue', 'components/ui/navigation-menu/NavigationMenuContent.vue', 'components/ui/navigation-menu/NavigationMenuLink.vue', 'components/ui/navigation-menu/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -215,7 +368,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Horizontal menu bar with dropdown menus',
     category: 'navigation',
     version: '0.1.0',
-    files: ['components/ui/menubar/Menubar.vue', 'components/ui/menubar/MenubarMenu.vue', 'components/ui/menubar/MenubarTrigger.vue', 'components/ui/menubar/MenubarContent.vue', 'components/ui/menubar/MenubarItem.vue', 'components/ui/menubar/MenubarSeparator.vue', 'components/ui/menubar/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -224,7 +377,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Page navigation controls for paginated content',
     category: 'navigation',
     version: '0.1.0',
-    files: ['components/ui/pagination/Pagination.vue', 'components/ui/pagination/PaginationContent.vue', 'components/ui/pagination/PaginationItem.vue', 'components/ui/pagination/PaginationLink.vue', 'components/ui/pagination/PaginationPrev.vue', 'components/ui/pagination/PaginationNext.vue', 'components/ui/pagination/PaginationEllipsis.vue', 'components/ui/pagination/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['button'],
   },
@@ -233,9 +386,18 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Command palette with search and keyboard navigation',
     category: 'navigation',
     version: '0.1.0',
-    files: ['components/ui/command/Command.vue', 'components/ui/command/CommandInput.vue', 'components/ui/command/CommandList.vue', 'components/ui/command/CommandEmpty.vue', 'components/ui/command/CommandGroup.vue', 'components/ui/command/CommandItem.vue', 'components/ui/command/CommandSeparator.vue', 'components/ui/command/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['dialog'],
+  },
+  {
+    name: 'sidebar',
+    description: 'Collapsible sidebar navigation with menu items and groups',
+    category: 'navigation',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
   },
 
   // --- Data Display ---
@@ -244,7 +406,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'User avatar with image fallback and status indicator',
     category: 'data-display',
     version: '0.1.0',
-    files: ['components/ui/avatar/Avatar.vue', 'components/ui/avatar/AvatarImage.vue', 'components/ui/avatar/AvatarFallback.vue', 'components/ui/avatar/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -253,9 +415,54 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Feature-rich data table with sorting, filtering, and pagination',
     category: 'data-display',
     version: '0.1.0',
-    files: ['components/ui/data-table/DataTable.vue', 'components/ui/data-table/DataTableHeader.vue', 'components/ui/data-table/DataTableBody.vue', 'components/ui/data-table/DataTableRow.vue', 'components/ui/data-table/DataTableCell.vue', 'components/ui/data-table/DataTablePagination.vue', 'components/ui/data-table/index.ts'],
+    files: [],
     dependencies: { '@tanstack/vue-table': '^8.20.0' },
     peerDependencies: ['button', 'input', 'select', 'pagination'],
+  },
+  {
+    name: 'calendar',
+    description: 'Calendar display for date browsing and selection',
+    category: 'data-display',
+    version: '0.1.0',
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0', '@internationalized/date': '^3.0.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'chart',
+    description: 'Data visualization charts with container, tooltip, and legend',
+    category: 'data-display',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'carousel',
+    description: 'Content carousel with slide navigation and autoplay',
+    category: 'data-display',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'code-block',
+    description: 'Code display with syntax highlighting and copy support',
+    category: 'data-display',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
+  },
+  {
+    name: 'tree-view',
+    description: 'Hierarchical tree display with expand/collapse',
+    category: 'data-display',
+    version: '0.1.0',
+    files: [],
+    dependencies: {},
+    peerDependencies: [],
   },
 
   // --- Overlay ---
@@ -264,7 +471,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Modal dialog with accessible focus management',
     category: 'overlay',
     version: '0.1.0',
-    files: ['components/ui/dialog/Dialog.vue', 'components/ui/dialog/DialogTrigger.vue', 'components/ui/dialog/DialogContent.vue', 'components/ui/dialog/DialogHeader.vue', 'components/ui/dialog/DialogTitle.vue', 'components/ui/dialog/DialogDescription.vue', 'components/ui/dialog/DialogFooter.vue', 'components/ui/dialog/DialogClose.vue', 'components/ui/dialog/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -273,7 +480,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Dropdown menu triggered by a button or anchor',
     category: 'overlay',
     version: '0.1.0',
-    files: ['components/ui/dropdown-menu/DropdownMenu.vue', 'components/ui/dropdown-menu/DropdownMenuTrigger.vue', 'components/ui/dropdown-menu/DropdownMenuContent.vue', 'components/ui/dropdown-menu/DropdownMenuItem.vue', 'components/ui/dropdown-menu/DropdownMenuSeparator.vue', 'components/ui/dropdown-menu/DropdownMenuLabel.vue', 'components/ui/dropdown-menu/DropdownMenuGroup.vue', 'components/ui/dropdown-menu/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -282,7 +489,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Right-click context menu with nested submenus',
     category: 'overlay',
     version: '0.1.0',
-    files: ['components/ui/context-menu/ContextMenu.vue', 'components/ui/context-menu/ContextMenuTrigger.vue', 'components/ui/context-menu/ContextMenuContent.vue', 'components/ui/context-menu/ContextMenuItem.vue', 'components/ui/context-menu/ContextMenuSeparator.vue', 'components/ui/context-menu/ContextMenuLabel.vue', 'components/ui/context-menu/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -291,7 +498,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Floating content panel anchored to a trigger element',
     category: 'overlay',
     version: '0.1.0',
-    files: ['components/ui/popover/Popover.vue', 'components/ui/popover/PopoverTrigger.vue', 'components/ui/popover/PopoverContent.vue', 'components/ui/popover/index.ts'],
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
@@ -300,31 +507,63 @@ const REGISTRY: ComponentRegistryEntry[] = [
     description: 'Informational popup on hover or focus',
     category: 'overlay',
     version: '0.1.0',
-    files: ['components/ui/tooltip/Tooltip.vue', 'components/ui/tooltip/TooltipTrigger.vue', 'components/ui/tooltip/TooltipContent.vue', 'components/ui/tooltip/TooltipProvider.vue', 'components/ui/tooltip/index.ts'],
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'sheet',
+    description: 'Slide-out panel from any edge of the screen',
+    category: 'overlay',
+    version: '0.1.0',
+    files: [],
+    dependencies: { 'radix-vue': '^1.9.0' },
+    peerDependencies: [],
+  },
+  {
+    name: 'drawer',
+    description: 'Bottom or side drawer overlay panel',
+    category: 'overlay',
+    version: '0.1.0',
+    files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
   },
 ]
 
 /**
+ * Augment a registry entry with files from COMPONENT_TEMPLATES.
+ */
+function withTemplateFiles(entry: ComponentRegistryEntry): ComponentRegistryEntry {
+  const templates = COMPONENT_TEMPLATES[entry.name]
+  if (templates) {
+    return { ...entry, files: Object.keys(templates) }
+  }
+  return entry
+}
+
+/**
  * Return the full list of available components.
  */
 export function getRegistry(): ComponentRegistryEntry[] {
-  return [...REGISTRY]
+  return REGISTRY.map(withTemplateFiles)
 }
 
 /**
  * Get a specific component by name.
  */
 export function getComponent(name: string): ComponentRegistryEntry | null {
-  return REGISTRY.find(c => c.name === name) ?? null
+  const entry = REGISTRY.find(c => c.name === name) ?? null
+  if (!entry)
+    return null
+  return withTemplateFiles(entry)
 }
 
 /**
  * Get all components in a given category.
  */
 export function getComponentsByCategory(category: string): ComponentRegistryEntry[] {
-  return REGISTRY.filter(c => c.category === category)
+  return REGISTRY.filter(c => c.category === category).map(withTemplateFiles)
 }
 
 /**
@@ -332,10 +571,9 @@ export function getComponentsByCategory(category: string): ComponentRegistryEntr
  */
 export function searchComponents(query: string): ComponentRegistryEntry[] {
   const lower = query.toLowerCase()
-  return REGISTRY.filter(c =>
-    c.name.toLowerCase().includes(lower)
-    || c.description.toLowerCase().includes(lower),
-  )
+  return REGISTRY.filter(
+    c => c.name.toLowerCase().includes(lower) || c.description.toLowerCase().includes(lower),
+  ).map(withTemplateFiles)
 }
 
 /**
