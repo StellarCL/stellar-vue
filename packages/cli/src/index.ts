@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-import { createRequire } from 'node:module'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { Command } from 'commander'
 import { addCommand } from './commands/add'
 import { auditCommand } from './commands/audit'
@@ -11,8 +11,9 @@ import { removeCommand } from './commands/remove'
 import { registerThemeCommand } from './commands/theme'
 import { updateCommand } from './commands/update'
 
-const require = createRequire(import.meta.url)
-const pkg = require('../package.json') as { version: string }
+const pkg = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8')) as {
+  version: string
+}
 
 const program = new Command()
 
