@@ -4,6 +4,7 @@ import { Command } from 'commander'
 import { addCommand } from './commands/add'
 import { auditCommand } from './commands/audit'
 import { depsCommand } from './commands/deps'
+import { doctorCommand } from './commands/doctor'
 import { infoCommand } from './commands/info'
 import { initCommand } from './commands/init'
 import { listCommand } from './commands/list'
@@ -26,6 +27,7 @@ program
   .command('init')
   .description('Initialize Stellar UI in your project')
   .option('-y, --yes', 'Skip prompts and use defaults')
+  .option('--scaffold', 'Scaffold an App.vue with sidebar layout')
   .option('--cwd <cwd>', 'Working directory', process.cwd())
   .action(initCommand)
 
@@ -84,5 +86,14 @@ program
   .option('--keyboard', 'Check keyboard navigation')
   .option('--cwd <cwd>', 'Working directory', process.cwd())
   .action(auditCommand)
+
+program
+  .command('doctor')
+  .description('Diagnose common issues in your Stellar UI setup')
+  .option('--fix', 'Auto-repair fixable issues')
+  .option('-v, --verbose', 'Show detailed check output')
+  .option('--json', 'Output results as JSON')
+  .option('--cwd <cwd>', 'Working directory', process.cwd())
+  .action(doctorCommand)
 
 program.parse()

@@ -1,5 +1,7 @@
 export { useChart } from './useChart'
 export { useClipboard } from './useClipboard'
+export { createCommandProvider, useCommand } from './useCommand'
+export type { CommandAction, UseCommandReturn } from './useCommand'
 
 // Data composables
 export { useDataTable } from './useDataTable'

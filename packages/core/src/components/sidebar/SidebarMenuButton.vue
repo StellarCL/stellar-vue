@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SidebarMenuButtonProps } from './sidebar.types'
+import { Primitive } from 'radix-vue'
 import { computed, inject } from 'vue'
 import { cn } from '../../utils'
 import { SIDEBAR_INJECTION_KEY } from './sidebar-context'
@@ -26,11 +27,15 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <slot v-if="asChild" />
-  <button v-else :class="classes" :data-active="active">
+  <Primitive
+    :as="asChild ? undefined : 'button'"
+    :as-child="asChild"
+    :class="classes"
+    :data-active="active"
+  >
     <slot name="icon" />
     <span v-if="!isCollapsed" class="truncate">
       <slot />
     </span>
-  </button>
+  </Primitive>
 </template>

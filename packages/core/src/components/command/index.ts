@@ -1,3 +1,5 @@
+export { createCommandProvider, useCommand } from '../../composables/useCommand'
+export type { CommandAction, UseCommandReturn } from '../../composables/useCommand'
 export type {
   CommandDialogProps,
   CommandEmptyProps,
@@ -5,6 +7,7 @@ export type {
   CommandInputProps,
   CommandItemProps,
   CommandListProps,
+  CommandPaletteProps,
   CommandProps,
   CommandSeparatorProps,
   CommandShortcutProps,
@@ -16,5 +19,6 @@ export { default as CommandGroup } from './CommandGroup.vue'
 export { default as CommandInput } from './CommandInput.vue'
 export { default as CommandItem } from './CommandItem.vue'
 export { default as CommandList } from './CommandList.vue'
+export { default as CommandPalette } from './CommandPalette.vue'
 export { default as CommandSeparator } from './CommandSeparator.vue'
 export { default as CommandShortcut } from './CommandShortcut.vue'

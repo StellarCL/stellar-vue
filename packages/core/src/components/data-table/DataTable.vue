@@ -159,7 +159,7 @@ function handlePageChange(newPage: number) {
 
     <!-- Pagination -->
     <DataTablePagination
-      :total="table.sortedData.value.length"
+      :total="table.filteredData.value.length"
       :page="table.page.value"
       :page-size="table.pageSize.value"
       :selected-count="table.selectedRows.value.size"

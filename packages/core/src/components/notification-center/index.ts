@@ -1,3 +1,4 @@
+export { useNotifications } from '../../composables/useNotifications'
 export type {
   Notification,
   NotificationAction,

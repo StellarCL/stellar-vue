@@ -1,8 +1,11 @@
+export { useDataTable } from '../../composables/useDataTable'
 export type {
   ColumnDef,
   DataTableBodyProps,
   DataTableCellProps,
   DataTableColumnHeaderProps,
+  DataTableColumnToggleProps,
+  DataTableFilterProps,
   DataTableHeaderProps,
   DataTableHeadProps,
   DataTablePaginationProps,
@@ -17,6 +20,8 @@ export { default as DataTable } from './DataTable.vue'
 export { default as DataTableBody } from './DataTableBody.vue'
 export { default as DataTableCell } from './DataTableCell.vue'
 export { default as DataTableColumnHeader } from './DataTableColumnHeader.vue'
+export { default as DataTableColumnToggle } from './DataTableColumnToggle.vue'
+export { default as DataTableFilter } from './DataTableFilter.vue'
 export { default as DataTableHead } from './DataTableHead.vue'
 export { default as DataTableHeader } from './DataTableHeader.vue'
 export { default as DataTablePagination } from './DataTablePagination.vue'

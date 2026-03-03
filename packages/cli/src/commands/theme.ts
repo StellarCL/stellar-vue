@@ -337,7 +337,7 @@ async function themeApplyAction(name: string, options: { cwd?: string }): Promis
 
   // Write theme CSS to the variables file
   const cssPath = path.join(cwd, config.cssVariables)
-  const isBuiltIn = builtInNames.includes(name)
+  const isBuiltIn = (builtInNames as string[]).includes(name)
 
   if (isBuiltIn) {
     const themeCSS = THEME_TEMPLATES[name]

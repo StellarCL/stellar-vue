@@ -8,7 +8,16 @@ export {
   AccordionTrigger,
   type AccordionTriggerProps,
 } from './components/accordion'
-export { Alert, AlertDescription, type AlertDescriptionProps, type AlertProps, AlertTitle, type AlertTitleProps, alertVariants, type AlertVariants } from './components/alert'
+export {
+  Alert,
+  AlertDescription,
+  type AlertDescriptionProps,
+  type AlertProps,
+  AlertTitle,
+  type AlertTitleProps,
+  alertVariants,
+  type AlertVariants,
+} from './components/alert'
 
 export {
   Avatar,
@@ -154,6 +163,7 @@ export {
 } from './components/combobox'
 export {
   Command,
+  type CommandAction,
   CommandDialog,
   type CommandDialogProps,
   CommandEmpty,
@@ -166,11 +176,16 @@ export {
   type CommandItemProps,
   CommandList,
   type CommandListProps,
+  CommandPalette,
+  type CommandPaletteProps,
   type CommandProps,
   CommandSeparator,
   type CommandSeparatorProps,
   CommandShortcut,
   type CommandShortcutProps,
+  createCommandProvider,
+  useCommand,
+  type UseCommandReturn,
 } from './components/command'
 export {
   ContextMenu,
@@ -211,6 +226,10 @@ export {
   type DataTableCellProps,
   DataTableColumnHeader,
   type DataTableColumnHeaderProps,
+  DataTableColumnToggle,
+  type DataTableColumnToggleProps,
+  DataTableFilter,
+  type DataTableFilterProps,
   DataTableHead,
   DataTableHeader,
   type DataTableHeaderProps,
@@ -371,12 +390,15 @@ export {
   type OperatorMap,
 } from './components/filter-builder'
 export {
+  AutoForm,
+  type AutoFormProps,
   Form,
   FormControl,
   type FormControlProps,
   FormDescription,
   type FormDescriptionProps,
   FormField,
+  type FormFieldConfig,
   type FormFieldProps,
   FormItem,
   type FormItemProps,
@@ -385,13 +407,9 @@ export {
   FormMessage,
   type FormMessageProps,
   type FormProps,
+  toFormFields,
 } from './components/form'
-export {
-  Grid,
-  GridItem,
-  type GridItemProps,
-  type GridProps,
-} from './components/grid'
+export { Grid, GridItem, type GridItemProps, type GridProps } from './components/grid'
 export { Input, type InputProps, inputVariants, type InputVariants } from './components/input'
 export { Label, type LabelProps } from './components/label'
 export {
@@ -514,13 +532,19 @@ export {
   PopoverTrigger,
   type PopoverTriggerProps,
 } from './components/popover'
-export { Progress, type ProgressProps, progressVariants, type ProgressVariants } from './components/progress'
-export { RadioGroup, RadioGroupItem, type RadioGroupItemProps, type RadioGroupProps } from './components/radio-group'
 export {
-  Rating,
-  type RatingProps,
-  ratingVariants,
-} from './components/rating'
+  Progress,
+  type ProgressProps,
+  progressVariants,
+  type ProgressVariants,
+} from './components/progress'
+export {
+  RadioGroup,
+  RadioGroupItem,
+  type RadioGroupItemProps,
+  type RadioGroupProps,
+} from './components/radio-group'
+export { Rating, type RatingProps, ratingVariants } from './components/rating'
 // Phase 14: Advanced Features
 export {
   DEFAULT_TOOLBAR,
@@ -561,7 +585,12 @@ export {
   SelectValue,
   type SelectValueProps,
 } from './components/select'
-export { Separator, type SeparatorProps, separatorVariants, type SeparatorVariants } from './components/separator'
+export {
+  Separator,
+  type SeparatorProps,
+  separatorVariants,
+  type SeparatorVariants,
+} from './components/separator'
 export {
   Sheet,
   SheetClose,
@@ -622,10 +651,7 @@ export {
 export { Skeleton, type SkeletonProps } from './components/skeleton'
 
 export { Slider, type SliderProps } from './components/slider'
-export {
-  Stack,
-  type StackProps,
-} from './components/stack'
+export { Stack, type StackProps } from './components/stack'
 export {
   type StepConfig,
   Stepper,
@@ -650,7 +676,12 @@ export {
   TabsTrigger,
   type TabsTriggerProps,
 } from './components/tabs'
-export { Textarea, type TextareaProps, textareaVariants, type TextareaVariants } from './components/textarea'
+export {
+  Textarea,
+  type TextareaProps,
+  textareaVariants,
+  type TextareaVariants,
+} from './components/textarea'
 export {
   Timeline,
   TimelineConnector,
@@ -715,7 +746,13 @@ export { useThemeTokens } from './composables'
 export { provideFormFieldContext, useForm, useFormField } from './composables'
 export { useDisclosure, usePagination, useSteps, useToggle } from './composables'
 export { useDataTable } from './composables'
-export { useClipboard, useDebounce, useFocusTrap, useKeyboardNav, useMediaQuery } from './composables'
+export {
+  useClipboard,
+  useDebounce,
+  useFocusTrap,
+  useKeyboardNav,
+  useMediaQuery,
+} from './composables'
 export { useToast } from './composables'
 
 export { useFileUpload } from './composables'
@@ -726,3 +763,4 @@ export type { BaseComponentProps, Orientation, Size } from './types'
 // Utilities
 export { cn } from './utils'
 export { cva, type VariantProps } from './utils'
+export { exportTableData } from './utils/table-export'

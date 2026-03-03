@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import ora from 'ora'
 import prompts from 'prompts'
+import { getScaffoldTemplate, SCAFFOLD_COMPONENTS } from '../templates/scaffold'
 import { THEME_TEMPLATES } from '../templates/themes'
 import { UTIL_TEMPLATES } from '../templates/utils'
 import { defineConfig, getDefaultPaths } from '../types'
@@ -15,6 +16,7 @@ const THEMES = ['stellar', 'sirius', 'polaris', 'antares', 'vega', 'aldebaran'] 
 interface InitOptions {
   cwd?: string
   yes?: boolean
+  scaffold?: boolean
 }
 
 /**
@@ -253,6 +255,63 @@ function patchNuxtConfig(cwd: string, variablesCssPath: string): boolean {
     fs.writeFileSync(filePath, content, 'utf-8')
   }
   return true
+}
+
+/**
+ * Scaffold a starter App.vue with AppShell + Sidebar layout.
+ * Adds required components and writes the App.vue template.
+ */
+async function scaffoldApp(config: StellarConfig, cwd: string): Promise<void> {
+  const spinner = ora('Scaffolding app layout...').start()
+
+  try {
+    // Dynamically import addCommand to add scaffold components
+    const { addCommand } = await import('./add')
+    const components = [...SCAFFOLD_COMPONENTS]
+
+    // Add scaffold components silently
+    await addCommand(components, { cwd, yes: true, overwrite: false })
+    spinner.succeed('Scaffold components added')
+
+    // Write App.vue scaffold
+    const appVuePath = path.join(cwd, 'src', 'App.vue')
+    const appVueDir = path.dirname(appVuePath)
+
+    if (!fs.existsSync(appVueDir)) {
+      fs.mkdirSync(appVueDir, { recursive: true })
+    }
+
+    // Rewrite import paths based on user config
+    let template = getScaffoldTemplate(config.componentsDir)
+
+    // Replace @/ alias with user's configured alias if different
+    const srcAlias = config.aliases['@'] ?? './src'
+    if (srcAlias !== './src') {
+      const normalizedAlias = srcAlias.replace(/^\.\//, '')
+      template = template.replace(/@\//g, `@/${normalizedAlias}/`.replace(/\/\//g, '/'))
+    }
+
+    // Check if App.vue already exists
+    if (fs.existsSync(appVuePath)) {
+      const backupPath = `${appVuePath}.backup`
+      fs.copyFileSync(appVuePath, backupPath)
+      console.log(styles.dim(`  Existing App.vue backed up to App.vue.backup`))
+    }
+
+    fs.writeFileSync(appVuePath, template, 'utf-8')
+    const appSpinner = ora('App.vue scaffold created').start()
+    appSpinner.succeed('App.vue scaffold created')
+
+    newLine()
+    console.log(styles.success('Scaffold complete! Your app has a sidebar layout ready to go.'))
+    console.log(styles.dim('  Run your dev server to see it in action.'))
+    newLine()
+  }
+  catch (error) {
+    spinner.fail('Failed to scaffold app')
+    const message = error instanceof Error ? error.message : String(error)
+    console.error(styles.error(message))
+  }
 }
 
 export async function initCommand(options: InitOptions): Promise<void> {
@@ -521,6 +580,11 @@ export async function initCommand(options: InitOptions): Promise<void> {
       console.log(styles.dim(`  ${step}. Customize theme in ${config.cssVariables}`))
     }
     newLine()
+
+    // 13. Scaffold (if --scaffold flag is passed)
+    if (options.scaffold) {
+      await scaffoldApp(config, cwd)
+    }
   }
   catch (error) {
     spinner.fail('Failed to initialize Stellar UI')

@@ -39,6 +39,12 @@ export interface ColumnDef<T = any> {
   enableHiding?: boolean
 
   /**
+   * Whether this column supports text filtering.
+   * @default false
+   */
+  filterable?: boolean
+
+  /**
    * Preferred column width in pixels.
    */
   size?: number
@@ -183,6 +189,40 @@ export interface DataTableToolbarProps {
 }
 
 export interface DataTableRowActionsProps {
+  /**
+   * Additional CSS classes.
+   */
+  class?: HTMLAttributes['class']
+}
+
+export interface DataTableColumnToggleProps {
+  /**
+   * Column definitions array.
+   */
+  columns: ColumnDef[]
+
+  /**
+   * Map of columnId to visibility state.
+   */
+  columnVisibility: Record<string, boolean>
+
+  /**
+   * Additional CSS classes.
+   */
+  class?: HTMLAttributes['class']
+}
+
+export interface DataTableFilterProps {
+  /**
+   * Column definitions array.
+   */
+  columns: ColumnDef[]
+
+  /**
+   * Map of columnId to current filter value.
+   */
+  filter: Record<string, string>
+
   /**
    * Additional CSS classes.
    */
