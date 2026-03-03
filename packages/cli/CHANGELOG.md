@@ -1,5 +1,18 @@
 # @stellar-vue-ui/cli
 
+## 0.4.1
+
+### Patch Changes
+
+- 562939f: Fix missing composables when adding components. The `add` command now copies composable files (e.g. `useFormField`, `useToast`) that components depend on and rewrites their import paths correctly.
+- b142766: Fix `update` command to write real component code instead of stub comments. The command now uses the same `COMPONENT_TEMPLATES` + `rewriteImports()` pipeline as `add`, syncs composable dependencies, and installs npm deps. Adds `--force` flag to pull latest template changes even when the lock file version already matches the registry.
+- 7122dc6: Fix five component bugs found during evaluation:
+  - Card default variant now has a visible border
+  - AppShell uses row flex direction for proper sidebar layout
+  - SidebarMenuButton respects the asChild prop
+  - Accordion height animations now work (added missing @utility directives)
+  - DataTable uses design token classes instead of hardcoded colors
+
 ## 0.4.0
 
 ### Minor Changes
