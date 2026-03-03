@@ -280,16 +280,37 @@ export async function initCommand(options: InitOptions): Promise<void> {
     utilsSpinner.succeed('Shared utils created')
 
     // 8. Install core dependencies
-    await installDependencies(['clsx', 'tailwind-merge', 'class-variance-authority'], cwd)
+    const coreDeps = [
+      'tailwindcss',
+      config.framework === 'nuxt' ? '@nuxtjs/tailwindcss' : '@tailwindcss/vite',
+      'radix-vue',
+      'clsx',
+      'tailwind-merge',
+      'class-variance-authority',
+    ]
+    await installDependencies(coreDeps, cwd)
 
     // 9. Success message
     newLine()
     console.log(styles.success('Stellar UI initialized successfully!'))
     newLine()
     console.log(styles.highlight('Next steps:'))
-    console.log(styles.dim(`  1. Add components:  npx stellar-ui add button`))
-    console.log(styles.dim(`  2. Import in your app and start building`))
-    console.log(styles.dim(`  3. Customize theme in ${config.cssVariables}`))
+    if (config.framework === 'vue') {
+      console.log(styles.dim(`  1. Add the Tailwind plugin to vite.config.ts:`))
+      console.log(styles.dim(`     import tailwindcss from '@tailwindcss/vite'`))
+      console.log(styles.dim(`     // add tailwindcss() to the plugins array`))
+      console.log(styles.dim(`  2. Add @import 'tailwindcss' to your main CSS file`))
+      console.log(styles.dim(`  3. Add components:  npx stellar-ui add button`))
+    }
+    else {
+      console.log(styles.dim(`  1. Add '@nuxtjs/tailwindcss' to your nuxt.config modules`))
+      console.log(styles.dim(`  2. Add components:  npx stellar-ui add button`))
+    }
+    console.log(
+      styles.dim(
+        `  ${config.framework === 'vue' ? '4' : '3'}. Customize theme in ${config.cssVariables}`,
+      ),
+    )
     newLine()
   }
   catch (error) {
