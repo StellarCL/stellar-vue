@@ -1,6 +1,16 @@
 # @stellar-vue-ui/cli
 
-## 0.4.1
+## 0.4.2
+
+### Patch Changes
+
+- Fix `theme apply` to write CSS tokens to the variables file. Fix `update` command to write real component source code with `--force` flag for pulling template changes at the same version.
+
+## 0.4.0
+
+### Minor Changes
+
+- f2e5c22: Generate correct Tailwind v4 theme CSS during init. The CLI now produces `@theme` blocks with `--color-*` tokens, dark mode overrides, keyframes, and `@utility` blocks so components render correctly out of the box. Also fix `theme apply` to actually write the theme's CSS tokens to the variables file instead of only updating the config.
 
 ### Patch Changes
 
@@ -12,12 +22,6 @@
   - SidebarMenuButton respects the asChild prop
   - Accordion height animations now work (added missing @utility directives)
   - DataTable uses design token classes instead of hardcoded colors
-
-## 0.4.0
-
-### Minor Changes
-
-- f2e5c22: Generate correct Tailwind v4 theme CSS during init. The CLI now produces `@theme` blocks with `--color-*` tokens, dark mode overrides, keyframes, and `@utility` blocks so components render correctly out of the box.
 
 ## 0.3.1
 

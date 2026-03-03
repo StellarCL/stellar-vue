@@ -3,11 +3,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import {
-  generateThemeCss,
-  generateThemeJson,
-  generateThemeTailwind,
-} from './theme'
+import { generateThemeCss, generateThemeJson, generateThemeTailwind } from './theme'
 
 // We need to mock prompts before importing the module under test
 vi.mock('prompts', () => ({
@@ -162,7 +158,7 @@ describe('theme apply', () => {
     cleanup(tmpDir)
   })
 
-  it('updates the config when a valid theme is applied', async () => {
+  it('updates the config and writes CSS when a valid theme is applied', async () => {
     // Create a config file first
     const configData = {
       componentsDir: './components/ui',
@@ -197,6 +193,56 @@ describe('theme apply', () => {
     // Check the config was updated
     const updated = JSON.parse(fs.readFileSync(path.join(tmpDir, '.stellar-ui.json'), 'utf-8'))
     expect(updated.theme).toBe('sirius')
+
+    // Check the CSS variables file was written with the sirius theme
+    const cssPath = path.join(tmpDir, 'assets', 'css', 'variables.css')
+    expect(fs.existsSync(cssPath)).toBe(true)
+    const cssContent = fs.readFileSync(cssPath, 'utf-8')
+    expect(cssContent).toContain('Sirius')
+  })
+
+  it('applies a custom theme from themes/ directory', async () => {
+    const configData = {
+      componentsDir: './components/ui',
+      composablesDir: './composables',
+      utilsDir: './lib',
+      cssVariables: './assets/css/variables.css',
+      tailwindConfig: './tailwind.config.ts',
+      typescript: true,
+      aliases: { '@': './src', '~': './' },
+      framework: 'vue',
+      features: { animations: true, forms: true, icons: 'lucide' },
+    }
+    fs.writeFileSync(
+      path.join(tmpDir, '.stellar-ui.json'),
+      JSON.stringify(configData, null, 2),
+      'utf-8',
+    )
+
+    // Create a custom theme file
+    const themesDir = path.join(tmpDir, 'themes')
+    fs.mkdirSync(themesDir, { recursive: true })
+    const customCss = ':root { --color-primary: red; }\n'
+    fs.writeFileSync(path.join(themesDir, 'my-custom.css'), customCss, 'utf-8')
+
+    const { Command } = await import('commander')
+    const program = new Command()
+    program.exitOverride()
+
+    const { registerThemeCommand: reg } = await import('./theme')
+    reg(program)
+
+    const spy = vi.spyOn(console, 'log').mockImplementation(() => {})
+
+    await program.parseAsync(['node', 'test', 'theme', 'apply', 'my-custom', '--cwd', tmpDir])
+
+    spy.mockRestore()
+
+    // Check the CSS variables file was written with the custom theme content
+    const cssPath = path.join(tmpDir, 'assets', 'css', 'variables.css')
+    expect(fs.existsSync(cssPath)).toBe(true)
+    const cssContent = fs.readFileSync(cssPath, 'utf-8')
+    expect(cssContent).toBe(customCss)
   })
 
   it('errors for unknown theme name', async () => {
@@ -231,7 +277,15 @@ describe('theme apply', () => {
     })
 
     const originalExitCode = process.exitCode
-    await program.parseAsync(['node', 'test', 'theme', 'apply', 'nonexistent-theme', '--cwd', tmpDir])
+    await program.parseAsync([
+      'node',
+      'test',
+      'theme',
+      'apply',
+      'nonexistent-theme',
+      '--cwd',
+      tmpDir,
+    ])
 
     spy.mockRestore()
     process.exitCode = originalExitCode

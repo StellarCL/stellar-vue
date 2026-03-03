@@ -2,6 +2,7 @@ import type { Command } from 'commander'
 import fs from 'node:fs'
 import path from 'node:path'
 import prompts from 'prompts'
+import { THEME_TEMPLATES } from '../templates/themes'
 import { findConfig, readConfig, writeConfig } from '../utils/config'
 import { header, newLine, styles } from '../utils/prompts'
 
@@ -14,7 +15,7 @@ const BUILT_IN_THEMES = [
   { name: 'aldebaran', description: 'Rich and sophisticated' },
 ] as const
 
-type BuiltInThemeName = typeof BUILT_IN_THEMES[number]['name']
+type BuiltInThemeName = (typeof BUILT_IN_THEMES)[number]['name']
 
 const THEME_PRIMARY_COLORS: Record<BuiltInThemeName, string> = {
   stellar: 'oklch(55% 0.187 285)',
@@ -220,7 +221,7 @@ async function themeCreateAction(options: { yes?: boolean, cwd?: string }): Prom
         name: 'themeName',
         message: 'Theme name',
         initial: 'my-theme',
-        validate: (value: string) => value.trim().length > 0 ? true : 'Theme name is required',
+        validate: (value: string) => (value.trim().length > 0 ? true : 'Theme name is required'),
       },
       {
         type: 'select',
@@ -236,7 +237,8 @@ async function themeCreateAction(options: { yes?: boolean, cwd?: string }): Prom
         type: 'text',
         name: 'primaryColor',
         message: 'Primary color',
-        initial: (prev: BuiltInThemeName) => THEME_PRIMARY_COLORS[prev] ?? THEME_PRIMARY_COLORS.stellar,
+        initial: (prev: BuiltInThemeName) =>
+          THEME_PRIMARY_COLORS[prev] ?? THEME_PRIMARY_COLORS.stellar,
       },
       {
         type: 'select',
@@ -254,8 +256,8 @@ async function themeCreateAction(options: { yes?: boolean, cwd?: string }): Prom
 
     themeName = response.themeName as string
     baseTheme = response.baseTheme as BuiltInThemeName
-    primaryColor = response.primaryColor as string ?? THEME_PRIMARY_COLORS[baseTheme]
-    borderRadius = response.borderRadius as string ?? '0.5rem'
+    primaryColor = (response.primaryColor as string) ?? THEME_PRIMARY_COLORS[baseTheme]
+    borderRadius = (response.borderRadius as string) ?? '0.5rem'
   }
 
   const cssContent = generateThemeCss(themeName, baseTheme, primaryColor, borderRadius)
@@ -320,7 +322,10 @@ async function themeApplyAction(name: string, options: { cwd?: string }): Promis
   const builtInNames = BUILT_IN_THEMES.map(t => t.name)
   const themesDir = path.join(cwd, 'themes')
   const customThemes: string[] = fs.existsSync(themesDir)
-    ? fs.readdirSync(themesDir).filter(f => f.endsWith('.css')).map(f => f.replace(/\.css$/, ''))
+    ? fs
+        .readdirSync(themesDir)
+        .filter(f => f.endsWith('.css'))
+        .map(f => f.replace(/\.css$/, ''))
     : []
 
   const allThemes = [...builtInNames, ...customThemes]
@@ -328,6 +333,33 @@ async function themeApplyAction(name: string, options: { cwd?: string }): Promis
     console.log(styles.error(`Unknown theme: "${name}". Available themes: ${allThemes.join(', ')}`))
     process.exitCode = 1
     return
+  }
+
+  // Write theme CSS to the variables file
+  const cssPath = path.join(cwd, config.cssVariables)
+  const isBuiltIn = builtInNames.includes(name)
+
+  if (isBuiltIn) {
+    const themeCSS = THEME_TEMPLATES[name]
+    if (!themeCSS) {
+      console.log(styles.error(`Theme template "${name}" not found.`))
+      process.exitCode = 1
+      return
+    }
+    const cssDir = path.dirname(cssPath)
+    if (!fs.existsSync(cssDir)) {
+      fs.mkdirSync(cssDir, { recursive: true })
+    }
+    fs.writeFileSync(cssPath, themeCSS, 'utf-8')
+  }
+  else {
+    // Custom theme — copy from themes/ directory
+    const customCssPath = path.join(themesDir, `${name}.css`)
+    const cssDir = path.dirname(cssPath)
+    if (!fs.existsSync(cssDir)) {
+      fs.mkdirSync(cssDir, { recursive: true })
+    }
+    fs.copyFileSync(customCssPath, cssPath)
   }
 
   // Update config with the new theme reference
@@ -346,6 +378,7 @@ async function themeApplyAction(name: string, options: { cwd?: string }): Promis
   await writeConfig(updatedConfig as typeof config, configDir)
 
   console.log(styles.success(`Theme "${name}" applied to your project.`))
+  console.log(styles.dim(`  CSS variables written to ${config.cssVariables}`))
   newLine()
 }
 
@@ -366,7 +399,11 @@ async function themeExportAction(name: string, options: { format?: string }): Pr
     const cwd = process.cwd()
     const themeFile = path.join(cwd, 'themes', `${name}.css`)
     if (!fs.existsSync(themeFile)) {
-      console.log(styles.error(`Unknown theme: "${name}". Use \`stellar-ui theme list\` to see available themes.`))
+      console.log(
+        styles.error(
+          `Unknown theme: "${name}". Use \`stellar-ui theme list\` to see available themes.`,
+        ),
+      )
       process.exitCode = 1
       return
     }
@@ -378,7 +415,8 @@ async function themeExportAction(name: string, options: { format?: string }): Pr
   }
 
   // Use default values for the built-in theme export
-  const primaryColor = THEME_PRIMARY_COLORS[name as BuiltInThemeName] ?? THEME_PRIMARY_COLORS.stellar
+  const primaryColor
+    = THEME_PRIMARY_COLORS[name as BuiltInThemeName] ?? THEME_PRIMARY_COLORS.stellar
   const borderRadius = '0.5rem'
 
   let output: string
@@ -400,9 +438,7 @@ async function themeExportAction(name: string, options: { format?: string }): Pr
 }
 
 export function registerThemeCommand(program: Command): void {
-  const theme = program
-    .command('theme')
-    .description('Manage themes')
+  const theme = program.command('theme').description('Manage themes')
 
   theme
     .command('create')
@@ -411,10 +447,7 @@ export function registerThemeCommand(program: Command): void {
     .option('--cwd <cwd>', 'Working directory', process.cwd())
     .action(themeCreateAction)
 
-  theme
-    .command('list')
-    .description('List available themes')
-    .action(themeListAction)
+  theme.command('list').description('List available themes').action(themeListAction)
 
   theme
     .command('apply <name>')
