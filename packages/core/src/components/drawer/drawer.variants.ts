@@ -1,7 +1,7 @@
 import { cva } from '../../utils/variants'
 
 export const drawerContentVariants = cva(
-  'fixed z-50 flex flex-col bg-background dark:bg-navy-700 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
+  'fixed z-50 flex flex-col bg-background shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
   {
     variants: {
       side: {

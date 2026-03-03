@@ -5,9 +5,7 @@ import { cn } from '../../utils'
 
 const props = defineProps<BreadcrumbSeparatorProps>()
 
-const classes = computed(() =>
-  cn('[&>svg]:w-3.5 [&>svg]:h-3.5 text-slate-400 dark:text-navy-300', props.class),
-)
+const classes = computed(() => cn('[&>svg]:w-3.5 [&>svg]:h-3.5 text-muted-foreground', props.class))
 </script>
 
 <template>

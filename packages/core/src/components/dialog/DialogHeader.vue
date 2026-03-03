@@ -7,7 +7,7 @@ const props = defineProps<DialogHeaderProps>()
 
 const classes = computed(() =>
   cn(
-    'flex flex-col space-y-1.5 text-center sm:text-left bg-slate-200 dark:bg-navy-800 rounded-t-lg px-6 py-4',
+    'flex flex-col space-y-1.5 text-center sm:text-left bg-muted rounded-t-lg px-6 py-4',
     props.class,
   ),
 )

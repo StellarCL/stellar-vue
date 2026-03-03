@@ -157,7 +157,7 @@ provide('command:onSearchChange', handleSearchChange)
 // ── Classes ──────────────────────────────────────────────────────────────────
 const classes = computed(() =>
   cn(
-    'flex h-full w-full flex-col overflow-hidden rounded-lg border border-slate-150 bg-white shadow-soft font-inter dark:border-navy-500 dark:bg-navy-700 text-popover-foreground',
+    'flex h-full w-full flex-col overflow-hidden rounded-lg border border-border bg-popover shadow-soft font-inter text-popover-foreground',
     props.class,
   ),
 )

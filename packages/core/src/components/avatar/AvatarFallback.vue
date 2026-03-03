@@ -7,10 +7,7 @@ import { cn } from '../../utils'
 const props = withDefaults(defineProps<AvatarFallbackProps>(), {})
 
 const classes = computed(() =>
-  cn(
-    'flex h-full w-full items-center justify-center rounded-full bg-slate-150 dark:bg-navy-600',
-    props.class,
-  ),
+  cn('flex h-full w-full items-center justify-center rounded-full bg-muted', props.class),
 )
 </script>
 

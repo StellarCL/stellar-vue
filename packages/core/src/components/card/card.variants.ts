@@ -3,8 +3,7 @@ import { cva, type VariantProps } from '../../utils/variants'
 export const cardVariants = cva('', {
   variants: {
     variant: {
-      default:
-        'rounded-lg border border-border bg-white text-card-foreground shadow-soft dark:bg-navy-700 dark:shadow-none',
+      default: 'rounded-lg border border-border bg-card text-card-foreground shadow-soft',
       bordered: 'rounded-lg border-2 bg-card text-card-foreground',
       elevated: 'rounded-lg bg-card text-card-foreground shadow-lg',
     },

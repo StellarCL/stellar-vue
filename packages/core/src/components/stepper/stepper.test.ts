@@ -113,7 +113,7 @@ describe('stepperTrigger', () => {
     const buttons = wrapper.findAll('button')
     // Step 2 and 3 are upcoming
     const upcomingCircle = buttons[1].find('span')
-    expect(upcomingCircle.classes().join(' ')).toContain('border-slate-300')
+    expect(upcomingCircle.classes().join(' ')).toContain('border-border')
   })
 
   it('clicking a trigger changes active step', async () => {
@@ -156,7 +156,7 @@ describe('stepperSeparator', () => {
     const wrapper = mountStepper(1)
     const separators = wrapper.findAll('[role="separator"]')
     // First separator: step 1 is active (not completed), so separator not completed
-    expect(separators[0].classes().join(' ')).toContain('bg-slate-150')
+    expect(separators[0].classes().join(' ')).toContain('bg-border')
     expect(separators[0].classes().join(' ')).not.toContain('bg-primary')
   })
 

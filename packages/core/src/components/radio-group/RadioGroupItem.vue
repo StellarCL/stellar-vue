@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<RadioGroupItemProps>(), {
     :disabled="disabled"
     :class="
       cn(
-        'aspect-square h-5 w-5 rounded-full border border-slate-400/70 dark:border-navy-450 text-primary focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
+        'aspect-square h-5 w-5 rounded-full border border-input text-primary focus:outline-none disabled:cursor-not-allowed disabled:opacity-50',
         props.class,
       )
     "

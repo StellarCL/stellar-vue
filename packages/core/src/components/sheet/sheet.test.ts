@@ -386,7 +386,7 @@ describe('sheetContent', () => {
       { Sheet, SheetContent },
     )
     const html = document.body.innerHTML
-    expect(html).toContain('bg-slate-900/60')
+    expect(html).toContain('bg-black/60')
     wrapper.unmount()
     document.body.innerHTML = ''
   })

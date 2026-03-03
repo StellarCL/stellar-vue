@@ -103,8 +103,8 @@ describe('tooltipContent', () => {
     expect(bodyHtml).toContain('py-1.5')
     expect(bodyHtml).toContain('text-sm')
     expect(bodyHtml).toContain('rounded-md')
-    expect(bodyHtml).toContain('bg-slate-150')
-    expect(bodyHtml).toContain('text-slate-800')
+    expect(bodyHtml).toContain('bg-popover')
+    expect(bodyHtml).toContain('text-popover-foreground')
     expect(bodyHtml).toContain('shadow-soft')
   })
 
