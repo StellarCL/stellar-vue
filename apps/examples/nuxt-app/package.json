@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/example-nuxt-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Nuxt 4 example using @stellar-vue-ui/nuxt module",
   "scripts": {

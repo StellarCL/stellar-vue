@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Production-ready Vue 3 components built on Radix Vue with Tailwind CSS",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
