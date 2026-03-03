@@ -30,6 +30,231 @@ function detectFramework(cwd: string): 'vue' | 'nuxt' {
   return 'vue'
 }
 
+/**
+ * Patch vite.config.ts/js to add the @tailwindcss/vite plugin.
+ * Returns true if patched, false if file not found or already present.
+ */
+function patchViteConfig(cwd: string): boolean {
+  const candidates = ['vite.config.ts', 'vite.config.js']
+  let filePath: string | null = null
+
+  for (const candidate of candidates) {
+    const p = path.join(cwd, candidate)
+    if (fs.existsSync(p)) {
+      filePath = p
+      break
+    }
+  }
+
+  if (!filePath)
+    return false
+
+  let content = fs.readFileSync(filePath, 'utf-8')
+
+  if (content.includes('@tailwindcss/vite'))
+    return false
+
+  // Add import after the last import line
+  const lines = content.split('\n')
+  let lastImportIdx = -1
+  for (let i = 0; i < lines.length; i++) {
+    if (/^\s*import\s/.test(lines[i]!)) {
+      lastImportIdx = i
+    }
+  }
+  const importLine = `import tailwindcss from '@tailwindcss/vite'`
+  if (lastImportIdx >= 0) {
+    lines.splice(lastImportIdx + 1, 0, importLine)
+  }
+  else {
+    lines.unshift(importLine)
+  }
+
+  content = lines.join('\n')
+
+  // Add tailwindcss() to the plugins array
+  const pluginsMatch = content.match(/plugins\s*:\s*\[/)
+  if (pluginsMatch && pluginsMatch.index !== undefined) {
+    const insertPos = pluginsMatch.index + pluginsMatch[0].length
+    content = `${content.slice(0, insertPos)}\n    tailwindcss(),${content.slice(insertPos)}`
+  }
+
+  fs.writeFileSync(filePath, content, 'utf-8')
+  return true
+}
+
+/**
+ * Patch the CSS entrypoint to wire up Tailwind and theme CSS imports.
+ * Returns true if patched/created, false if main.ts not found.
+ */
+function patchCssEntrypoint(cwd: string, variablesCssPath: string): boolean {
+  const candidates = ['src/main.ts', 'src/main.js', 'main.ts', 'main.js']
+  let mainPath: string | null = null
+
+  for (const candidate of candidates) {
+    const p = path.join(cwd, candidate)
+    if (fs.existsSync(p)) {
+      mainPath = p
+      break
+    }
+  }
+
+  if (!mainPath)
+    return false
+
+  const mainContent = fs.readFileSync(mainPath, 'utf-8')
+  const cssImportRegex = /import\s+['"](.+\.(?:css|scss|sass|less))['"]/g
+  const cssImports: { full: string, file: string }[] = []
+  let match: RegExpExecArray | null = cssImportRegex.exec(mainContent)
+
+  while (match !== null) {
+    cssImports.push({ full: match[0], file: match[1]! })
+    match = cssImportRegex.exec(mainContent)
+  }
+
+  const absVariablesCss = path.join(cwd, variablesCssPath)
+
+  if (cssImports.length > 0) {
+    // Patch the first CSS file found
+    const cssImport = cssImports[0]!
+    const mainDir = path.dirname(mainPath)
+    const cssFilePath = path.resolve(mainDir, cssImport.file)
+
+    if (!fs.existsSync(cssFilePath))
+      return false
+
+    let cssContent = fs.readFileSync(cssFilePath, 'utf-8')
+    let changed = false
+
+    if (
+      !cssContent.includes(`@import 'tailwindcss'`)
+      && !cssContent.includes(`@import "tailwindcss"`)
+    ) {
+      cssContent = `@import 'tailwindcss';\n${cssContent}`
+      changed = true
+    }
+
+    const relVarsPath = path
+      .relative(path.dirname(cssFilePath), absVariablesCss)
+      .split(path.sep)
+      .join('/')
+    const varsImportA = `@import '${relVarsPath}'`
+    const varsImportB = `@import "${relVarsPath}"`
+    if (!cssContent.includes(varsImportA) && !cssContent.includes(varsImportB)) {
+      cssContent = `${cssContent.trimEnd()}\n@import '${relVarsPath}';\n`
+      changed = true
+    }
+
+    if (changed) {
+      fs.writeFileSync(cssFilePath, cssContent, 'utf-8')
+    }
+    return true
+  }
+  else {
+    // No CSS import found — create main.css next to variables.css and add import to main.ts
+    const cssDir = path.dirname(absVariablesCss)
+    if (!fs.existsSync(cssDir)) {
+      fs.mkdirSync(cssDir, { recursive: true })
+    }
+    const newCssPath = path.join(cssDir, 'main.css')
+    if (!fs.existsSync(newCssPath)) {
+      fs.writeFileSync(newCssPath, `@import 'tailwindcss';\n@import './variables.css';\n`, 'utf-8')
+    }
+
+    // Add import to main.ts after the last import line
+    const mainDir = path.dirname(mainPath)
+    const relCssPath = path.relative(mainDir, newCssPath).split(path.sep).join('/')
+    const importStatement = `import './${relCssPath}'`
+
+    if (!mainContent.includes(relCssPath)) {
+      const lines = mainContent.split('\n')
+      let lastImportIdx = -1
+      for (let i = 0; i < lines.length; i++) {
+        if (/^\s*import\s/.test(lines[i]!)) {
+          lastImportIdx = i
+        }
+      }
+      if (lastImportIdx >= 0) {
+        lines.splice(lastImportIdx + 1, 0, importStatement)
+      }
+      else {
+        lines.unshift(importStatement)
+      }
+      fs.writeFileSync(mainPath, lines.join('\n'), 'utf-8')
+    }
+    return true
+  }
+}
+
+/**
+ * Patch nuxt.config.ts/js to add the Tailwind module and CSS variables.
+ * Returns true if patched, false if not found.
+ */
+function patchNuxtConfig(cwd: string, variablesCssPath: string): boolean {
+  const candidates = ['nuxt.config.ts', 'nuxt.config.js']
+  let filePath: string | null = null
+
+  for (const candidate of candidates) {
+    const p = path.join(cwd, candidate)
+    if (fs.existsSync(p)) {
+      filePath = p
+      break
+    }
+  }
+
+  if (!filePath)
+    return false
+
+  let content = fs.readFileSync(filePath, 'utf-8')
+  let changed = false
+
+  // Add @nuxtjs/tailwindcss to modules array
+  if (!content.includes('@nuxtjs/tailwindcss')) {
+    const modulesMatch = content.match(/modules\s*:\s*\[/)
+    if (modulesMatch && modulesMatch.index !== undefined) {
+      const insertPos = modulesMatch.index + modulesMatch[0].length
+      content = `${content.slice(0, insertPos)}\n    '@nuxtjs/tailwindcss',${content.slice(insertPos)}`
+      changed = true
+    }
+    else {
+      // No modules array — add one inside defineNuxtConfig
+      const configMatch = content.match(/defineNuxtConfig\s*\(\s*\{/)
+      if (configMatch && configMatch.index !== undefined) {
+        const insertPos = configMatch.index + configMatch[0].length
+        content = `${content.slice(0, insertPos)}\n  modules: ['@nuxtjs/tailwindcss'],${content.slice(insertPos)}`
+        changed = true
+      }
+    }
+  }
+
+  // Normalize variablesCssPath (strip leading ./)
+  const cssEntry = variablesCssPath.replace(/^\.\//, '')
+
+  // Add CSS variables file to css array
+  if (!content.includes(cssEntry)) {
+    const cssArrayMatch = content.match(/css\s*:\s*\[/)
+    if (cssArrayMatch && cssArrayMatch.index !== undefined) {
+      const insertPos = cssArrayMatch.index + cssArrayMatch[0].length
+      content = `${content.slice(0, insertPos)}\n    '~/${cssEntry}',${content.slice(insertPos)}`
+      changed = true
+    }
+    else {
+      // No css array — add one inside defineNuxtConfig
+      const configMatch = content.match(/defineNuxtConfig\s*\(\s*\{/)
+      if (configMatch && configMatch.index !== undefined) {
+        const insertPos = configMatch.index + configMatch[0].length
+        content = `${content.slice(0, insertPos)}\n  css: ['~/${cssEntry}'],${content.slice(insertPos)}`
+        changed = true
+      }
+    }
+  }
+
+  if (changed) {
+    fs.writeFileSync(filePath, content, 'utf-8')
+  }
+  return true
+}
+
 export async function initCommand(options: InitOptions): Promise<void> {
   const cwd = path.resolve(options.cwd ?? process.cwd())
 
@@ -227,27 +452,74 @@ export async function initCommand(options: InitOptions): Promise<void> {
     ]
     await installDependencies(coreDeps, cwd)
 
-    // 11. Success message
+    // 11. Auto-patch project files
+    let vitePatched = false
+    let cssPatched = false
+    let nuxtPatched = false
+
+    if (config.framework === 'vue') {
+      vitePatched = patchViteConfig(cwd)
+      if (vitePatched) {
+        const patchSpinner = ora('Tailwind plugin added to vite.config').start()
+        patchSpinner.succeed('Tailwind plugin added to vite.config')
+      }
+      cssPatched = patchCssEntrypoint(cwd, config.cssVariables)
+      if (cssPatched) {
+        const cssSpinner2 = ora('CSS imports wired up').start()
+        cssSpinner2.succeed('CSS imports wired up')
+      }
+    }
+    else {
+      nuxtPatched = patchNuxtConfig(cwd, config.cssVariables)
+      if (nuxtPatched) {
+        const nuxtSpinner = ora('Nuxt config patched with Tailwind module + CSS').start()
+        nuxtSpinner.succeed('Nuxt config patched with Tailwind module + CSS')
+      }
+    }
+
+    // 12. Success message
     newLine()
     console.log(styles.success('Stellar UI initialized successfully!'))
     newLine()
-    console.log(styles.highlight('Next steps:'))
-    if (config.framework === 'vue') {
-      console.log(styles.dim(`  1. Add the Tailwind plugin to vite.config.ts:`))
-      console.log(styles.dim(`     import tailwindcss from '@tailwindcss/vite'`))
-      console.log(styles.dim(`     // add tailwindcss() to the plugins array`))
-      console.log(styles.dim(`  2. Add @import 'tailwindcss' to your main CSS file`))
-      console.log(styles.dim(`  3. Add components:  npx stellar-ui add button`))
+
+    const allPatched = config.framework === 'vue' ? vitePatched && cssPatched : nuxtPatched
+
+    if (allPatched) {
+      console.log(styles.highlight('Everything is wired up! Next steps:'))
+      console.log(styles.dim(`  1. Add components:  npx stellar-ui add button`))
+      console.log(styles.dim(`  2. Customize theme in ${config.cssVariables}`))
     }
     else {
-      console.log(styles.dim(`  1. Add '@nuxtjs/tailwindcss' to your nuxt.config modules`))
-      console.log(styles.dim(`  2. Add components:  npx stellar-ui add button`))
+      console.log(styles.highlight('Next steps:'))
+      let step = 1
+      if (config.framework === 'vue') {
+        if (!vitePatched) {
+          console.log(styles.dim(`  ${step}. Add the Tailwind plugin to vite.config.ts:`))
+          console.log(styles.dim(`     import tailwindcss from '@tailwindcss/vite'`))
+          console.log(styles.dim(`     // add tailwindcss() to the plugins array`))
+          step++
+        }
+        if (!cssPatched) {
+          const varsBasename = path.basename(config.cssVariables)
+          console.log(styles.dim(`  ${step}. Add Tailwind + theme imports to your main CSS file:`))
+          console.log(styles.dim(`     @import 'tailwindcss';`))
+          console.log(styles.dim(`     @import './${varsBasename}';`))
+          console.log(styles.dim(`     Then make sure that CSS file is imported in main.ts`))
+          step++
+        }
+      }
+      else {
+        if (!nuxtPatched) {
+          console.log(
+            styles.dim(`  ${step}. Add '@nuxtjs/tailwindcss' to your nuxt.config modules`),
+          )
+          step++
+        }
+      }
+      console.log(styles.dim(`  ${step}. Add components:  npx stellar-ui add button`))
+      step++
+      console.log(styles.dim(`  ${step}. Customize theme in ${config.cssVariables}`))
     }
-    console.log(
-      styles.dim(
-        `  ${config.framework === 'vue' ? '4' : '3'}. Customize theme in ${config.cssVariables}`,
-      ),
-    )
     newLine()
   }
   catch (error) {
