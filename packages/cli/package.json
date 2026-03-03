@@ -31,11 +31,11 @@
     "dist"
   ],
   "scripts": {
-    "generate": "tsx scripts/generate-templates.ts",
-    "prebuild": "tsx scripts/generate-templates.ts",
+    "generate": "tsx scripts/generate-templates.ts && tsx scripts/generate-theme-templates.ts",
+    "prebuild": "tsx scripts/generate-templates.ts && tsx scripts/generate-theme-templates.ts",
     "build": "tsup src/index.ts --format cjs --dts --tsconfig tsconfig.build.json",
     "dev": "tsup src/index.ts --format cjs --dts --watch",
-    "pretest": "tsx scripts/generate-templates.ts",
+    "pretest": "tsx scripts/generate-templates.ts && tsx scripts/generate-theme-templates.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",

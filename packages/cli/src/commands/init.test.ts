@@ -113,7 +113,8 @@ describe('init command', () => {
       expect(fs.existsSync(cssPath)).toBe(true)
 
       const cssContent = fs.readFileSync(cssPath, 'utf-8')
-      expect(cssContent).toContain('--stellar-primary')
+      expect(cssContent).toContain('@theme')
+      expect(cssContent).toContain('--color-primary')
       expect(cssContent).toContain('Stellar UI')
     })
 
