@@ -1,5 +1,11 @@
 # @stellar-vue-ui/cli
 
+## 0.4.2
+
+### Patch Changes
+
+- Fix `theme apply` to write CSS tokens to the variables file. Fix `update` command to write real component source code with `--force` flag for pulling template changes at the same version.
+
 ## 0.4.0
 
 ### Minor Changes

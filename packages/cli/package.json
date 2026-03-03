@@ -1,6 +1,6 @@
 {
   "name": "@stellar-vue-ui/cli",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "CLI tool for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",
