@@ -42,6 +42,7 @@ program
   .description('Update installed components')
   .option('-y, --yes', 'Skip confirmation prompts')
   .option('-a, --all', 'Update all installed components')
+  .option('-f, --force', 'Update even if version matches (pull latest template changes)')
   .option('--cwd <cwd>', 'Working directory', process.cwd())
   .action(updateCommand)
 
