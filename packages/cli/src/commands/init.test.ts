@@ -94,15 +94,23 @@ describe('init command', () => {
       expect(lock.components).toEqual({})
     })
 
-    it('creates CSS file', async () => {
+    it('creates CSS file in src/ for Vue projects', async () => {
       await initCommand({ cwd: tmpDir, yes: true })
 
-      const cssPath = path.join(tmpDir, 'assets', 'css', 'variables.css')
+      const cssPath = path.join(tmpDir, 'src', 'assets', 'css', 'variables.css')
       expect(fs.existsSync(cssPath)).toBe(true)
 
       const cssContent = fs.readFileSync(cssPath, 'utf-8')
       expect(cssContent).toContain('--stellar-primary')
       expect(cssContent).toContain('Stellar UI')
+    })
+
+    it('creates CSS file at root for Nuxt projects', async () => {
+      fs.writeFileSync(path.join(tmpDir, 'nuxt.config.ts'), 'export default {}', 'utf-8')
+      await initCommand({ cwd: tmpDir, yes: true })
+
+      const cssPath = path.join(tmpDir, 'assets', 'css', 'variables.css')
+      expect(fs.existsSync(cssPath)).toBe(true)
     })
   })
 
@@ -149,14 +157,16 @@ describe('init command', () => {
       expect(fs.existsSync(path.join(tmpDir, '.stellar-ui.json'))).toBe(true)
       expect(fs.existsSync(path.join(tmpDir, 'stellar-ui.config.ts'))).toBe(true)
       expect(fs.existsSync(path.join(tmpDir, 'components.lock.json'))).toBe(true)
-      expect(fs.existsSync(path.join(tmpDir, 'assets', 'css', 'variables.css'))).toBe(true)
+      expect(fs.existsSync(path.join(tmpDir, 'src', 'assets', 'css', 'variables.css'))).toBe(true)
 
-      // Verify defaults were used
+      // Verify Vue defaults were used (src/-prefixed)
       const config = JSON.parse(
         fs.readFileSync(path.join(tmpDir, '.stellar-ui.json'), 'utf-8'),
       ) as StellarConfig
-      expect(config.componentsDir).toBe('./components/ui')
-      expect(config.composablesDir).toBe('./composables')
+      expect(config.componentsDir).toBe('./src/components/ui')
+      expect(config.composablesDir).toBe('./src/composables')
+      expect(config.utilsDir).toBe('./src/lib')
+      expect(config.cssVariables).toBe('./src/assets/css/variables.css')
       expect(config.typescript).toBe(true)
       expect(config.features.animations).toBe(true)
       expect(config.features.icons).toBe('lucide')
@@ -165,11 +175,14 @@ describe('init command', () => {
 
   describe('interactive prompts', () => {
     it('uses responses from prompts to build config', async () => {
+      // First call: framework selection
+      vi.mocked(prompts).mockResolvedValueOnce({ framework: 'nuxt' })
+      // Second call: remaining prompts
       vi.mocked(prompts).mockResolvedValueOnce({
-        framework: 'nuxt',
         componentsDir: './custom/ui',
         composablesDir: './custom/composables',
         utilsDir: './custom/utils',
+        cssVariables: './custom/css/variables.css',
         theme: 'sirius',
         animations: false,
         icons: 'heroicons',
@@ -185,6 +198,7 @@ describe('init command', () => {
       expect(config.componentsDir).toBe('./custom/ui')
       expect(config.composablesDir).toBe('./custom/composables')
       expect(config.utilsDir).toBe('./custom/utils')
+      expect(config.cssVariables).toBe('./custom/css/variables.css')
       expect(config.features.animations).toBe(false)
       expect(config.features.icons).toBe('heroicons')
     })

@@ -4,8 +4,9 @@ import path from 'node:path'
 import ora from 'ora'
 import prompts from 'prompts'
 import { UTIL_TEMPLATES } from '../templates/utils'
-import { defineConfig } from '../types'
-import { DEFAULT_CONFIG, findConfig, writeConfig, writeLockFile } from '../utils/config'
+import { defineConfig, getDefaultPaths } from '../types'
+import { findConfig, writeConfig, writeLockFile } from '../utils/config'
+import { installDependencies } from '../utils/package-manager'
 import { header, newLine, styles } from '../utils/prompts'
 
 const THEMES = ['stellar', 'sirius', 'polaris', 'antares', 'vega', 'aldebaran'] as const
@@ -138,41 +139,56 @@ export async function initCommand(options: InitOptions): Promise<void> {
   let selectedTheme = 'stellar'
 
   if (options.yes) {
-    // Use all defaults without prompting
+    // Use all defaults without prompting (framework-aware)
     config = defineConfig({
       framework: detectedFramework,
     })
   }
   else {
-    // 3. Interactive prompts
+    // 3. Interactive prompts — ask framework first so we can compute defaults
+    const { framework } = await prompts({
+      type: 'select',
+      name: 'framework',
+      message: 'Framework',
+      choices: [
+        { title: 'Vue', value: 'vue' },
+        { title: 'Nuxt', value: 'nuxt' },
+      ],
+      initial: detectedFramework === 'nuxt' ? 1 : 0,
+    })
+
+    // Handle user cancellation (Ctrl+C)
+    if (framework === undefined) {
+      console.log(styles.info('Init cancelled.'))
+      return
+    }
+
+    const defaults = getDefaultPaths(framework)
+
     const response = await prompts([
-      {
-        type: 'select',
-        name: 'framework',
-        message: 'Framework',
-        choices: [
-          { title: 'Vue', value: 'vue' },
-          { title: 'Nuxt', value: 'nuxt' },
-        ],
-        initial: detectedFramework === 'nuxt' ? 1 : 0,
-      },
       {
         type: 'text',
         name: 'componentsDir',
         message: 'Components directory',
-        initial: DEFAULT_CONFIG.componentsDir,
+        initial: defaults.componentsDir,
       },
       {
         type: 'text',
         name: 'composablesDir',
         message: 'Composables directory',
-        initial: DEFAULT_CONFIG.composablesDir,
+        initial: defaults.composablesDir,
       },
       {
         type: 'text',
         name: 'utilsDir',
         message: 'Utils directory',
-        initial: DEFAULT_CONFIG.utilsDir,
+        initial: defaults.utilsDir,
+      },
+      {
+        type: 'text',
+        name: 'cssVariables',
+        message: 'CSS variables file',
+        initial: defaults.cssVariables,
       },
       {
         type: 'select',
@@ -202,7 +218,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
     ])
 
     // Handle user cancellation (Ctrl+C)
-    if (response.framework === undefined) {
+    if (response.componentsDir === undefined) {
       console.log(styles.info('Init cancelled.'))
       return
     }
@@ -210,10 +226,11 @@ export async function initCommand(options: InitOptions): Promise<void> {
     selectedTheme = response.theme ?? 'stellar'
 
     config = defineConfig({
-      framework: response.framework,
-      componentsDir: response.componentsDir ?? DEFAULT_CONFIG.componentsDir,
-      composablesDir: response.composablesDir ?? DEFAULT_CONFIG.composablesDir,
-      utilsDir: response.utilsDir ?? DEFAULT_CONFIG.utilsDir,
+      framework,
+      componentsDir: response.componentsDir ?? defaults.componentsDir,
+      composablesDir: response.composablesDir ?? defaults.composablesDir,
+      utilsDir: response.utilsDir ?? defaults.utilsDir,
+      cssVariables: response.cssVariables ?? defaults.cssVariables,
       features: {
         animations: response.animations ?? true,
         forms: true,
@@ -262,16 +279,17 @@ export async function initCommand(options: InitOptions): Promise<void> {
     const utilsSpinner = ora('Shared utils created').start()
     utilsSpinner.succeed('Shared utils created')
 
-    // 8. Success message
+    // 8. Install core dependencies
+    await installDependencies(['clsx', 'tailwind-merge', 'class-variance-authority'], cwd)
+
+    // 9. Success message
     newLine()
     console.log(styles.success('Stellar UI initialized successfully!'))
     newLine()
     console.log(styles.highlight('Next steps:'))
-    console.log(styles.dim(`  1. Install utils dependencies:`))
-    console.log(styles.dim(`     npm install clsx tailwind-merge class-variance-authority`))
-    console.log(styles.dim(`  2. Add components:  npx stellar-ui add button`))
-    console.log(styles.dim(`  3. Import in your app and start building`))
-    console.log(styles.dim(`  4. Customize theme in ${config.cssVariables}`))
+    console.log(styles.dim(`  1. Add components:  npx stellar-ui add button`))
+    console.log(styles.dim(`  2. Import in your app and start building`))
+    console.log(styles.dim(`  3. Customize theme in ${config.cssVariables}`))
     newLine()
   }
   catch (error) {

@@ -4,6 +4,7 @@ import path from 'node:path'
 import prompts from 'prompts'
 import { COMPONENT_TEMPLATES } from '../templates/components'
 import { findConfig, readConfig, readLockFile, writeLockFile } from '../utils/config'
+import { installDependencies } from '../utils/package-manager'
 import { newLine, styles } from '../utils/prompts'
 import { getComponent, getRegistry, resolveDependencies } from '../utils/registry'
 
@@ -211,12 +212,11 @@ export async function addCommand(components: string[], options: AddOptions): Pro
     )
   }
 
-  // 5. Show npm dependencies that need to be installed
+  // 5. Install npm dependencies
   const npmDepEntries = Object.entries(allNpmDeps)
   if (npmDepEntries.length > 0) {
     newLine()
-    const depList = npmDepEntries.map(([name, ver]) => `${name}@${ver}`).join(' ')
-    console.log(styles.info('Install required dependencies:'))
-    console.log(styles.dim(`  npm install ${depList}`))
+    const deps = npmDepEntries.map(([name, ver]) => `${name}@${ver}`)
+    await installDependencies(deps, cwd)
   }
 }

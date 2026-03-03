@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { readLockFile } from '../utils/config'
+import { installDependencies } from '../utils/package-manager'
 import { divider, header, newLine, styles } from '../utils/prompts'
 import { getComponent } from '../utils/registry'
 
@@ -92,7 +93,9 @@ export async function depsCommand(options: { cwd?: string, update?: boolean }): 
   newLine()
 
   // Report installed deps
-  console.log(styles.highlight(`Installed dependencies (${installedDeps.length}/${requiredDeps.size}):`))
+  console.log(
+    styles.highlight(`Installed dependencies (${installedDeps.length}/${requiredDeps.size}):`),
+  )
   if (installedDeps.length > 0) {
     for (const dep of installedDeps) {
       console.log(`  ${styles.success(dep)}`)
@@ -112,13 +115,11 @@ export async function depsCommand(options: { cwd?: string, update?: boolean }): 
     newLine()
 
     if (options.update) {
-      const installCmd = `npm install ${missingDeps.map(d => `${d.name}@"${d.version}"`).join(' ')}`
-      console.log(styles.highlight('Install missing dependencies:'))
-      console.log(`  ${styles.dim(installCmd)}`)
-      newLine()
+      const deps = missingDeps.map(d => `${d.name}@${d.version}`)
+      await installDependencies(deps, cwd)
     }
     else {
-      console.log(styles.dim('Run with --update to see the install command for missing deps.'))
+      console.log(styles.dim('Run with --update to install missing dependencies.'))
       newLine()
     }
   }

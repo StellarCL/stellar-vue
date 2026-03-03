@@ -4,6 +4,12 @@ import path from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { depsCommand } from './deps'
 
+// Mock installDependencies to avoid real npm installs in tests
+const mockInstallDependencies = vi.fn().mockResolvedValue(true)
+vi.mock('../utils/package-manager', () => ({
+  installDependencies: (...args: unknown[]) => mockInstallDependencies(...args),
+}))
+
 function makeTempDir(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'stellar-deps-test-'))
 }
@@ -15,17 +21,21 @@ function cleanup(dir: string): void {
 function writeConfig(dir: string): void {
   fs.writeFileSync(
     path.join(dir, '.stellar-ui.json'),
-    JSON.stringify({
-      componentsDir: './components/ui',
-      composablesDir: './composables',
-      utilsDir: './lib',
-      cssVariables: './assets/css/variables.css',
-      tailwindConfig: './tailwind.config.ts',
-      typescript: true,
-      aliases: { '@': './src', '~': './' },
-      framework: 'vue',
-      features: { animations: true, forms: true, icons: 'lucide' },
-    }, null, 2),
+    JSON.stringify(
+      {
+        componentsDir: './components/ui',
+        composablesDir: './composables',
+        utilsDir: './lib',
+        cssVariables: './assets/css/variables.css',
+        tailwindConfig: './tailwind.config.ts',
+        typescript: true,
+        aliases: { '@': './src', '~': './' },
+        framework: 'vue',
+        features: { animations: true, forms: true, icons: 'lucide' },
+      },
+      null,
+      2,
+    ),
     'utf-8',
   )
 }
@@ -38,15 +48,23 @@ function writeLock(dir: string, components: Record<string, unknown>): void {
   )
 }
 
-function writePackageJson(dir: string, deps: Record<string, string>, devDeps?: Record<string, string>): void {
+function writePackageJson(
+  dir: string,
+  deps: Record<string, string>,
+  devDeps?: Record<string, string>,
+): void {
   fs.writeFileSync(
     path.join(dir, 'package.json'),
-    JSON.stringify({
-      name: 'test-project',
-      version: '1.0.0',
-      dependencies: deps,
-      devDependencies: devDeps ?? {},
-    }, null, 2),
+    JSON.stringify(
+      {
+        name: 'test-project',
+        version: '1.0.0',
+        dependencies: deps,
+        devDependencies: devDeps ?? {},
+      },
+      null,
+      2,
+    ),
     'utf-8',
   )
 }
@@ -59,6 +77,7 @@ describe('depsCommand', () => {
   beforeEach(() => {
     tmpDir = makeTempDir()
     logs = []
+    mockInstallDependencies.mockClear()
     consoleSpy = vi.spyOn(console, 'log').mockImplementation((...args) => {
       logs.push(args.join(' '))
     })
@@ -147,7 +166,7 @@ describe('depsCommand', () => {
     expect(output).toContain('All dependencies are installed')
   })
 
-  it('shows install command with --update flag when deps are missing', async () => {
+  it('installs missing deps with --update flag', async () => {
     writeConfig(tmpDir)
     writeLock(tmpDir, {
       button: {
@@ -163,9 +182,10 @@ describe('depsCommand', () => {
 
     await depsCommand({ cwd: tmpDir, update: true })
 
-    const output = logs.join('\n')
-    expect(output).toContain('npm install')
-    expect(output).toContain('radix-vue')
+    expect(mockInstallDependencies).toHaveBeenCalledWith(
+      ['radix-vue@^1.9.0'],
+      expect.stringContaining(tmpDir),
+    )
   })
 
   it('does not show install command without --update flag', async () => {

@@ -37,11 +37,22 @@ export interface ComponentRegistryEntry {
   peerDependencies: string[] // other stellar components this depends on
 }
 
+/**
+ * Get framework-aware default paths.
+ * Vue projects use src/-prefixed paths; Nuxt projects use root-level paths.
+ */
+export function getDefaultPaths(framework: 'vue' | 'nuxt' = 'vue') {
+  const prefix = framework === 'nuxt' ? '.' : './src'
+  return {
+    componentsDir: `${prefix}/components/ui`,
+    composablesDir: `${prefix}/composables`,
+    utilsDir: `${prefix}/lib`,
+    cssVariables: `${prefix}/assets/css/variables.css`,
+  }
+}
+
 const DEFAULT_CONFIG: StellarConfig = {
-  componentsDir: './components/ui',
-  composablesDir: './composables',
-  utilsDir: './lib',
-  cssVariables: './assets/css/variables.css',
+  ...getDefaultPaths('vue'),
   tailwindConfig: './tailwind.config.ts',
   typescript: true,
   aliases: {
@@ -57,8 +68,10 @@ const DEFAULT_CONFIG: StellarConfig = {
 }
 
 export function defineConfig(config: Partial<StellarConfig>): StellarConfig {
+  const frameworkPaths = getDefaultPaths(config.framework ?? 'vue')
   return {
     ...DEFAULT_CONFIG,
+    ...frameworkPaths,
     ...config,
     aliases: {
       ...DEFAULT_CONFIG.aliases,

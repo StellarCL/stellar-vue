@@ -44,7 +44,7 @@ describe('add command', () => {
 
     await addCommand(['button'], { cwd: tmpDir })
 
-    const componentDir = path.join(tmpDir, 'components', 'ui', 'button')
+    const componentDir = path.join(tmpDir, 'src', 'components', 'ui', 'button')
     expect(fs.existsSync(componentDir)).toBe(true)
 
     // Should have created files

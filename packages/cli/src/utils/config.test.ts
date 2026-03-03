@@ -24,13 +24,14 @@ describe('config utils', () => {
   })
 
   describe('defineConfig', () => {
-    it('returns full config with defaults when called with empty object', () => {
+    it('returns full config with Vue defaults when called with empty object', () => {
       const config = defineConfig({})
 
-      expect(config.componentsDir).toBe('./components/ui')
-      expect(config.composablesDir).toBe('./composables')
-      expect(config.utilsDir).toBe('./lib')
-      expect(config.cssVariables).toBe('./assets/css/variables.css')
+      // Vue framework defaults to src/-prefixed paths
+      expect(config.componentsDir).toBe('./src/components/ui')
+      expect(config.composablesDir).toBe('./src/composables')
+      expect(config.utilsDir).toBe('./src/lib')
+      expect(config.cssVariables).toBe('./src/assets/css/variables.css')
       expect(config.tailwindConfig).toBe('./tailwind.config.ts')
       expect(config.typescript).toBe(true)
       expect(config.framework).toBe('vue')
@@ -55,12 +56,32 @@ describe('config utils', () => {
 
       expect(config.framework).toBe('nuxt')
       expect(config.componentsDir).toBe('./custom/components')
-      // Defaults preserved
+      // Nuxt defaults for non-overridden paths (root-level)
       expect(config.composablesDir).toBe('./composables')
+      expect(config.utilsDir).toBe('./lib')
+      expect(config.cssVariables).toBe('./assets/css/variables.css')
       expect(config.typescript).toBe(true)
       // Features merged
       expect(config.features.animations).toBe(false)
       expect(config.features.icons).toBe('heroicons')
+    })
+
+    it('uses src/-prefixed paths for Vue framework', () => {
+      const config = defineConfig({ framework: 'vue' })
+
+      expect(config.componentsDir).toBe('./src/components/ui')
+      expect(config.composablesDir).toBe('./src/composables')
+      expect(config.utilsDir).toBe('./src/lib')
+      expect(config.cssVariables).toBe('./src/assets/css/variables.css')
+    })
+
+    it('uses root-level paths for Nuxt framework', () => {
+      const config = defineConfig({ framework: 'nuxt' })
+
+      expect(config.componentsDir).toBe('./components/ui')
+      expect(config.composablesDir).toBe('./composables')
+      expect(config.utilsDir).toBe('./lib')
+      expect(config.cssVariables).toBe('./assets/css/variables.css')
     })
   })
 
