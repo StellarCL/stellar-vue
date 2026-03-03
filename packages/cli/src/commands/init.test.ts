@@ -22,6 +22,11 @@ vi.mock('ora', () => ({
   })),
 }))
 
+// Mock installDependencies to avoid real npm installs in tests
+vi.mock('../utils/package-manager', () => ({
+  installDependencies: vi.fn().mockResolvedValue(true),
+}))
+
 describe('init command', () => {
   let tmpDir: string
 

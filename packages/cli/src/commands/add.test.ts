@@ -14,6 +14,11 @@ vi.mock('prompts', () => ({
   default: vi.fn(),
 }))
 
+// Mock installDependencies to avoid real npm installs in tests
+vi.mock('../utils/package-manager', () => ({
+  installDependencies: vi.fn().mockResolvedValue(true),
+}))
+
 describe('add command', () => {
   let tmpDir: string
 
