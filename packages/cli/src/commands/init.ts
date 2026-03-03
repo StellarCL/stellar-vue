@@ -178,7 +178,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
       fs.mkdirSync(cssDir, { recursive: true })
     }
     const cssPath = path.join(cwd, config.cssVariables)
-    const themeCSS = THEME_TEMPLATES[selectedTheme] ?? THEME_TEMPLATES.stellar
+    const themeCSS = THEME_TEMPLATES[selectedTheme] ?? THEME_TEMPLATES.stellar ?? ''
     fs.writeFileSync(cssPath, themeCSS, 'utf-8')
     const cssSpinner = ora('CSS variables file created').start()
     cssSpinner.succeed('CSS variables file created')
