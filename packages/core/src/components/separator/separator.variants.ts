@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from '../../utils/variants'
 
-export const separatorVariants = cva('shrink-0 bg-slate-150 dark:bg-navy-600', {
+export const separatorVariants = cva('shrink-0 bg-border', {
   variants: {
     orientation: {
       horizontal: 'h-[1px] w-full',

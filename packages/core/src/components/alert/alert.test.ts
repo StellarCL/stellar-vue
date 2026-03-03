@@ -25,7 +25,7 @@ describe('alert', () => {
   it('applies default variant classes', () => {
     const wrapper = mount(Alert)
     const classes = wrapper.classes().join(' ')
-    expect(classes).toContain('bg-white')
+    expect(classes).toContain('bg-background')
     expect(classes).toContain('text-foreground')
   })
 

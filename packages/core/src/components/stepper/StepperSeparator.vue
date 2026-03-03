@@ -17,9 +17,7 @@ const isVertical = computed(() => context.orientation.value === 'vertical')
 
 const classes = computed(() =>
   cn(
-    isVertical.value
-      ? 'w-0.5 min-h-[2rem] bg-slate-150 dark:bg-navy-500'
-      : 'flex-1 h-0.5 bg-slate-150 dark:bg-navy-500',
+    isVertical.value ? 'w-0.5 min-h-[2rem] bg-border' : 'flex-1 h-0.5 bg-border',
     isCompleted.value && 'bg-primary',
     props.class,
   ),

@@ -36,7 +36,7 @@ describe('tabsList', () => {
     expect(classes).toContain('inline-flex')
     expect(classes).toContain('items-center')
     expect(classes).toContain('border-b')
-    expect(classes).toContain('border-slate-150')
+    expect(classes).toContain('border-border')
   })
 
   it('merges custom classes', () => {

@@ -7,7 +7,7 @@ const props = defineProps<DataTableHeadProps>()
 
 const classes = computed(() =>
   cn(
-    'h-12 px-4 text-left align-middle font-semibold uppercase text-xs tracking-wide text-slate-800 dark:text-navy-100 [&:has([role=checkbox])]:pr-0',
+    'h-12 px-4 text-left align-middle font-semibold uppercase text-xs tracking-wide text-foreground [&:has([role=checkbox])]:pr-0',
     props.class,
   ),
 )

@@ -35,7 +35,7 @@ describe('separator', () => {
     const wrapper = mount(Separator)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('shrink-0')
-    expect(classes).toContain('bg-slate-150')
+    expect(classes).toContain('bg-border')
   })
 
   it('applies custom classes via class prop', () => {

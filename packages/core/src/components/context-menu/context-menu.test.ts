@@ -340,7 +340,7 @@ describe('contextMenuSeparator', () => {
       `<ContextMenu><ContextMenuTrigger><div>T</div></ContextMenuTrigger><ContextMenuContent><ContextMenuSeparator /></ContextMenuContent></ContextMenu>`,
       { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuSeparator },
     )
-    expect(bodyHtml).toContain('bg-slate-150')
+    expect(bodyHtml).toContain('bg-border')
   })
 
   it('merges custom classes', async () => {

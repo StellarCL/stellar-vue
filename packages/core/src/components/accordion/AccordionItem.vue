@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<AccordionItemProps>(), {
   <AccordionItem
     :value="value"
     :disabled="disabled"
-    :class="cn('border-b border-slate-150 dark:border-navy-600', props.class)"
+    :class="cn('border-b border-border', props.class)"
   >
     <slot />
   </AccordionItem>

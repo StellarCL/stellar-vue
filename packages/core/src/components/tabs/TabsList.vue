@@ -6,9 +6,7 @@ import { cn } from '../../utils'
 
 const props = defineProps<TabsListProps>()
 
-const classes = computed(() =>
-  cn('inline-flex items-center border-b border-slate-150 dark:border-navy-600', props.class),
-)
+const classes = computed(() => cn('inline-flex items-center border-b border-border', props.class))
 </script>
 
 <template>

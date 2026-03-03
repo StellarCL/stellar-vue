@@ -20,7 +20,7 @@ const model = defineModel<boolean | 'indeterminate'>({ default: false })
     :required="required"
     :class="
       cn(
-        'peer h-5 w-5 shrink-0 rounded-sm border border-slate-400/70 dark:border-navy-450 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground',
+        'peer h-5 w-5 shrink-0 rounded-sm border border-input focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground',
         props.class,
       )
     "

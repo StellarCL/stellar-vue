@@ -478,7 +478,7 @@ describe('menubarSeparator', () => {
       `<Menubar model-value="file-menu"><MenubarMenu value="file-menu"><MenubarTrigger>File</MenubarTrigger><MenubarContent><MenubarSeparator /></MenubarContent></MenubarMenu></Menubar>`,
       { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarSeparator },
     )
-    expect(bodyHtml).toContain('bg-slate-150')
+    expect(bodyHtml).toContain('bg-border')
   })
 
   it('merges custom classes', async () => {

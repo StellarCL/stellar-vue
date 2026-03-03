@@ -713,7 +713,7 @@ describe('commandSeparator', () => {
     const wrapper = mount(CommandSeparator)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('h-px')
-    expect(classes).toContain('bg-slate-150')
+    expect(classes).toContain('bg-border')
   })
 
   it('merges custom classes', () => {

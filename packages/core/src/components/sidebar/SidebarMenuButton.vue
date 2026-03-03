@@ -26,7 +26,8 @@ const classes = computed(() =>
 </script>
 
 <template>
-  <button :class="classes" :data-active="active">
+  <slot v-if="asChild" />
+  <button v-else :class="classes" :data-active="active">
     <slot name="icon" />
     <span v-if="!isCollapsed" class="truncate">
       <slot />

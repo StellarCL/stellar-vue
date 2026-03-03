@@ -113,7 +113,7 @@ describe('avatarFallback', () => {
     })
     // AvatarFallback renders as a span inside the Avatar span
     const fallback = wrapper.find('span > span')
-    expect(fallback.classes().join(' ')).toContain('bg-slate-150')
+    expect(fallback.classes().join(' ')).toContain('bg-muted')
   })
 
   it('merges custom classes on AvatarFallback', () => {

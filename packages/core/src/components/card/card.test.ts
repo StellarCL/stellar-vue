@@ -12,7 +12,7 @@ describe('card', () => {
     const wrapper = mount(Card)
     const classes = wrapper.classes().join(' ')
     expect(classes).toContain('rounded-lg')
-    expect(classes).toContain('bg-white')
+    expect(classes).toContain('bg-card')
     expect(classes).toContain('text-card-foreground')
     expect(classes).toContain('shadow-soft')
   })
@@ -67,7 +67,7 @@ describe('cardTitle', () => {
     expect(classes).toContain('font-semibold')
     expect(classes).toContain('leading-none')
     expect(classes).toContain('tracking-tight')
-    expect(classes).toContain('text-slate-700')
+    expect(classes).toContain('text-foreground')
   })
 
   it('accepts custom class', () => {

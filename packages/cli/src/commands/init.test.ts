@@ -186,6 +186,162 @@ describe('init command', () => {
     })
   })
 
+  describe('auto-patching', () => {
+    describe('vue + vite.config.ts', () => {
+      it('adds tailwind plugin import and plugins entry', async () => {
+        const viteConfig = `import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  plugins: [vue()],
+})
+`
+        fs.writeFileSync(path.join(tmpDir, 'vite.config.ts'), viteConfig, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const result = fs.readFileSync(path.join(tmpDir, 'vite.config.ts'), 'utf-8')
+        expect(result).toContain(`import tailwindcss from '@tailwindcss/vite'`)
+        expect(result).toContain('tailwindcss(),')
+      })
+
+      it('does not duplicate if already present', async () => {
+        const viteConfig = `import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [vue(), tailwindcss()],
+})
+`
+        fs.writeFileSync(path.join(tmpDir, 'vite.config.ts'), viteConfig, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const result = fs.readFileSync(path.join(tmpDir, 'vite.config.ts'), 'utf-8')
+        // Should remain unchanged
+        expect(result).toBe(viteConfig)
+      })
+    })
+
+    describe('vue + main.ts with existing CSS import', () => {
+      it('patches the referenced CSS file with tailwind and variables imports', async () => {
+        // Create src/main.ts with a CSS import
+        const srcDir = path.join(tmpDir, 'src')
+        fs.mkdirSync(srcDir, { recursive: true })
+        fs.writeFileSync(
+          path.join(srcDir, 'main.ts'),
+          `import { createApp } from 'vue'\nimport './style.css'\nimport App from './App.vue'\n`,
+          'utf-8',
+        )
+        fs.writeFileSync(path.join(srcDir, 'style.css'), `body { margin: 0; }\n`, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const cssContent = fs.readFileSync(path.join(srcDir, 'style.css'), 'utf-8')
+        expect(cssContent).toContain(`@import 'tailwindcss';`)
+        expect(cssContent).toContain(`assets/css/variables.css`)
+      })
+    })
+
+    describe('vue + main.ts without CSS import', () => {
+      it('creates main.css and adds import to main.ts', async () => {
+        const srcDir = path.join(tmpDir, 'src')
+        fs.mkdirSync(srcDir, { recursive: true })
+        fs.writeFileSync(
+          path.join(srcDir, 'main.ts'),
+          `import { createApp } from 'vue'\nimport App from './App.vue'\n\ncreateApp(App).mount('#app')\n`,
+          'utf-8',
+        )
+
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        // main.css should be created next to variables.css
+        const mainCss = path.join(srcDir, 'assets', 'css', 'main.css')
+        expect(fs.existsSync(mainCss)).toBe(true)
+        const cssContent = fs.readFileSync(mainCss, 'utf-8')
+        expect(cssContent).toContain(`@import 'tailwindcss';`)
+        expect(cssContent).toContain(`@import './variables.css';`)
+
+        // main.ts should have the new import
+        const mainContent = fs.readFileSync(path.join(srcDir, 'main.ts'), 'utf-8')
+        expect(mainContent).toContain(`import './assets/css/main.css'`)
+      })
+    })
+
+    describe('vue + no main.ts', () => {
+      it('prints fallback instructions when main.ts is missing', async () => {
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        // Should print manual CSS instruction
+        const logCalls = vi.mocked(console.log).mock.calls.flat().join('\n')
+        expect(logCalls).toContain(`@import 'tailwindcss'`)
+      })
+    })
+
+    describe('nuxt + nuxt.config.ts', () => {
+      it('adds tailwind module and css entry to nuxt config', async () => {
+        const nuxtConfig = `import { defineNuxtConfig } from 'nuxt/config'
+
+export default defineNuxtConfig({
+  modules: [],
+  css: [],
+})
+`
+        fs.writeFileSync(path.join(tmpDir, 'nuxt.config.ts'), nuxtConfig, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const result = fs.readFileSync(path.join(tmpDir, 'nuxt.config.ts'), 'utf-8')
+        expect(result).toContain(`'@nuxtjs/tailwindcss'`)
+        expect(result).toContain(`~/assets/css/variables.css`)
+      })
+
+      it('does not duplicate on second run', async () => {
+        const nuxtConfig = `import { defineNuxtConfig } from 'nuxt/config'
+
+export default defineNuxtConfig({
+  modules: [],
+  css: [],
+})
+`
+        fs.writeFileSync(path.join(tmpDir, 'nuxt.config.ts'), nuxtConfig, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+        // Run again
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const result = fs.readFileSync(path.join(tmpDir, 'nuxt.config.ts'), 'utf-8')
+        const moduleMatches = result.match(/@nuxtjs\/tailwindcss/g)
+        expect(moduleMatches).toHaveLength(1)
+        const cssMatches = result.match(/variables\.css/g)
+        expect(cssMatches).toHaveLength(1)
+      })
+    })
+
+    describe('idempotency', () => {
+      it('running init twice does not duplicate vite config patches', async () => {
+        const viteConfig = `import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  plugins: [vue()],
+})
+`
+        fs.writeFileSync(path.join(tmpDir, 'vite.config.ts'), viteConfig, 'utf-8')
+
+        await initCommand({ cwd: tmpDir, yes: true })
+        await initCommand({ cwd: tmpDir, yes: true })
+
+        const result = fs.readFileSync(path.join(tmpDir, 'vite.config.ts'), 'utf-8')
+        const importMatches = result.match(/import tailwindcss from '@tailwindcss\/vite'/g)
+        expect(importMatches).toHaveLength(1)
+        const pluginMatches = result.match(/tailwindcss\(\)/g)
+        expect(pluginMatches).toHaveLength(1)
+      })
+    })
+  })
+
   describe('interactive prompts', () => {
     it('uses responses from prompts to build config', async () => {
       // First call: framework selection

@@ -170,6 +170,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: { 'radix-vue': '^1.9.0', 'vee-validate': '^4.13.0' },
     peerDependencies: ['label', 'button'],
+    composableDependencies: ['useFormField.ts'],
   },
   {
     name: 'combobox',
@@ -206,6 +207,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: {},
     peerDependencies: [],
+    composableDependencies: ['useFileUpload.ts'],
   },
   {
     name: 'filter-builder',
@@ -288,6 +290,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['button'],
+    composableDependencies: ['useSteps.ts'],
   },
   {
     name: 'wizard',
@@ -297,6 +300,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: {},
     peerDependencies: ['button', 'stepper'],
+    composableDependencies: ['useSteps.ts'],
   },
   {
     name: 'loading',
@@ -315,6 +319,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: [],
+    composableDependencies: ['useToast.ts'],
   },
   {
     name: 'timeline',
@@ -380,6 +385,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: { 'radix-vue': '^1.9.0' },
     peerDependencies: ['button'],
+    composableDependencies: ['usePagination.ts'],
   },
   {
     name: 'command',
@@ -418,6 +424,7 @@ const REGISTRY: ComponentRegistryEntry[] = [
     files: [],
     dependencies: { '@tanstack/vue-table': '^8.20.0' },
     peerDependencies: ['button', 'input', 'select', 'pagination'],
+    composableDependencies: ['useDataTable.ts'],
   },
   {
     name: 'calendar',
@@ -603,4 +610,26 @@ export function resolveDependencies(name: string): string[] {
   // Remove the component itself if it somehow ended up in the set
   resolved.delete(name)
   return Array.from(resolved)
+}
+
+/**
+ * Resolve all composable dependencies for a component and its peer dependencies.
+ * Returns a flat, deduplicated array of composable filenames.
+ */
+export function resolveComposableDependencies(name: string): string[] {
+  const composables = new Set<string>()
+
+  // Collect from the component itself + all its resolved peer deps
+  const allComponents = [name, ...resolveDependencies(name)]
+
+  for (const componentName of allComponents) {
+    const entry = getComponent(componentName)
+    if (entry?.composableDependencies) {
+      for (const dep of entry.composableDependencies) {
+        composables.add(dep)
+      }
+    }
+  }
+
+  return Array.from(composables)
 }

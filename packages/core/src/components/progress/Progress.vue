@@ -23,12 +23,7 @@ const indicatorClasses = computed(() => cn(progressVariants({ variant: props.var
   <ProgressRoot
     :model-value="props.modelValue"
     :max="props.max"
-    :class="
-      cn(
-        'relative h-2 w-full overflow-hidden rounded-full bg-slate-150 dark:bg-navy-500',
-        props.class,
-      )
-    "
+    :class="cn('relative h-2 w-full overflow-hidden rounded-full bg-muted', props.class)"
   >
     <ProgressIndicator :class="indicatorClasses" :style="indicatorStyle" />
   </ProgressRoot>

@@ -8,10 +8,7 @@ const props = withDefaults(defineProps<CardTitleProps>(), {
 })
 
 const classes = computed(() =>
-  cn(
-    'text-base font-semibold leading-none tracking-tight text-slate-700 dark:text-navy-50',
-    props.class,
-  ),
+  cn('text-base font-semibold leading-none tracking-tight text-foreground', props.class),
 )
 </script>
 

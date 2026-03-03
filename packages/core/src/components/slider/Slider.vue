@@ -36,7 +36,7 @@ const emit = defineEmits<{
     @update:model-value="$emit('update:modelValue', $event as number[])"
   >
     <SliderTrack
-      class="relative grow overflow-hidden rounded-full bg-slate-150 dark:bg-navy-500"
+      class="relative grow overflow-hidden rounded-full bg-muted"
       :class="orientation === 'vertical' ? 'w-2 h-full' : 'h-2 w-full'"
     >
       <SliderRange

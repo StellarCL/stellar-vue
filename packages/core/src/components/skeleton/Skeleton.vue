@@ -7,7 +7,7 @@ const props = defineProps<SkeletonProps>()
 
 const classes = computed(() =>
   cn(
-    'animate-skeleton-wave rounded-md bg-gradient-to-r from-slate-150 via-slate-200 to-slate-150 dark:from-navy-500 dark:via-navy-600 dark:to-navy-500 bg-[length:200%_100%]',
+    'animate-skeleton-wave rounded-md bg-gradient-to-r from-muted via-muted-foreground/10 to-muted bg-[length:200%_100%]',
     props.class,
   ),
 )

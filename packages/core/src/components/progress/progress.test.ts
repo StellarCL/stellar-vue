@@ -8,12 +8,12 @@ describe('progress', () => {
     expect(wrapper.find('[role="progressbar"]').exists()).toBe(true)
   })
 
-  it('has correct base classes (h-2, rounded-full, bg-slate-150)', () => {
+  it('has correct base classes (h-2, rounded-full, bg-muted)', () => {
     const wrapper = mount(Progress)
     const rootClasses = wrapper.find('[role="progressbar"]').classes().join(' ')
     expect(rootClasses).toContain('h-2')
     expect(rootClasses).toContain('rounded-full')
-    expect(rootClasses).toContain('bg-slate-150')
+    expect(rootClasses).toContain('bg-muted')
   })
 
   it('indicator has correct default color (bg-primary)', () => {

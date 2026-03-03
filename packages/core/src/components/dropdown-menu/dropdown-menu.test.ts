@@ -259,7 +259,7 @@ describe('dropdownMenuSeparator', () => {
       `<DropdownMenu :open="true"><DropdownMenuTrigger><button>T</button></DropdownMenuTrigger><DropdownMenuContent><DropdownMenuSeparator /></DropdownMenuContent></DropdownMenu>`,
       { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator },
     )
-    expect(bodyHtml).toContain('bg-slate-150')
+    expect(bodyHtml).toContain('bg-border')
   })
 
   it('merges custom classes', async () => {

@@ -11,7 +11,7 @@ const props = defineProps<AccordionTriggerProps>()
     <AccordionTrigger
       :class="
         cn(
-          'flex flex-1 items-center justify-between py-4 text-base font-medium text-slate-700 dark:text-navy-100 transition-all hover:text-primary [&[data-state=open]>svg]:rotate-180',
+          'flex flex-1 items-center justify-between py-4 text-base font-medium text-foreground transition-all hover:text-primary [&[data-state=open]>svg]:rotate-180',
           props.class,
         )
       "

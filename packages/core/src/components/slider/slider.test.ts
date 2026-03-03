@@ -22,11 +22,11 @@ describe('slider', () => {
     expect(classes).toContain('select-none')
   })
 
-  it('track has bg-slate-150 and rounded-full', () => {
+  it('track has bg-muted and rounded-full', () => {
     const wrapper = mount(Slider, {
       props: { modelValue: [50] },
     })
-    const track = wrapper.find('span.bg-slate-150')
+    const track = wrapper.find('span.bg-muted')
     expect(track.exists()).toBe(true)
     expect(track.classes()).toContain('rounded-full')
   })

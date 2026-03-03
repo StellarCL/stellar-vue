@@ -21,7 +21,7 @@ const circleClasses = computed(() =>
     'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 font-inter tracking-wide',
     isActive.value && 'border-primary bg-primary text-primary-foreground',
     isCompleted.value && 'border-primary bg-primary text-primary-foreground',
-    !isActive.value && !isCompleted.value && 'border-slate-300 dark:border-navy-500',
+    !isActive.value && !isCompleted.value && 'border-border',
   ),
 )
 
