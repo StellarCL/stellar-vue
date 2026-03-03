@@ -1,3 +1,4 @@
+export { useChart } from '../../composables/useChart'
 export type {
   ChartContainerProps,
   ChartData,

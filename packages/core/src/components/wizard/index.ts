@@ -1,8 +1,5 @@
-export type {
-  WizardActionsProps,
-  WizardProps,
-  WizardStepProps,
-} from './wizard.types'
+export { useSteps } from '../../composables/useSteps'
+export type { WizardActionsProps, WizardProps, WizardStepProps } from './wizard.types'
 export { default as Wizard } from './Wizard.vue'
 export { default as WizardActions } from './WizardActions.vue'
 export { default as WizardStep } from './WizardStep.vue'

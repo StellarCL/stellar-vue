@@ -1,5 +1,9 @@
-import type { ColumnDef, SortDirection, SortingState } from '../components/data-table/data-table.types'
-import { computed, isRef, ref, type Ref, unref } from 'vue'
+import type {
+  ColumnDef,
+  SortDirection,
+  SortingState,
+} from '../components/data-table/data-table.types'
+import { computed, isRef, ref, type Ref, unref, watch } from 'vue'
 
 export interface UseDataTableOptions<T> {
   data: Ref<T[]> | T[]
@@ -8,7 +12,7 @@ export interface UseDataTableOptions<T> {
 }
 
 export function useDataTable<T>(options: UseDataTableOptions<T>) {
-  const rawData = isRef(options.data) ? options.data : ref(options.data) as Ref<T[]>
+  const rawData = isRef(options.data) ? options.data : (ref(options.data) as Ref<T[]>)
 
   // Sorting state: array of { id, desc }
   const sorting = ref<SortingState[]>([])
@@ -24,6 +28,9 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
   const columnVisibility = ref<Record<string, boolean>>(
     Object.fromEntries(options.columns.map(col => [col.id, true])),
   )
+
+  // Filter state: map of columnId -> filter string
+  const filter = ref<Record<string, string>>({})
 
   // Sorted data (client-side)
   const sortedData = computed<T[]>(() => {
@@ -72,16 +79,58 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
     })
   })
 
-  // Total pages based on sorted data length
-  const totalPages = computed(() =>
-    Math.max(1, Math.ceil(sortedData.value.length / pageSize.value)),
+  // Filtered data: applies filters AFTER sort, BEFORE pagination
+  const filteredData = computed<T[]>(() => {
+    const data = sortedData.value
+    const activeFilters = Object.entries(filter.value).filter(([_, v]) => v.length > 0)
+
+    if (activeFilters.length === 0)
+      return data
+
+    return data.filter((row) => {
+      return activeFilters.every(([columnId, filterValue]) => {
+        const col = options.columns.find(c => c.id === columnId)
+        if (!col)
+          return true
+
+        let cellValue: any
+        if (col.accessorFn) {
+          cellValue = col.accessorFn(row)
+        }
+        else if (col.accessorKey) {
+          cellValue = (row as any)[col.accessorKey]
+        }
+        else {
+          return true
+        }
+
+        if (cellValue == null)
+          return false
+
+        return String(cellValue).toLowerCase().includes(filterValue.toLowerCase())
+      })
+    })
+  })
+
+  // Reset to page 1 when filters change
+  watch(
+    filter,
+    () => {
+      page.value = 1
+    },
+    { deep: true },
   )
 
-  // Paginated rows (slice of sorted data)
+  // Total pages based on filtered data length
+  const totalPages = computed(() =>
+    Math.max(1, Math.ceil(filteredData.value.length / pageSize.value)),
+  )
+
+  // Paginated rows (slice of filtered data)
   const rows = computed<T[]>(() => {
     const start = (page.value - 1) * pageSize.value
     const end = start + pageSize.value
-    return sortedData.value.slice(start, end)
+    return filteredData.value.slice(start, end)
   })
 
   // Toggle sort: asc -> desc -> none (remove)
@@ -112,17 +161,29 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
     return existing.desc ? 'desc' : 'asc'
   }
 
+  // Filter helpers
+  function setFilter(columnId: string, value: string): void {
+    filter.value = {
+      ...filter.value,
+      [columnId]: value,
+    }
+  }
+
+  function clearFilters(): void {
+    filter.value = {}
+  }
+
   const isAllSelected = computed<boolean>(() => {
-    if (sortedData.value.length === 0)
+    if (filteredData.value.length === 0)
       return false
-    return sortedData.value.every((_, i) => selectedRows.value.has(i))
+    return filteredData.value.every((_, i) => selectedRows.value.has(i))
   })
 
   const isIndeterminate = computed<boolean>(() => {
     return selectedRows.value.size > 0 && !isAllSelected.value
   })
 
-  // Row selection helpers (indices into the full sorted dataset)
+  // Row selection helpers (indices into the full filtered dataset)
   function toggleRowSelection(index: number): void {
     const newSet = new Set(selectedRows.value)
     if (newSet.has(index)) {
@@ -139,7 +200,7 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
       selectedRows.value = new Set()
     }
     else {
-      selectedRows.value = new Set(sortedData.value.map((_, i) => i))
+      selectedRows.value = new Set(filteredData.value.map((_, i) => i))
     }
   }
 
@@ -167,6 +228,7 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
     // Data
     rows,
     sortedData,
+    filteredData,
     // Sorting
     sorting,
     toggleSort,
@@ -187,5 +249,9 @@ export function useDataTable<T>(options: UseDataTableOptions<T>) {
     toggleColumnVisibility,
     isColumnVisible,
     visibleColumns,
+    // Filters
+    filter,
+    setFilter,
+    clearFilters,
   }
 }

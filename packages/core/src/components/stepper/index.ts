@@ -1,3 +1,4 @@
+export { useSteps } from '../../composables/useSteps'
 export type {
   StepConfig,
   StepperContentProps,

@@ -107,6 +107,19 @@ export interface CommandShortcutProps {
   class?: HTMLAttributes['class']
 }
 
+export interface CommandPaletteProps {
+  /**
+   * Placeholder text for the search input.
+   * @default 'Type a command or search...'
+   */
+  placeholder?: string
+
+  /**
+   * Additional CSS classes applied to the root element.
+   */
+  class?: HTMLAttributes['class']
+}
+
 /** Internal context shape provided by Command to descendant components */
 export interface CommandContext {
   /** Current search query */

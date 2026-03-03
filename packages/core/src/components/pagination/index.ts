@@ -1,3 +1,4 @@
+export { usePagination } from '../../composables/usePagination'
 export type {
   PaginationContentProps,
   PaginationEllipsisProps,

@@ -1,3 +1,4 @@
+export { useToast } from '../../composables/useToast'
 export type {
   ToastActionProps,
   ToastCloseProps,
