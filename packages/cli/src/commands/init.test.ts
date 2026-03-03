@@ -99,6 +99,13 @@ describe('init command', () => {
       expect(lock.components).toEqual({})
     })
 
+    it('creates components and composables directories', async () => {
+      await initCommand({ cwd: tmpDir, yes: true })
+
+      expect(fs.existsSync(path.join(tmpDir, 'src', 'components', 'ui'))).toBe(true)
+      expect(fs.existsSync(path.join(tmpDir, 'src', 'composables'))).toBe(true)
+    })
+
     it('creates CSS file in src/ for Vue projects', async () => {
       await initCommand({ cwd: tmpDir, yes: true })
 

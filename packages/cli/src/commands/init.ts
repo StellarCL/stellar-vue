@@ -257,7 +257,18 @@ export async function initCommand(options: InitOptions): Promise<void> {
     const cssSpinner = ora('CSS variables file created').start()
     cssSpinner.succeed('CSS variables file created')
 
-    // 6. Create components.lock.json
+    // 6. Create project directories
+    const dirs = [config.componentsDir, config.composablesDir]
+    for (const dir of dirs) {
+      const absDir = path.join(cwd, dir)
+      if (!fs.existsSync(absDir)) {
+        fs.mkdirSync(absDir, { recursive: true })
+      }
+    }
+    const dirsSpinner = ora('Project directories created').start()
+    dirsSpinner.succeed('Project directories created')
+
+    // 8. Create components.lock.json
     await writeLockFile(
       {
         version: '1.0.0',
@@ -268,7 +279,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
     const lockSpinner = ora('Lock file created').start()
     lockSpinner.succeed('Lock file created')
 
-    // 7. Write shared utils (cn.ts, variants.ts, index.ts)
+    // 9. Write shared utils (cn.ts, variants.ts, index.ts)
     const utilsAbsDir = path.join(cwd, config.utilsDir)
     if (!fs.existsSync(utilsAbsDir)) {
       fs.mkdirSync(utilsAbsDir, { recursive: true })
@@ -279,7 +290,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
     const utilsSpinner = ora('Shared utils created').start()
     utilsSpinner.succeed('Shared utils created')
 
-    // 8. Install core dependencies
+    // 10. Install core dependencies
     const coreDeps = [
       'tailwindcss',
       config.framework === 'nuxt' ? '@nuxtjs/tailwindcss' : '@tailwindcss/vite',
@@ -290,7 +301,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
     ]
     await installDependencies(coreDeps, cwd)
 
-    // 9. Success message
+    // 11. Success message
     newLine()
     console.log(styles.success('Stellar UI initialized successfully!'))
     newLine()
