@@ -117,6 +117,14 @@ function getSlotName(fieldName: string): `field-${string}` {
 function hasFieldSlot(fieldName: string): boolean {
   return !!slots[getSlotName(fieldName)]
 }
+
+type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
+
+function getInputType(fieldType: string): InputType {
+  if (fieldType === 'date')
+    return 'text'
+  return fieldType as InputType
+}
 </script>
 
 <template>
@@ -139,9 +147,14 @@ function hasFieldSlot(fieldName: string): boolean {
             <div class="flex items-center gap-2">
               <FormControl>
                 <Checkbox
-                  v-bind="field"
+                  :name="field.name"
                   :checked="formValues[fieldConfig.name]"
-                  @update:checked="formValues[fieldConfig.name] = $event"
+                  @update:checked="
+                    (val: boolean | 'indeterminate') => {
+                      formValues[fieldConfig.name] = val
+                      if (typeof field.onBlur === 'function') field.onBlur()
+                    }
+                  "
                 />
               </FormControl>
               <FormLabel>{{ fieldConfig.label }}</FormLabel>
@@ -160,7 +173,7 @@ function hasFieldSlot(fieldName: string): boolean {
                     || fieldConfig.type === 'date'
                 "
                 v-bind="field"
-                :type="fieldConfig.type"
+                :type="getInputType(fieldConfig.type)"
                 :placeholder="fieldConfig.placeholder"
                 :model-value="formValues[fieldConfig.name]"
                 @update:model-value="formValues[fieldConfig.name] = $event"
