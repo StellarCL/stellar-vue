@@ -25,10 +25,7 @@ const table = useDataTable<T>({
 provide('dataTable', table)
 
 const wrapperClasses = computed(() =>
-  cn(
-    'w-full overflow-auto rounded-lg border border-slate-150 shadow-soft dark:border-navy-500',
-    props.class,
-  ),
+  cn('w-full overflow-auto rounded-lg border border-border', props.class),
 )
 
 // Helper: get cell value for a row using column definition

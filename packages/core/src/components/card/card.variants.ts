@@ -4,7 +4,7 @@ export const cardVariants = cva('', {
   variants: {
     variant: {
       default:
-        'rounded-lg bg-white text-card-foreground shadow-soft dark:bg-navy-700 dark:shadow-none',
+        'rounded-lg border border-border bg-white text-card-foreground shadow-soft dark:bg-navy-700 dark:shadow-none',
       bordered: 'rounded-lg border-2 bg-card text-card-foreground',
       elevated: 'rounded-lg bg-card text-card-foreground shadow-lg',
     },

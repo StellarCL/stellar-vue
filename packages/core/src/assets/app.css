@@ -269,6 +269,14 @@
   }
 }
 
+@utility animate-accordion-down {
+  animation: var(--animate-accordion-down);
+}
+
+@utility animate-accordion-up {
+  animation: var(--animate-accordion-up);
+}
+
 @utility animate-in {
   animation-name: enter;
   animation-duration: 150ms;
