@@ -1,5 +1,11 @@
 # @stellar-vue-ui/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- d50450f: Create `components/ui` and `composables` directories during `init` so the full project structure is visible immediately.
+
 ## 0.3.0
 
 ### Minor Changes
