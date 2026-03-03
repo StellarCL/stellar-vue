@@ -1,5 +1,16 @@
 # @stellar-vue-ui/core
 
+## 0.2.1
+
+### Patch Changes
+
+- 7122dc6: Fix five component bugs found during evaluation:
+  - Card default variant now has a visible border
+  - AppShell uses row flex direction for proper sidebar layout
+  - SidebarMenuButton respects the asChild prop
+  - Accordion height animations now work (added missing @utility directives)
+  - DataTable uses design token classes instead of hardcoded colors
+
 ## 0.2.0
 
 ### Minor Changes
