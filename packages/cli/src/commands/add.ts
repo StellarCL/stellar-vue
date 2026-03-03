@@ -3,10 +3,16 @@ import fs from 'node:fs'
 import path from 'node:path'
 import prompts from 'prompts'
 import { COMPONENT_TEMPLATES } from '../templates/components'
+import { COMPOSABLE_TEMPLATES } from '../templates/composables'
 import { findConfig, readConfig, readLockFile, writeLockFile } from '../utils/config'
 import { installDependencies } from '../utils/package-manager'
 import { newLine, styles } from '../utils/prompts'
-import { getComponent, getRegistry, resolveDependencies } from '../utils/registry'
+import {
+  getComponent,
+  getRegistry,
+  resolveComposableDependencies,
+  resolveDependencies,
+} from '../utils/registry'
 
 interface AddOptions {
   cwd?: string
@@ -31,6 +37,24 @@ function computeUtilsRelativePath(componentDir: string, utilsDir: string, cwd: s
 }
 
 /**
+ * Compute the relative import path from a component directory to the composables directory.
+ */
+function computeComposablesRelativePath(
+  componentDir: string,
+  composablesDir: string,
+  cwd: string,
+): string {
+  const absComponentDir = path.resolve(cwd, componentDir)
+  const absComposablesDir = path.resolve(cwd, composablesDir)
+  let rel = path.relative(absComponentDir, absComposablesDir)
+  rel = rel.split(path.sep).join('/')
+  if (!rel.startsWith('.')) {
+    rel = `./${rel}`
+  }
+  return rel
+}
+
+/**
  * Rewrite import paths in component source code.
  * Replaces `../../utils` references with the correct path to the user's utils directory.
  */
@@ -42,9 +66,15 @@ function rewriteImports(
 ): string {
   const componentDir = path.join(config.componentsDir, componentName)
   const utilsRelPath = computeUtilsRelativePath(componentDir, config.utilsDir, cwd)
+  const composablesRelPath = computeComposablesRelativePath(
+    componentDir,
+    config.composablesDir,
+    cwd,
+  )
 
   // Replace ../../utils/variants -> <utilsRelPath>/variants
   // Replace ../../utils -> <utilsRelPath>
+  // Replace ../../composables/X -> <composablesRelPath>/X
   // Order matters: more specific paths first
   let result = content
   result = result.replace(
@@ -52,7 +82,29 @@ function rewriteImports(
     `from '${utilsRelPath}/$1'`,
   )
   result = result.replace(/from\s+['"]\.\.\/\.\.\/utils['"]/g, `from '${utilsRelPath}'`)
+  result = result.replace(
+    /from\s+['"]\.\.\/\.\.\/composables\/([^'"]+)['"]/g,
+    `from '${composablesRelPath}/$1'`,
+  )
   return result
+}
+
+/**
+ * Rewrite import paths in composable source code.
+ * Replaces `../components/<name>/<file>` references with the correct relative path
+ * from the user's composables directory to their components directory.
+ */
+function rewriteComposableImports(content: string, config: StellarConfig, cwd: string): string {
+  const absComposablesDir = path.resolve(cwd, config.composablesDir)
+  const absComponentsDir = path.resolve(cwd, config.componentsDir)
+  let rel = path.relative(absComposablesDir, absComponentsDir)
+  rel = rel.split(path.sep).join('/')
+  if (!rel.startsWith('.')) {
+    rel = `./${rel}`
+  }
+
+  // Replace ../components/<name>/<file> -> <rel>/<name>/<file>
+  return content.replace(/from\s+['"]\.\.\/components\/([^'"]+)['"]/g, `from '${rel}/$1'`)
 }
 
 /**
@@ -198,6 +250,42 @@ export async function addCommand(components: string[], options: AddOptions): Pro
       for (const [dep, ver] of Object.entries(entry.dependencies)) {
         allNpmDeps[dep] = ver
       }
+    }
+  }
+
+  // 3b. Copy composable dependencies for all added components
+  const copiedComposables = new Set<string>()
+  for (const componentName of addedComponents) {
+    const composableDeps = resolveComposableDependencies(componentName)
+    for (const composableFile of composableDeps) {
+      if (copiedComposables.has(composableFile))
+        continue
+
+      const composablesDir = path.join(cwd, config.composablesDir)
+      const destPath = path.join(composablesDir, composableFile)
+
+      // Skip if already exists (idempotent)
+      if (fs.existsSync(destPath)) {
+        copiedComposables.add(composableFile)
+        continue
+      }
+
+      let content = COMPOSABLE_TEMPLATES[composableFile]
+      if (!content) {
+        console.log(styles.dim(`Composable template not found: ${composableFile}`))
+        continue
+      }
+
+      // Rewrite imports in composable files (../components/X → relative path)
+      content = rewriteComposableImports(content, config, cwd)
+
+      if (!fs.existsSync(composablesDir)) {
+        fs.mkdirSync(composablesDir, { recursive: true })
+      }
+
+      fs.writeFileSync(destPath, content, 'utf-8')
+      copiedComposables.add(composableFile)
+      console.log(styles.dim(`  Added composable: ${composableFile}`))
     }
   }
 

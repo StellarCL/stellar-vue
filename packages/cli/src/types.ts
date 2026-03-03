@@ -35,6 +35,7 @@ export interface ComponentRegistryEntry {
   files: string[]
   dependencies: Record<string, string>
   peerDependencies: string[] // other stellar components this depends on
+  composableDependencies?: string[] // composable files this component needs (e.g. ['useFormField.ts'])
 }
 
 /**

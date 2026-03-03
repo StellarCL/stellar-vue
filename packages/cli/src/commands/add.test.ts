@@ -144,6 +144,70 @@ describe('add command', () => {
     expect(lock.components.button).toBeDefined()
   })
 
+  it('copies composable files when adding component with composable deps', async () => {
+    await initProject(tmpDir)
+
+    await addCommand(['form'], { cwd: tmpDir })
+
+    const composablePath = path.join(tmpDir, 'src', 'composables', 'useFormField.ts')
+    expect(fs.existsSync(composablePath)).toBe(true)
+
+    const content = fs.readFileSync(composablePath, 'utf-8')
+    expect(content.length).toBeGreaterThan(0)
+  })
+
+  it('rewrites composable import paths in component files', async () => {
+    await initProject(tmpDir)
+
+    await addCommand(['form'], { cwd: tmpDir })
+
+    // Check that component files don't reference the original 2-level ../../composables/ pattern
+    // The rewritten path goes up 3 levels (../../../composables/) to reach src/composables from src/components/ui/<name>
+    const componentDir = path.join(tmpDir, 'src', 'components', 'ui', 'form')
+    const files = fs.readdirSync(componentDir)
+    for (const file of files) {
+      const content = fs.readFileSync(path.join(componentDir, file), 'utf-8')
+      // The original pattern "from '../../composables/" should not appear literally
+      // (rewritten version has 3 levels: ../../../composables/)
+      if (content.includes('composables/')) {
+        expect(content).not.toMatch(/from\s+['"]\.\.\/\.\.\/composables\//)
+      }
+    }
+  })
+
+  it('rewrites component import paths in composable files', async () => {
+    await initProject(tmpDir)
+
+    await addCommand(['toast'], { cwd: tmpDir })
+
+    const composablePath = path.join(tmpDir, 'src', 'composables', 'useToast.ts')
+    expect(fs.existsSync(composablePath)).toBe(true)
+
+    const content = fs.readFileSync(composablePath, 'utf-8')
+    // The original pattern "../components/toast/" (without ui/) should be rewritten
+    // to include the ui/ subdirectory from the config's componentsDir
+    expect(content).not.toMatch(/from\s+['"]\.\.\/components\/toast\//)
+    expect(content).toContain('components/ui/toast/')
+  })
+
+  it('does not overwrite existing composable when adding second component sharing same composable', async () => {
+    await initProject(tmpDir)
+
+    // stepper uses useSteps.ts
+    await addCommand(['stepper'], { cwd: tmpDir })
+
+    const composablePath = path.join(tmpDir, 'src', 'composables', 'useSteps.ts')
+    expect(fs.existsSync(composablePath)).toBe(true)
+
+    const originalContent = fs.readFileSync(composablePath, 'utf-8')
+
+    // wizard also uses useSteps.ts — should not overwrite
+    await addCommand(['wizard'], { cwd: tmpDir, overwrite: true })
+
+    const afterContent = fs.readFileSync(composablePath, 'utf-8')
+    expect(afterContent).toBe(originalContent)
+  })
+
   it('records correct version and installedAt in lock', async () => {
     await initProject(tmpDir)
 
