@@ -1,5 +1,12 @@
 # @stellar-vue-ui/nuxt
 
+## 0.2.2
+
+### Patch Changes
+
+- Updated dependencies [f74b7bd]
+  - @stellar-vue-ui/core@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
