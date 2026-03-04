@@ -1,5 +1,12 @@
 # @stellar-vue-ui/example-basic-vue
 
+## 0.0.5
+
+### Patch Changes
+
+- Updated dependencies [5e8751a]
+  - @stellar-vue-ui/theme@0.4.0
+
 ## 0.0.4
 
 ### Patch Changes
