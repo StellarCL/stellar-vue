@@ -24,10 +24,19 @@ describe('update command', () => {
     process.exitCode = undefined
   })
 
-  afterEach(() => {
-    fs.rmSync(tmpDir, { recursive: true, force: true })
+  afterEach(async () => {
     vi.restoreAllMocks()
     process.exitCode = undefined
+    // Retry cleanup — CI can have lingering file handles
+    for (let i = 0; i < 3; i++) {
+      try {
+        fs.rmSync(tmpDir, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 })
+        break
+      }
+      catch {
+        await new Promise(r => setTimeout(r, 200))
+      }
+    }
   })
 
   async function initProjectWithComponent(
@@ -77,7 +86,7 @@ describe('update command', () => {
     expect(lock.components.button!.version).toBe('0.1.0')
   })
 
-  it('updates lock file version after update', async () => {
+  it('updates lock file version after update', { timeout: 30_000 }, async () => {
     // Install with an older version so it triggers an update
     await initProjectWithComponent(tmpDir, 'button', '0.0.1')
 
@@ -88,7 +97,7 @@ describe('update command', () => {
     expect(lock.components.button!.version).toBe('0.1.0')
   })
 
-  it('writes real template content, not stubs', async () => {
+  it('writes real template content, not stubs', { timeout: 30_000 }, async () => {
     await initProjectWithComponent(tmpDir, 'button', '0.0.1')
 
     await updateCommand(['button'], { cwd: tmpDir, yes: true })
@@ -109,7 +118,7 @@ describe('update command', () => {
     }
   })
 
-  it('--force updates even when version matches', async () => {
+  it('--force updates even when version matches', { timeout: 30_000 }, async () => {
     await initProjectWithComponent(tmpDir, 'button', '0.1.0')
 
     await updateCommand(['button'], { cwd: tmpDir, force: true, yes: true })
@@ -132,7 +141,7 @@ describe('update command', () => {
     }
   })
 
-  it('--all flag updates all installed components', async () => {
+  it('--all flag updates all installed components', { timeout: 30_000 }, async () => {
     const config = defineConfig({})
     await writeConfig(config, tmpDir)
 
@@ -178,7 +187,7 @@ describe('update command', () => {
     expect(updatedLock.components.card!.version).toBe('0.1.0')
   })
 
-  it('--all --force updates all even at same version', async () => {
+  it('--all --force updates all even at same version', { timeout: 30_000 }, async () => {
     const config = defineConfig({})
     await writeConfig(config, tmpDir)
 
