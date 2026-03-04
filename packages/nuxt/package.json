@@ -1,7 +1,7 @@
 {
   "name": "@stellar-vue-ui/nuxt",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Nuxt module for Stellar Vue UI",
   "author": "Terry McCann <terry@stellarcl.dev>",
   "license": "MIT",

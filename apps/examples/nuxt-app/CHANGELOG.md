@@ -1,5 +1,11 @@
 # @stellar-vue-ui/example-nuxt-app
 
+## 0.0.3
+
+### Patch Changes
+
+- @stellar-vue-ui/nuxt@0.2.2
+
 ## 0.0.2
 
 ### Patch Changes

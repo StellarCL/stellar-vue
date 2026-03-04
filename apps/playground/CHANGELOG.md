@@ -1,5 +1,12 @@
 # @stellar-vue-ui/playground
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [f74b7bd]
+  - @stellar-vue-ui/core@0.3.0
+
 ## 0.1.2
 
 ### Patch Changes
