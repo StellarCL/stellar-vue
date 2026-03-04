@@ -55,6 +55,8 @@ async function main(): Promise<void> {
 export const THEME_TEMPLATES: Record<string, string> = {
 ${entries.join(',\n')}
 }
+
+export const THEME_SHARED_SUFFIX: string = ${JSON.stringify(sharedSuffix)}
 `
 
   if (!fs.existsSync(OUT_DIR)) {

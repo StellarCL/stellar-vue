@@ -4,7 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { deriveTokensFromPalette } from '@stellar-vue-ui/theme'
 import prompts from 'prompts'
-import { THEME_TEMPLATES } from '../templates/themes'
+import { THEME_SHARED_SUFFIX, THEME_TEMPLATES } from '../templates/themes'
 import { findConfig, readConfig, writeConfig } from '../utils/config'
 import { header, newLine, styles } from '../utils/prompts'
 
@@ -33,76 +33,55 @@ function validateHex(value: string): boolean | string {
 }
 
 /**
- * Format a ThemeColors token map as CSS custom properties with --stellar- prefix.
+ * Format derived tokens as color CSS custom properties (--color-* prefix).
+ * Used for both @theme block and dark mode overrides.
  */
-function formatTokensAsCss(
+function formatColorTokens(
   tokens: ReturnType<typeof deriveTokensFromPalette>,
-  borderRadius: string,
+  indent: string,
 ): string {
-  return `  /* Colors - Primary */
-  --stellar-primary: ${tokens.primary.DEFAULT};
-  --stellar-primary-foreground: ${tokens.primary.foreground};
-  --stellar-primary-focus: ${tokens.primaryFocus};
-
-  /* Colors - Secondary */
-  --stellar-secondary: ${tokens.secondary.DEFAULT};
-  --stellar-secondary-foreground: ${tokens.secondary.foreground};
-
-  /* Colors - Accent */
-  --stellar-accent: ${tokens.accent.DEFAULT};
-  --stellar-accent-foreground: ${tokens.accent.foreground};
-
-  /* Colors - Muted */
-  --stellar-muted: ${tokens.muted.DEFAULT};
-  --stellar-muted-foreground: ${tokens.muted.foreground};
-
-  /* Colors - Destructive */
-  --stellar-destructive: ${tokens.destructive.DEFAULT};
-  --stellar-destructive-foreground: ${tokens.destructive.foreground};
-
-  /* Colors - Error */
-  --stellar-error: ${tokens.error.DEFAULT};
-  --stellar-error-foreground: ${tokens.error.foreground};
-  --stellar-error-focus: ${tokens.errorFocus};
-
-  /* Colors - Success */
-  --stellar-success: ${tokens.success.DEFAULT};
-  --stellar-success-foreground: ${tokens.success.foreground};
-  --stellar-success-focus: ${tokens.successFocus};
-
-  /* Colors - Warning */
-  --stellar-warning: ${tokens.warning.DEFAULT};
-  --stellar-warning-foreground: ${tokens.warning.foreground};
-  --stellar-warning-focus: ${tokens.warningFocus};
-
-  /* Colors - Info */
-  --stellar-info: ${tokens.info.DEFAULT};
-  --stellar-info-foreground: ${tokens.info.foreground};
-  --stellar-info-focus: ${tokens.infoFocus};
-
-  /* Colors - Background & Foreground */
-  --stellar-background: ${tokens.background};
-  --stellar-foreground: ${tokens.foreground};
-
-  /* Colors - Card */
-  --stellar-card: ${tokens.card.DEFAULT};
-  --stellar-card-foreground: ${tokens.card.foreground};
-
-  /* Colors - Popover */
-  --stellar-popover: ${tokens.popover.DEFAULT};
-  --stellar-popover-foreground: ${tokens.popover.foreground};
-
-  /* Colors - Border, Input, Ring */
-  --stellar-border: ${tokens.border};
-  --stellar-input: ${tokens.input};
-  --stellar-ring: ${tokens.ring};
-
-  /* Border Radius */
-  --stellar-radius: ${borderRadius};`
+  const lines = [
+    `${indent}--color-background: ${tokens.background};`,
+    `${indent}--color-foreground: ${tokens.foreground};`,
+    `${indent}--color-primary: ${tokens.primary.DEFAULT};`,
+    `${indent}--color-primary-foreground: ${tokens.primary.foreground};`,
+    `${indent}--color-primary-focus: ${tokens.primaryFocus};`,
+    `${indent}--color-secondary: ${tokens.secondary.DEFAULT};`,
+    `${indent}--color-secondary-foreground: ${tokens.secondary.foreground};`,
+    `${indent}--color-accent: ${tokens.accent.DEFAULT};`,
+    `${indent}--color-accent-foreground: ${tokens.accent.foreground};`,
+    `${indent}--color-destructive: ${tokens.destructive.DEFAULT};`,
+    `${indent}--color-destructive-foreground: ${tokens.destructive.foreground};`,
+    `${indent}--color-error: ${tokens.error.DEFAULT};`,
+    `${indent}--color-error-foreground: ${tokens.error.foreground};`,
+    `${indent}--color-error-focus: ${tokens.errorFocus};`,
+    `${indent}--color-muted: ${tokens.muted.DEFAULT};`,
+    `${indent}--color-muted-foreground: ${tokens.muted.foreground};`,
+    `${indent}--color-card: ${tokens.card.DEFAULT};`,
+    `${indent}--color-card-foreground: ${tokens.card.foreground};`,
+    `${indent}--color-popover: ${tokens.popover.DEFAULT};`,
+    `${indent}--color-popover-foreground: ${tokens.popover.foreground};`,
+    `${indent}--color-success: ${tokens.success.DEFAULT};`,
+    `${indent}--color-success-foreground: ${tokens.success.foreground};`,
+    `${indent}--color-success-focus: ${tokens.successFocus};`,
+    `${indent}--color-warning: ${tokens.warning.DEFAULT};`,
+    `${indent}--color-warning-foreground: ${tokens.warning.foreground};`,
+    `${indent}--color-warning-focus: ${tokens.warningFocus};`,
+    `${indent}--color-info: ${tokens.info.DEFAULT};`,
+    `${indent}--color-info-foreground: ${tokens.info.foreground};`,
+    `${indent}--color-info-focus: ${tokens.infoFocus};`,
+    `${indent}--color-border: ${tokens.border};`,
+    `${indent}--color-input: ${tokens.input};`,
+    `${indent}--color-ring: ${tokens.ring};`,
+  ]
+  return lines.join('\n')
 }
 
 /**
- * Generate CSS custom properties for a custom theme from a palette.
+ * Generate a complete theme CSS file matching the built-in template format:
+ *  - @theme { --color-* } for light mode (Tailwind v4)
+ *  - @media (prefers-color-scheme: dark) + .dark { } for dark mode
+ *  - Shared keyframes and @utility blocks
  */
 export function generateThemeCss(
   themeName: string,
@@ -112,17 +91,48 @@ export function generateThemeCss(
   const lightTokens = deriveTokensFromPalette(palette, 'light')
   const darkTokens = deriveTokensFromPalette(palette, 'dark')
 
-  return `/* Stellar UI - Custom Theme: ${themeName} */
-/* Generated by @stellar-vue-ui/cli */
+  const themeBlock = [
+    '@theme {',
+    formatColorTokens(lightTokens, '  '),
+    `  --radius-sm: 0.25rem;`,
+    `  --radius-md: ${borderRadius};`,
+    `  --radius-lg: 0.75rem;`,
+    `  --radius-xl: 1rem;`,
+    '}',
+  ].join('\n')
 
-:root {
-${formatTokensAsCss(lightTokens, borderRadius)}
-}
+  const darkColorVars = formatColorTokens(darkTokens, '    ')
+  const darkColorVarsDirect = formatColorTokens(darkTokens, '  ')
 
-.dark {
-${formatTokensAsCss(darkTokens, borderRadius)}
-}
-`
+  const parts = [
+    `/* Stellar UI - Custom Theme: ${themeName} */`,
+    `/* Generated by @stellar-vue-ui/cli */`,
+    '',
+    themeBlock,
+    '',
+    `/* ==========================================================================`,
+    `   Dark Mode - System Preference`,
+    `   ========================================================================== */`,
+    '',
+    `@media (prefers-color-scheme: dark) {`,
+    `  :root {`,
+    darkColorVars,
+    `  }`,
+    `}`,
+    '',
+    `/* ==========================================================================`,
+    `   Dark Mode - Class-Based (.dark)`,
+    `   ========================================================================== */`,
+    '',
+    `.dark {`,
+    darkColorVarsDirect,
+    `}`,
+    '',
+    THEME_SHARED_SUFFIX,
+    '',
+  ]
+
+  return parts.join('\n')
 }
 
 /**
@@ -175,30 +185,31 @@ export function generateThemeTailwind(themeName: string, borderRadius: string): 
 const ${themeName}Theme = {
   extend: {
     colors: {
-      stellar: {
-        primary: 'var(--stellar-primary)',
-        'primary-foreground': 'var(--stellar-primary-foreground)',
-        secondary: 'var(--stellar-secondary)',
-        'secondary-foreground': 'var(--stellar-secondary-foreground)',
-        muted: 'var(--stellar-muted)',
-        'muted-foreground': 'var(--stellar-muted-foreground)',
-        accent: 'var(--stellar-accent)',
-        'accent-foreground': 'var(--stellar-accent-foreground)',
-        destructive: 'var(--stellar-destructive)',
-        'destructive-foreground': 'var(--stellar-destructive-foreground)',
-        background: 'var(--stellar-background)',
-        foreground: 'var(--stellar-foreground)',
-        card: 'var(--stellar-card)',
-        'card-foreground': 'var(--stellar-card-foreground)',
-        popover: 'var(--stellar-popover)',
-        'popover-foreground': 'var(--stellar-popover-foreground)',
-        border: 'var(--stellar-border)',
-        input: 'var(--stellar-input)',
-        ring: 'var(--stellar-ring)',
-      },
+      primary: 'var(--color-primary)',
+      'primary-foreground': 'var(--color-primary-foreground)',
+      secondary: 'var(--color-secondary)',
+      'secondary-foreground': 'var(--color-secondary-foreground)',
+      muted: 'var(--color-muted)',
+      'muted-foreground': 'var(--color-muted-foreground)',
+      accent: 'var(--color-accent)',
+      'accent-foreground': 'var(--color-accent-foreground)',
+      destructive: 'var(--color-destructive)',
+      'destructive-foreground': 'var(--color-destructive-foreground)',
+      background: 'var(--color-background)',
+      foreground: 'var(--color-foreground)',
+      card: 'var(--color-card)',
+      'card-foreground': 'var(--color-card-foreground)',
+      popover: 'var(--color-popover)',
+      'popover-foreground': 'var(--color-popover-foreground)',
+      border: 'var(--color-border)',
+      input: 'var(--color-input)',
+      ring: 'var(--color-ring)',
     },
     borderRadius: {
-      stellar: 'var(--stellar-radius)', // ${borderRadius}
+      sm: 'var(--radius-sm)',
+      md: 'var(--radius-md)', // ${borderRadius}
+      lg: 'var(--radius-lg)',
+      xl: 'var(--radius-xl)',
     },
   },
 }
