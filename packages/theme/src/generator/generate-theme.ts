@@ -1,60 +1,41 @@
-import type { ColorPair, GenerateThemeOptions, ThemeConfig } from '../types'
+import type { GenerateThemeOptions, PaletteThemeOptions, ThemeConfig } from '../types'
 import { defineTheme } from './define-theme'
+import { derivePaletteFromBrandColor, deriveTokensFromPalette } from './derive-tokens'
 
-// Simple OKLCH color manipulation without requiring culori at runtime
-// Format: oklch(L% C H)
-
-function oklch(l: number, c: number, h: number): string {
-  return `oklch(${(l * 100).toFixed(2)}% ${c.toFixed(3)} ${h.toFixed(2)})`
-}
-
-function getForeground(lightness: number): string {
-  return lightness > 0.6 ? oklch(0.15, 0.02, 285) : oklch(0.98, 0, 0)
-}
-
-function createColorPair(l: number, c: number, h: number): ColorPair {
-  return {
-    DEFAULT: oklch(l, c, h),
-    foreground: getForeground(l),
-  }
-}
-
-export function generateTheme(options: GenerateThemeOptions): ThemeConfig {
-  // For now, use the brand color as primary and derive others
-  // This is a simplified generator - full culori integration in v0.2
-  const isLight = options.type === 'light'
+/**
+ * Generate a complete theme from a 5-color palette.
+ */
+export function generateThemeFromPalette(options: PaletteThemeOptions): ThemeConfig {
+  const colors = deriveTokensFromPalette(options.palette, options.type)
 
   return defineTheme({
     name: options.name,
     type: options.type,
-    colors: {
-      background: isLight ? oklch(1, 0, 0) : oklch(0.13, 0.02, 285),
-      foreground: isLight ? oklch(0.15, 0.02, 285) : oklch(0.98, 0, 0),
-      primary: createColorPair(isLight ? 0.55 : 0.75, 0.15, 285),
-      primaryFocus: oklch(isLight ? 0.48 : 0.68, 0.15, 285),
-      secondary: createColorPair(isLight ? 0.92 : 0.25, 0.01, 285),
-      accent: createColorPair(isLight ? 0.92 : 0.25, 0.01, 285),
-      destructive: createColorPair(isLight ? 0.55 : 0.65, 0.2, 27),
-      error: createColorPair(isLight ? 0.55 : 0.65, 0.2, 27),
-      errorFocus: oklch(isLight ? 0.48 : 0.58, 0.2, 27),
-      muted: createColorPair(isLight ? 0.94 : 0.2, 0.01, 285),
-      card: {
-        DEFAULT: isLight ? oklch(1, 0, 0) : oklch(0.15, 0.02, 285),
-        foreground: isLight ? oklch(0.15, 0.02, 285) : oklch(0.98, 0, 0),
-      },
-      popover: {
-        DEFAULT: isLight ? oklch(1, 0, 0) : oklch(0.15, 0.02, 285),
-        foreground: isLight ? oklch(0.15, 0.02, 285) : oklch(0.98, 0, 0),
-      },
-      border: isLight ? oklch(0.91, 0.005, 285) : oklch(0.25, 0.02, 285),
-      input: isLight ? oklch(0.91, 0.005, 285) : oklch(0.25, 0.02, 285),
-      ring: isLight ? oklch(0.55, 0.15, 285) : oklch(0.75, 0.15, 285),
-      success: createColorPair(isLight ? 0.55 : 0.65, 0.15, 145),
-      successFocus: oklch(isLight ? 0.48 : 0.58, 0.15, 145),
-      warning: createColorPair(isLight ? 0.7 : 0.75, 0.15, 80),
-      warningFocus: oklch(isLight ? 0.63 : 0.68, 0.15, 80),
-      info: createColorPair(isLight ? 0.55 : 0.65, 0.15, 250),
-      infoFocus: oklch(isLight ? 0.48 : 0.58, 0.15, 250),
-    },
+    colors,
+    borderRadius: options.borderRadius,
+  })
+}
+
+/**
+ * Generate a theme from a brand color or palette.
+ *
+ * When `options.palette` is provided, delegates to `generateThemeFromPalette`.
+ * When only `brandColor` is provided, derives a palette first (backward compat).
+ */
+export function generateTheme(options: GenerateThemeOptions): ThemeConfig {
+  if (options.palette) {
+    return generateThemeFromPalette({
+      palette: options.palette,
+      name: options.name,
+      type: options.type,
+    })
+  }
+
+  // Legacy path: derive a palette from the single brand color
+  const palette = derivePaletteFromBrandColor(options.brandColor, options.type)
+  return generateThemeFromPalette({
+    palette,
+    name: options.name,
+    type: options.type,
   })
 }

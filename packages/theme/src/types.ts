@@ -90,6 +90,22 @@ export interface ValidationIssue {
 }
 
 /**
+ * A 5-color palette for theme generation (Adobe Kuler style)
+ */
+export interface ThemePalette {
+  /** Primary brand color (hex, e.g. '#667eea') */
+  primary: string
+  /** Secondary color (hex) */
+  secondary: string
+  /** Accent color (hex) */
+  accent: string
+  /** Background color (hex) */
+  background: string
+  /** Foreground/text color (hex) */
+  foreground: string
+}
+
+/**
  * Options for generating a theme from a brand color
  */
 export interface GenerateThemeOptions {
@@ -99,4 +115,20 @@ export interface GenerateThemeOptions {
   name: string
   /** Light or dark theme */
   type: 'light' | 'dark'
+  /** Optional 5-color palette (overrides brandColor when provided) */
+  palette?: ThemePalette
+}
+
+/**
+ * Options for generating a theme from a 5-color palette
+ */
+export interface PaletteThemeOptions {
+  /** 5-color palette */
+  palette: ThemePalette
+  /** Theme display name */
+  name: string
+  /** Light or dark theme */
+  type: 'light' | 'dark'
+  /** Optional border radius overrides */
+  borderRadius?: Partial<ThemeBorderRadius>
 }

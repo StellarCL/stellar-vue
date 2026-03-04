@@ -42,6 +42,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@stellar-vue-ui/theme": "workspace:*",
     "commander": "^12.0.0",
     "diff": "^5.2.0",
     "execa": "^9.0.0",
