@@ -5,7 +5,7 @@ export interface InputProps {
    * The type of the input element
    * @default 'text'
    */
-  type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
+  type?: 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url' | 'date'
 
   /** The controlled value of the input (for v-model) */
   modelValue?: string | number

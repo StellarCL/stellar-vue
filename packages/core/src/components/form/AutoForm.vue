@@ -118,11 +118,9 @@ function hasFieldSlot(fieldName: string): boolean {
   return !!slots[getSlotName(fieldName)]
 }
 
-type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url'
+type InputType = 'text' | 'email' | 'password' | 'number' | 'search' | 'tel' | 'url' | 'date'
 
 function getInputType(fieldType: string): InputType {
-  if (fieldType === 'date')
-    return 'text'
   return fieldType as InputType
 }
 </script>
