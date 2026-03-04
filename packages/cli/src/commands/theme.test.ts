@@ -20,6 +20,15 @@ function cleanup(dir: string): void {
   fs.rmSync(dir, { recursive: true, force: true })
 }
 
+// Default palette for tests
+const DEFAULT_PALETTE = {
+  primary: '#667eea',
+  secondary: '#e2e8f0',
+  accent: '#764ba2',
+  background: '#ffffff',
+  foreground: '#1a1a2e',
+}
+
 describe('theme list', () => {
   it('outputs all 6 built-in themes', async () => {
     const { Command } = await import('commander')
@@ -109,17 +118,28 @@ describe('theme create', () => {
     expect(content).toContain('--stellar-background:')
     expect(content).toContain('--stellar-radius:')
     expect(content).toContain('my-theme')
-    expect(content).toContain('stellar')
+    // Should contain all derived tokens
+    expect(content).toContain('--stellar-secondary:')
+    expect(content).toContain('--stellar-accent:')
+    expect(content).toContain('--stellar-muted:')
+    expect(content).toContain('--stellar-destructive:')
+    expect(content).toContain('--stellar-card:')
+    expect(content).toContain('--stellar-border:')
+    expect(content).toContain('--stellar-ring:')
   })
 
-  it('generates a CSS file using prompts', async () => {
+  it('generates a CSS file using prompts with palette', async () => {
     const promptsMock = await import('prompts')
     const mockPrompts = vi.mocked(promptsMock.default)
 
     mockPrompts.mockResolvedValueOnce({
       themeName: 'test-theme',
-      baseTheme: 'polaris',
-      primaryColor: 'oklch(55% 0.18 240)',
+      themeType: 'light',
+      primary: '#667eea',
+      secondary: '#e2e8f0',
+      accent: '#764ba2',
+      background: '#ffffff',
+      foreground: '#1a1a2e',
       borderRadius: '0.375rem',
     })
 
@@ -141,8 +161,7 @@ describe('theme create', () => {
 
     const content = fs.readFileSync(themeFile, 'utf-8')
     expect(content).toContain('test-theme')
-    expect(content).toContain('polaris')
-    expect(content).toContain('oklch(55% 0.18 240)')
+    expect(content).toContain('oklch')
     expect(content).toContain('0.375rem')
   })
 })
@@ -422,7 +441,7 @@ describe('theme export', () => {
 
 describe('generateThemeCss', () => {
   it('contains all required CSS custom properties', () => {
-    const css = generateThemeCss('test', 'stellar', 'oklch(55% 0.187 285)', '0.5rem')
+    const css = generateThemeCss('test', DEFAULT_PALETTE, '0.5rem')
     expect(css).toContain('--stellar-primary:')
     expect(css).toContain('--stellar-background:')
     expect(css).toContain('--stellar-foreground:')
@@ -431,20 +450,37 @@ describe('generateThemeCss', () => {
     expect(css).toContain('.dark')
   })
 
-  it('uses the provided primary color', () => {
-    const css = generateThemeCss('test', 'stellar', 'oklch(60% 0.2 200)', '0.25rem')
-    expect(css).toContain('oklch(60% 0.2 200)')
+  it('contains all derived token properties', () => {
+    const css = generateThemeCss('test', DEFAULT_PALETTE, '0.5rem')
+    expect(css).toContain('--stellar-secondary:')
+    expect(css).toContain('--stellar-accent:')
+    expect(css).toContain('--stellar-muted:')
+    expect(css).toContain('--stellar-destructive:')
+    expect(css).toContain('--stellar-card:')
+    expect(css).toContain('--stellar-popover:')
+    expect(css).toContain('--stellar-border:')
+    expect(css).toContain('--stellar-input:')
+    expect(css).toContain('--stellar-ring:')
+    expect(css).toContain('--stellar-success:')
+    expect(css).toContain('--stellar-warning:')
+    expect(css).toContain('--stellar-info:')
+    expect(css).toContain('--stellar-error:')
+  })
+
+  it('produces oklch values from hex palette', () => {
+    const css = generateThemeCss('test', DEFAULT_PALETTE, '0.25rem')
+    expect(css).toContain('oklch(')
     expect(css).toContain('0.25rem')
   })
 })
 
 describe('generateThemeJson', () => {
   it('produces valid JSON with expected fields', () => {
-    const json = generateThemeJson('my-theme', 'stellar', 'oklch(55% 0.187 285)', '0.5rem')
+    const json = generateThemeJson('my-theme', DEFAULT_PALETTE, '0.5rem')
     expect(() => JSON.parse(json)).not.toThrow()
     const parsed = JSON.parse(json)
     expect(parsed.name).toBe('my-theme')
-    expect(parsed.base).toBe('stellar')
+    expect(parsed.palette).toBeDefined()
     expect(parsed.colors).toBeDefined()
     expect(parsed.borderRadius).toBe('0.5rem')
   })
@@ -452,7 +488,7 @@ describe('generateThemeJson', () => {
 
 describe('generateThemeTailwind', () => {
   it('contains expected tailwind config structure', () => {
-    const tw = generateThemeTailwind('my-theme', 'oklch(55% 0.187 285)', '0.5rem')
+    const tw = generateThemeTailwind('my-theme', '0.5rem')
     expect(tw).toContain('extend')
     expect(tw).toContain('colors')
     expect(tw).toContain('stellar')

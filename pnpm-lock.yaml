@@ -239,6 +239,9 @@ importers:
 
   packages/cli:
     dependencies:
+      '@stellar-vue-ui/theme':
+        specifier: workspace:*
+        version: link:../theme
       commander:
         specifier: ^12.0.0
         version: 12.1.0

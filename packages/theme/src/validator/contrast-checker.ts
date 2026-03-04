@@ -1,40 +1,5 @@
 import type { ThemeConfig, ValidationIssue } from '../types'
-
-/**
- * Parse an OKLCH color string and return its lightness
- * Format: oklch(L% C H)
- */
-function parseOklchLightness(color: string): number | null {
-  const match = color.match(/oklch\(\s*([\d.]+)%/)
-  if (!match?.[1])
-    return null
-  return Number.parseFloat(match[1]) / 100
-}
-
-/**
- * Approximate contrast ratio from OKLCH lightness values
- * This is a simplified check - for production, use a full color library
- *
- * Uses the WCAG relative luminance formula approximated from OKLCH lightness.
- * OKLCH lightness is perceptually uniform, making this a reasonable approximation.
- */
-function approximateContrastRatio(bg: string, fg: string): number {
-  const bgL = parseOklchLightness(bg)
-  const fgL = parseOklchLightness(fg)
-
-  if (bgL === null || fgL === null)
-    return 0
-
-  // Convert OKLCH perceptual lightness to approximate relative luminance
-  // L_oklch ≈ Y^(1/3), so Y ≈ L^3
-  const bgLum = bgL ** 3
-  const fgLum = fgL ** 3
-
-  const lighter = Math.max(bgLum, fgLum)
-  const darker = Math.min(bgLum, fgLum)
-
-  return (lighter + 0.05) / (darker + 0.05)
-}
+import { approximateContrastRatio } from '../generator/oklch-utils'
 
 /**
  * Validate a theme's color contrast ratios against WCAG standards

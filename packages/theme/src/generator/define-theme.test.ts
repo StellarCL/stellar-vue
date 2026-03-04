@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
+import { validateTheme } from '../validator/contrast-checker'
 import { generateCSS } from './css-generator'
 import { defineTheme } from './define-theme'
-import { generateTheme } from './generate-theme'
+import { generateTheme, generateThemeFromPalette } from './generate-theme'
 
 describe('defineTheme', () => {
   it('returns a complete theme config with defaults', () => {
@@ -76,6 +77,103 @@ describe('generateTheme', () => {
 
     expect(theme.type).toBe('dark')
     expect(theme.colors.background).toContain('oklch')
+  })
+})
+
+describe('generateThemeFromPalette', () => {
+  it('generates a complete theme from a 5-color palette', () => {
+    const theme = generateThemeFromPalette({
+      palette: {
+        primary: '#667eea',
+        secondary: '#e2e8f0',
+        accent: '#764ba2',
+        background: '#ffffff',
+        foreground: '#1a1a2e',
+      },
+      name: 'Palette Test',
+      type: 'light',
+    })
+
+    expect(theme.name).toBe('Palette Test')
+    expect(theme.type).toBe('light')
+    expect(theme.colors.primary.DEFAULT).toContain('oklch')
+    expect(theme.colors.secondary.DEFAULT).toContain('oklch')
+    expect(theme.colors.accent.DEFAULT).toContain('oklch')
+    expect(theme.colors.destructive.DEFAULT).toContain('oklch')
+    expect(theme.colors.success.DEFAULT).toContain('oklch')
+  })
+
+  it('generates a dark theme from palette', () => {
+    const theme = generateThemeFromPalette({
+      palette: {
+        primary: '#667eea',
+        secondary: '#2d3748',
+        accent: '#764ba2',
+        background: '#1a1a2e',
+        foreground: '#f5f5f5',
+      },
+      name: 'Dark Palette',
+      type: 'dark',
+    })
+
+    expect(theme.type).toBe('dark')
+    expect(theme.colors.background).toContain('oklch')
+  })
+
+  it('passes theme validation (WCAG AA)', () => {
+    const theme = generateThemeFromPalette({
+      palette: {
+        primary: '#667eea',
+        secondary: '#e2e8f0',
+        accent: '#764ba2',
+        background: '#ffffff',
+        foreground: '#1a1a2e',
+      },
+      name: 'WCAG Test',
+      type: 'light',
+    })
+
+    const issues = validateTheme(theme)
+    expect(issues).toHaveLength(0)
+  })
+
+  it('accepts custom border radius', () => {
+    const theme = generateThemeFromPalette({
+      palette: {
+        primary: '#667eea',
+        secondary: '#e2e8f0',
+        accent: '#764ba2',
+        background: '#ffffff',
+        foreground: '#1a1a2e',
+      },
+      name: 'Radius Test',
+      type: 'light',
+      borderRadius: { lg: '1rem' },
+    })
+
+    expect(theme.borderRadius.lg).toBe('1rem')
+    expect(theme.borderRadius.sm).toBe('0.25rem')
+  })
+})
+
+describe('generateTheme with palette option', () => {
+  it('delegates to palette path when palette is provided', () => {
+    const theme = generateTheme({
+      brandColor: '#000000', // should be ignored
+      name: 'Palette Override',
+      type: 'light',
+      palette: {
+        primary: '#ff5733',
+        secondary: '#e2e8f0',
+        accent: '#764ba2',
+        background: '#ffffff',
+        foreground: '#1a1a2e',
+      },
+    })
+
+    expect(theme.name).toBe('Palette Override')
+    // Primary should be derived from #ff5733, not #000000
+    expect(theme.colors.primary.DEFAULT).toContain('oklch')
   })
 })
 
