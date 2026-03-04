@@ -1,5 +1,12 @@
 # @stellar-vue-ui/example-vite-ts
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [a21a8a6]
+  - @stellar-vue-ui/theme@0.3.0
+
 ## 0.0.3
 
 ### Patch Changes
