@@ -44,7 +44,7 @@ export function parseOklch(color: string): OklchColor | null {
 function hexToSrgb(hex: string): [number, number, number] {
   let h = hex.replace('#', '')
   if (h.length === 3) {
-    h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2]
+    h = h.charAt(0) + h.charAt(0) + h.charAt(1) + h.charAt(1) + h.charAt(2) + h.charAt(2)
   }
   const n = Number.parseInt(h, 16)
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]
